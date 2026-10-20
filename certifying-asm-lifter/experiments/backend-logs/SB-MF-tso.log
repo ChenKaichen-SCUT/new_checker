@@ -1,0 +1,32 @@
+======== After processing ========
+SB-MF.litmus
+
+Memory:
+static [size=8, align=8]	x	{ 0: bv64(0) }
+static [size=8, align=8]	y	{ 0: bv64(0) }
+
+
+[0] thread void P0()
+0:       ThreadStart
+1:       store(&x, bv64(1))
+2:       mfence
+3:       bv64 EAX = load(&y)
+4:    END_OF_T0:
+5:    END_OF_T0:
+
+[1] thread void P1()
+6:       ThreadStart
+7:       store(&y, bv64(1))
+8:       mfence
+9:       bv64 EAX = load(&x)
+10:   END_OF_T1:
+11:   END_OF_T1:
+
+... omitted init threads ...
+
+======================================
+Test: /mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/benchmarks/litmus/SB-MF.litmus
+Result: FAIL
+Reason: Program specification violation found
+Condition: exists (0:EAX == bv64(0)) && (1:EAX == bv64(0))
+Time: 0.375 secs

@@ -1,0 +1,78 @@
+[
+  {
+    "command": [
+      "env",
+      "LD_LIBRARY_PATH=/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/vendor/clang-local/root/usr/lib/x86_64-linux-gnu",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/vendor/clang-local/root/usr/bin/clang-21",
+      "-O1",
+      "-S",
+      "-emit-llvm",
+      "-DEXPECT=0",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/benchmarks/backend-source.c",
+      "-o",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/benchmarks/backend/clang-raw-unsafe.ll"
+    ],
+    "returncode": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "gcc",
+      "-O2",
+      "-pthread",
+      "-DEXPECT=0",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/benchmarks/backend-source.c",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/benchmarks/native-error.c",
+      "-o",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/clang-raw-unsafe.native"
+    ],
+    "returncode": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/clang-raw-unsafe.native"
+    ],
+    "returncode": 42,
+    "output": "",
+    "expected_exit": 42
+  },
+  {
+    "command": [
+      "env",
+      "LD_LIBRARY_PATH=/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/vendor/clang-local/root/usr/lib/x86_64-linux-gnu",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/vendor/clang-local/root/usr/bin/clang-21",
+      "-O1",
+      "-S",
+      "-emit-llvm",
+      "-DEXPECT=2",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/benchmarks/backend-source.c",
+      "-o",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/benchmarks/backend/clang-raw-safe.ll"
+    ],
+    "returncode": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "gcc",
+      "-O2",
+      "-pthread",
+      "-DEXPECT=2",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/benchmarks/backend-source.c",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/benchmarks/native-error.c",
+      "-o",
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/clang-raw-safe.native"
+    ],
+    "returncode": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/clang-raw-safe.native"
+    ],
+    "returncode": 0,
+    "output": "",
+    "expected_exit": 0
+  }
+]

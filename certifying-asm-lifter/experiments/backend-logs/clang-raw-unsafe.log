@@ -1,0 +1,77 @@
+[20.10.2026] 00:57:32 [WARN] VisitorLlvm.visitCallInst - None of the parsers succeeded for inline assembly 'tail call i32 asm sideeffect "lock; xaddl $0,$1", "=r,=*m,0,*m,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}"(ptr nonnull elementtype(i32) @x, i32 1, ptr nonnull elementtype(i32) @x) #3'. Setting non deterministic value.
+======== After processing ========
+clang-raw-unsafe.ll Entry@main
+
+Memory:
+static [size=4, align=8]	x	{ 0: bv32(0) }
+static [size=1, align=8]	__com_worker#1	{ 0: bv2(0) }
+static [size=1, align=8]	__com_worker#2	{ 0: bv2(0) }
+
+
+[0] thread bv32 main()
+0:       ThreadStart
+1:       === Calling intrinsic pthread_create ===
+2:       store(&__com_worker#1, bv2(3))
+3:       ThreadCreate(T1:worker, bv64(0))
+4:       === Returning from intrinsic pthread_create ===
+5:       === Calling intrinsic pthread_create ===
+6:       store(&__com_worker#2, bv2(3))
+7:       ThreadCreate(T2:worker, bv64(0))
+8:       === Returning from intrinsic pthread_create ===
+9:       === Calling intrinsic pthread_join ===
+10:      bv8 __joinStatus#0 = bv8(3)
+11:      bv2 __joinThreadState#0 = load(&__com_worker#1)
+12:      rmw store(&__com_worker#1, bv2 __joinThreadState#0 & bv2(1)) 	 #Linked to E11
+13:      if(!((bv2 __joinThreadState#0[1..1]) != bv1(0))); then goto __joinEnd#0
+14:      bv64 __joinRetVal#0 = ThreadJoin(T1:worker)
+15:      assume(!((bv2 __joinThreadState#0[0..0]) != bv1(0)))
+16:      bv8 __joinStatus#0 = bv8(0)
+17:      goto __joinEnd#0
+18:   __joinEnd#0:
+19:      assert(bv8 __joinStatus#0 != bv8(1)) ### Invalid thread id in pthread_join.
+20:      === Returning from intrinsic pthread_join ===
+21:      === Calling intrinsic pthread_join ===
+22:      bv8 __joinStatus#1 = bv8(3)
+23:      bv2 __joinThreadState#1 = load(&__com_worker#2)
+24:      rmw store(&__com_worker#2, bv2 __joinThreadState#1 & bv2(1)) 	 #Linked to E23
+25:      if(!((bv2 __joinThreadState#1[1..1]) != bv1(0))); then goto __joinEnd#1
+26:      bv64 __joinRetVal#1 = ThreadJoin(T2:worker)
+27:      assume(!((bv2 __joinThreadState#1[0..0]) != bv1(0)))
+28:      bv8 __joinStatus#1 = bv8(0)
+29:      goto __joinEnd#1
+30:   __joinEnd#1:
+31:      assert(bv8 __joinStatus#1 != bv8(1)) ### Invalid thread id in pthread_join.
+32:      === Returning from intrinsic pthread_join ===
+33:      bv32 r9 = load(&x)
+34:      === Calling intrinsic __VERIFIER_assert ===
+35:      assert(bv32 r9 == bv32(0)) ### user assertion
+36:      === Returning from intrinsic __VERIFIER_assert ===
+37:      ThreadReturn bv32(0)
+38:   END_OF_T0:
+
+[1] thread bv64 worker(bv64 r0)
+39:      ThreadStart by T0:main::ThreadCreate(T1:worker, bv64(0))
+40:      bv2 __threadStateT1 = load(&__com_worker#1)
+41:      assume((bv2 __threadStateT1[0..0]) != bv1(0))
+42:      bv64 r0 = Argument(0) from ThreadCreate(T1:worker, bv64(0))
+43:      bv2 __threadStateT1 = load(&__com_worker#1)
+44:      rmw store(&__com_worker#1, bv2 __threadStateT1 & bv2(2)) 	 #Linked to E43
+45:      ThreadReturn bv64(0)
+46:   END_OF_T1:
+
+[2] thread bv64 worker(bv64 r0)
+47:      ThreadStart by T0:main::ThreadCreate(T2:worker, bv64(0))
+48:      bv2 __threadStateT2 = load(&__com_worker#2)
+49:      assume((bv2 __threadStateT2[0..0]) != bv1(0))
+50:      bv64 r0 = Argument(0) from ThreadCreate(T2:worker, bv64(0))
+51:      bv2 __threadStateT2 = load(&__com_worker#2)
+52:      rmw store(&__com_worker#2, bv2 __threadStateT2 & bv2(2)) 	 #Linked to E51
+53:      ThreadReturn bv64(0)
+54:   END_OF_T2:
+
+... omitted init threads ...
+
+======================================
+Test: /mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/benchmarks/backend/clang-raw-unsafe.ll
+Result: PASS
+Time: 0.446 secs

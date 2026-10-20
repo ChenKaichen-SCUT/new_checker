@@ -1,0 +1,1 @@
+__asm__ __volatile__(CK_PR_LOCK_PREFIX I " %1, %0"	 					: "+m" (*(C *)target),		 					  "+q" (d)			 					:				 					: "memory", "cc");

@@ -1,0 +1,1 @@
+__asm__ __volatile__(I " %1, %0"			 					: "=m" (*(C *)target)		 					: K "q" (v)			 					: "memory");

@@ -1,0 +1,93 @@
+======== After processing ========
+SB-failed-CAS-mutant-plain-read.ll Entry@main
+
+Memory:
+static [size=4, align=8]	x	{ 0: bv32(0) }
+static [size=4, align=8]	y	{ 0: bv32(0) }
+static [size=4, align=8]	z0	{ 0: bv32(0) }
+static [size=4, align=8]	z1	{ 0: bv32(0) }
+static [size=4, align=8]	r0	{ 0: bv32(0) }
+static [size=4, align=8]	r1	{ 0: bv32(0) }
+static [size=1, align=8]	__com_thread0#1	{ 0: bv2(0) }
+static [size=1, align=8]	__com_thread1#2	{ 0: bv2(0) }
+
+
+[0] thread bv32 main()
+0:       ThreadStart
+1:       === Calling intrinsic pthread_create ===
+2:       store(&__com_thread0#1, bv2(3))
+3:       ThreadCreate(T1:thread0, bv64(0))
+4:       === Returning from intrinsic pthread_create ===
+5:       === Calling intrinsic pthread_create ===
+6:       store(&__com_thread1#2, bv2(3))
+7:       ThreadCreate(T2:thread1, bv64(0))
+8:       === Returning from intrinsic pthread_create ===
+9:       === Calling intrinsic pthread_join ===
+10:      bv8 __joinStatus#0 = bv8(3)
+11:      bv2 __joinThreadState#0 = load(&__com_thread0#1)
+12:      rmw store(&__com_thread0#1, bv2 __joinThreadState#0 & bv2(1)) 	 #Linked to E11
+13:      if(!((bv2 __joinThreadState#0[1..1]) != bv1(0))); then goto __joinEnd#0
+14:      bv64 __joinRetVal#0 = ThreadJoin(T1:thread0)
+15:      assume(!((bv2 __joinThreadState#0[0..0]) != bv1(0)))
+16:      bv8 __joinStatus#0 = bv8(0)
+17:      goto __joinEnd#0
+18:   __joinEnd#0:
+19:      assert(bv8 __joinStatus#0 != bv8(1)) ### Invalid thread id in pthread_join.
+20:      === Returning from intrinsic pthread_join ===
+21:      === Calling intrinsic pthread_join ===
+22:      bv8 __joinStatus#1 = bv8(3)
+23:      bv2 __joinThreadState#1 = load(&__com_thread1#2)
+24:      rmw store(&__com_thread1#2, bv2 __joinThreadState#1 & bv2(1)) 	 #Linked to E23
+25:      if(!((bv2 __joinThreadState#1[1..1]) != bv1(0))); then goto __joinEnd#1
+26:      bv64 __joinRetVal#1 = ThreadJoin(T2:thread1)
+27:      assume(!((bv2 __joinThreadState#1[0..0]) != bv1(0)))
+28:      bv8 __joinStatus#1 = bv8(0)
+29:      goto __joinEnd#1
+30:   __joinEnd#1:
+31:      assert(bv8 __joinStatus#1 != bv8(1)) ### Invalid thread id in pthread_join.
+32:      === Returning from intrinsic pthread_join ===
+33:      bv32 ra = load(&r0)
+34:      bv32 rb = load(&r1)
+35:      === Calling intrinsic __VERIFIER_assert ===
+36:      assert(((((bv32 ra == bv32(0)) ? bv1(1) : bv1(0)) & ((bv32 rb == bv32(0)) ? bv1(1) : bv1(0))) ^ bv1(1)) != bv1(0)) ### user assertion
+37:      === Returning from intrinsic __VERIFIER_assert ===
+38:      ThreadReturn bv32(0)
+39:   END_OF_T0:
+
+[1] thread bv64 thread0(bv64 rarg)
+40:      ThreadStart by T0:main::ThreadCreate(T1:thread0, bv64(0))
+41:      bv2 __threadStateT1 = load(&__com_thread0#1)
+42:      assume((bv2 __threadStateT1[0..0]) != bv1(0))
+43:      bv64 rarg = Argument(0) from ThreadCreate(T1:thread0, bv64(0))
+44:      store(&x, bv32(1))
+45:      bv32 rdiscard = load(&z0)
+46:      bv32 rv = load(&y)
+47:      store(&r0, bv32 rv)
+48:      bv2 __threadStateT1 = load(&__com_thread0#1)
+49:      rmw store(&__com_thread0#1, bv2 __threadStateT1 & bv2(2)) 	 #Linked to E48
+50:      ThreadReturn bv64(0)
+51:   END_OF_T1:
+
+[2] thread bv64 thread1(bv64 rarg)
+52:      ThreadStart by T0:main::ThreadCreate(T2:thread1, bv64(0))
+53:      bv2 __threadStateT2 = load(&__com_thread1#2)
+54:      assume((bv2 __threadStateT2[0..0]) != bv1(0))
+55:      bv64 rarg = Argument(0) from ThreadCreate(T2:thread1, bv64(0))
+56:      store(&y, bv32(1))
+57:      bv32 rdiscard = load(&z1)
+58:      bv32 rv = load(&x)
+59:      store(&r1, bv32 rv)
+60:      bv2 __threadStateT2 = load(&__com_thread1#2)
+61:      rmw store(&__com_thread1#2, bv2 __threadStateT2 & bv2(2)) 	 #Linked to E60
+62:      ThreadReturn bv64(0)
+63:   END_OF_T2:
+
+... omitted init threads ...
+
+======================================
+Test: /mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/benchmarks/backend/SB-failed-CAS-mutant-plain-read.ll
+Result: FAIL
+Reason: Program specification violation found
+Details:
+	T0:main -> @unknown	(E36): user assertion
+Time: 0.466 secs

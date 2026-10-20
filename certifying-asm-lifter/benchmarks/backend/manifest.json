@@ -1,0 +1,62 @@
+[
+  {
+    "name": "xadd-two-raw-safe",
+    "expected_for_intended_source": "PASS",
+    "reason": "Two locked increments complete; final x=2."
+  },
+  {
+    "name": "xadd-two-raw-unsafe",
+    "expected_for_intended_source": "FAIL",
+    "reason": "The assertion x==0 is false after two locked increments."
+  },
+  {
+    "name": "xadd-two-lifted-safe",
+    "expected_for_intended_source": "PASS",
+    "reason": "Two locked increments complete; final x=2."
+  },
+  {
+    "name": "xadd-two-lifted-unsafe",
+    "expected_for_intended_source": "FAIL",
+    "reason": "The assertion x==0 is false after two locked increments."
+  },
+  {
+    "name": "ablation-unchecked-drop-unsafe",
+    "expected_for_intended_source": "FAIL",
+    "reason": "Expected for original asm, but unchecked candidate deletes both increments."
+  },
+  {
+    "name": "ablation-unchecked-split-safe",
+    "expected_for_intended_source": "PASS",
+    "reason": "Expected for original locked asm; split candidate admits lost update."
+  },
+  {
+    "name": "SB-none",
+    "expected_for_intended_source": "FAIL",
+    "reason": "04-C3/C4 analytic argument."
+  },
+  {
+    "name": "SB-compiler-barrier",
+    "expected_for_intended_source": "FAIL",
+    "reason": "04-C3/C4 analytic argument."
+  },
+  {
+    "name": "SB-mfence",
+    "expected_for_intended_source": "PASS",
+    "reason": "04-C3/C4 analytic argument."
+  },
+  {
+    "name": "SB-sfence",
+    "expected_for_intended_source": "FAIL",
+    "reason": "04-C3/C4 analytic argument."
+  },
+  {
+    "name": "SB-failed-CAS-locked",
+    "expected_for_intended_source": "PASS",
+    "reason": "04-C6 analytic ordering counterexample."
+  },
+  {
+    "name": "SB-failed-CAS-mutant-plain-read",
+    "expected_for_intended_source": "FAIL",
+    "reason": "04-C6 analytic ordering counterexample."
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {"name":"ck-xchg32","origin":"ck.h:143-148, CK_PR_FAS_S(32,...), macro/type normalization only","width":32,"asm":"asm volatile(\"xchgl %0,%1\" : \"+m\"(*target), \"+q\"(v) : : \"memory\");"},
+  {"name":"ck-xchg64","origin":"ck.h:143-148, CK_PR_FAS_S(64,...), same macro family as 32-bit","width":64,"asm":"asm volatile(\"xchgq %0,%1\" : \"+m\"(*target), \"+q\"(v) : : \"memory\");"},
+  {"name":"ck-xadd32","origin":"ck.h:293-297, CK_PR_FAA_S(32,...), macro/type normalization only","width":32,"asm":"asm volatile(\"lock; xaddl %1,%0\" : \"+m\"(*target), \"+q\"(d) : : \"memory\", \"cc\");"},
+  {"name":"ck-xadd64","origin":"ck.h:293-297, CK_PR_FAA_S(64,...), same macro family","width":64,"asm":"asm volatile(\"lock; xaddq %1,%0\" : \"+m\"(*target), \"+q\"(d) : : \"memory\", \"cc\");"},
+  {"name":"urcu-xchg32","origin":"urcu.h:154-158, pointer helper and scalar cast replaced by typed identifiers","width":32,"asm":"asm volatile(\"xchgl %0,%1\" : \"=r\"(result), \"+m\"(*addr) : \"0\"(val) : \"memory\");"},
+  {"name":"urcu-xchg64","origin":"urcu.h:165-169, same family as 32-bit","width":64,"asm":"asm volatile(\"xchgq %0,%1\" : \"=r\"(result), \"+m\"(*addr) : \"0\"(val) : \"memory\");"},
+  {"name":"urcu-cas32-strict-reject","origin":"urcu.h:90-94, no cc added; strict interface checker should reject","width":32,"asm":"asm volatile(\"lock; cmpxchgl %2,%1\" : \"+a\"(result), \"+m\"(*addr) : \"r\"(newval) : \"memory\");"},
+  {"name":"urcu-cas64-strict-reject","origin":"urcu.h:102-106, no cc added","width":64,"asm":"asm volatile(\"lock; cmpxchgq %2,%1\" : \"+a\"(result), \"+m\"(*addr) : \"r\"(newval) : \"memory\");"},
+  {"name":"urcu-xadd32-strict-reject","origin":"urcu.h:219-223, no cc added","width":32,"asm":"asm volatile(\"lock; xaddl %1,%0\" : \"+m\"(*addr), \"+r\"(result) : : \"memory\");"},
+  {"name":"atomicops-xadd64-strict-reject","origin":"atomic_ops.h:132-135, inferred AO_t width and mnemonic suffix; no cc added","width":64,"asm":"asm volatile(\"lock; xaddq %0,%1\" : \"=r\"(result), \"+m\"(*p) : \"0\"(incr) : \"memory\");"},
+  {"name":"atomicops-mfence","origin":"atomic_ops.h:112, unchanged statement","width":64,"asm":"__asm__ __volatile__(\"mfence\" : : : \"memory\");"},
+  {"name":"libvsync-pause-reject","origin":"libvsync.h:10, unchanged pause macro body","width":64,"asm":"__asm__ volatile(\"pause\\n\" ::: \"memory\");"}
+]
