@@ -25,6 +25,7 @@ def implementation_hashes():
     for package in ("certification", "frontend", "semantics", "checker", "lifter", "backend"):
         paths.extend((ROOT / package).rglob("*.py"))
     paths += [*sorted((ROOT / "backend/dat3m").glob("*.java")), ROOT / "backend/dat3m/pins.json"]
+    paths += sorted((ROOT / "frontend/clang").glob("*.cpp"))
     return {p.relative_to(ROOT).as_posix(): sha(p.read_bytes()) for p in sorted(paths)}
 
 

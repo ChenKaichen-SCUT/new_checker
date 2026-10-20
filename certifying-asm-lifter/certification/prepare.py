@@ -23,6 +23,21 @@ from certification.evidence import save_json, save_certificate
 def prepare(source_bytes, ast, llvm, evidence_dir=None):
     interface = llvm_site(llvm, source_interface(source_bytes, ast))
     interface["result"] = "INTERFACE_MATCH"
+    return _translate_checked_interface(interface, llvm, evidence_dir)
+
+
+def prepare_observed(capture_dir, evidence_dir=None):
+    """Production macro entry: never accepts an externally supplied site map."""
+    from certification.provenance import reconcile
+    interface = reconcile(capture_dir, evidence_dir)
+    llvm = (Path(capture_dir) / "source.ll").read_bytes().decode("utf-8")
+    if sha(llvm) != interface["llvm_sha256"]:
+        raise Reject("captured LLVM changed after provenance reconciliation")
+    return _translate_checked_interface(interface, llvm, evidence_dir)
+
+
+def _translate_checked_interface(interface, llvm, evidence_dir):
+    """Local translation subroutine; does not itself attest source provenance."""
     out = Path(evidence_dir) if evidence_dir is not None else None
     if out:
         save_json(out / "interface.json", interface)

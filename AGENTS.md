@@ -16,11 +16,21 @@
   premises and reliable rejection separately. UNSAT/PASS alone is insufficient.
   Preserve the completed minimum acceptance. No full SV-COMP, batch performance
   runs or arbitrary instruction expansion. Stop after this controlled delivery.
-  This round is now complete as an acceptance investigation: live output and
-  successful/failed CAS passed restricted checks; original CK macro admission
-  rejected. Third-party certification is NOT achieved. Stop expansion after
-  publishing this delivery; any further implementation/experiments need a new
-  user instruction. Preserve all original and failed captures.
+  The prior round is complete: live output and successful/failed CAS passed
+  restricted checks; original CK macro admission rejected. Preserve that result.
+- New authorization (2026-10-20): certify unchanged upstream CK ck_pr_faa_32:
+  automatic multi-GCCAsmStmt/macro/LLVM provenance (no filename/text selection),
+  original typed operand binding, inline-call composition, live continuation,
+  and complete actual Dat3M activation coverage. Prove the new accepted scope,
+  retain all raw evidence, reject missing premises, isolate any blocker.
+  Also reassess independent method novelty against Stellite, Kater, TInA and
+  related primary literature. No full competition or performance campaign.
+  Stop after this milestone and publish evidence for user review.
+  This milestone is now delivered under explicit TCB: original CK macro
+  provenance and live output through two actual worker instances checked;
+  method novelty is NOT established. Preserve all captures and final replay.
+  No further expansion until a new user instruction; current publication and
+  integrity review remain authorized.
 - Establish theoretical claims with logical proofs; experiments and enumeration
   are validation evidence, not substitutes for proofs.
 - Keep proved results, assumptions, experimental observations, and open gaps

@@ -1,0 +1,22 @@
+{
+  "mode": "nonidentity-pointer-cast",
+  "kind": "SYNTHETIC_COMPONENT_CORRUPTION_ONLY",
+  "base_capture": "experiments/ck-provenance/capture-04",
+  "control": "INTERFACE_MATCH",
+  "changes": [
+    {
+      "path": "/sites/50/operands/0/expression/children/0/cast",
+      "before": "NoOp",
+      "after": "BitCast"
+    },
+    {
+      "path": "/functions/62/body/children/0/children/0/children/0/cast",
+      "before": "NoOp",
+      "after": "BitCast"
+    }
+  ],
+  "not_a_real_compiler_or_backend_capture": true,
+  "program_verdict_eligible": false,
+  "result": "REJECT",
+  "reason": "unsupported C cast: BitCast"
+}

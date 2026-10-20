@@ -3,11 +3,13 @@
 2026-10-20。核心交付：有明确假设的开放事件等价数学证明、可运行独立检查器、
 真实 Dat3M 后端反例与实验材料。**不是已经完整认证的 GNU C→Dat3M 编译链，也未达到投稿完成状态。**
 
-当前审阅入口：[第二轮受控验收](docs/14-controlled-acceptance.md)。
-活跃输出及真实成功/失败 CAS 的受限链通过；五个单因素后端故障被拒绝。
-原始 CK 宏接口拒绝，第三方目标尚未达标；创新性仍未确认。
-完整日志和失败尝试保留，程序级判定转移仍关闭，已停止扩展。
-历史材料：[最小验收](docs/13-minimal-acceptance.md)。
+当前审阅入口：[原始 CK 宏来源与活跃输出验收](docs/15-ck-acceptance.md)。
+原始 `ck_pr_faa_32` 已通过同次 Clang 来源连接、类型化内联绑定和真实 Dat3M
+两个实例的受限检查；[条件性证明](docs/revision/09-ck-composition-proof.md)
+逐项列出检查与可信前提。[独立方法贡献复核](docs/16-method-contribution-review.md)
+仍不支持宣布方法创新已经建立。程序级判定转移关闭，本里程碑停止扩展。
+历史材料：[第二轮活跃输出/CAS/CK 拒绝](docs/14-controlled-acceptance.md)、
+[最小验收](docs/13-minimal-acceptance.md)；原始失败证据不覆盖。
 前置定义与条件式证明见[第 1–4 阶段修订](docs/12-review-repair.md)。
 
 ## 阅读顺序
@@ -50,17 +52,22 @@ python experiments/run_dat3m.py --print-ir
 mvn -B -pl dartagnan -am package -DskipTests -Dmaven.gitcommitid.skip=true
 ```
 
-这不修改验证器语义。本项目没有修改 vendor 的 Java 源码。
-实际构建日志保留第一次缺 .git 的失败与第二次成功。
+这是早期探索构建命令。后续验收另建了带明确只读导出 hook 的固定版本构建，
+以及隔离的负例故障构建；差异和日志见各轮验收报告，不能把故障构建当成正例后端。
 
 ## 认证范围
 
-输入是**一条受限 GNU asm 声明**，不是整个 C 翻译单元。
+旧 `cli.py` 的输入是**一条受限 GNU asm 声明**，不是整个 C 翻译单元。
 输出 EXACT/REJECT。EXACT 说明在证书 Γ 下块转换保持开放事件和公开输出；
 证书 `backend=UNVERIFIED` 明确禁止把块认证解释成程序 TRUE。
 源解析器、参考语义和 IR 解释器都在 TCB；候选 lifter 不在。
 SMT-LIB 可重放，但没有独立小内核检查 UNSAT 证明。
 不支持的指令、语法、接口、未知 SMT 结果都拒绝。
+
+新的 `prepare_observed` 入口接受已认证的真实编译捕获目录，内部自动遍历整个
+翻译单元的 asm 清单；当前只认证一个 surviving 静态内联调用及其有限 worker
+激活，拒绝一般宿主 CFG。生产入口不接受用户指定的 AST 节点或寄存器映射。
+两种入口的局部 EXACT 均不授权整程序判定；本轮命令与材料见最新验收报告。
 
 目录中的 `benchmarks/upstream` 是固定版本原始资料；
 `raw-extracted` 保留原始约束/表达式；

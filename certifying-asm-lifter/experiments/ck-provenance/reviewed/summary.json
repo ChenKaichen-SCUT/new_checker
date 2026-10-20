@@ -1,0 +1,148 @@
+{
+  "result": "CK_SCOPED_CHAIN_CHECKED_UNDER_DECLARED_TCB",
+  "program_verdict_eligible": false,
+  "novelty_confirmed": false,
+  "compiler_capture": "experiments/ck-provenance/capture-04",
+  "actual_positive_backend": "experiments/ck-provenance/acceptance-01/backend",
+  "compiler_or_backend_rerun": false,
+  "candidate_sha256": "f045375056ee046e30e72ed21d0041650586d49644fec0d651d2bc148f5bf711",
+  "all_ast_asm_sites": 188,
+  "static_inline_sites": 1,
+  "potential_worker_activations": 2,
+  "binding": {
+    "p0": "@x",
+    "o1": "1"
+  },
+  "positive_local_obligations": {
+    "unsat": 33,
+    "sat": 2,
+    "unknown": 0
+  },
+  "actual_regions": [
+    {
+      "thread": 1,
+      "first": 43,
+      "last": 44,
+      "exit": 45
+    },
+    {
+      "thread": 2,
+      "first": 56,
+      "last": 57,
+      "exit": 58
+    }
+  ],
+  "actual_continuations": [
+    {
+      "llvm_result": "%2",
+      "projection": {
+        "o1": "rcert_1b3ee8f16fc7_0"
+      },
+      "assertion_events": [
+        46
+      ]
+    },
+    {
+      "llvm_result": "%2",
+      "projection": {
+        "o1": "rcert_1b3ee8f16fc7_0"
+      },
+      "assertion_events": [
+        59
+      ]
+    }
+  ],
+  "component_faults": [
+    {
+      "mode": "missing-origin",
+      "kind": "SYNTHETIC_COMPONENT_CORRUPTION_ONLY",
+      "base_capture": "experiments/ck-provenance/capture-04",
+      "control": "INTERFACE_MATCH",
+      "not_a_real_compiler_or_backend_capture": true,
+      "program_verdict_eligible": false,
+      "result": "REJECT",
+      "reason": "missing/ambiguous asm origin metadata"
+    },
+    {
+      "mode": "ambiguous-origin",
+      "kind": "SYNTHETIC_COMPONENT_CORRUPTION_ONLY",
+      "base_capture": "experiments/ck-provenance/capture-04",
+      "control": "INTERFACE_MATCH",
+      "not_a_real_compiler_or_backend_capture": true,
+      "program_verdict_eligible": false,
+      "result": "REJECT",
+      "reason": "source provenance join is missing or ambiguous"
+    },
+    {
+      "mode": "wrong-llvm-input",
+      "kind": "SYNTHETIC_COMPONENT_CORRUPTION_ONLY",
+      "base_capture": "experiments/ck-provenance/capture-04",
+      "control": "INTERFACE_MATCH",
+      "not_a_real_compiler_or_backend_capture": true,
+      "program_verdict_eligible": false,
+      "result": "REJECT",
+      "reason": "actual LLVM operands differ from independent typed C substitution"
+    },
+    {
+      "mode": "nonidentity-pointer-cast",
+      "kind": "SYNTHETIC_COMPONENT_CORRUPTION_ONLY",
+      "base_capture": "experiments/ck-provenance/capture-04",
+      "control": "INTERFACE_MATCH",
+      "not_a_real_compiler_or_backend_capture": true,
+      "program_verdict_eligible": false,
+      "result": "REJECT",
+      "reason": "unsupported C cast: BitCast"
+    },
+    {
+      "mode": "wrong-inline-context",
+      "kind": "SYNTHETIC_COMPONENT_CORRUPTION_ONLY",
+      "base_capture": "experiments/ck-provenance/capture-04",
+      "control": "INTERFACE_MATCH",
+      "not_a_real_compiler_or_backend_capture": true,
+      "program_verdict_eligible": false,
+      "result": "REJECT",
+      "reason": "inline debug position differs"
+    },
+    {
+      "mode": "wrong-c-live-condition",
+      "kind": "SYNTHETIC_COMPONENT_CORRUPTION_ONLY",
+      "base_capture": "experiments/ck-provenance/capture-04",
+      "control": "INTERFACE_MATCH",
+      "not_a_real_compiler_or_backend_capture": true,
+      "program_verdict_eligible": false,
+      "result": "REJECT",
+      "reason": "source/LLVM assertion condition differs or solver unknown"
+    }
+  ],
+  "actual_faults": [
+    {
+      "mode": "live-use-only",
+      "original_capture": "experiments/ck-provenance/negative-01/actual/live-use-only",
+      "control": "SUPPORTED_WORKERS_EXACT",
+      "result": "REJECT",
+      "reason": "actual continuation rejected: unproved continuation condition assertion-0-condition",
+      "isolated": "SINGLE_FACTOR_ACTUAL_DIFF"
+    },
+    {
+      "mode": "omit-instance",
+      "original_capture": "experiments/ck-provenance/negative-01/actual/omit-instance",
+      "control": "SUPPORTED_WORKERS_EXACT",
+      "result": "REJECT",
+      "reason": "asm instance vanished or lost provenance",
+      "isolated": "SINGLE_FACTOR_ACTUAL_DIFF"
+    }
+  ],
+  "runtime": {
+    "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+    "z3": "5.0.0",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "external_assumptions": [
+    "Clang and read-only observer faithfully expose AST/metadata and compile ordinary host C",
+    "local OS, pinned build and artifact capture",
+    "restricted ISA interpretation, valid aligned WB objects and ISA/CAT correspondence",
+    "Dat3M ordinary host/pthread semantics, exporter, CAT parsing and encoding",
+    "Python/Java implementation refinement and SMT solver correctness"
+  ],
+  "stop": "milestone delivered; no arbitrary static-site/CFG/instruction or benchmark expansion"
+}

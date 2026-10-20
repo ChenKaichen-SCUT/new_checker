@@ -1,0 +1,7 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |object:x| () (_ BitVec 64))
+(assert
+ (let (($x55 (=> true (= |object:x| |object:x|))))
+(not $x55)))
+(check-sat)

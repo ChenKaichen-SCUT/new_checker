@@ -1,0 +1,112 @@
+{
+  "result": "SINGLE_FACTOR_ACTUAL_DIFF",
+  "changes": [
+    {
+      "thread": 2,
+      "event": 55,
+      "fields": {
+        "successor": {
+          "before": 56,
+          "after": 58
+        }
+      }
+    }
+  ],
+  "removed_events": [
+    {
+      "id": 56,
+      "class": "Load",
+      "java_class": "com.dat3m.dartagnan.program.event.core.Load",
+      "tags": [
+        "A",
+        "M",
+        "R",
+        "RMW",
+        "_"
+      ],
+      "successor": 57,
+      "cf_implies_exec": true,
+      "reads": [],
+      "writes": {
+        "type": "bv32",
+        "name": "rcert_1b3ee8f16fc7_0"
+      },
+      "source": {
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+        "line": 309
+      },
+      "original_id": 1,
+      "compilation_id": 1,
+      "addr": {
+        "type": "bv64",
+        "kind": "object",
+        "name": "x",
+        "java_class": "com.dat3m.dartagnan.program.memory.MemoryObject",
+        "complete": true
+      },
+      "width": 32,
+      "complete": true
+    },
+    {
+      "id": 57,
+      "class": "RMWStore",
+      "java_class": "com.dat3m.dartagnan.program.event.core.RMWStore",
+      "tags": [
+        "A",
+        "M",
+        "RMW",
+        "W",
+        "_"
+      ],
+      "successor": 58,
+      "cf_implies_exec": true,
+      "reads": [
+        {
+          "type": "bv32",
+          "name": "rcert_1b3ee8f16fc7_0"
+        }
+      ],
+      "writes": null,
+      "source": {
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+        "line": 309
+      },
+      "original_id": 1,
+      "compilation_id": 1,
+      "addr": {
+        "type": "bv64",
+        "kind": "object",
+        "name": "x",
+        "java_class": "com.dat3m.dartagnan.program.memory.MemoryObject",
+        "complete": true
+      },
+      "value": {
+        "type": "bv32",
+        "kind": "ADD",
+        "args": [
+          {
+            "type": "bv32",
+            "kind": "register",
+            "name": "rcert_1b3ee8f16fc7_0",
+            "java_class": "com.dat3m.dartagnan.program.Register",
+            "complete": true
+          },
+          {
+            "type": "bv32",
+            "kind": "int",
+            "value": "1",
+            "java_class": "com.dat3m.dartagnan.expression.integers.IntLiteral",
+            "complete": true
+          }
+        ],
+        "java_class": "com.dat3m.dartagnan.expression.integers.IntBinaryExpr",
+        "complete": true
+      },
+      "width": 32,
+      "rmw_load": 56,
+      "complete": true
+    }
+  ],
+  "thread_census_unchanged": true,
+  "llvm_frame_and_entire_candidate_unchanged": true
+}

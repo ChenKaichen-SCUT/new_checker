@@ -1,0 +1,99 @@
+{
+  "format": "dat3m-region-certificate-v1",
+  "result": "REGION_EXACT",
+  "snapshot_sha256": "6b26d5034795c66557f2cb902d7de3f67a491fb9c489c3cd872199773a160ebd",
+  "source_sha256": "3f27aea5cc2521ca201ca58f6c50eaf6fcf24a2ca1ee58445101fbbab3b546f5",
+  "interface_parameters_sha256": "4623590b4ecabd8a99df9992ae972dafab8dbdc5bcf6e2b40f16eca40fbea384",
+  "scope": "closed-region-under-authenticated-interface",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "total-exit",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x45 (or true)))\n(let (($x40 (or $x45)))\n(let (($x31 (or $x40)))\n(not $x31)))))\n(check-sat)\n",
+      "file": "000-total-exit.smt2",
+      "smt_sha256": "0624390faa11838e424674741eb4eb9d6e3a3922e9d137d01db0e93a5ea602f2"
+    },
+    {
+      "name": "endpoint-0-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x45 (or true)))\n(let (($x47 (= true $x45)))\n(not $x47))))\n(check-sat)\n",
+      "file": "001-endpoint-0-presence.smt2",
+      "smt_sha256": "65c1dc01ca7b8093354746895b7d3f4378b3470b6f37a9914818681a12284de7"
+    },
+    {
+      "name": "endpoint-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x26 (=> true (= |object:x| |object:x|))))\n(not $x26)))\n(check-sat)\n",
+      "file": "002-endpoint-0-addr.smt2",
+      "smt_sha256": "f3df77050a0297dd46707e0714aba311e1676b24b9587743c1847353cdeaa307"
+    },
+    {
+      "name": "endpoint-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x28 (=> true (= u0 u0))))\n(not $x28)))\n(check-sat)\n",
+      "file": "003-endpoint-0-read.smt2",
+      "smt_sha256": "7f8ab34b451709a299d442314d01ccf520a91e69f5a3874f4e47998d9debee76"
+    },
+    {
+      "name": "endpoint-1-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x45 (or true)))\n(let (($x40 (or $x45)))\n(let (($x26 (= true $x40)))\n(not $x26)))))\n(check-sat)\n",
+      "file": "004-endpoint-1-presence.smt2",
+      "smt_sha256": "2c621db9937e46bbc2bcc7f1fbc19ee4dc1de4b7bc7dfec1ec580a0deacbcad6"
+    },
+    {
+      "name": "endpoint-1-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x32 (=> true (= |object:x| |object:x|))))\n(not $x32)))\n(check-sat)\n",
+      "file": "005-endpoint-1-addr.smt2",
+      "smt_sha256": "6fba218f778fd9f38520ed0816eba5d5efdcee54b3db4e4b0089de1f4498d69c"
+    },
+    {
+      "name": "endpoint-1-value",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:rcert_d0c1dc0e6121_0| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x45 (or true)))\n(let ((?x44 (ite $x45 u0 |entry:rcert_d0c1dc0e6121_0|)))\n(let ((?x7 (bvadd ?x44 (_ bv1 32))))\n(let ((?x37 (bvadd u0 (_ bv1 32))))\n(let (($x27 (=> true (= ?x37 ?x7))))\n(not $x27)))))))\n(check-sat)\n",
+      "file": "006-endpoint-1-value.smt2",
+      "smt_sha256": "dcc2a8695ea86ab18b95de7cc7e04695d1685d2f967487095314e72555edfcd6"
+    }
+  ],
+  "endpoint_counts": {
+    "source": 2,
+    "actual": 2
+  },
+  "static_endpoint_checks": {
+    "source_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "actual_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "source_atomic": [
+      true,
+      true
+    ],
+    "actual_atomic": [
+      true,
+      true
+    ],
+    "errors": []
+  },
+  "endpoint_count": 2,
+  "rmw_pairs": [
+    [
+      0,
+      1
+    ]
+  ],
+  "thread": 2,
+  "first": 53,
+  "last": 54,
+  "exit": 55,
+  "output_projection": {}
+}

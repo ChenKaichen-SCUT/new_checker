@@ -102,6 +102,7 @@ def _certify_workers(module, interface, before, after, result, evidence_dir):
     if any(len(v) != len(set(v)) for v in (thread_ids, event_ids, names)):
         raise Reject("duplicate actual thread/event/object identity")
     source_path = interface.get("source_path")
+    host_source_path = interface.get("host_source_path", source_path)
     if not source_path:
         raise Reject("missing authenticated source path for provenance")
     workers = [t for t in before["threads"] if t["name"] == scope["function"]]
@@ -113,7 +114,7 @@ def _certify_workers(module, interface, before, after, result, evidence_dir):
                if "spawned_thread" in e and e["spawned_thread"] in ids]
     if sorted(e["spawned_thread"] for _, e in creates) != sorted(ids):
         raise Reject("worker has missing/duplicate actual ThreadCreate linkage")
-    if any(t["name"] != "main" or e.get("source", {}).get("path") != source_path
+    if any(t["name"] != "main" or e.get("source", {}).get("path") != host_source_path
            for t, e in creates):
         raise Reject("actual worker creation has wrong parent/source")
     if sorted(e["source"]["line"] for _, e in creates) != sorted(scope["pthread_create_source_lines"]):

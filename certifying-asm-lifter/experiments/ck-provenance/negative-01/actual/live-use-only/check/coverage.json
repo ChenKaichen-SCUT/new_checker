@@ -1,0 +1,206 @@
+{
+  "result": "REJECT",
+  "regions": [
+    {
+      "format": "dat3m-region-certificate-v1",
+      "result": "REGION_EXACT",
+      "snapshot_sha256": "e895e53d0dcc656bbcc718daecb01b1189efba6ec0aa4f5f4ca4ade44fb07251",
+      "source_sha256": "7d84f71c39432081151079514af02cbb8c06e3ab74ee12f000915bcf7441e8ba",
+      "interface_parameters_sha256": "44f9b163630082c07705656c374ebd59b0191863a4549a0d5147dc4648958536",
+      "scope": "closed-region-under-authenticated-interface",
+      "program_verdict_eligible": false,
+      "obligations": [
+        {
+          "name": "total-exit",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x16 (or true)))\n(let (($x31 (or $x16)))\n(let (($x70 (or $x31)))\n(not $x70)))))\n(check-sat)\n",
+          "file": "000-total-exit.smt2",
+          "smt_sha256": "faa40b8ca5467d380955b6c3fd8335f441b3503315bd592e58da3cb697318260"
+        },
+        {
+          "name": "endpoint-0-presence",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x16 (or true)))\n(let (($x44 (= true $x16)))\n(not $x44))))\n(check-sat)\n",
+          "file": "001-endpoint-0-presence.smt2",
+          "smt_sha256": "89af2fa4bdc1a5cfe81d58bb84de49c3f29c31f24320f02c160c41d3e20b352f"
+        },
+        {
+          "name": "endpoint-0-addr",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x64 (=> true (= |object:x| |object:x|))))\n(not $x64)))\n(check-sat)\n",
+          "file": "002-endpoint-0-addr.smt2",
+          "smt_sha256": "2233792ac9d19a094988dbd28f07ef515556e164085de37422663f357500a134"
+        },
+        {
+          "name": "endpoint-0-read",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x61 (=> true (= u0 u0))))\n(not $x61)))\n(check-sat)\n",
+          "file": "003-endpoint-0-read.smt2",
+          "smt_sha256": "8be2e89f706913475357c780af69eaf616d357806abf0714ba734a8bed914d39"
+        },
+        {
+          "name": "endpoint-1-presence",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x16 (or true)))\n(let (($x31 (or $x16)))\n(let (($x64 (= true $x31)))\n(not $x64)))))\n(check-sat)\n",
+          "file": "004-endpoint-1-presence.smt2",
+          "smt_sha256": "aeb92587eb789ba41934c38d72e29961eaaecf1507de96bc8092e7556042069e"
+        },
+        {
+          "name": "endpoint-1-addr",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x21 (=> true (= |object:x| |object:x|))))\n(not $x21)))\n(check-sat)\n",
+          "file": "005-endpoint-1-addr.smt2",
+          "smt_sha256": "d16a7a87f5a48ae9c0fbec2180249a4b067652efe77fb2602a81d04593d726f5"
+        },
+        {
+          "name": "endpoint-1-value",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:rcert_1b3ee8f16fc7_0| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x16 (or true)))\n(let ((?x19 (ite $x16 u0 |entry:rcert_1b3ee8f16fc7_0|)))\n(let ((?x13 (bvadd ?x19 (_ bv1 32))))\n(let ((?x42 (bvadd u0 (_ bv1 32))))\n(let (($x56 (=> true (= ?x42 ?x13))))\n(not $x56)))))))\n(check-sat)\n",
+          "file": "006-endpoint-1-value.smt2",
+          "smt_sha256": "a9aef65b0f360d6d006409888fd501816cc2854cbb7fcfa919bc402bc8845de3"
+        },
+        {
+          "name": "output-o1",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:rcert_1b3ee8f16fc7_0| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x16 (or true)))\n(let ((?x19 (ite $x16 u0 |entry:rcert_1b3ee8f16fc7_0|)))\n(let (($x31 (or $x16)))\n(let ((?x45 (ite $x31 ?x19 |entry:rcert_1b3ee8f16fc7_0|)))\n(let (($x21 (= u0 ?x45)))\n(not $x21)))))))\n(check-sat)\n",
+          "file": "007-output-o1.smt2",
+          "smt_sha256": "fe12e44f9b8b51adcb8b0857cf9a53ae866357f01ab03ec188ffc881086bdd55"
+        }
+      ],
+      "endpoint_counts": {
+        "source": 2,
+        "actual": 2
+      },
+      "static_endpoint_checks": {
+        "source_rmw": [
+          [
+            0,
+            1
+          ]
+        ],
+        "actual_rmw": [
+          [
+            0,
+            1
+          ]
+        ],
+        "source_atomic": [
+          true,
+          true
+        ],
+        "actual_atomic": [
+          true,
+          true
+        ],
+        "errors": []
+      },
+      "endpoint_count": 2,
+      "rmw_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "thread": 1,
+      "first": 43,
+      "last": 44,
+      "exit": 45,
+      "output_projection": {
+        "o1": "rcert_1b3ee8f16fc7_0"
+      }
+    }
+  ],
+  "program_verdict_eligible": false,
+  "scope_note": "all potential worker activations in the restricted pthread model",
+  "external_conditions": [
+    "declared compiler/host/ISA/model/solver/checker TCB"
+  ],
+  "scope": {
+    "function": "worker",
+    "expected_instances": 2,
+    "pthread_create_lines": [
+      30,
+      31
+    ],
+    "pthread_create_source_lines": [
+      15,
+      16
+    ],
+    "globals": [
+      "x"
+    ],
+    "continuation": [
+      "%3 = icmp ne i32 %2, 2",
+      "%4 = zext i1 %3 to i32",
+      "tail call void @__VERIFIER_assert(i32 noundef %4) #3",
+      "ret ptr null"
+    ],
+    "live_output": true,
+    "projection_method": "unique actual assigned register read outside region",
+    "source_module_sha256": "727ac67b9126365eafbff78c4a12148c255595b7ca9ce59d4235c7793a61db18"
+  },
+  "actual_worker_threads": [
+    1,
+    2
+  ],
+  "instance_links": [
+    {
+      "parent": 0,
+      "create_event": 3,
+      "worker": 1,
+      "source": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-live.c",
+        "line": 15
+      }
+    },
+    {
+      "parent": 0,
+      "create_event": 7,
+      "worker": 2,
+      "source": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-live.c",
+        "line": 16
+      }
+    }
+  ],
+  "continuations": [
+    {
+      "result": "REJECT",
+      "obligations": [
+        {
+          "name": "runtime-start-condition",
+          "result": "unsat",
+          "expected": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |context:__threadStateT1| () (_ BitVec 2))\n(assert\n (and (distinct (and (distinct (_ bv0 1) ((_ extract 0 0) |context:__threadStateT1|)) true) (and (distinct ((_ extract 0 0) |context:__threadStateT1|) (_ bv0 1)) true)) true))\n(check-sat)\n",
+          "file": "000-runtime-start-condition.smt2",
+          "smt_sha256": "a0893e3f26b5262e2dda1d4adac1760e6691ac29c750368771d019f4c47a0d3b"
+        },
+        {
+          "name": "runtime-completion-value",
+          "result": "unsat",
+          "expected": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |context:__threadStateT1| () (_ BitVec 2))\n(assert\n (let ((?x38 (bvand |context:__threadStateT1| (_ bv2 2))))\n(and (distinct ?x38 ?x38) true)))\n(check-sat)\n",
+          "file": "001-runtime-completion-value.smt2",
+          "smt_sha256": "f3852e7160783cbd465ca69bbb297931df48465f838a154525fcc454496d5395"
+        },
+        {
+          "name": "assertion-0-condition",
+          "result": "sat",
+          "expected": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun llvm-live-result () (_ BitVec 32))\n(assert\n (let (($x64 (and (distinct (_ bv2 32) llvm-live-result) true)))\n(let (($x18 (not $x64)))\n(let (($x61 (and (distinct ((_ zero_extend 31) (ite $x64 (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(and (distinct $x61 $x18) true)))))\n(check-sat)\n",
+          "model": "[]",
+          "file": "002-assertion-0-condition.smt2",
+          "smt_sha256": "c54cf93aa36f01439283f650efe11b8b747267037db533fa4b7c3974dfc4bf37"
+        }
+      ],
+      "program_verdict_eligible": false,
+      "projection_discovery": "actual region writes intersect all outside reads",
+      "projection": {
+        "o1": "rcert_1b3ee8f16fc7_0"
+      },
+      "llvm_result": "%2",
+      "reason": "unproved continuation condition assertion-0-condition"
+    }
+  ],
+  "reason": "actual continuation rejected: unproved continuation condition assertion-0-condition"
+}

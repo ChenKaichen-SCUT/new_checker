@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "source_sha256": "d550f29229be77ef436c2d2c137ef0491448f3bf320e7696f0607023adda0f2e",
+  "target_sha256": "8a1357e66580b0923248200cd504630d6ca2c99ad571c1ac006f7d745f5ed48f",
+  "model": "RC11Ex86-B8-restricted-v1",
+  "width": 32,
+  "address_width": 64,
+  "scope": "restricted-open-block; conditional GNU interface/host contract",
+  "backend": "UNVERIFIED",
+  "precondition": "true over valid aligned fixed-width WB domain",
+  "solver": "5.0.0",
+  "proof_artifact": "replayable-SMT; solver-in-TCB",
+  "obligations": [
+    {
+      "name": "e0-addr",
+      "result": "unsat",
+      "smt_sha256": "aac31814301a10cc4c1ed9d5d56f8fae4b7522be9f443665173cd7c3a4d69881",
+      "seconds": 5.139992572367191e-05,
+      "file": "000-e0-addr.smt2"
+    },
+    {
+      "name": "e0-read",
+      "result": "unsat",
+      "smt_sha256": "4c68f29952f59d00a00217b3614010781628b8dd54590f0296bc644e9fa837d1",
+      "seconds": 4.379998426884413e-05,
+      "file": "001-e0-read.smt2"
+    },
+    {
+      "name": "e0-has_write",
+      "result": "unsat",
+      "smt_sha256": "22cdb76ff9a2ef3db6a050d4965a6a5bc00b5fea8e5f5734e2815c56db3b2ec3",
+      "seconds": 4.630000330507755e-05,
+      "file": "002-e0-has_write.smt2"
+    },
+    {
+      "name": "e0-value",
+      "result": "unsat",
+      "smt_sha256": "4e306090487f102346e25c9e1f6502b0491efa78e2fb87380e36873555513465",
+      "seconds": 4.029995761811733e-05,
+      "file": "003-e0-value.smt2"
+    },
+    {
+      "name": "output-o0",
+      "result": "unsat",
+      "smt_sha256": "4c68f29952f59d00a00217b3614010781628b8dd54590f0296bc644e9fa837d1",
+      "seconds": 4.109996370971203e-05,
+      "file": "004-output-o0.smt2"
+    }
+  ],
+  "cutpoints": [
+    {
+      "source": 0,
+      "target": 0,
+      "kind": "RMW",
+      "mode": "tso",
+      "source_fields": {
+        "kind": "RMW",
+        "mode": "tso",
+        "width": "32",
+        "addr": "addr:addr1",
+        "read": "u0",
+        "has_write": "u0 == in:v0",
+        "value": "in:v2"
+      },
+      "state_relation": {
+        "source": {
+          "o0": "u0",
+          "p1": "addr:addr1",
+          "o2": "in:v2"
+        },
+        "target": {
+          "o0": "in:v0",
+          "p1": "addr:addr1",
+          "o2": "in:v2",
+          "tmp0": "u0"
+        },
+        "quantification": "common entry X; independently fresh shared responses U"
+      }
+    }
+  ],
+  "trusted_implementation_sha256": {
+    "frontend/gnu.py": "4683aa713af60d5d89a1b8a9d01bc67f7d1f040a8bbee64a4f18371ba26374c4",
+    "semantics/reference.py": "4a4c0700018a7b7c6c9366a4aafbff0e365a97bf5ad17826a49b73cf0a43c57e",
+    "checker/target.py": "8dde5bb78a9e9d5b5f1bd82d556738dcb6ca779497a99d0f6b7cf91b05737516",
+    "checker/check.py": "02d3ef4af5d22bc6ca9b82753d3a21ae822895718394009a10adc0e5686bada6",
+    "docs/01-scope-and-semantics.md": "2841954c31078dbb4a453bb5aeeee88258577546fed5b663c725d0a478e77fd9"
+  },
+  "final_symbolic_relation": {
+    "source": {
+      "o0": "u0",
+      "p1": "addr:addr1",
+      "o2": "in:v2"
+    },
+    "target": {
+      "o0": "u0",
+      "p1": "addr:addr1",
+      "o2": "in:v2",
+      "tmp0": "u0"
+    },
+    "definition": "paired reachable symbolic states under common entry X and fresh U"
+  },
+  "result": "EXACT",
+  "seconds": 0.004496300010941923,
+  "layer_result": "BLOCK_EXACT"
+}

@@ -3,15 +3,18 @@
 面向并发验证的可验证 asm 转换研究。这里保存截至 **2026-10-20** 的理论设计、
 受限范围数学证明、检查器原型、证书、实验数据和源码审计。
 
-**当前状态：受限研究原型，尚未完成整个 GNU C → Dat3M 编译链的认证，
+**当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[第二轮受控验收报告](certifying-asm-lifter/docs/14-controlled-acceptance.md)。
-活跃输出、真实成功/失败 CAS 在受限契约下通过；五个单因素真实后端故障被拒绝。
-原始 Concurrency Kit `ck_pr_faa_32` 因宏/多 asm 接口来源无法认证而拒绝，
-第三方接入目标尚未达标。外部可信前提和创新性问题仍在，程序级判定转移关闭。
-本轮已停止扩展，等待审阅。
-历史记录：[最小验收](certifying-asm-lifter/docs/13-minimal-acceptance.md)。
+最新交付：[原始 CK 来源与活跃输出验收](certifying-asm-lifter/docs/15-ck-acceptance.md)。
+从同次 Clang 的 188 个 GCCAsmStmt 自动连接原始 `ck_pr_faa_32`，
+核对宏来源、原始类型/约束、内联实参与返回值，并认证同次实际 Dat3M 的两个
+worker 区域及后继。六个组件负例与两个真实后端故障均被拒绝。
+这是明确 TCB 下的一条受限证据链；整程序判定转移仍关闭。
+[独立方法贡献复核](certifying-asm-lifter/docs/16-method-contribution-review.md)
+认为当前工程成果尚不足以建立独立方法创新。本里程碑已停止扩展，交付审阅。
+历史记录：[第二轮](certifying-asm-lifter/docs/14-controlled-acceptance.md)、
+[最小验收](certifying-asm-lifter/docs/13-minimal-acceptance.md)。
 前置理论材料见[第 1–4 阶段修订](certifying-asm-lifter/docs/12-review-repair.md)。
 
 ## 阅读入口

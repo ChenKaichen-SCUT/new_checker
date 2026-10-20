@@ -21,3 +21,14 @@ The official SV-COMP result table, task inventory, and extracted result rows
 are preserved as research evidence, with source links in the research reports.
 They describe upstream competition results, not new executions by this project.
 Published papers and downloaded toolchain binaries are not redistributed here.
+
+The `experiments/controlled-round` and `experiments/ck-provenance` source captures
+also preserve the actual included CK, Clang resource and system C headers, with
+their original notices, plus generated configuration and Clang AST/buffer views.
+CK's original LICENSE/configure and exact file hashes accompany each successful
+capture. Clang SDK package URLs/hashes are recorded in `ck-provenance/sdk-setup`;
+the SDK packages and binary tools themselves remain excluded under `vendor`.
+No captured header has been assigned the research prototype's licensing.
+The corresponding [LGPL 2.1](LGPL-2.1.txt), [GPL 2](GPL-2.txt) texts and
+[LLVM 21 package copyright/licenses](llvm21-package-copyright.txt) are included
+for these captured headers; per-file notices determine which terms apply.
