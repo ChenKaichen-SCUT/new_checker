@@ -14,36 +14,7 @@ sys.path.insert(0, str(ROOT))
 from frontend.gnu import parse, Reject
 from lifter.lift import lift
 from checker.check import check
-
-
-def extract(text):
-    """Find balanced standalone asm occurrences; preserve raw expressions."""
-    # Replace comments with spaces to avoid treating commented-out examples as code.
-    clean = re.sub(r"/\*.*?\*/|//[^\n]*", lambda m: " " * len(m[0]), text, flags=re.S)
-    for m in re.finditer(r"\b(?:__asm__|asm)\s+(?:(?:__volatile__|volatile)\s*)?\(", clean):
-        start = m.start()
-        i = m.end()
-        depth, quoted, escape = 1, False, False
-        while i < len(clean) and depth:
-            c = clean[i]
-            if quoted:
-                if escape:
-                    escape = False
-                elif c == "\\":
-                    escape = True
-                elif c == '"':
-                    quoted = False
-            elif c == '"':
-                quoted = True
-            elif c == "(":
-                depth += 1
-            elif c == ")":
-                depth -= 1
-            i += 1
-        if depth == 0:
-            raw = text[start:i] + ";"
-            raw = re.sub(r"\\\r?\n", " ", raw)
-            yield text.count("\n", 0, start) + 1, raw
+from frontend.scan import extract
 
 
 def measure(name, text, width, category, origin, repeats=1):

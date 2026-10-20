@@ -3,6 +3,10 @@
 2026-10-20。核心交付：有明确假设的开放事件等价数学证明、可运行独立检查器、
 真实 Dat3M 后端反例与实验材料。**不是已经完整认证的 GNU C→Dat3M 编译链，也未达到投稿完成状态。**
 
+当前审阅入口：[严格审查后的第 1–4 阶段修订](docs/12-review-repair.md)。
+包含真实类型/绑定接口、实际 LLVM 片段与后端端点的检查设计、逻辑证明及新增实现。
+新增实现尚未执行验证；按用户要求，在审阅同意之前不开展实验。
+
 ## 阅读顺序
 
 1. [阶段记录](docs/00-progress.md)；
@@ -11,6 +15,8 @@
 4. [算法](docs/05-checker-algorithm.md)、[正确性证明](docs/06-correctness-proof.md)；
 5. [弱内存扩展](docs/07-weak-memory-extension.md)、[模型实例完整证明及缺口](docs/08-complete-proofs.md)；
 6. [实验报告](docs/09-experimental-evaluation.md)、[对抗性审阅](docs/10-adversarial-review.md)。
+
+下列运行命令供后续获准复现使用，本次交付没有执行新增检查器、pytest 或后端。
 
 ## 运行
 

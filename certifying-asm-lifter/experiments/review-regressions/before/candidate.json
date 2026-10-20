@@ -1,0 +1,25 @@
+{
+  "format": "event-ir-v1",
+  "width": 32,
+  "compiler_barrier": true,
+  "code": [
+    {
+      "op": "set",
+      "dest": "o0",
+      "value": 0
+    },
+    {
+      "op": "rmw",
+      "mode": "tso",
+      "width": 32,
+      "addr": "p1",
+      "old": "o0",
+      "has_write": true,
+      "value": [
+        "add",
+        0,
+        "o0"
+      ]
+    }
+  ]
+}

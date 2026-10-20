@@ -3,6 +3,10 @@
 日期：2026-10-20。实验用于检错和测可用性；理论结论只来自06/08的推导。
 Windows/WSL探索环境，非正式 BenchExec/cgroup 运行，不给竞赛分数或可靠的 CPU/峰值内存比较。
 
+本文件是初版探索记录。64 项通过属于初版；修订后的新代码/测试尚未运行。
+审查修补与用户暂停实验前的有限记录见[修订阶段4](revision/04-implementation-and-review.md)。
+下述 82 个是词法抽取结果，未证明是完整 asm 母集或真实 GNU 语义覆盖率。
+
 ## 可复现资料
 
 * `experiments/unit-tests.xml`：64项 pytest 测试通过。

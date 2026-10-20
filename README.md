@@ -6,6 +6,10 @@
 **当前状态：受限研究原型，尚未完成整个 GNU C → Dat3M 编译链的认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
+最新交付：[严格审查后的第 1–4 阶段修订](certifying-asm-lifter/docs/12-review-repair.md)。
+当前先审阅真实接口、实际转换对象和逻辑证明；新增实现未运行验证，
+实验等待用户明确同意。
+
 ## 阅读入口
 
 - [原型说明与运行命令](certifying-asm-lifter/README.md)
@@ -38,7 +42,7 @@ python -m pytest -q
 python cli.py benchmarks/cmpxchg.asm --out certificates/example
 ```
 
-已保存的测试结果是 64 项通过。证书中的 `backend=UNVERIFIED` 表示块认证
+已保存的初版测试结果是 64 项通过，不代表新增代码已测试。证书中的 `backend=UNVERIFIED` 表示块认证
 不能直接解释为整个并发程序验证通过；理论证明与实验结论分别陈述在上述文档中。
 
 ## 下载依赖与资料范围
@@ -58,9 +62,9 @@ Git 中不包含本地 `vendor` 工具链、构建产物、论文全文下载缓
 `research/svcomp/summary.json` 等审计结果已随仓库保存，供当前实验脚本读取。
 `research/litmus_audit.py` 是早期有限模型探索，不作为数学证明。
 
-`certifying-asm-lifter/artifact-manifest.json` 保留研究交付时的 206 个文件哈希，
-不覆盖后来新增的仓库说明和许可证文件。`.gitattributes` 禁用自动换行转换，
-避免克隆时改变证书相关字节。
+`certifying-asm-lifter/artifact-manifest.json` 记录本次原型交付文件的字节哈希；
+初版 206 项清单保存在 Git 的初始发布提交中。`.gitattributes` 禁用自动换行转换，
+避免克隆时改变证书相关字节。哈希核对不替代语义证明或执行测试。
 
 上游来源及许可证见 [第三方声明](third-party-notices/README.md)。本次发布未为整个
 混合来源目录另行指定统一许可证。后续经授权的研究更新将继续提交并推送到本仓库。

@@ -1,0 +1,66 @@
+{
+  "baseline_commit": "9c51fcbac7cff2b4d0e0906e27c9f43c9b22c05a",
+  "implementation_sha256": {
+    "backend/llvm_tso.py": "9693e1f6919b76b06715687a81ed3cff22a0be780e9aa201de8e5f55269e1f80",
+    "experiments/evaluate.py": "e3a012bee56060741e67b284566239316af854168ed15cfda386b0a5b4fdb182"
+  },
+  "checker": "EXACT",
+  "emitted": "  %lift1 = add i32 0, 0\n  %lift0 = atomicrmw xchg i32* %p, i32 %lift1 monotonic",
+  "runs": [
+    {
+      "command": [
+        "env",
+        "LD_LIBRARY_PATH=/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/vendor/clang-local/root/usr/lib/x86_64-linux-gnu",
+        "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/vendor/clang-local/root/usr/bin/clang-21",
+        "-c",
+        "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/review-regressions/before/lowered.ll",
+        "-o",
+        "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/review-regressions/before/lowered.o"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "gcc",
+        "-O2",
+        "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/review-regressions/before/original.c",
+        "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/review-regressions/before/harness.c",
+        "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/review-regressions/before/lowered.o",
+        "-o",
+        "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/review-regressions/before/compare.native"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "/mnt/e/5 \u9762\u5411\u5e76\u53d1\u9a8c\u8bc1\u7684\u53ef\u9a8c\u8bc1 asm \u8f6c\u6362/certifying-asm-lifter/experiments/review-regressions/before/compare.native"
+      ],
+      "returncode": 1,
+      "output": "source: memory=7 return=7\nlowered: memory=0 return=7\n"
+    }
+  ],
+  "extraction": [
+    {
+      "text": "asm(\"mfence\" ::: \"memory\");",
+      "count": 0
+    },
+    {
+      "text": "asm (\"mfence\" ::: \"memory\");",
+      "count": 1
+    },
+    {
+      "text": "__asm__(\"mfence\" ::: \"memory\");",
+      "count": 0
+    },
+    {
+      "text": "__asm__ __volatile__(\"mfence\" ::: \"memory\");",
+      "count": 1
+    },
+    {
+      "text": "__asm (\"mfence\" ::: \"memory\");",
+      "count": 0
+    }
+  ]
+}
