@@ -6,13 +6,19 @@
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[原始 CK 来源与活跃输出验收](certifying-asm-lifter/docs/15-ck-acceptance.md)。
+最新交付：[自动对应关系合成：第一批审计与问题设计](certifying-asm-lifter/docs/correspondence/00-delivery.md)。
+以 `b7b3b2e3aa25fbd2746bd602caae68003e490026` 为基线，完成算法级文献比较、
+精确定义、候选证书/搜索设计和解析反例。自动匹配、SMT 与覆盖检查本身不构成
+新贡献；开放历史与覆盖的组合仍待证明，论文创新性未建立。Hetrify 系列全文
+仍有获取缺口，未据此排除其能力。本批未改认证器、未新增实验，等待用户审阅。
+
+上一里程碑：[原始 CK 来源与活跃输出验收](certifying-asm-lifter/docs/15-ck-acceptance.md)。
 从同次 Clang 的 188 个 GCCAsmStmt 自动连接原始 `ck_pr_faa_32`，
 核对宏来源、原始类型/约束、内联实参与返回值，并认证同次实际 Dat3M 的两个
 worker 区域及后继。六个组件负例与两个真实后端故障均被拒绝。
 这是明确 TCB 下的一条受限证据链；整程序判定转移仍关闭。
 [独立方法贡献复核](certifying-asm-lifter/docs/16-method-contribution-review.md)
-认为当前工程成果尚不足以建立独立方法创新。本里程碑已停止扩展，交付审阅。
+认为当时工程成果尚不足以建立独立方法创新；原始证据保持不变。
 历史记录：[第二轮](certifying-asm-lifter/docs/14-controlled-acceptance.md)、
 [最小验收](certifying-asm-lifter/docs/13-minimal-acceptance.md)。
 前置理论材料见[第 1–4 阶段修订](certifying-asm-lifter/docs/12-review-repair.md)。

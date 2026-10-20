@@ -33,6 +33,17 @@
   integrity review remain authorized.
 - Establish theoretical claims with logical proofs; experiments and enumeration
   are validation evidence, not substitutes for proofs.
+- Latest authorization (2026-10-20), superseding the completed CK milestone:
+  start from b7b3b2e3aa25fbd2746bd602caae68003e490026 and deliver ONLY batch 1
+  of automatic correspondence synthesis research: primary-literature/algorithm
+  novelty audit, precise problem definition, algorithm concept, analytic
+  counterexamples and difficulties. Save independent documents in
+  certifying-asm-lifter/docs/correspondence. Do not modify the checker or run
+  new compiler/backend/SMT experiments. Preserve all historical evidence.
+  This batch is delivered for user review; novel algorithmic contribution
+  remains NOT_ESTABLISHED. Hetrify full-proof access remains unresolved.
+  Stop before batch 2 proofs or batch 3 implementation until user review.
+  Committing, pushing and static integrity checks for this delivery are authorized.
 - Keep proved results, assumptions, experimental observations, and open gaps
   distinct. Preserve the current limitations until new evidence resolves them.
 - Keep downloaded toolchains, literature caches, credentials, and temporary

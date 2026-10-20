@@ -3,7 +3,12 @@
 2026-10-20。核心交付：有明确假设的开放事件等价数学证明、可运行独立检查器、
 真实 Dat3M 后端反例与实验材料。**不是已经完整认证的 GNU C→Dat3M 编译链，也未达到投稿完成状态。**
 
-当前审阅入口：[原始 CK 宏来源与活跃输出验收](docs/15-ck-acceptance.md)。
+当前审阅入口：[自动对应合成第一批](docs/correspondence/00-delivery.md)。
+包含算法级文献审计、对象/保证方向定义、联合搜索与证书构想、解析反例及基线审阅。
+候选新定理和实现尚未交付；没有新方法接受实例或新实验结果。
+本批完成后停止，等待用户审阅再推进证明与实现。
+
+上一里程碑：[原始 CK 宏来源与活跃输出验收](docs/15-ck-acceptance.md)。
 原始 `ck_pr_faa_32` 已通过同次 Clang 来源连接、类型化内联绑定和真实 Dat3M
 两个实例的受限检查；[条件性证明](docs/revision/09-ck-composition-proof.md)
 逐项列出检查与可信前提。[独立方法贡献复核](docs/16-method-contribution-review.md)
@@ -21,8 +26,9 @@
 5. [弱内存扩展](docs/07-weak-memory-extension.md)、[模型实例完整证明及缺口](docs/08-complete-proofs.md)；
 6. [实验报告](docs/09-experimental-evaluation.md)、[对抗性审阅](docs/10-adversarial-review.md)。
 
-下列旧命令是原型接口说明，不代表本次授权执行范围。本次只运行受控功能验收，
-未运行全量 pytest、SV-COMP、批量性能评测或扩展指令覆盖；复现见验收报告。
+下列旧命令是原型接口说明，不代表本次授权执行范围。最新一批只做文献、静态审阅、
+设计和文档完整性检查；没有运行 Clang、Dat3M、SMT、pytest 或新转换实验。
+历史受控验收的执行事实见对应报告。
 
 ## 运行
 
