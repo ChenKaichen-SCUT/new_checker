@@ -1,0 +1,265 @@
+{
+  "interface": {
+    "source_sha256": "d0c1dc0e612172e6a304b2cb7e4b11e8849d7a2685106452e88e8dd85bf77541",
+    "ast_sha256": "75a3d9d127539d8f1cbf93ed4b356b7ee277a845c252ec1f325101be529fd422",
+    "start_byte": 567,
+    "end_byte": 728,
+    "line": 18,
+    "raw": "__asm__ __volatile__(\"lock; xaddl %0,%1\"\n                         : \"+r\"(delta), \"+m\"(*ptr)\n                         :\n                         : \"memory\", \"cc\")",
+    "normalized": "asm volatile(\"lock; xaddl %0,%1\" : \"+r\"(v0),\"+m\"(*addr1) :  : \"memory\", \"cc\");",
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+r",
+        "expression": "delta",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "qualType": "unsigned int"
+        },
+        "ast_kind": "DeclRefExpr",
+        "decl_refs": [
+          {
+            "id": "0x5e01251fdca8",
+            "kind": "VarDecl",
+            "name": "delta",
+            "type": {
+              "qualType": "unsigned int"
+            }
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "constraint": "+m",
+        "expression": "*ptr",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "qualType": "unsigned int"
+        },
+        "ast_kind": "UnaryOperator",
+        "decl_refs": [
+          {
+            "id": "0x5e01251fdbd8",
+            "kind": "VarDecl",
+            "name": "ptr",
+            "type": {
+              "qualType": "unsigned int *"
+            }
+          }
+        ]
+      }
+    ],
+    "register_output": 0,
+    "llvm_sha256": "de3860f940bc203a9a9aa8bbf2e5d0de53dc6a86b63d5408736ad15660c4c759",
+    "llvm_line_index": 9,
+    "llvm_call": "  %2 = tail call i32 asm sideeffect \"lock; xaddl $0,$1\", \"=r,=*m,0,*m,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, i32 1, ptr nonnull elementtype(i32) @x) #3, !dbg !13, !srcloc !14\n",
+    "result_ssa": "%2",
+    "bindings": {
+      "p1": "@x",
+      "o0": "1"
+    },
+    "result": "INTERFACE_MATCH",
+    "source_path": "/cert-source/certifying-asm-lifter/benchmarks/backend-source.c"
+  },
+  "candidate_ir": {
+    "format": "event-ir-v1",
+    "width": 32,
+    "compiler_barrier": true,
+    "code": [
+      {
+        "op": "rmw",
+        "mode": "tso",
+        "width": 32,
+        "addr": "p1",
+        "old": "tmp0",
+        "value": [
+          "add",
+          "tmp0",
+          "o0"
+        ],
+        "has_write": true
+      },
+      {
+        "op": "set",
+        "dest": "o0",
+        "value": "tmp0"
+      }
+    ]
+  },
+  "block_certificate": {
+    "version": 1,
+    "source_sha256": "36b09bbdc188c29ca8b99c35022d769108cd66a822b02650a9613b9b37bec781",
+    "target_sha256": "16fb0881fa39bb7ba8e2e5a96ebb6872ec70a6b159fc9dac93259b6556da132b",
+    "model": "RC11Ex86-B8-restricted-v1",
+    "width": 32,
+    "address_width": 64,
+    "scope": "restricted-open-block; conditional GNU interface/host contract",
+    "backend": "UNVERIFIED",
+    "precondition": "true over valid aligned fixed-width WB domain",
+    "solver": "5.0.0",
+    "proof_artifact": "replayable-SMT; solver-in-TCB",
+    "obligations": [
+      {
+        "name": "e0-addr",
+        "result": "unsat",
+        "smt_sha256": "36e4475dc02e4a361f0186402b3d0a0933aa2c5e4e9a1c00c280d4d57dcddfa5",
+        "seconds": 0.0001404000213369727,
+        "file": "000-e0-addr.smt2"
+      },
+      {
+        "name": "e0-read",
+        "result": "unsat",
+        "smt_sha256": "32ac62e57a7807bd4fc15b5d2907b7870988f67d18853012fad52250b656b374",
+        "seconds": 4.579999949783087e-05,
+        "file": "001-e0-read.smt2"
+      },
+      {
+        "name": "e0-has_write",
+        "result": "unsat",
+        "smt_sha256": "aa6555cd250a7950e040c74b800a7ef6174253d9c3ef5152dc7d9e086c691e40",
+        "seconds": 4.279997665435076e-05,
+        "file": "002-e0-has_write.smt2"
+      },
+      {
+        "name": "e0-value",
+        "result": "unsat",
+        "smt_sha256": "ff80073288fa34ca96ed3c2896d115d68b76b476f5a90ea43ba9b74338e0e4a1",
+        "seconds": 4.369998350739479e-05,
+        "file": "003-e0-value.smt2"
+      },
+      {
+        "name": "output-o0",
+        "result": "unsat",
+        "smt_sha256": "32ac62e57a7807bd4fc15b5d2907b7870988f67d18853012fad52250b656b374",
+        "seconds": 4.75000124424696e-05,
+        "file": "004-output-o0.smt2"
+      }
+    ],
+    "cutpoints": [
+      {
+        "source": 0,
+        "target": 0,
+        "kind": "RMW",
+        "mode": "tso",
+        "source_fields": {
+          "kind": "RMW",
+          "mode": "tso",
+          "width": "32",
+          "addr": "addr:addr1",
+          "read": "u0",
+          "has_write": "True",
+          "value": "u0 + in:v0"
+        },
+        "state_relation": {
+          "source": {
+            "o0": "u0",
+            "p1": "addr:addr1"
+          },
+          "target": {
+            "o0": "in:v0",
+            "p1": "addr:addr1",
+            "tmp0": "u0"
+          },
+          "quantification": "common entry X; independently fresh shared responses U"
+        }
+      }
+    ],
+    "trusted_implementation_sha256": {
+      "frontend/gnu.py": "4683aa713af60d5d89a1b8a9d01bc67f7d1f040a8bbee64a4f18371ba26374c4",
+      "semantics/reference.py": "4a4c0700018a7b7c6c9366a4aafbff0e365a97bf5ad17826a49b73cf0a43c57e",
+      "checker/target.py": "8dde5bb78a9e9d5b5f1bd82d556738dcb6ca779497a99d0f6b7cf91b05737516",
+      "checker/check.py": "02d3ef4af5d22bc6ca9b82753d3a21ae822895718394009a10adc0e5686bada6",
+      "docs/01-scope-and-semantics.md": "2841954c31078dbb4a453bb5aeeee88258577546fed5b663c725d0a478e77fd9"
+    },
+    "final_symbolic_relation": {
+      "source": {
+        "o0": "u0",
+        "p1": "addr:addr1"
+      },
+      "target": {
+        "o0": "u0",
+        "p1": "addr:addr1",
+        "tmp0": "u0"
+      },
+      "definition": "paired reachable symbolic states under common entry X and fresh U"
+    },
+    "result": "EXACT",
+    "seconds": 0.01974850008264184,
+    "layer_result": "BLOCK_EXACT"
+  },
+  "lowering_certificate": {
+    "format": "llvm-fragment-certificate-v1",
+    "result": "LLVM_FRAGMENT_EXACT",
+    "source_sha256": "36b09bbdc188c29ca8b99c35022d769108cd66a822b02650a9613b9b37bec781",
+    "fragment_sha256": "a83b52667d1da4d269bc99472dabc2e52f5aabf83aa0fd26f9818c1dd7f64670",
+    "interface_sha256": "8dd078b7ec8ab39566b0abea6f9365f472c85be5f0416a9927e7ec683e58d0a9",
+    "semantics": "fixed-Dat3M-TSO; not generic LLVM weak memory",
+    "program_verdict_eligible": false,
+    "obligations": [
+      {
+        "name": "event-0-addr",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |llvm-entry:@x| () (_ BitVec 64))\n(assert\n (let (($x18 (= |llvm-entry:@x| |llvm-entry:@x|)))\n(not $x18)))\n(check-sat)\n",
+        "file": "000-event-0-addr.smt2",
+        "smt_sha256": "c5e3e3015e186f1c9798d4471ac32988036947f0b7ac178129cd0cda5b23dd0a"
+      },
+      {
+        "name": "event-0-read",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x10 (= u0 u0)))\n(not $x10)))\n(check-sat)\n",
+        "file": "001-event-0-read.smt2",
+        "smt_sha256": "d8c612db9d8422d65207b85fbcfb61c2393baebe5a424961bae3e6f3b6d7d8e8"
+      },
+      {
+        "name": "event-0-has_write",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x11 (= true true)))\n(not $x11)))\n(check-sat)\n",
+        "file": "002-event-0-has_write.smt2",
+        "smt_sha256": "eb120960a5120f4d29f3eef538f1778b4c40af09e607e23b3e1b4cb1041c1463"
+      },
+      {
+        "name": "event-0-value",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x14 (=> true (= (bvadd u0 (_ bv1 32)) (bvadd u0 (_ bv1 32))))))\n(not $x14)))\n(check-sat)\n",
+        "file": "003-event-0-value.smt2",
+        "smt_sha256": "99c4b1fb98fa62b1847b45df005e23d52047e43908db43bb9319c04f66a03673"
+      },
+      {
+        "name": "output-o0",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let ((?x15 (bvadd (_ bv0 32) u0)))\n(let (($x10 (= u0 ?x15)))\n(not $x10))))\n(check-sat)\n",
+        "file": "004-output-o0.smt2",
+        "smt_sha256": "d7e00746d36de5666eb7935cbd747fc525e004382c7d6ef311da2f07190eaebd"
+      }
+    ],
+    "event_count": 1,
+    "assumptions": [
+      "authenticated compiler interface",
+      "no further LLVM optimization after replacement",
+      "fixed Dat3M TSO interpretation",
+      "valid aligned WB memory"
+    ]
+  },
+  "frame": {
+    "source_module_sha256": "de3860f940bc203a9a9aa8bbf2e5d0de53dc6a86b63d5408736ad15660c4c759",
+    "target_module_sha256": "97c9c00f7969a5518117b0851deae84c8881a34d171fed89e76301d82c46e418",
+    "replaced_line": 9,
+    "replacement_sha256": "a83b52667d1da4d269bc99472dabc2e52f5aabf83aa0fd26f9818c1dd7f64670",
+    "host_prefix_sha256": "425c92e484d0796f0dc6d7d58d8c7c39b832476951ccd49c50d70664341a2af6",
+    "host_suffix_sha256": "81c34c41d79741fea89eaa555b36922fc55edc3c7b88cabf444cfc74d4c93fcf"
+  },
+  "release": {
+    "status": "PREPARED_LOCAL_EVIDENCE",
+    "program_verdict_eligible": false,
+    "pending": [
+      "authenticate compiler invocation and dependencies",
+      "attach actual same-run Dat3M snapshots/model/build",
+      "run supported-worker coverage against actual snapshots",
+      "check every actual region and declared host conditions",
+      "declared external TCB is not mechanically verified"
+    ]
+  }
+}

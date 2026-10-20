@@ -66,6 +66,10 @@ The mappings are theorem parameters of this local API, not trusted user claims.
         ids = [e["id"] for e in all_events]
         if len(set(ids)) != len(ids) or first not in ids or last not in ids:
             raise Reject("event identity")
+        for i, event in enumerate(all_events):
+            successor = ids[i + 1] if i + 1 < len(ids) else None
+            if event["successor"] != successor:
+                raise Reject("actual event list/successor chain disagreement")
         lo, hi = ids.index(first), ids.index(last)
         if lo > hi or hi + 1 >= len(ids):
             raise Reject("region requires a distinct successor exit")
@@ -199,7 +203,10 @@ The mappings are theorem parameters of this local API, not trusted user claims.
             guard, state = merge(e["id"])
             cls = e["class"]
             if cls == "Local":
-                state[e["writes"]["name"]] = expr(e["expr"], state)
+                value = expr(e["expr"], state)
+                if value.sort() != type_of(e["writes"]["type"]):
+                    raise Reject("Local result type mismatch")
+                state[e["writes"]["name"]] = value
             elif cls in {"Load", "Store", "RMWStore"}:
                 tags = set(e["tags"])
                 is_read = cls == "Load"
@@ -217,6 +224,8 @@ The mappings are theorem parameters of this local API, not trusted user claims.
                 if is_read:
                     u = z3.BitVec("u" + str(read_index), width)
                     read_index += 1
+                    if type_of(e["writes"]["type"]) != u.sort():
+                        raise Reject("Load result type mismatch")
                     p["read"] = u
                     state[e["writes"]["name"]] = u
                 else:
@@ -243,12 +252,23 @@ The mappings are theorem parameters of this local API, not trusted user claims.
                 incoming.setdefault(dest, []).append((g, dict(state)))
         exit_guard, final = merge(exit_id)
         prove("total-exit", exit_guard)
-        if len(expected) != len(actual) or expected_pairs != actual_pairs:
-            raise Reject("endpoint count or real rmw relation mismatch")
+        cert["endpoint_counts"] = {"source": len(expected), "actual": len(actual)}
+        if len(expected) != len(actual):
+            raise Reject("endpoint count mismatch")
+        static_errors = []
         for i, (s, t) in enumerate(zip(expected, actual)):
             for key in ("kind", "atomic", "width"):
                 if s[key] != t[key]:
-                    raise Reject(f"endpoint {i}: {key} mismatch")
+                    static_errors.append(f"endpoint {i}: {key} mismatch")
+        if expected_pairs != actual_pairs:
+            static_errors.append("real rmw relation mismatch")
+        cert["static_endpoint_checks"] = {
+            "source_rmw": sorted(expected_pairs), "actual_rmw": sorted(actual_pairs),
+            "source_atomic": [e["atomic"] for e in expected],
+            "actual_atomic": [e["atomic"] for e in actual], "errors": static_errors}
+        if static_errors:
+            raise Reject("; ".join(static_errors))
+        for i, (s, t) in enumerate(zip(expected, actual)):
             prove(f"endpoint-{i}-presence", s["guard"] == t["guard"])
             for key in ("addr", "read", "value"):
                 if key in s:

@@ -1,31 +1,34 @@
-# 实际对象导出接入点（未执行）
+# 实际对象导出接入点
 
-`Snapshot.java` 是新导出器源码。按用户要求，本轮没有编译、安装或执行它，
-也没有修改本地 vendor。不要把此文件存在解释为已有实际后端认证结果。
+已在独立固定源码树中构建并完成单个真实输入验收。
+结果、适用范围和外部可信前提见[独立验收报告](../../docs/13-minimal-acceptance.md)。
+原 vendor 树没有改动；最终独立构建和运行摘要在
+`experiments/minimal-acceptance/build-03/`。
 
-固定上游提交：`b81ec6c55503e824bb0ddc4ebac6c6f0a63d56d8`。
-待获准验证时，在独立构建目录中把此类加入 `certifying` package，
-对 `verification/solving/AssumeSolver.java` 作两个只读插入：
+上游提交：`b81ec6c55503e824bb0ddc4ebac6c6f0a63d56d8`。
+`instrument.py` 校验原 `AssumeSolver.java` 哈希，只增加两个读取原 Task 的接点：
 
-1. `context = EncodingContext.of(...)` **之前**：
-   `certifying.Snapshot.write(task, "before-encoding");`
-2. `prover.addConstraint(assumedSpec);` **之后**、第一次 solver.check **之前**：
-   `certifying.Snapshot.write(task, "after-encoding");`
+1. `context = EncodingContext.of(...)` 之前导出 `before-encoding`。
+2. `prover.addConstraint(assumedSpec)` 之后、首次 solver.check 之前导出 `after-encoding`。
 
-通过 JVM 参数 `-Dcert.snapshot.dir=<本次唯一输出目录>` 启用。
-这两个调用读取原 `task.getProgram()`，不重跑 ProcessingManager，不创建替代 Program。
-两份 JSON 的结构内容必须相等；配置、实际输入 LLVM、CAT 依赖闭包和构建摘要
-必须一同封存。应启用 `--smtlib2=true` 留下同一次求解的实际查询。
+使用 `-Dcert.snapshot.dir=<唯一目录>` 和 `-Dcert.run.id=<唯一ID>`。
+导出器检查两个接点收到同一 Task/Program 对象，拒绝重复接点、文件覆盖和未知 target；
+驱动进一步核对前后快照、实际输入、runtime、全部 CAT、配置及同次查询。
+它不重跑 preprocessing，不创建替代 Program，不从 printer 文本重建语义。
 
-`instrument.py` 按 `pins.json` 核对原 `AssumeSolver.java` 字节后安装上述两处接点，
-拒绝重复安装或未知源码。应对独立构建树使用它。本轮没有调用该脚本。
-获准后的完整执行驱动为 `certification/run_pipeline.py`；其执行开关默认关闭。
+`Snapshot.java` 导出此次出现的类型、表达式、位截取范围、所有事件及 tags、
+successor/jump、寄存器读写、真实 RMW 指针、来源、线程创建/连接/参数/返回、
+Assume/Assert 条件和全局内存。未知表达式/事件标为不完整，驱动拒绝。
+这个字段完整性标记不是整个 exporter 的正确性证明；exporter 仍属于 TCB。
+源码注释字符串只作说明，不参与语义解释。
 
-这不是对整个 exporter 的机械化证明。Exporter、JSON 解码器和区域解释器在 TCB。
-未知 Java 表达式/事件类别保留为 unsupported，Python checker 将拒绝，
-不能使用 `defaultString()` 作为可信语义。
+`build_acceptance.py` 从固定 Git blob 核验构建输入后复制到新目录，安装声明的接点，
+跳过上游测试并构建，保存原始命令日志、源码前后摘要与运行依赖摘要。
+发行包还提供签名 commit 原始字节与祖先树成员证据，可静态核对构建输入属于固定提交。
 
-当前 `check_region` 是低层局部接口：它检查闭合 CFG、实际 load/store 配对、
-guard、宽度、原子标签和保守 live-out。调用方仍须完成真实实例 census、
-接口绑定认证及快照与 solver 的封存。最小 worker 的覆盖算法和同次执行驱动
-已另行实现，但尚未执行验证；程序判定门禁保持关闭。
+`check_region` 认证局部闭合区域；`coverage.py` 为窄 worker 子类自动重建全部实例；
+`host_contracts.py` 检查实际全局初始化、大小/对齐和线程边界。
+这些不代替普通宿主语义、pthread 模型、CAT encoder 和求解器的外部可信条件。
+所有程序级 verdict 转移开关保持关闭。
+
+验收已结束，等待用户审阅后再决定下一步；不要自动启动更多源程序或批量实验。

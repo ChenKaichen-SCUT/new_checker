@@ -1,0 +1,65 @@
+{
+  "source_sha256": "d0c1dc0e612172e6a304b2cb7e4b11e8849d7a2685106452e88e8dd85bf77541",
+  "ast_sha256": "312312dc50b891e935ba67c50ecf060618d062e23bb1a67b69bfeda78a525544",
+  "start_byte": 567,
+  "end_byte": 728,
+  "line": 18,
+  "raw": "__asm__ __volatile__(\"lock; xaddl %0,%1\"\n                         : \"+r\"(delta), \"+m\"(*ptr)\n                         :\n                         : \"memory\", \"cc\")",
+  "normalized": "asm volatile(\"lock; xaddl %0,%1\" : \"+r\"(v0),\"+m\"(*addr1) :  : \"memory\", \"cc\");",
+  "width": 32,
+  "operands": [
+    {
+      "index": 0,
+      "constraint": "+r",
+      "expression": "delta",
+      "output": true,
+      "memory": false,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "DeclRefExpr",
+      "decl_refs": [
+        {
+          "id": "0x5ab7a48caca8",
+          "kind": "VarDecl",
+          "name": "delta",
+          "type": {
+            "qualType": "unsigned int"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "constraint": "+m",
+      "expression": "*ptr",
+      "output": true,
+      "memory": true,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "UnaryOperator",
+      "decl_refs": [
+        {
+          "id": "0x5ab7a48cabd8",
+          "kind": "VarDecl",
+          "name": "ptr",
+          "type": {
+            "qualType": "unsigned int *"
+          }
+        }
+      ]
+    }
+  ],
+  "register_output": 0,
+  "llvm_sha256": "de3860f940bc203a9a9aa8bbf2e5d0de53dc6a86b63d5408736ad15660c4c759",
+  "llvm_line_index": 9,
+  "llvm_call": "  %2 = tail call i32 asm sideeffect \"lock; xaddl $0,$1\", \"=r,=*m,0,*m,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, i32 1, ptr nonnull elementtype(i32) @x) #3, !dbg !13, !srcloc !14\n",
+  "result_ssa": "%2",
+  "bindings": {
+    "p1": "@x",
+    "o0": "1"
+  },
+  "result": "INTERFACE_MATCH",
+  "source_path": "/cert-source/certifying-asm-lifter/benchmarks/backend-source.c"
+}

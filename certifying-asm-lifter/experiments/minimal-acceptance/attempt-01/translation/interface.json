@@ -1,0 +1,65 @@
+{
+  "source_sha256": "d0c1dc0e612172e6a304b2cb7e4b11e8849d7a2685106452e88e8dd85bf77541",
+  "ast_sha256": "f3fbaca59da27b8ad87451975810938b18f9573de57f56a3a0efa43a3e5e64dd",
+  "start_byte": 567,
+  "end_byte": 728,
+  "line": 18,
+  "raw": "__asm__ __volatile__(\"lock; xaddl %0,%1\"\n                         : \"+r\"(delta), \"+m\"(*ptr)\n                         :\n                         : \"memory\", \"cc\")",
+  "normalized": "asm volatile(\"lock; xaddl %0,%1\" : \"+r\"(v0),\"+m\"(*addr1) :  : \"memory\", \"cc\");",
+  "width": 32,
+  "operands": [
+    {
+      "index": 0,
+      "constraint": "+r",
+      "expression": "delta",
+      "output": true,
+      "memory": false,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "DeclRefExpr",
+      "decl_refs": [
+        {
+          "id": "0x604cf97f7a48",
+          "kind": "VarDecl",
+          "name": "delta",
+          "type": {
+            "qualType": "unsigned int"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "constraint": "+m",
+      "expression": "*ptr",
+      "output": true,
+      "memory": true,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "UnaryOperator",
+      "decl_refs": [
+        {
+          "id": "0x604cf97f7978",
+          "kind": "VarDecl",
+          "name": "ptr",
+          "type": {
+            "qualType": "unsigned int *"
+          }
+        }
+      ]
+    }
+  ],
+  "register_output": 0,
+  "llvm_sha256": "5f530c4956b82ae7bdd94495ecc34cfa84ad0e6a63475fad754708019e571d63",
+  "llvm_line_index": 9,
+  "llvm_call": "  %2 = tail call i32 asm sideeffect \"lock; xaddl $0,$1\", \"=r,=*m,0,*m,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, i32 1, ptr nonnull elementtype(i32) @x) #3, !dbg !13, !srcloc !14\n",
+  "result_ssa": "%2",
+  "bindings": {
+    "p1": "@x",
+    "o0": "1"
+  },
+  "result": "INTERFACE_MATCH",
+  "source_path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/benchmarks/backend-source.c"
+}

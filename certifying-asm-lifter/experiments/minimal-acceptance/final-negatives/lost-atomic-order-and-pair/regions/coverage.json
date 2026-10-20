@@ -1,0 +1,97 @@
+{
+  "result": "REJECT",
+  "regions": [
+    {
+      "format": "dat3m-region-certificate-v1",
+      "result": "REJECT",
+      "snapshot_sha256": "63434b19a47f78c596c467ec6ae1e9a5e11de5bb8324b2af60369bdd7eea444b",
+      "source_sha256": "3f27aea5cc2521ca201ca58f6c50eaf6fcf24a2ca1ee58445101fbbab3b546f5",
+      "interface_parameters_sha256": "4623590b4ecabd8a99df9992ae972dafab8dbdc5bcf6e2b40f16eca40fbea384",
+      "scope": "closed-region-under-authenticated-interface",
+      "program_verdict_eligible": false,
+      "obligations": [
+        {
+          "name": "total-exit",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x10 (or true)))\n(let (($x12 (or $x10)))\n(let (($x29 (or $x12)))\n(not $x29)))))\n(check-sat)\n",
+          "file": "000-total-exit.smt2",
+          "smt_sha256": "729535184afe8699e12baa9bf9d90297e0d9522b1b407ea081ff112d56159bba"
+        }
+      ],
+      "endpoint_counts": {
+        "source": 2,
+        "actual": 2
+      },
+      "static_endpoint_checks": {
+        "source_rmw": [
+          [
+            0,
+            1
+          ]
+        ],
+        "actual_rmw": [],
+        "source_atomic": [
+          true,
+          true
+        ],
+        "actual_atomic": [
+          false,
+          false
+        ],
+        "errors": [
+          "endpoint 0: atomic mismatch",
+          "endpoint 1: atomic mismatch",
+          "real rmw relation mismatch"
+        ]
+      },
+      "reason": "endpoint 0: atomic mismatch; endpoint 1: atomic mismatch; real rmw relation mismatch"
+    }
+  ],
+  "program_verdict_eligible": false,
+  "scope_note": "all potential worker activations in the restricted pthread model",
+  "external_conditions": [
+    "declared compiler/host/ISA/model/solver/checker TCB"
+  ],
+  "scope": {
+    "function": "worker",
+    "expected_instances": 2,
+    "pthread_create_lines": [
+      25,
+      26
+    ],
+    "pthread_create_source_lines": [
+      28,
+      29
+    ],
+    "globals": [
+      "x"
+    ],
+    "output_projection": {},
+    "source_module_sha256": "de3860f940bc203a9a9aa8bbf2e5d0de53dc6a86b63d5408736ad15660c4c759"
+  },
+  "actual_worker_threads": [
+    1,
+    2
+  ],
+  "instance_links": [
+    {
+      "parent": 0,
+      "create_event": 3,
+      "worker": 1,
+      "source": {
+        "line": 28,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/backend-source.c"
+      }
+    },
+    {
+      "parent": 0,
+      "create_event": 7,
+      "worker": 2,
+      "source": {
+        "line": 29,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/backend-source.c"
+      }
+    }
+  ],
+  "reason": "actual worker region rejected: endpoint 0: atomic mismatch; endpoint 1: atomic mismatch; real rmw relation mismatch"
+}

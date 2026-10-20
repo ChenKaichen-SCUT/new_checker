@@ -17,13 +17,23 @@ from checker.check import check
 from backend.llvm_tso import emit
 from certification.interface import source_interface, llvm_site, replace_site, sha
 from certification.lowering import check_fragment
+from certification.evidence import save_json, save_certificate
 
 
-def prepare(source_bytes, ast, llvm):
+def prepare(source_bytes, ast, llvm, evidence_dir=None):
     interface = llvm_site(llvm, source_interface(source_bytes, ast))
+    interface["result"] = "INTERFACE_MATCH"
+    out = Path(evidence_dir) if evidence_dir is not None else None
+    if out:
+        save_json(out / "interface.json", interface)
     normalized, width = interface["normalized"], interface["width"]
     candidate = lift(parse(normalized, width))
-    block_cert = check(normalized, candidate, width)
+    if out:
+        save_json(out / "candidate-ir.json", candidate)
+    block_cert = check(normalized, candidate, width, output_dir=out / "block" if out else None)
+    block_cert["layer_result"] = "BLOCK_EXACT" if block_cert["result"] == "EXACT" else "REJECT"
+    if out:
+        save_json(out / "block/certificate.json", block_cert)
     if block_cert["result"] != "EXACT":
         raise Reject("block check: " + block_cert.get("reason", "failed"))
     prefix = "cert_" + interface["source_sha256"][:12] + "_"
@@ -38,8 +48,14 @@ def prepare(source_bytes, ast, llvm):
         raise Reject("host frame changed")
     end = len(transformed) - len(suffix_bytes) if suffix_bytes else len(transformed)
     actual = transformed[len(prefix_bytes):end]
+    if out:
+        (out / "candidate.ll").write_bytes(transformed.encode("utf-8"))
+        (out / "actual-fragment.ll").write_bytes(actual.encode("utf-8"))
+        save_json(out / "host-frame.json", frame)
     lower_cert = check_fragment(normalized, width, actual, interface["bindings"],
                                 {out_name: interface["result_ssa"]})
+    if out:
+        save_certificate(out / "llvm-fragment", lower_cert)
     if lower_cert["result"] != "LLVM_FRAGMENT_EXACT":
         raise Reject("actual lowering check: " + lower_cert.get("reason", "failed"))
     return {
@@ -51,7 +67,7 @@ def prepare(source_bytes, ast, llvm):
                                 "attach actual same-run Dat3M snapshots/model/build",
                                 "run supported-worker coverage against actual snapshots",
                                 "check every actual region and declared host conditions",
-                                "execution validation deferred by user"]},
+                                "declared external TCB is not mechanically verified"]},
     }
 
 

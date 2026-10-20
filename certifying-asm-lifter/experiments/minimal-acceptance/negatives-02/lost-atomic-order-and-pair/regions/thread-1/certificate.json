@@ -1,0 +1,45 @@
+{
+  "format": "dat3m-region-certificate-v1",
+  "result": "REJECT",
+  "snapshot_sha256": "5d7fa2957debb1feecfe33d9ed47fd3aa49bcbe6ea886db576b746bb28a780bf",
+  "source_sha256": "3f27aea5cc2521ca201ca58f6c50eaf6fcf24a2ca1ee58445101fbbab3b546f5",
+  "interface_parameters_sha256": "4623590b4ecabd8a99df9992ae972dafab8dbdc5bcf6e2b40f16eca40fbea384",
+  "scope": "closed-region-under-authenticated-interface",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "total-exit",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x41 (or true)))\n(let (($x15 (or $x41)))\n(let (($x29 (or $x15)))\n(not $x29)))))\n(check-sat)\n",
+      "file": "000-total-exit.smt2",
+      "smt_sha256": "ca25272e7c3b4ed8eac3d24f3faac094753f3bd5b5346cd990968a379349f9df"
+    }
+  ],
+  "endpoint_counts": {
+    "source": 2,
+    "actual": 2
+  },
+  "static_endpoint_checks": {
+    "source_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "actual_rmw": [],
+    "source_atomic": [
+      true,
+      true
+    ],
+    "actual_atomic": [
+      false,
+      false
+    ],
+    "errors": [
+      "endpoint 0: atomic mismatch",
+      "endpoint 1: atomic mismatch",
+      "real rmw relation mismatch"
+    ]
+  },
+  "reason": "endpoint 0: atomic mismatch; endpoint 1: atomic mismatch; real rmw relation mismatch"
+}

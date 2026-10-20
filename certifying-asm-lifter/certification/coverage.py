@@ -6,9 +6,11 @@ references from straight-line main. Every surviving worker thread is checked.
 No caller-provided site count, core register binding, or output projection.
 """
 import re
+from pathlib import Path
 from frontend.gnu import Reject
 from certification.interface import sha
 from certification.endpoints import check_region
+from certification.evidence import save_json, save_certificate
 
 
 def supported_worker(module, interface):
@@ -44,6 +46,8 @@ def supported_worker(module, interface):
     if len(re.findall(token, "\n".join(lines[begin:end + 1]))) != 1:
         raise Reject("automatic coverage requires a dead scalar result")
     references = []
+    locations = []
+    debug_lines = dict(re.findall(r"!(\d+) = !DILocation\(line: (\d+)", module))
     current = None
     for i, line in enumerate(lines):
         if line.startswith("define "):
@@ -60,6 +64,10 @@ def supported_worker(module, interface):
             if not re.search(r"ptr(?:\s+(?:noundef|nonnull))*\s+@" + re.escape(worker) + r"\s*,", line):
                 raise Reject("worker function pointer is not a direct pthread argument")
             references.append(i)
+            dbg = re.search(r"!dbg !(\d+)", line)
+            if not dbg or dbg[1] not in debug_lines:
+                raise Reject("source pthread_create lacks a direct debug location")
+            locations.append(int(debug_lines[dbg[1]]))
         if line.strip() == "}":
             current = None
     if not references:
@@ -73,38 +81,57 @@ def supported_worker(module, interface):
         elif not re.fullmatch(r"-?\d+", value):
             raise Reject("automatic region binding requires constant scalar inputs")
     return {"function": worker, "expected_instances": len(references),
-            "pthread_create_lines": references, "globals": sorted(globals_used),
+            "pthread_create_lines": references, "pthread_create_source_lines": locations,
+            "globals": sorted(globals_used),
             "output_projection": {}, "source_module_sha256": sha(module)}
 
 
-def certify_workers(module, interface, before, after):
+def _certify_workers(module, interface, before, after, result, evidence_dir):
     """No inference from absent regions; whole-copy disappearance is a rejection."""
     if before != after:
         raise Reject("actual Program changed across the encoding boundary")
     scope = supported_worker(module, interface)
+    result["scope"] = scope
+    thread_ids = [t["id"] for t in before["threads"]]
+    event_ids = [e["id"] for t in before["threads"] for e in t["events"]]
+    names = [m["name"] for m in before["memory"]]
+    if any(len(v) != len(set(v)) for v in (thread_ids, event_ids, names)):
+        raise Reject("duplicate actual thread/event/object identity")
+    source_path = interface.get("source_path")
+    if not source_path:
+        raise Reject("missing authenticated source path for provenance")
     workers = [t for t in before["threads"] if t["name"] == scope["function"]]
+    result["actual_worker_threads"] = [t["id"] for t in workers]
     if len(workers) != scope["expected_instances"]:
         raise Reject("source pthread census and actual worker instances disagree")
     ids = [t["id"] for t in workers]
-    creates = [e["spawned_thread"] for t in before["threads"] for e in t["events"]
+    creates = [(t, e) for t in before["threads"] for e in t["events"]
                if "spawned_thread" in e and e["spawned_thread"] in ids]
-    if sorted(creates) != sorted(ids):
+    if sorted(e["spawned_thread"] for _, e in creates) != sorted(ids):
         raise Reject("worker has missing/duplicate actual ThreadCreate linkage")
+    if any(t["name"] != "main" or e.get("source", {}).get("path") != source_path
+           for t, e in creates):
+        raise Reject("actual worker creation has wrong parent/source")
+    if sorted(e["source"]["line"] for _, e in creates) != sorted(scope["pthread_create_source_lines"]):
+        raise Reject("source calls and actual ThreadCreate provenance disagree")
+    result["instance_links"] = [{"parent": t["id"], "create_event": e["id"],
+                                 "worker": e["spawned_thread"], "source": e["source"]}
+                                for t, e in creates]
     memory = {m["name"]: m for m in before["memory"]}
     for name in scope["globals"]:
         obj = memory.get(name)
-        if not obj:
+        if not obj or obj["thread_local"]:
             raise Reject("source global is absent from actual memory objects")
         size, align = obj["size"], obj["alignment"]
         if (size["kind"] != "int" or align["kind"] != "int"
                 or int(size["value"]) < interface["width"] // 8
                 or int(align["value"]) < interface["width"] // 8):
             raise Reject("actual global size/alignment does not justify access domain")
-    reports = []
+    reports = result["regions"]
     for thread in workers:
         events = thread["events"]
         selected = [i for i, e in enumerate(events)
-                    if e.get("source", {}).get("line") == interface["line"]]
+                    if e.get("source", {}) == {"path": source_path, "line": interface["line"]}]
         if not selected:
             raise Reject("asm instance vanished or lost provenance")
         lo, hi = min(selected), max(selected)
@@ -119,12 +146,22 @@ def certify_workers(module, interface, before, after):
                 raise Reject("unexpected worker branch outside certified region")
         report = check_region(interface["normalized"], interface["width"], before, thread["id"],
                               events[lo]["id"], events[hi]["id"], interface["bindings"], {})
+        reports.append(report)
+        if evidence_dir is not None:
+            save_certificate(Path(evidence_dir) / f"thread-{thread['id']}", report)
         if report["result"] != "REGION_EXACT":
             raise Reject("actual worker region rejected: " + report.get("reason", "unknown"))
-        reports.append(report)
-    return {"scope": scope, "regions": reports, "result": "SUPPORTED_WORKERS_EXACT",
-            "program_verdict_eligible": False,
-            "remaining_release_conditions": ["authenticated build/compiler bundle",
-                                             "same-run input/CAT/config/query sealing",
-                                             "declared host and solver TCB conditions",
-                                             "implementation execution validation deferred"]}
+    result["result"] = "SUPPORTED_WORKERS_EXACT"
+
+
+def certify_workers(module, interface, before, after, evidence_dir=None):
+    result = {"result": "REJECT", "regions": [], "program_verdict_eligible": False,
+              "scope_note": "all potential worker activations in the restricted pthread model",
+              "external_conditions": ["declared compiler/host/ISA/model/solver/checker TCB"]}
+    try:
+        _certify_workers(module, interface, before, after, result, evidence_dir)
+    except (Reject, KeyError, TypeError, ValueError) as error:
+        result["reason"] = str(error)
+    if evidence_dir is not None:
+        save_json(Path(evidence_dir) / "coverage.json", result)
+    return result

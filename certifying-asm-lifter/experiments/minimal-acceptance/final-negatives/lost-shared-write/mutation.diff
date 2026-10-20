@@ -1,0 +1,11 @@
+--- actual-positive.ll
++++ lost-shared-write.ll
+@@ -7,7 +7,7 @@
+ 
+ ; Function Attrs: nounwind uwtable
+ define dso_local noundef ptr @worker(ptr readnone captures(none) %0) #0 !dbg !9 {
+-  %cert_d0c1dc0e6121_0 = atomicrmw add i32* @x, i32 1 monotonic, !dbg !13
++  %cert_d0c1dc0e6121_0 = load atomic i32, i32* @x monotonic, align 4, !dbg !13
+   %2 = add i32 0, %cert_d0c1dc0e6121_0, !dbg !13
+   ret ptr null, !dbg !15
+ }

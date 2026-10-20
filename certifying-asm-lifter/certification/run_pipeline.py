@@ -1,17 +1,12 @@
-"""Future execution entry point, deliberately NOT RUN in the current delivery.
-
-This is an experimental Windows/WSL driver. Running it requires explicit user
-approval; it captures compiler provenance, the actual candidate, actual solver
-snapshots and supported-worker coverage. It never presents a whole-program
-certified verdict while implementation validation remains pending.
-"""
+"""Controlled minimum real-source acceptance; whole-program verdict stays closed."""
 import argparse
-import hashlib
 import json
 import re
 import shlex
-import subprocess
 import sys
+import uuid
+import platform
+import z3
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,25 +14,128 @@ sys.path.insert(0, str(ROOT))
 from certification.prepare import prepare
 from certification.coverage import certify_workers
 from certification.interface import sha
+from certification.evidence import Commands, save_json
+from certification.host_contracts import check_host_objects
 from experiments.run_dat3m import linux
 from frontend.gnu import Reject
 
 
-def run(source, out, dat3m, defines=()):
-    source, out, dat3m = Path(source).resolve(), Path(out).resolve(), Path(dat3m).resolve()
-    if out.exists():
-        raise Reject("use a new output directory to avoid stale evidence")
-    out.mkdir(parents=True)
-    logs = []
+def implementation_hashes():
+    paths = []
+    for package in ("certification", "frontend", "semantics", "checker", "lifter", "backend"):
+        paths.extend((ROOT / package).rglob("*.py"))
+    paths += [ROOT / "backend/dat3m/Snapshot.java", ROOT / "backend/dat3m/pins.json"]
+    return {p.relative_to(ROOT).as_posix(): sha(p.read_bytes()) for p in sorted(paths)}
 
-    def invoke(args, timeout=120):
-        p = subprocess.run(["wsl", "-d", "Ubuntu", "--", *args],
-                           capture_output=True, timeout=timeout)
-        logs.append({"args": args, "returncode": p.returncode,
-                     "stderr": p.stderr.decode(errors="replace")})
-        if p.returncode:
-            raise Reject("external command failed: " + logs[-1]["stderr"])
-        return p.stdout.decode("utf-8")
+
+def verify_build(dat3m, receipt_path):
+    receipt = json.loads(Path(receipt_path).read_bytes())
+    pins = json.loads((ROOT / "backend/dat3m/pins.json").read_bytes())
+    if receipt.get("status") != "BUILT_PINNED_WITH_DECLARED_HOOKS" or receipt["commit"] != pins["commit"]:
+        raise Reject("missing successful pinned build receipt")
+    inputs_path = Path(receipt_path).with_name("upstream-inputs.json")
+    if sha(inputs_path.read_bytes()) != receipt["upstream_inputs_sha256"]:
+        raise Reject("build input manifest changed")
+    for rel, expected in receipt["runtime_artifacts"].items():
+        if sha((dat3m / rel).read_bytes()) != expected:
+            raise Reject("runtime artifact differs from recorded build: " + rel)
+    for rel, expected in pins["files"].items():
+        if rel.startswith("cat/") and sha((dat3m / rel).read_bytes()) != expected:
+            raise Reject("CAT dependency differs from pinned model: " + rel)
+    return {"receipt_sha256": sha(Path(receipt_path).read_bytes()),
+            "commit": receipt["commit"], "runtime_artifacts": receipt["runtime_artifacts"],
+            "cat_pins": {k: v for k, v in pins["files"].items() if k.startswith("cat/")}}
+
+
+def run_backend(candidate, dat3m, receipt_path, out):
+    """Run exactly the supplied actual module; no synthetic event objects."""
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=False)
+    logs = Commands(out / "commands")
+    result = {"result": "REJECT", "program_verdict_eligible": False}
+    try:
+        build = verify_build(dat3m, receipt_path)
+        for rel, expected in build["cat_pins"].items():
+            target = out / "model" / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            data = (dat3m / rel).read_bytes()
+            if sha(data) != expected:
+                raise Reject("model changed while sealing")
+            target.write_bytes(data)
+        (out / "model/LICENCE").write_bytes((dat3m / "LICENCE").read_bytes())
+        original = candidate.read_bytes()
+        run_id = uuid.uuid4().hex
+        snapshots, solver_out = out / "snapshots", out / "solver-output"
+        snapshots.mkdir()
+        solver_out.mkdir()
+        jar = dat3m / "dartagnan/target/dartagnan.jar"
+        cmd = ["wsl", "-d", "Ubuntu", "--", "env", "DAT3M_HOME=" + linux(dat3m),
+               "DAT3M_OUTPUT=" + linux(solver_out), "java", "-Dcert.snapshot.dir=" + linux(snapshots),
+               "-Dcert.run.id=" + run_id, "-jar", linux(jar), linux(dat3m / "cat/tso.cat"),
+               linux(candidate), "--target=tso", "--method=eager", "--solver=z3",
+               "--property=program_spec", "--smtlib2=true"]
+        code, stdout, stderr = logs.run(cmd, timeout=120, allow_failure=True)
+        result.update(run_id=run_id, command=cmd, returncode=code,
+                      candidate_sha256=sha(original), build=build)
+        text = (stdout + stderr).decode("utf-8", errors="replace")
+        (out / "backend.log").write_bytes(stdout + stderr)
+        if candidate.read_bytes() != original or verify_build(dat3m, receipt_path) != build:
+            raise Reject("input/build/model changed during solver run")
+        q0 = json.loads((snapshots / "before-encoding.json").read_bytes())
+        q1 = json.loads((snapshots / "after-encoding.json").read_bytes())
+        if q0 != q1 or q0.get("run_id") != run_id:
+            raise Reject("actual same-run object identity/content mismatch")
+        def complete(value):
+            if isinstance(value, dict):
+                if value.get("complete") is False:
+                    raise Reject("incomplete exported object: " + value.get("java_class", "unknown"))
+                for child in value.values():
+                    complete(child)
+            elif isinstance(value, list):
+                for child in value:
+                    complete(child)
+        complete(q0)
+        if any("complete" not in e for t in q0["threads"] for e in t["events"]):
+            raise Reject("snapshot lacks semantic-field completeness markers")
+        config = dict(line.split("=", 1) for line in q0["config"].splitlines() if "=" in line)
+        config = {k.strip(): v.strip() for k, v in config.items()}
+        for key, value in {"target": "tso", "method": "eager", "solver": "z3",
+                           "property": "program_spec", "smtlib2": "true"}.items():
+            if config.get(key, "").lower() != value:
+                raise Reject("actual solver config mismatch: " + key)
+        verdicts = re.findall(r"Result:\s*(PASS|FAIL|UNKNOWN|ERROR)", text)
+        queries = sorted(solver_out.rglob("*.smt2"))
+        # Pinned ExitCode.java: normal PASS=0, program-spec assertion FAIL=10.
+        # A valid negative verification is not an infrastructure failure.
+        if (len(verdicts) != 1 or verdicts[0] not in {"PASS", "FAIL"} or not queries
+                or code != {"PASS": 0, "FAIL": 10}[verdicts[0]]):
+            raise Reject("no completed same-run solver result/query")
+        result.update(result="ACTUAL_BACKEND_CAPTURED", observed_verdict=verdicts[0],
+                      snapshots={p.name: sha(p.read_bytes()) for p in snapshots.glob("*.json")},
+                      queries={p.relative_to(out).as_posix(): sha(p.read_bytes()) for p in queries})
+    except Exception as error:
+        result["result"] = "REJECT"
+        result["reason"] = str(error)
+    save_json(out / "backend-receipt.json", result)
+    return result
+
+
+def run(source, out, dat3m, build_receipt):
+    source, out, dat3m = (Path(p).resolve() for p in (source, out, dat3m))
+    if source != (ROOT / "benchmarks/backend-source.c").resolve():
+        raise Reject("this acceptance authorization covers only benchmarks/backend-source.c")
+    if out.exists():
+        raise Reject("use a new evidence directory")
+    out.mkdir(parents=True)
+    logs = Commands(out / "compiler-commands")
+    result = {"result": "REJECT", "program_verdict_eligible": False, "layers": {}}
+    implementation = implementation_hashes()
+    save_json(out / "implementation.json", {
+        "files": implementation, "python": sys.version, "platform": platform.platform(),
+        "z3": z3.get_version_string(), "purpose": "bind executed checker bytes; not a proof of code correctness"})
+
+    def invoke(args):
+        return logs.run(["wsl", "-d", "Ubuntu", "--", *args])[1].decode("utf-8")
 
     try:
         clangroot = ROOT / "vendor/clang-local/root/usr"
@@ -45,17 +143,19 @@ def run(source, out, dat3m, defines=()):
                     linux(clangroot / "bin/clang-21")]
         version = invoke([*compiler, "--version"])
         if "clang version 21.1.8" not in version:
-            raise Reject("compiler version outside pinned scope")
-        if any(not re.fullmatch(r"[A-Za-z_]\w*=-?\d+", d) for d in defines):
-            raise Reject("only integer NAME=VALUE preprocessor definitions are supported")
+            raise Reject("compiler outside fixed version")
+        # Pinned Dat3M decodes LLVM \XX escapes one byte per Java char. Use an
+        # explicit compiler debug-path map, so Unicode workspace paths cannot
+        # silently corrupt provenance. This changes metadata, not source bytes.
+        debug_root = "/cert-source"
         flags = ["-std=gnu11", "-target", "x86_64-pc-linux-gnu", "-O1", "-gline-tables-only",
-                 *["-D" + d for d in defines]]
+                 "-fdebug-prefix-map=" + linux(ROOT.parent) + "=" + debug_root]
         deptext = invoke([*compiler, *flags, "-M", "-MT", "CERT", linux(source)])
         if not deptext.startswith("CERT:"):
-            raise Reject("unexpected compiler dependency syntax")
+            raise Reject("unexpected dependency syntax")
         deps = shlex.split(deptext.partition(":")[2].replace("\\\n", ""))
-        if not deps:
-            raise Reject("empty compiler dependency set")
+        if deps != [linux(source)]:
+            raise Reject("minimal input must have no additional source/header dependencies")
 
         def dependency_hashes():
             output = invoke(["sha256sum", "--", *deps])
@@ -65,80 +165,80 @@ def run(source, out, dat3m, defines=()):
             return dict(zip(deps, hashes))
 
         source_bytes = source.read_bytes()
+        (out / "source.c").write_bytes(source_bytes)
         before = dependency_hashes()
         compiler_hash = invoke(["sha256sum", "--", compiler[-1]]).split()[0]
         ast_text = invoke([*compiler, *flags, "-Xclang", "-ast-dump=json", "-fsyntax-only", linux(source)])
+        (out / "source.ast.json").write_bytes(ast_text.encode("utf-8"))
         llvm_path = out / "source.ll"
         invoke([*compiler, *flags, "-S", "-emit-llvm", linux(source), "-o", linux(llvm_path)])
-        after = dependency_hashes()
-        if before != after or source.read_bytes() != source_bytes:
-            raise Reject("source/dependencies changed during capture")
-        ast = json.loads(ast_text)
-        llvm = llvm_path.read_bytes().decode("utf-8")
+        if before != dependency_hashes() or source.read_bytes() != source_bytes:
+            raise Reject("source/dependencies changed during compiler capture")
+        ast, llvm = json.loads(ast_text), llvm_path.read_bytes().decode("utf-8")
         receipt = {"compiler_version": version, "compiler_binary_sha256": compiler_hash,
                    "flags": flags, "dependencies": before, "source_sha256": sha(source_bytes),
                    "ast_sha256": sha(ast_text), "llvm_sha256": sha(llvm),
-                   "trust": "same-driver compiler/OS capture; hashes are not a proof of compiler correctness"}
-        (out / "source.c").write_bytes(source_bytes)
-        (out / "source.ast.json").write_bytes(ast_text.encode("utf-8"))
-        (out / "compiler-receipt.json").write_text(json.dumps(receipt, indent=2), encoding="utf-8")
-        evidence = prepare(source_bytes, ast, llvm)
-        candidate = out / "candidate.ll"
-        # Exact bytes, no platform newline translation after hashing.
-        candidate.write_bytes(evidence.pop("candidate_llvm").encode("utf-8"))
+                   "trust": "controlled compiler/OS capture; no compiler correctness proof"}
+        save_json(out / "compiler-receipt.json", receipt)
+        evidence = prepare(source_bytes, ast, llvm, out / "translation")
+        interface = evidence["interface"]
+        interface["source_path"] = debug_root + "/" + source.relative_to(ROOT.parent).as_posix()
+        save_json(out / "translation/interface.json", interface)
+        result["layers"].update(interface="INTERFACE_MATCH", block="BLOCK_EXACT",
+                                llvm_fragment="LLVM_FRAGMENT_EXACT", host_frame="BYTE_IDENTICAL_OUTSIDE_SITE")
+        candidate = out / "translation/candidate.ll"
         if sha(candidate.read_bytes()) != evidence["frame"]["target_module_sha256"]:
-            raise Reject("candidate byte hash changed while writing")
-        pins = json.loads((ROOT / "backend/dat3m/pins.json").read_text(encoding="utf-8"))
-        for rel, expected in pins["files"].items():
-            if rel.startswith("cat/") and sha((dat3m / rel).read_bytes()) != expected:
-                raise Reject("CAT dependency differs from pinned model: " + rel)
-        jar = dat3m / "dartagnan/target/dartagnan.jar"
-        snapshots, solver_out = out / "snapshots", out / "solver-output"
-        snapshots.mkdir()
-        solver_out.mkdir()
-        cmd = ["env", "DAT3M_HOME=" + linux(dat3m), "DAT3M_OUTPUT=" + linux(solver_out),
-               "java", "-Dcert.snapshot.dir=" + linux(snapshots), "-jar", linux(jar),
-               linux(dat3m / "cat/tso.cat"), linux(candidate),
-               "--target=tso", "--method=eager", "--solver=z3", "--property=program_spec",
-               "--smtlib2=true"]
-        # FAIL is a valid verifier result and may have a nonzero process status.
-        p = subprocess.run(["wsl", "-d", "Ubuntu", "--", *cmd], capture_output=True, timeout=120)
-        text = (p.stdout + p.stderr).decode(errors="replace")
-        (out / "backend.log").write_bytes(text.encode())
-        logs.append({"args": cmd, "returncode": p.returncode})
-        q0 = json.loads((snapshots / "before-encoding.json").read_bytes())
-        q1 = json.loads((snapshots / "after-encoding.json").read_bytes())
-        coverage = certify_workers(llvm, evidence["interface"], q0, q1)
-        verdicts = re.findall(r"Result:\s*(PASS|FAIL|UNKNOWN|ERROR)", text)
-        queries = list(solver_out.rglob("*.smt2"))
-        if not verdicts or not queries:
-            raise Reject("missing same-run solver verdict/query")
-        build = {"jar_sha256": sha(jar.read_bytes()), "cat_pins": {
-                    k: v for k, v in pins["files"].items() if k.startswith("cat/")},
-                 "snapshot_sha256": sha((snapshots / "before-encoding.json").read_bytes()),
-                 "queries": {p.relative_to(out).as_posix(): sha(p.read_bytes()) for p in queries},
-                 "candidate_sha256": sha(candidate.read_bytes())}
-        evidence.update(compiler_receipt=receipt, actual_backend=build, coverage=coverage,
-                        backend_observed_verdict=verdicts[-1])
-        evidence["release"] = {
-            "status": "EXPERIMENTAL_CHAIN_EVIDENCE",
-            "program_verdict_eligible": False,
-            "reason": "implementation and host/solver TCB audit not independently validated",
-        }
-        (out / "chain-evidence.json").write_text(json.dumps(evidence, indent=2), encoding="utf-8")
-        return evidence["release"]
+            raise Reject("candidate byte mismatch")
+        # Parse and verify the whole module with the same compiler. The bitcode
+        # is a validation byproduct; Dat3M still receives the exact candidate.ll.
+        invoke([*compiler, "-cc1", "-emit-llvm-bc", "-disable-llvm-passes", "-x", "ir",
+                linux(candidate), "-o", linux(out / "validated.bc")])
+        result["layers"]["llvm_wellformed"] = "CLANG21_ACCEPTED_WITHOUT_PASSES"
+        evidence.pop("candidate_llvm")
+        save_json(out / "translation/evidence.json", evidence)
+        backend = run_backend(candidate, dat3m, build_receipt, out / "backend")
+        result["backend"] = backend
+        if backend["result"] != "ACTUAL_BACKEND_CAPTURED":
+            raise Reject("backend capture rejected: " + backend.get("reason", "unknown"))
+        q0 = json.loads((out / "backend/snapshots/before-encoding.json").read_bytes())
+        q1 = json.loads((out / "backend/snapshots/after-encoding.json").read_bytes())
+        coverage = certify_workers(llvm, interface, q0, q1, out / "regions")
+        result["coverage"] = coverage
+        if coverage["result"] != "SUPPORTED_WORKERS_EXACT":
+            raise Reject("coverage rejected: " + coverage.get("reason", "unknown"))
+        host = check_host_objects(llvm, interface, q0, coverage)
+        save_json(out / "host-contracts.json", host)
+        result["host_contracts"] = host
+        if host["result"] != "STRUCTURAL_HOST_CONTRACTS_CHECKED":
+            raise Reject("host contract rejected: " + host.get("reason", "unknown"))
+        result["layers"].update(regions="REGION_EXACT", coverage="ALL_SUPPORTED_INSTANCES_CHECKED")
+        result["layers"]["host_objects"] = host["result"]
+        result["result"] = "SCOPED_CHAIN_CHECKS_PASSED_UNDER_DECLARED_TCB"
+        result["external_assumptions"] = [
+            "Clang GNU C/asm interface and host compilation", "trusted OS/build/capture pipeline",
+            "restricted ISA interpretation and aligned valid WB memory", "Dat3M host/pthread semantics",
+            "CAT parsing/encoding, Z3 UNSAT, Python/Java checkers and exporter",
+            "no machine-checked implementation refinement or general ISA-to-CAT equivalence"]
+        if implementation_hashes() != implementation:
+            raise Reject("checker implementation changed during acceptance")
+    except Exception as error:
+        result["result"] = "REJECT"
+        result["reason"] = str(error)
     finally:
-        (out / "commands.json").write_text(json.dumps(logs, indent=2), encoding="utf-8")
+        save_json(out / "acceptance.json", result)
+    return result
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--source", required=True, type=Path)
-    ap.add_argument("--dat3m", required=True, type=Path, help="pinned tree built with the read-only hooks")
+    ap.add_argument("--dat3m", required=True, type=Path)
+    ap.add_argument("--build-receipt", required=True, type=Path)
     ap.add_argument("--out", required=True, type=Path)
-    ap.add_argument("-D", dest="defines", action="append", default=[])
     ap.add_argument("--run-after-user-approval", action="store_true")
     args = ap.parse_args()
     if not args.run_after_user_approval:
-        raise SystemExit("Execution gate closed. Obtain user approval before running experiments.")
-    print(json.dumps(run(args.source, args.out, args.dat3m, args.defines), indent=2))
+        raise SystemExit("Execution gate closed: explicit user authorization required")
+    result = run(args.source, args.out, args.dat3m, args.build_receipt)
+    print(json.dumps({k: result[k] for k in ("result", "layers", "reason") if k in result}, indent=2))
+    raise SystemExit(0 if result["result"] != "REJECT" else 1)

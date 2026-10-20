@@ -1,0 +1,41 @@
+{
+  "format": "llvm-fragment-certificate-v1",
+  "result": "REJECT",
+  "source_sha256": "36b09bbdc188c29ca8b99c35022d769108cd66a822b02650a9613b9b37bec781",
+  "fragment_sha256": "adc81f7314f1f4b3edd77bd486d7981d9aff72ee5b2984da06740c3a152d26aa",
+  "interface_sha256": "8dd078b7ec8ab39566b0abea6f9365f472c85be5f0416a9927e7ec683e58d0a9",
+  "semantics": "fixed-Dat3M-TSO; not generic LLVM weak memory",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "event-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |llvm-entry:@x| () (_ BitVec 64))\n(assert\n (let (($x16 (= |llvm-entry:@x| |llvm-entry:@x|)))\n(not $x16)))\n(check-sat)\n",
+      "file": "000-event-0-addr.smt2",
+      "smt_sha256": "4c1f6f7edac7804aed870203adf75bc91d52d776b6dd1e6ea6082ac36e0c9d4c"
+    },
+    {
+      "name": "event-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x17 (= u0 u0)))\n(not $x17)))\n(check-sat)\n",
+      "file": "001-event-0-read.smt2",
+      "smt_sha256": "7cb166df5ebc14c1fcda9072fd5201c745e45ceebac7be621045366b05647a3d"
+    },
+    {
+      "name": "event-0-has_write",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x15 (= true true)))\n(not $x15)))\n(check-sat)\n",
+      "file": "002-event-0-has_write.smt2",
+      "smt_sha256": "9b5836fd3c3a00252bad603eb48e4b7b979d4b7d1d07b0befe1e2abce360153e"
+    },
+    {
+      "name": "event-0-value",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x19 (=> true (= (_ bv1 32) (bvadd u0 (_ bv1 32))))))\n(not $x19)))\n(check-sat)\n",
+      "countermodel": "[u0 = 4294967295]",
+      "file": "003-event-0-value.smt2",
+      "smt_sha256": "7667d1604c88a02d1bef3f4fa0d99e74a75c784f4aacd4785fc646edeb02f22f"
+    }
+  ],
+  "reason": "unproved event-0-value"
+}

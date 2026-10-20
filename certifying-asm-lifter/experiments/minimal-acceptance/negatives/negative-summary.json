@@ -1,0 +1,62 @@
+{
+  "purpose": "four negative implementation checks; not a correctness proof",
+  "base": "E:\\5 面向并发验证的可验证 asm 转换\\certifying-asm-lifter\\experiments\\minimal-acceptance\\attempt-03",
+  "base_candidate_sha256": "97c9c00f7969a5518117b0851deae84c8881a34d171fed89e76301d82c46e418",
+  "cases": [
+    {
+      "name": "lost-shared-write",
+      "result": "NEGATIVE_CHECK_INCOMPLETE",
+      "candidate_sha256": "b5e716fb1f1d6b5472d357c1836f82b030fc11913d7bae7886bf0b8ae5b7f2fd",
+      "diagnostic_only": true,
+      "program_verdict_eligible": false,
+      "host_frame": "MATCH",
+      "llvm_fragment": "REJECT",
+      "llvm_reason": "actual LLVM event 0 kind mismatch",
+      "llvm_wellformed": "CLANG21_ACCEPTED_WITHOUT_PASSES",
+      "backend_capture": "REJECT",
+      "backend_observed_verdict": null,
+      "reason": "negative backend capture failed: no completed same-run solver result/query"
+    },
+    {
+      "name": "wrong-rmw-update",
+      "result": "NEGATIVE_CHECK_INCOMPLETE",
+      "candidate_sha256": "88d2afcc25b423216bfe451f5d3fd2fc16959020b7499c323b420d447595543e",
+      "diagnostic_only": true,
+      "program_verdict_eligible": false,
+      "host_frame": "MATCH",
+      "llvm_fragment": "REJECT",
+      "llvm_reason": "unproved event-0-value",
+      "llvm_wellformed": "CLANG21_ACCEPTED_WITHOUT_PASSES",
+      "backend_capture": "REJECT",
+      "backend_observed_verdict": null,
+      "reason": "negative backend capture failed: no completed same-run solver result/query"
+    },
+    {
+      "name": "lost-atomic-order-and-pair",
+      "result": "NEGATIVE_CHECK_INCOMPLETE",
+      "candidate_sha256": "b519b3eea83a6fd7d84449177b9d7e34db48e98bf71bc1f0ec1439177521cfd3",
+      "diagnostic_only": true,
+      "program_verdict_eligible": false,
+      "host_frame": "MATCH",
+      "llvm_fragment": "REJECT",
+      "llvm_reason": "actual LLVM event count mismatch",
+      "llvm_wellformed": "CLANG21_ACCEPTED_WITHOUT_PASSES",
+      "backend_capture": "REJECT",
+      "backend_observed_verdict": null,
+      "reason": "negative backend capture failed: no completed same-run solver result/query"
+    },
+    {
+      "name": "uncovered-instance",
+      "result": "NEGATIVE_CHECK_INCOMPLETE",
+      "candidate_sha256": "7c31f185bfa45ee2cdf8bbe6df74d91564963882fc06aac6c3005a31572776dc",
+      "diagnostic_only": true,
+      "program_verdict_eligible": false,
+      "host_frame": "REJECT",
+      "llvm_fragment": "NOT_ELIGIBLE_HOST_FRAME_REJECTED",
+      "llvm_wellformed": "CLANG21_ACCEPTED_WITHOUT_PASSES",
+      "backend_capture": "REJECT",
+      "backend_observed_verdict": null,
+      "reason": "negative backend capture failed: no completed same-run solver result/query"
+    }
+  ]
+}
