@@ -36,7 +36,11 @@ class Obligations:
         require(answer == "unsat", "unproved P0 obligation: " + name)
 
 
-def source_main(obs, receipt, raw_ast, worker):
+def signature_void(ty):
+    return ty.get("canonical") == "void *" and ty.get("bits") == 64 and ty.get("qualifiers") == 0
+
+
+def source_main(obs, receipt, raw_ast, worker, *, typed_entry=False):
     globals_ = {g["id"]: g for g in obs["globals"]}
     require(len(globals_) == len(obs["globals"]), "duplicate source global identity")
     raw_globals = [n for n in raw_ast["inner"] if n.get("kind") == "VarDecl"]
@@ -44,13 +48,25 @@ def source_main(obs, receipt, raw_ast, worker):
     objects = {}
     for g in globals_.values():
         n = unique([n for n in raw_globals if n["id"] == g["id"]], "global AST declaration")
-        require(g["global_storage"] and unsigned(g["type"]) and not n.get("inner")
-                and "storageClass" not in n and "tls" not in n and "init" not in n
+        initial = 0
+        if typed_entry and n.get("init") == "c":
+            init = unique(n.get("inner", []), "single global initializer")
+            if init["kind"] == "ImplicitCastExpr":
+                require(init.get("castKind") == "IntegralCast", "global initializer conversion")
+                init = unique(init.get("inner", []), "single literal initializer")
+            require(init["kind"] == "IntegerLiteral" and not init.get("inner"),
+                    "global initializer must be an integer literal")
+            initial = int(init["value"])
+            require(0 <= initial < 2 ** g["type"]["bits"], "global initializer representability")
+        require(g["global_storage"] and unsigned(g["type"])
+                and (typed_entry or (not n.get("inner") and "init" not in n))
+                and (not typed_entry or (not n.get("inner") and "init" not in n) or n.get("init") == "c")
+                and "storageClass" not in n and "tls" not in n
                 and n["name"] == g["name"] and n.get("mangledName") == g["name"],
                 "P0 requires zero-initialized unsigned file-scope definitions")
         require(g["name"] not in objects and not g["name"].startswith("__com_"),
                 "source object identity/private namespace")
-        objects[g["name"]] = {"width": g["type"]["bits"], "initial": 0, "declaration": g["id"]}
+        objects[g["name"]] = {"width": g["type"]["bits"], "initial": initial, "declaration": g["id"]}
     main = unique([f for f in obs["functions"] if f["name"] == "main"], "unique C main")
     require(not main["parameters"] and main["return_type"]["canonical"] == "int"
             and main["return_type"]["bits"] == 32 and main["body"]["kind"] == "CompoundStmt",
@@ -105,9 +121,18 @@ def source_main(obs, receipt, raw_ast, worker):
                 null(args[1], "const void *")
                 require(args[2]["kind"] == "ImplicitCastExpr" and args[2]["cast"] == "FunctionToPointerDecay"
                         and ref(single(args[2])) == worker_id, "create target")
-                null(args[3], "void *")
+                argument = "null"
+                if typed_entry and args[3].get("cast") == "BitCast":
+                    require(args[3]["kind"] == "ImplicitCastExpr"
+                            and signature_void(args[3]["type"]), "thread pointer conversion")
+                    value = evaluate(single(args[3]), {}, globals_)
+                    require(value["kind"] == "value" and value["value"].startswith("@")
+                            and value["value"][1:] in objects, "thread argument is not a complete global")
+                    argument = value["value"]
+                else:
+                    null(args[3], "void *")
                 created.add(h)
-                ops.append({"kind": "create", "handle": h, "target": worker, **at})
+                ops.append({"kind": "create", "handle": h, "target": worker, "argument": argument, **at})
             elif name == "pthread_join":
                 require(len(args) == 2 and args[0]["kind"] == "ImplicitCastExpr"
                         and args[0]["cast"] == "LValueToRValue", "unsupported join")
@@ -234,10 +259,11 @@ def llvm_main(module, source_ops, objects, proof):
                 live.remove(m[2])
             continue
         ptr = r"ptr(?: noundef)?(?: nonnull)? "
-        m = re.fullmatch(rf"({SSA}) = call i32 @pthread_create\({ptr}({SSA}), {ptr}null, {ptr}@([-\w.$]+), {ptr}null\)(?: #\d+)?", text)
+        m = re.fullmatch(rf"({SSA}) = call i32 @pthread_create\({ptr}({SSA}), {ptr}null, {ptr}@([-\w.$]+), {ptr}(null|@[-\w.$]+)\)(?: #\d+)?", text)
         if m:
             op = consume("create", raw)
             require(m[2] in live and m[2] not in bound and m[3] == op["target"], "LLVM create binding")
+            require(m[4] == op.get("argument", "null"), "LLVM thread argument binding")
             bound[m[2]] = op["handle"]
             status_defs.add(m[1])
             continue
@@ -368,7 +394,14 @@ def program_main(q, ops, objects, coverage, proof, path):
             mem(store, obj, 2, ["M", "W", "_"])
             literal(store["value"], 2, 3)
             require(len(create["arguments"]) == 1, "worker argument count")
-            literal(create["arguments"][0], 64, 0)
+            argument = op.get("argument", "null")
+            if argument == "null":
+                literal(create["arguments"][0], 64, 0)
+            else:
+                actual = create["arguments"][0]
+                require(actual.get("complete") is True and actual.get("kind") == "object"
+                        and actual.get("type") == "bv64" and actual.get("name") == argument[1:],
+                        "Program thread argument binding")
             wes = workers[tid]["events"]
             require(wes[0]["creator"] == create["id"] and addr(wes[1]) == obj
                     and addr(wes[-4]) == obj and addr(wes[-3]) == obj,

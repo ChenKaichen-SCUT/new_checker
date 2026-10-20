@@ -111,7 +111,7 @@ def source_interface(source, ast):
             "register_output": register_outputs[0].index}
 
 
-def llvm_site(module, interface):
+def llvm_site(module, interface, *, checked_line_index=None):
     """Reconstruct argument consumption from constraints, not a supplied map."""
     if not re.search(r'target triple = "x86_64-(?:pc|unknown)-linux-gnu"', module):
         raise Reject("expected x86-64 Linux compiler target")
@@ -120,9 +120,15 @@ def llvm_site(module, interface):
     lines = module.splitlines(keepends=True)
     matches = [(i, s) for i, s in enumerate(lines)
                if re.search(r"\bcall\b[^\n]*\basm\b", s)]
-    if len(matches) != 1:
-        raise Reject("exactly one surviving LLVM inline-asm call is required")
-    i, line = matches[0]
+    if checked_line_index is None:
+        if len(matches) != 1:
+            raise Reject("exactly one surviving LLVM inline-asm call is required")
+        i, line = matches[0]
+    else:
+        selected = [(i, s) for i, s in matches if i == checked_line_index]
+        if len(selected) != 1:
+            raise Reject("checked call interval absent or ambiguous")
+        i, line = selected[0]
     w = interface["width"]
     pattern = (rf'\s*(%[-a-zA-Z$._0-9]+)\s*=\s*(?:tail\s+)?call i{w} asm sideeffect '
                rf'({STRING}),\s*({STRING})\((.*)\)'

@@ -51,7 +51,7 @@ def _translate_checked_interface(interface, llvm, evidence_dir):
         save_json(out / "block/certificate.json", block_cert)
     if block_cert["result"] != "EXACT":
         raise Reject("block check: " + block_cert.get("reason", "failed"))
-    prefix = "cert_" + interface["source_sha256"][:12] + "_"
+    prefix = "cert_" + interface["source_sha256"][:12] + "_" + interface.get("instance_namespace", "")
     fragment, env = emit(candidate, interface["bindings"], prefix=prefix)
     out_name = "o" + str(interface["register_output"])
     transformed, frame = replace_site(llvm, interface, fragment, env[out_name])

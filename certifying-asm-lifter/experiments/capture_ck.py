@@ -20,8 +20,10 @@ def capture(out, build_dir, source=None):
     observer = ROOT / "frontend/clang/Observe.cpp"
     build = json.loads((build_dir / "receipt.json").read_bytes())
     source = Path(source).resolve() if source is not None else ROOT / "benchmarks/ck-live.c"
-    if source.parent != ROOT / "benchmarks" or source.name not in {"ck-live.c", "ck-live-unsafe.c"}:
-        raise Reject("CK capture outside authorized P0 source pair")
+    if source.parent != ROOT / "benchmarks" or source.name not in {
+            "ck-live.c", "ck-live-unsafe.c", "ck-input.c", "ck-input-unsafe.c",
+            "ck-multi.c", "ck-multi-unsafe.c", "ck-contexts.c"}:
+        raise Reject("CK capture outside authorized source cases")
     result = {"result": "REJECT", "program_verdict_eligible": False}
 
     def invoke(args):

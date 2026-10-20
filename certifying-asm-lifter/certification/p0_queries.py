@@ -106,7 +106,7 @@ def variables(expression):
     return {v.sexpr(): v for v in get_vars(expression)}
 
 
-def check_queries(q, audit_path, backend, host, out):
+def check_queries(q, audit_path, backend, host, out, *, host_profile="D0"):
     report = {"result": "REJECT", "program_verdict_eligible": False,
               "semantic_encoder_contract": "Gamma_encode / ENC-minus remains external"}
     proof = Obligations(report)
@@ -129,7 +129,8 @@ def check_queries(q, audit_path, backend, host, out):
                 and audit["specification_type"] == "ASSERT", "actual safety property mismatch")
         require(audit["bound_events"] == [] and not any("BOUND" in e["tags"] for t in q["threads"] for e in t["events"]),
                 "P0 requires no truncation events")
-        require(host["result"] == "D0_OPEN_HOST_EXACT", "missing complete host/monitor coverage")
+        require(host_profile in {"D0", "D1a", "D1b"} and host["result"] == host_profile + "_OPEN_HOST_EXACT",
+                "missing complete host/monitor coverage")
         ids = [m["event"] for m in audit["monitors"]]
         require(sorted(ids) == sorted(host["all_assertions"]) and len(set(ids)) == len(ids), "Task monitor census")
         c = {name: formula(text) for name, text in audit["components"].items()}

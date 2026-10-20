@@ -6,7 +6,7 @@ from frontend.gnu import Reject
 from backend.dat3m.instrument import HERE, REL
 
 
-def install_p0(root, fault_injection=False):
+def install_p0(root, fault_injection=False, fault_class="P0Faults"):
     root = Path(root)
     path = root / REL
     raw = path.read_bytes()
@@ -39,7 +39,9 @@ def install_p0(root, fault_injection=False):
             '        prover.addConstraint(certifying.P0Audit.component("assumed_property", assumedSpec));\n'
             '        certifying.Snapshot.write(task, "after-encoding");')
     # Same collection object goes to observer and original actual solver call.
-    assumption = ("certifying.P0Faults.assumption(assumptionLiteral, bmgr)"
+    if fault_class not in {"P0Faults", "P1Faults", "P1bFaults"} or (fault_class != "P0Faults" and not fault_injection):
+        raise Reject("invalid fault instrumentation profile")
+    assumption = (f"certifying.{fault_class}.assumption(assumptionLiteral, bmgr)"
                   if fault_injection else "assumptionLiteral")
     replace("        if (prover.isUnsatWithAssumptions(singletonList(assumptionLiteral))) {",
             f"        var certAssumptions = singletonList({assumption});\n"
@@ -59,11 +61,11 @@ def install_p0(root, fault_injection=False):
             '        logger.info("Verification finished with result {}", res);')
     if fault_injection:
         replace("        preprocessProgram(task, config);",
-                "        preprocessProgram(task, config);\n        certifying.P0Faults.apply(task);")
+                f"        preprocessProgram(task, config);\n        certifying.{fault_class}.apply(task);")
     dest = root / "dartagnan/src/main/java/certifying"
     dest.mkdir(parents=True, exist_ok=False)
     sources = {}
-    for name in ["Snapshot.java", "P0Audit.java"] + (["P0Faults.java"] if fault_injection else []):
+    for name in ["Snapshot.java", "P0Audit.java"] + ([fault_class + ".java"] if fault_injection else []):
         data = (HERE / name).read_bytes()
         if name == "Snapshot.java" and fault_injection:
             text = data.decode("utf-8")
@@ -75,8 +77,9 @@ def install_p0(root, fault_injection=False):
         (dest / name).write_bytes(data)
         sources[name] = sha(data)
     path.write_bytes(code.encode("utf-8"))
-    return {"profile": "p0-query-audit-v1", "original_sha256": sha(raw),
+    return {"profile": {"P0Faults": "p0-query-audit-v1", "P1Faults": "p1-query-audit-v1",
+                        "P1bFaults": "p1b-query-audit-v1"}[fault_class], "original_sha256": sha(raw),
             "instrumented_sha256": sha(path.read_bytes()),
             "exporter_sha256": sources["Snapshot.java"],
-            "fault_source_sha256": sources.get("P0Faults.java"),
+            "fault_source_sha256": sources.get(fault_class + ".java"),
             "fault_injection": fault_injection, "additional_sources": sources}

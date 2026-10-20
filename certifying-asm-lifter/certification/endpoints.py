@@ -117,10 +117,7 @@ The mappings are theorem parameters of this local API, not trusted user claims.
             if operand.startswith("@") and bits == 64:
                 return z3.BitVec("object:" + operand[1:], 64)
             if operand.startswith("%"):
-                name = "r" + operand[1:]
-                if name not in entry or entry[name].sort() != z3.BitVecSort(bits):
-                    raise Reject("LLVM live-in not preserved by backend; needs binding proof")
-                return entry[name]
+                raise Reject("symbolic LLVM live-in requires an independently checked typed entry relation")
             raise Reject("unsupported actual LLVM binding")
 
         block = parse(source, width)

@@ -57,7 +57,9 @@ def run_backend(candidate, dat3m, receipt_path, out, fault=None):
     result = {"result": "REJECT", "program_verdict_eligible": False}
     try:
         if fault not in {None, "a-only", "pair-only", "guard-only", "live-use-only", "omit-instance",
-                         "main-assert-omission", "join-association", "safety-query-binding"}:
+                         "main-assert-omission", "join-association", "safety-query-binding",
+                         "entry-ssa", "operand-only", "assert-only", "swap-returns", "second-operand",
+                         "omit-call", "omit-activation", "cross-read", "continuation-assert"}:
             raise Reject("unknown controlled fault")
         build = verify_build(dat3m, receipt_path, fault)
         for rel, expected in build["cat_pins"].items():

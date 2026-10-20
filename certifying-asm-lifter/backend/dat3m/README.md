@@ -1,5 +1,12 @@
 # 实际对象导出接入点
 
+最新 [P1a/P1b 交付](../../docs/p1/00-delivery.md) 复用原 P0 正例的
+Snapshot/P0Audit 和 pinned 后端，无新增正例语义 hook。
+`--controlled-fault-build --p1-query-audit` 或 `--p1b-query-audit`
+分别安装测试专用 P1Faults/P1bFaults；它们不能进入正例构建或授权 SAFE。
+实际 fault 前后对象和同次查询均保留。新增认证在 Python 的类型化完整 worker
+解释与多调用覆盖层；不靠修改后端打印结果来建立对应。
+
 已在独立固定源码树中构建并完成单个真实输入验收。
 结果、适用范围和外部可信前提见[独立验收报告](../../docs/13-minimal-acceptance.md)。
 原 vendor 树没有改动；最终独立构建和运行摘要在

@@ -89,3 +89,17 @@
   analytic proof and raw evidence are in docs/p0 and experiments/p0.
   No unconditional compiler/backend/solver correctness claim. Stop after
   publication; P1, new instructions/libraries and broad experiments need approval.
+- Latest authorization: baseline 274a5a58c27637ab8d45a988c3be393aa981b913.
+  Complete controlled P1a typed nonconstant entry binding before P1b multiple
+  live CK calls and contexts. Prove each additional acceptance condition before
+  implementation; retain C0-C4 and all eight original Gamma contracts. No
+  register-name inference, upstream rewriting, broad experiments or new ISA
+  instructions. Preserve historical evidence. Deliver actual positive, unsafe
+  and isolated-fault evidence, commit, push, verify, then stop for review.
+  P1a and restricted P1b are delivered: real nonconstant shared-read inputs,
+  two live original CK calls with data dependence and an intervening shared
+  read; two actual workers give four distinct call/activation certificates.
+  Original Gamma and P0 controls remain. Different worker definitions still
+  reject. Evidence and proofs are in docs/p1 and experiments/p1a,p1b; 103 unit
+  tests and real P0/P1a regressions passed. Publish and STOP for user review.
+  Do not start additional instruction, library, context or control-flow scope.

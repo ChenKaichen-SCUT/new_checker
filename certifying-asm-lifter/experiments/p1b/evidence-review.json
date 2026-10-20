@@ -1,0 +1,425 @@
+{
+  "result": "REVIEWED",
+  "original_theorem_sha256": "8f4f91dc9a4002563389609879a653512ae7d687ac38c4bae164146c55d9d596",
+  "p1a_final_regression": [
+    {
+      "case": "safe",
+      "result": "CONDITIONAL_SAFE",
+      "backend": "PASS",
+      "static_sites": 1,
+      "activations": 2,
+      "separate_regions": 2,
+      "user_monitors": 3
+    },
+    {
+      "case": "unsafe",
+      "result": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "backend": "FAIL",
+      "static_sites": 1,
+      "activations": 2,
+      "separate_regions": 2,
+      "user_monitors": 3
+    },
+    {
+      "case": "wrong-entry",
+      "result": "REJECT",
+      "backend": "PASS",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 45,
+            "thread": 1,
+            "fields": [
+              "reads",
+              "value"
+            ]
+          }
+        ],
+        "removed": [],
+        "before_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "after_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "wrong-operand",
+      "result": "REJECT",
+      "backend": "PASS",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 45,
+            "thread": 1,
+            "fields": [
+              "reads",
+              "value"
+            ]
+          }
+        ],
+        "removed": [],
+        "before_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "after_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "wrong-assert",
+      "result": "REJECT",
+      "backend": "FAIL",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 47,
+            "thread": 1,
+            "fields": [
+              "condition"
+            ]
+          }
+        ],
+        "removed": [],
+        "before_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "after_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "wrong-query",
+      "result": "REJECT",
+      "backend": "PASS",
+      "fault_isolation": {
+        "changed": [],
+        "removed": [],
+        "before_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "after_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "memory_unchanged": true
+      }
+    }
+  ],
+  "p1b_acceptance": [
+    {
+      "case": "safe",
+      "result": "CONDITIONAL_SAFE",
+      "backend": "PASS",
+      "static_sites": 2,
+      "activations": 2,
+      "separate_regions": 4,
+      "user_monitors": 7
+    },
+    {
+      "case": "unsafe",
+      "result": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "backend": "FAIL",
+      "static_sites": 2,
+      "activations": 2,
+      "separate_regions": 4,
+      "user_monitors": 7
+    },
+    {
+      "case": "swapped-returns",
+      "result": "REJECT",
+      "backend": "PASS",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 50,
+            "thread": 1,
+            "fields": [
+              "condition"
+            ]
+          },
+          {
+            "event": 53,
+            "thread": 1,
+            "fields": [
+              "condition",
+              "reads"
+            ]
+          }
+        ],
+        "removed": [],
+        "before_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "after_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "wrong-second-input",
+      "result": "REJECT",
+      "backend": "PASS",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 48,
+            "thread": 1,
+            "fields": [
+              "reads",
+              "value"
+            ]
+          }
+        ],
+        "removed": [],
+        "before_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "after_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "missing-static-call",
+      "result": "REJECT",
+      "backend": "FAIL",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 47,
+            "thread": 1,
+            "fields": [
+              "addr",
+              "class",
+              "expr",
+              "java_class",
+              "successor",
+              "tags",
+              "width"
+            ]
+          },
+          {
+            "event": 70,
+            "thread": 2,
+            "fields": [
+              "addr",
+              "class",
+              "expr",
+              "java_class",
+              "successor",
+              "tags",
+              "width"
+            ]
+          }
+        ],
+        "removed": [
+          {
+            "event": 48,
+            "thread": 1,
+            "class": "RMWStore"
+          },
+          {
+            "event": 71,
+            "thread": 2,
+            "class": "RMWStore"
+          }
+        ],
+        "before_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "after_rmw": {
+          "1": 1,
+          "2": 1
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "missing-call-activation",
+      "result": "REJECT",
+      "backend": "FAIL",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 70,
+            "thread": 2,
+            "fields": [
+              "addr",
+              "class",
+              "expr",
+              "java_class",
+              "successor",
+              "tags",
+              "width"
+            ]
+          }
+        ],
+        "removed": [
+          {
+            "event": 71,
+            "thread": 2,
+            "class": "RMWStore"
+          }
+        ],
+        "before_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "after_rmw": {
+          "1": 2,
+          "2": 1
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "lost-cross-read",
+      "result": "REJECT",
+      "backend": "PASS",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 46,
+            "thread": 1,
+            "fields": [
+              "addr",
+              "class",
+              "expr",
+              "java_class",
+              "tags",
+              "width"
+            ]
+          }
+        ],
+        "removed": [],
+        "before_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "after_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "wrong-continuation",
+      "result": "REJECT",
+      "backend": "FAIL",
+      "fault_isolation": {
+        "changed": [
+          {
+            "event": 53,
+            "thread": 1,
+            "fields": [
+              "condition"
+            ]
+          }
+        ],
+        "removed": [],
+        "before_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "after_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "wrong-query",
+      "result": "REJECT",
+      "backend": "PASS",
+      "fault_isolation": {
+        "changed": [],
+        "removed": [],
+        "before_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "after_rmw": {
+          "1": 2,
+          "2": 2
+        },
+        "memory_unchanged": true
+      }
+    },
+    {
+      "case": "different-worker-contexts",
+      "result": "REJECT",
+      "backend": null
+    }
+  ],
+  "p0_regression": [
+    {
+      "case": "safe",
+      "returncode": 0,
+      "expected": "CONDITIONAL_SAFE",
+      "actual": "CONDITIONAL_SAFE",
+      "reason": null,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": true
+    },
+    {
+      "case": "unsafe",
+      "returncode": 0,
+      "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "actual": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "reason": null,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "case": "missing-main-assert",
+      "returncode": 1,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C2/C3 host: main operation/event census: expected Assert",
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "case": "wrong-join",
+      "returncode": 1,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C2/C3 host: Program join association differs from source handle",
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "case": "wrong-query",
+      "returncode": 1,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    }
+  ],
+  "note": "Static artifact checks and fault isolation; not a proof of Gamma or serialization."
+}

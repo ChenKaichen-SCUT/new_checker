@@ -6,7 +6,15 @@
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[工具／系统论文可行性审阅](certifying-asm-lifter/docs/system-review/00-delivery.md)。
+最新交付：[P1a/P1b 类型化非固定输入与多调用验收](certifying-asm-lifter/docs/p1/00-delivery.md)。
+基线 `274a5a58c27637ab8d45a988c3be393aa981b913`。原始 CK 的非固定输入、
+同一 worker 两次存活调用及活跃依赖已在实际 Clang/Dat3M 对象上得到受限
+`CONDITIONAL_SAFE`；保留原八项 Γ、完整 main/生命周期与同次查询门禁。
+四份不同调用/激活证书、隔离故障、不安全变体及 103 项单元回归材料已保存。
+不同 worker 定义的调用仍保守拒绝。停止扩展，等待审阅。
+前次实现：[P0 程序级门禁](certifying-asm-lifter/docs/p0/00-delivery.md)。
+
+历史交付：[工具／系统论文可行性审阅](certifying-asm-lifter/docs/system-review/00-delivery.md)。
 基线 `25e67f8cf379c74857dd78bdf6e83f334555a269`。完成受限端到端安全转移的
 条件定理与解析证明、真实链实现缺口、三库源码障碍排序及严格评测设计。
 main/生命周期与实际错误查询绑定仍缺完整检查，程序级 gate 保持关闭。
