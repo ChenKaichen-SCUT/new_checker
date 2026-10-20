@@ -46,5 +46,17 @@
   Committing, pushing and static integrity checks for this delivery are authorized.
 - Keep proved results, assumptions, experimental observations, and open gaps
   distinct. Preserve the current limitations until new evidence resolves them.
+- Latest authorization (2026-10-20), superseding the completed first batch:
+  use baseline 58dccfad29c9285f4280b90e6372fd202d1d2483; deliver ONLY a strict
+  existing-method combination feasibility review and a minimal candidate lemma.
+  Fix x86/TSO, finite acyclic control flow, finite threads and explicit safety
+  observations. No complete new algorithm design, checker changes or experiments.
+  Documents are in certifying-asm-lifter/docs/combination-review.
+  Current decision: NO_GO for independent novelty of this candidate;
+  tool/system contribution remains conditional, not publication-ready.
+  The narrow endpoint/order lemma is a standard conditional derivation, not
+  a new implemented guarantee. Historical evidence must remain byte-identical.
+  After static integrity checks, commit, push and verify the remote. Then STOP
+  for user review; do not proceed to implementation or experiments.
 - Keep downloaded toolchains, literature caches, credentials, and temporary
   binaries out of Git. Preserve third-party attribution and artifact hashes.

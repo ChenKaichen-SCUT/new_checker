@@ -6,7 +6,15 @@
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[自动对应关系合成：第一批审计与问题设计](certifying-asm-lifter/docs/correspondence/00-delivery.md)。
+最新交付：[已有方法组合可行性审查](certifying-asm-lifter/docs/combination-review/00-delivery.md)。
+基线 `58dccfad29c9285f4280b90e6372fd202d1d2483`；固定有限无环、有限线程的
+x86/TSO，审查 PAA/JTFG、VALID、Stellite、SEQ、Kater/KATI 及补充方法。
+结论为 **No-Go（本轮候选的独立算法创新）**：完整执行包含有已知证书路线，
+窄的跨区域排序引理也与已有方法重合；未建立成本优势。组合尚未实现，
+工具/系统贡献仍需论证。本轮仅文献与解析推导，未改认证器、未运行实验；
+交付后停止，等待审阅。
+
+前一批：[自动对应关系合成：第一批审计与问题设计](certifying-asm-lifter/docs/correspondence/00-delivery.md)。
 以 `b7b3b2e3aa25fbd2746bd602caae68003e490026` 为基线，完成算法级文献比较、
 精确定义、候选证书/搜索设计和解析反例。自动匹配、SMT 与覆盖检查本身不构成
 新贡献；开放历史与覆盖的组合仍待证明，论文创新性未建立。Hetrify 系列全文

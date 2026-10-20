@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-20",
+  "baseline_commit": "58dccfad29c9285f4280b90e6372fd202d1d2483",
+  "scope": "Existing-method composition feasibility; fixed finite acyclic x86/TSO; primary literature and analytic reasoning only",
+  "prior_registry": {
+    "path": "docs/correspondence/evidence/sources.json",
+    "sha256": "ef69619ad18f3f1c47512544eedd01962293cc1d1b6868a179304256ff6b2c47",
+    "papers": 23,
+    "policy": "immutable inherited audit; not all re-read this round"
+  },
+  "focused_sources": [
+    {
+      "id": "paa",
+      "title": "Semantic Program Alignment for Equivalence Checking",
+      "venue": "PLDI 2019",
+      "primary_url": "https://cs.stanford.edu/people/sharmar/pubs/veceq.pdf",
+      "reviewed_scope": "Section 3.1 four conditions, Lemma 3.1/Corollary 3.2 proofs, inference, Sections 5.3/5.6 limits",
+      "limitations_of_review": "Error/divergence interpretation not automatically our safety-observation semantics; no artifact run",
+      "local_cache": {
+        "path": "research/sources/correspondence-audit/paa2019.pdf",
+        "sha256": "e32b0c503ec385348ed6976d2b6d5c0687e97db1f4d07234d680facf30e70bde",
+        "bytes": 352127,
+        "redistributed": false,
+        "pages": 14
+      },
+      "this_review_scope": "Section 3.1, Lemma 3.1 and Corollary 3.2; finite progress, all path pairs and sequential error/divergence semantics; source trace inference is candidate generation only.",
+      "artifact_execution": "NOT_RUN",
+      "review_level": "primary definitions, theorem interfaces and relevant proof passages; not a mechanized reproof"
+    },
+    {
+      "id": "jtfg",
+      "title": "Black-box equivalence checking across compiler optimizations",
+      "venue": "APLAS 2017",
+      "primary_url": "https://www.cse.iitd.ac.in/~sbansal/pubs/aplas17.pdf",
+      "reviewed_scope": "Algorithm 1, Section 4.3, composite-edge search, invariant/backtracking, completeness and UB preconditions",
+      "limitations_of_review": "Finite search domain not general synthesis completeness; no benchmark replay",
+      "local_cache": {
+        "path": "research/sources/correspondence-audit/blackbox2017.pdf",
+        "sha256": "e0948dd976fc6d899a8684e554bb362aaf2a71df8e1821b86cf3a0e23f7f09c2",
+        "bytes": 1016665,
+        "redistributed": false,
+        "pages": 21
+      },
+      "this_review_scope": "Section 4.3 and Algorithm 1; outgoing guards, composite edges, invariants, backtracking; not a TSO memory theorem.",
+      "artifact_execution": "NOT_RUN",
+      "review_level": "primary definitions, theorem interfaces and relevant proof passages; not a mechanized reproof"
+    },
+    {
+      "id": "validc",
+      "title": "Validating Optimizations of Concurrent C/C++ Programs",
+      "venue": "CGO 2016",
+      "primary_url": "https://plv.mpi-sws.org/validc/paper.pdf",
+      "reviewed_scope": "Sections 3.1.1-3.2.1 CIM/MD and CFG paths, scope and Section 5 limitations",
+      "limitations_of_review": "CFG names/reachability assumptions and loop heuristics retained; no VM execution",
+      "local_cache": {
+        "path": "research/sources/validc.pdf",
+        "sha256": "2aa4fece9e5fa55ba2315811e7bc1be132f60df17f66f9937b1c8266ea738bbc",
+        "bytes": 459372,
+        "redistributed": false,
+        "pages": 11
+      },
+      "this_review_scope": "Sections 3.1-3.2 and result contract; source/target access matching, conditional elimination, CFG names/reachability and target-to-source direction. Values and weak-memory bridge not supplied by access matching alone.",
+      "artifact_execution": "NOT_RUN",
+      "review_level": "primary definitions, theorem interfaces and relevant proof passages; not a mechanized reproof"
+    },
+    {
+      "id": "stellite",
+      "title": "Compositional Verification of Compiler Optimisations on Relaxed Memory",
+      "venue": "ESOP 2018",
+      "primary_url": "https://www.cs.kent.ac.uk/people/staff/mjb211/docs/esop18.pdf",
+      "reviewed_scope": "History/refinement definitions, Theorems 1-4, finite cut and deny, implementation scope, extended proof structure",
+      "limitations_of_review": "No independent mechanized proof/rebuild; specific RA-style model not automatically Dat3M TSO",
+      "local_cache": {
+        "path": "research/sources/esop2018.pdf",
+        "sha256": "1f7abd78ade20d887a5bab1e2b3a47ed6804ec9bbb4f4a68dbe9c5695f41bd7a",
+        "bytes": 741340,
+        "redistributed": false,
+        "pages": 50
+      },
+      "this_review_scope": "Equation (7), Sections 3.2/4, Theorems 1-4; same A/R/S environment, finite history/deny, RA model, LL/SC boundary restriction, sequential contextual replacement.",
+      "artifact_execution": "NOT_RUN",
+      "review_level": "primary definitions, theorem interfaces and relevant proof passages; not a mechanized reproof"
+    },
+    {
+      "id": "seq",
+      "title": "Sequential Reasoning for Optimizing Compilers under Weak Memory Concurrency",
+      "venue": "PLDI 2022",
+      "primary_url": "https://www.cs.tau.ac.il/~orilahav/papers/pldi22_full.pdf",
+      "reviewed_scope": "Environment oracle/permissions, Theorem 6.2, determinism/layout, Appendix A simulation adequacy",
+      "limitations_of_review": "No Coq rebuild; PSna and location discipline, not arbitrary CAT",
+      "local_cache": {
+        "path": "research/sources/correspondence-audit/seq2022.pdf",
+        "sha256": "06ade3a3aef712d4029f872bbe51215793ad8e5eec7b36b000da176b53a0a422",
+        "bytes": 851424,
+        "redistributed": false,
+        "pages": 20
+      },
+      "proof_artifact": "https://github.com/snu-sf/promising-seq-coq",
+      "this_review_scope": "Definitions 3.2-3.3, Theorem 6.2, Appendix E; same progress/monotone oracle, source determinism, layout and atomic/non-atomic location discipline; PSna adequacy.",
+      "artifact_execution": "NOT_RUN",
+      "review_level": "primary definitions, theorem interfaces and relevant proof passages; not a mechanized reproof"
+    },
+    {
+      "id": "kater",
+      "title": "Kater: Automating Weak Memory Model Metatheory and Consistency Checking",
+      "venue": "POPL 2023",
+      "primary_url": "https://plv.mpi-sws.org/kater/paper.pdf",
+      "reviewed_scope": "Sections 3.1-3.2 and 3.7, inclusion, mapping assumptions, two-event RMW, automata framework",
+      "limitations_of_review": "No artifact replay; some assumption-elimination heuristics incomplete",
+      "local_cache": {
+        "path": "research/sources/kater.pdf",
+        "sha256": "3dfd39d94b8407513aad90451c05237666f6dd74b62534a1ff8e8196ec785bfb",
+        "bytes": 1027005,
+        "redistributed": false,
+        "pages": 29
+      },
+      "this_review_scope": "Sections 3.6-3.7 and existing algorithm audit: model equivalence and mapping assumptions; actual event/data/coverage obligations separate.",
+      "artifact_execution": "NOT_RUN",
+      "review_level": "primary definitions, theorem interfaces and relevant proof passages; not a mechanized reproof"
+    },
+    {
+      "id": "kati",
+      "title": "Automating Memory Model Metatheory with Intersections",
+      "venue": "CONCUR 2024",
+      "primary_url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CONCUR.2024.33",
+      "reviewed_scope": "Published 16-page paper: interpretations, normalization, bracket saturation; Propositions 10-15, Theorems 16/18/20, consistency algorithms and model-implication scope",
+      "limitations_of_review": "Extended technical appendix not independently audited; PSPACE claim requires bounded intersection nesting",
+      "local_cache": {
+        "path": "research/sources/kati.pdf",
+        "sha256": "15021e7e02de66982405371140696fc8d6a816b82bf6f1bb9150153de5040b7f",
+        "bytes": 894400,
+        "redistributed": false,
+        "pages": 16
+      },
+      "this_review_scope": "Theorems 16/18/20 and Sections 5-6; language inclusion, sufficient irreflexivity implication and primitive-intersection scope; not universal model-implication completeness.",
+      "artifact_execution": "NOT_RUN",
+      "review_level": "primary definitions, theorem interfaces and relevant proof passages; not a mechanized reproof"
+    },
+    {
+      "id": "compcerttso",
+      "title": "CompCertTSO: A Verified Compiler for Relaxed-Memory Concurrency",
+      "venue": "Extended draft dated 2011-11-18; project also contains POPL 2011 and journal versions",
+      "primary_url": "https://fzn.fr/projects/wmc/readings/compcerttso-long.pdf",
+      "reviewed_scope": "TSO traces, compiler simulation, fence elimination and weak-tau simulation, Sections 4/6",
+      "limitations_of_review": "No Coq replay; pass proof not black-box correspondence synthesis",
+      "local_cache": {
+        "path": "research/sources/correspondence-audit/compcerttso.pdf",
+        "sha256": "702996fe998d6079c342e1a149dc026b75c2232aca91d818a3f2cb9413d80dbd",
+        "bytes": 521862,
+        "redistributed": false,
+        "pages": 46
+      },
+      "this_review_scope": "Extended 2011-11-18 draft Sections 4 and 6; FE1/FE2/PRE, weak-tau simulation Theorem 6.2, target-to-source refinement; not a black-box pipeline theorem.",
+      "artifact_execution": "NOT_RUN",
+      "review_level": "primary definitions, theorem interfaces and relevant proof passages; not a mechanized reproof"
+    },
+    {
+      "id": "x86tso2009",
+      "title": "x86-TSO: A Rigorous and Usable Programmer’s Model for x86 Multiprocessors",
+      "venue": "Cambridge technical report UCAM-CL-TR-745, 2009",
+      "primary_url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-745.pdf",
+      "reviewed_scope": "Sections 3.1-3.3; Theorems 3-4 operational/axiomatic correspondence and atomic event well-formedness. Not a proof of the pinned Dat3M CAT or GNU host.",
+      "artifact_execution": "NOT_RUN",
+      "local_cache": {
+        "path": "research/sources/combination-review/x86tso2009.pdf",
+        "sha256": "dc49aa3e2cd40d1d2e4ed24a141388b8e8756bbd692b1aa53466d2e161d29d4c",
+        "bytes": 622709,
+        "pages": 52,
+        "redistributed": false
+      }
+    },
+    {
+      "id": "qbfcert2024",
+      "title": "Models and Counter-Models of Quantified Boolean Formulas",
+      "venue": "SAT 2024 invited talk",
+      "primary_url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol305-sat2024/LIPIcs.SAT.2024.1/LIPIcs.SAT.2024.1.pdf",
+      "reviewed_scope": "Sections 1-2: Skolem dependencies, substitution validity, certificate extraction/independent checking; no solver run.",
+      "artifact_execution": "NOT_RUN",
+      "local_cache": {
+        "path": "research/sources/combination-review/qbfcert2024.pdf",
+        "sha256": "5d437065b6e81cae570a1b5e30c918b888c54dd2d780a613d0f2c4a69b7b166d",
+        "bytes": 501770,
+        "pages": 7,
+        "redistributed": false
+      }
+    },
+    {
+      "id": "skolem_factored2015",
+      "title": "Skolem Functions for Factored Formulas",
+      "venue": "arXiv:1508.05497v2, 2015",
+      "primary_url": "https://arxiv.org/pdf/1508.05497",
+      "reviewed_scope": "Abstract and introduction only: existence of factored-form CEGAR synthesis. No detailed theorem or claimed cost bound imported.",
+      "artifact_execution": "NOT_RUN",
+      "local_cache": {
+        "path": "research/sources/combination-review/skolem_factored2015.pdf",
+        "sha256": "4e573d7dfcfb0fec42922704be1c65e455a321c215a099b578a52daae9b17fe5",
+        "bytes": 249881,
+        "pages": 10,
+        "redistributed": false
+      }
+    },
+    {
+      "id": "qbv",
+      "title": "QBV: A Quantified Boolean Formula Solver and Certificate Verifier",
+      "venue": "Official CProver project page",
+      "primary_url": "https://www.cprover.org/qbv/",
+      "reviewed_scope": "Tool certificate interface only; no installation, run, or current-maintenance claim.",
+      "artifact_execution": "NOT_RUN",
+      "local_cache": {
+        "path": "research/sources/combination-review/qbv.txt",
+        "sha256": "eac8720ed930cfebe5d7e931aeffa37fb5b68a79e53b6db940a1140697d83764",
+        "bytes": 3499,
+        "pages": null,
+        "redistributed": false
+      }
+    },
+    {
+      "id": "sc_to_tso2025",
+      "title": "Portability of Optimizations from SC to TSO",
+      "venue": "arXiv:2504.17646, 2025",
+      "primary_url": "https://arxiv.org/pdf/2504.17646",
+      "reviewed_scope": "Sections 2-3, Definitions 3-4, Theorem 1 and Appendix A interfaces; no write introduction/elimination or tuwri, candidate semantics, pre-traces and inclusion direction. Not a full line-by-line audit of Appendix E.",
+      "artifact_execution": "NOT_RUN",
+      "local_cache": {
+        "path": "research/sources/combination-review/sc_to_tso2025.pdf",
+        "sha256": "bedd17677cb971ee05f5c37f4c11a930149d968f0797cc1d7bd12ef7592ee53a",
+        "bytes": 2055466,
+        "pages": 35,
+        "redistributed": false
+      }
+    },
+    {
+      "id": "wavecert2024",
+      "title": "WaveCert: Translation Validation for Asynchronous Dataflow Programs via Dynamic Fractional Permissions",
+      "venue": "Author arXiv full text, 26 pages",
+      "primary_url": "https://arxiv.org/pdf/2312.09326",
+      "reviewed_scope": "Section 4 Definitions 1-6 and cut-simulation coverage; Section 5 Theorem 3 and Algorithm 1; deterministic SC source, SC dataflow semantics, permissions/confluence. No Verus or tool replay.",
+      "artifact_execution": "NOT_RUN",
+      "local_cache": {
+        "path": "research/sources/combination-review/wavecert2024.pdf",
+        "sha256": "9570f2efe8117b936ca53d84a4606319a4519d3833455dc9298a5d9bf68f5c78",
+        "bytes": 992835,
+        "pages": 26,
+        "redistributed": false
+      }
+    },
+    {
+      "id": "destiva2026",
+      "title": "Spatial and Temporal Decomposition for Faster Translation Validation",
+      "venue": "OOPSLA 2026; DOI 10.1145/3839512",
+      "primary_url": "https://mikekben.github.io/resources/OOPSLA_DESTIVA.pdf",
+      "reviewed_scope": "Sections 3-4, Property 3.1, Theorems 4.7/4.9; trusted complete change records, sequential acyclic semantics, decomposition and whole-program fallback. No evaluation reproduced.",
+      "artifact_execution": "NOT_RUN",
+      "local_cache": {
+        "path": "research/sources/combination-review/destiva2026.pdf",
+        "sha256": "2c4fb149023d4bb2b08508209afc41f68eeaf50b6d6f87de8cfaaa45a868efa4",
+        "bytes": 673049,
+        "pages": 29,
+        "redistributed": false
+      }
+    }
+  ],
+  "new_retrieval_log": "docs/combination-review/evidence/retrieval.json",
+  "additional_primary_web_checks": [
+    {
+      "url": "https://github.com/concurrencykit/ck/blob/8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+      "scope": "upstream identity and realistic instruction patterns only; no source edits or compilation"
+    },
+    {
+      "url": "https://2026.splashcon.org/details/oopsla-2026/138/Spatial-and-Temporal-Decomposition-for-Faster-Translation-Validation",
+      "scope": "conference metadata; technical claims use author PDF"
+    }
+  ],
+  "search_sweep": {
+    "date": "2026-10-20",
+    "queries": [
+      "translation validation concurrent programs TSO 2025 2026 refinement",
+      "PAA JTFG concurrency equivalence validation",
+      "Stellite SEQ weak memory translation validation Kater",
+      "certifying translation validation weak memory execution graph correspondence",
+      "Spatial and Temporal Decomposition Mikek pdf",
+      "Portability of Optimizations from SC to TSO"
+    ],
+    "exhaustive_claim": false,
+    "excluded_as_technical_evidence": [
+      "AI-generated review sites",
+      "search snippets when full primary text was available",
+      "unrelated code-translation/testing tools"
+    ]
+  },
+  "unresolved": [
+    {
+      "id": "hetrify/hetrifyplus",
+      "status": "prior full-proof access gap retained; not used to claim these methods cannot solve the task"
+    }
+  ],
+  "new_compiler_backend_solver_test_runs": 0,
+  "decision": "NO_GO for independent algorithmic novelty of current candidate; not impossibility of future efficient algorithms or completed engineering combination"
+}
