@@ -1,0 +1,99 @@
+{
+  "format": "dat3m-region-certificate-v1",
+  "result": "REGION_EXACT",
+  "snapshot_sha256": "3b4e5cba6f5c888b312743244fc8e896d57ddcc5b5ca08f16f31f1c4dc6e0018",
+  "source_sha256": "3f27aea5cc2521ca201ca58f6c50eaf6fcf24a2ca1ee58445101fbbab3b546f5",
+  "interface_parameters_sha256": "4623590b4ecabd8a99df9992ae972dafab8dbdc5bcf6e2b40f16eca40fbea384",
+  "scope": "closed-region-under-authenticated-interface",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "total-exit",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x64 (or true)))\n(let (($x7 (or $x64)))\n(let (($x59 (or $x7)))\n(not $x59)))))\n(check-sat)\n",
+      "file": "000-total-exit.smt2",
+      "smt_sha256": "a94984cd0aed34a0ef3db9ccb5355691a143f8200f1921dacc840b70a9b5dcd7"
+    },
+    {
+      "name": "endpoint-0-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x64 (or true)))\n(let (($x30 (= true $x64)))\n(not $x30))))\n(check-sat)\n",
+      "file": "001-endpoint-0-presence.smt2",
+      "smt_sha256": "8dbeffea31a92e3448fa6986f03602e60a1069c8149764d3d7530f7d75cbbf7a"
+    },
+    {
+      "name": "endpoint-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x53 (=> true (= |object:x| |object:x|))))\n(not $x53)))\n(check-sat)\n",
+      "file": "002-endpoint-0-addr.smt2",
+      "smt_sha256": "92848639539d4bd332922a864b35e44285e51ba152e9c0c8b53b98ba0d445e61"
+    },
+    {
+      "name": "endpoint-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x71 (=> true (= u0 u0))))\n(not $x71)))\n(check-sat)\n",
+      "file": "003-endpoint-0-read.smt2",
+      "smt_sha256": "ba320690f29717815bcf96dd5904c839774bf44320669b055271e3cbea00fbd3"
+    },
+    {
+      "name": "endpoint-1-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x64 (or true)))\n(let (($x7 (or $x64)))\n(let (($x53 (= true $x7)))\n(not $x53)))))\n(check-sat)\n",
+      "file": "004-endpoint-1-presence.smt2",
+      "smt_sha256": "c4f81ff6d05230391f18e70e4eb265a7ef28ac3579d8e19961eca4df4e0af21c"
+    },
+    {
+      "name": "endpoint-1-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x25 (=> true (= |object:x| |object:x|))))\n(not $x25)))\n(check-sat)\n",
+      "file": "005-endpoint-1-addr.smt2",
+      "smt_sha256": "e357e65ae3b3df526ac744a5ac6fa30892127a7426b6df8502b50ff4a1c93780"
+    },
+    {
+      "name": "endpoint-1-value",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:rcert_d0c1dc0e6121_0| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x64 (or true)))\n(let ((?x8 (ite $x64 u0 |entry:rcert_d0c1dc0e6121_0|)))\n(let ((?x33 (bvadd ?x8 (_ bv1 32))))\n(let ((?x51 (bvadd u0 (_ bv1 32))))\n(let (($x6 (=> true (= ?x51 ?x33))))\n(not $x6)))))))\n(check-sat)\n",
+      "file": "006-endpoint-1-value.smt2",
+      "smt_sha256": "902e439d96c62a41f302678893f0d01a91dbb74f8c7379e8fb9f246bc3f348b5"
+    }
+  ],
+  "endpoint_counts": {
+    "source": 2,
+    "actual": 2
+  },
+  "static_endpoint_checks": {
+    "source_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "actual_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "source_atomic": [
+      true,
+      true
+    ],
+    "actual_atomic": [
+      true,
+      true
+    ],
+    "errors": []
+  },
+  "endpoint_count": 2,
+  "rmw_pairs": [
+    [
+      0,
+      1
+    ]
+  ],
+  "thread": 1,
+  "first": 43,
+  "last": 44,
+  "exit": 45,
+  "output_projection": {}
+}

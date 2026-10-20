@@ -1,4 +1,4 @@
-"""Controlled minimum real-source acceptance; whole-program verdict stays closed."""
+"""Controlled real-source acceptance; whole-program verdict stays closed."""
 import argparse
 import json
 import re
@@ -24,14 +24,15 @@ def implementation_hashes():
     paths = []
     for package in ("certification", "frontend", "semantics", "checker", "lifter", "backend"):
         paths.extend((ROOT / package).rglob("*.py"))
-    paths += [ROOT / "backend/dat3m/Snapshot.java", ROOT / "backend/dat3m/pins.json"]
+    paths += [*sorted((ROOT / "backend/dat3m").glob("*.java")), ROOT / "backend/dat3m/pins.json"]
     return {p.relative_to(ROOT).as_posix(): sha(p.read_bytes()) for p in sorted(paths)}
 
 
-def verify_build(dat3m, receipt_path):
+def verify_build(dat3m, receipt_path, fault=None):
     receipt = json.loads(Path(receipt_path).read_bytes())
     pins = json.loads((ROOT / "backend/dat3m/pins.json").read_bytes())
-    if receipt.get("status") != "BUILT_PINNED_WITH_DECLARED_HOOKS" or receipt["commit"] != pins["commit"]:
+    status = "BUILT_PINNED_WITH_CONTROLLED_FAULTS" if fault else "BUILT_PINNED_WITH_DECLARED_HOOKS"
+    if receipt.get("status") != status or receipt["commit"] != pins["commit"]:
         raise Reject("missing successful pinned build receipt")
     inputs_path = Path(receipt_path).with_name("upstream-inputs.json")
     if sha(inputs_path.read_bytes()) != receipt["upstream_inputs_sha256"]:
@@ -47,14 +48,16 @@ def verify_build(dat3m, receipt_path):
             "cat_pins": {k: v for k, v in pins["files"].items() if k.startswith("cat/")}}
 
 
-def run_backend(candidate, dat3m, receipt_path, out):
+def run_backend(candidate, dat3m, receipt_path, out, fault=None):
     """Run exactly the supplied actual module; no synthetic event objects."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=False)
     logs = Commands(out / "commands")
     result = {"result": "REJECT", "program_verdict_eligible": False}
     try:
-        build = verify_build(dat3m, receipt_path)
+        if fault not in {None, "a-only", "pair-only", "guard-only", "live-use-only", "omit-instance"}:
+            raise Reject("unknown controlled fault")
+        build = verify_build(dat3m, receipt_path, fault)
         for rel, expected in build["cat_pins"].items():
             target = out / "model" / rel
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -71,15 +74,17 @@ def run_backend(candidate, dat3m, receipt_path, out):
         jar = dat3m / "dartagnan/target/dartagnan.jar"
         cmd = ["wsl", "-d", "Ubuntu", "--", "env", "DAT3M_HOME=" + linux(dat3m),
                "DAT3M_OUTPUT=" + linux(solver_out), "java", "-Dcert.snapshot.dir=" + linux(snapshots),
-               "-Dcert.run.id=" + run_id, "-jar", linux(jar), linux(dat3m / "cat/tso.cat"),
+               "-Dcert.run.id=" + run_id,
+               *([] if fault is None else ["-Dcert.controlled.fault=" + fault]),
+               "-jar", linux(jar), linux(dat3m / "cat/tso.cat"),
                linux(candidate), "--target=tso", "--method=eager", "--solver=z3",
                "--property=program_spec", "--smtlib2=true"]
         code, stdout, stderr = logs.run(cmd, timeout=120, allow_failure=True)
-        result.update(run_id=run_id, command=cmd, returncode=code,
+        result.update(run_id=run_id, command=cmd, returncode=code, controlled_fault=fault,
                       candidate_sha256=sha(original), build=build)
         text = (stdout + stderr).decode("utf-8", errors="replace")
         (out / "backend.log").write_bytes(stdout + stderr)
-        if candidate.read_bytes() != original or verify_build(dat3m, receipt_path) != build:
+        if candidate.read_bytes() != original or verify_build(dat3m, receipt_path, fault) != build:
             raise Reject("input/build/model changed during solver run")
         q0 = json.loads((snapshots / "before-encoding.json").read_bytes())
         q1 = json.loads((snapshots / "after-encoding.json").read_bytes())
@@ -122,8 +127,10 @@ def run_backend(candidate, dat3m, receipt_path, out):
 
 def run(source, out, dat3m, build_receipt):
     source, out, dat3m = (Path(p).resolve() for p in (source, out, dat3m))
-    if source != (ROOT / "benchmarks/backend-source.c").resolve():
-        raise Reject("this acceptance authorization covers only benchmarks/backend-source.c")
+    authorized = {"backend-source.c", "live-output.c", "live-unsupported.c",
+                  "cas-success.c", "cas-failure.c"}
+    if source.parent != (ROOT / "benchmarks").resolve() or source.name not in authorized:
+        raise Reject("source is outside the controlled acceptance allowlist")
     if out.exists():
         raise Reject("use a new evidence directory")
     out.mkdir(parents=True)

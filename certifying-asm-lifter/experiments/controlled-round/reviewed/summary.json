@@ -1,0 +1,98 @@
+{
+  "result": "CONTROLLED_REVIEW_COMPLETE_WITH_THIRD_PARTY_REJECTION",
+  "positives_and_unsupported": [
+    {
+      "case": "live-01",
+      "actual_capture": "experiments/controlled-round/live-01",
+      "result": "SUPPORTED_WORKERS_EXACT",
+      "reason": null,
+      "run_id": "bded960db58240e092d3265ee2bce913",
+      "candidate_sha256": "1f381ca40ea7278678c86fe915c14dd127bbe05e814e362e39d7bb10ecdd2491",
+      "output_correspondence": [
+        {
+          "o0": "rcert_150e328a9c7e_0"
+        },
+        {
+          "o0": "rcert_150e328a9c7e_0"
+        }
+      ],
+      "program_verdict_eligible": false
+    },
+    {
+      "case": "cas-success-01",
+      "actual_capture": "experiments/controlled-round/cas-success-01",
+      "result": "SUPPORTED_WORKERS_EXACT",
+      "reason": null,
+      "run_id": "294cbcea1cb14d0aaf0e5914654ff7b5",
+      "candidate_sha256": "13d160763bd20ae76393b6b64253e3daf4effacde1a3a5f09a36ab66b20948d3",
+      "output_correspondence": [
+        {
+          "o0": "LlvmCmpXchg.oldValue#1"
+        }
+      ],
+      "program_verdict_eligible": false
+    },
+    {
+      "case": "cas-failure-01",
+      "actual_capture": "experiments/controlled-round/cas-failure-01",
+      "result": "SUPPORTED_WORKERS_EXACT",
+      "reason": null,
+      "run_id": "6c9cae29c20f4b27ac0ef5cdc691bcca",
+      "candidate_sha256": "4c46e0368f64b9b141a20983f0422226f70ca8c45f7453388721ea9b3910eb2f",
+      "output_correspondence": [
+        {
+          "o0": "LlvmCmpXchg.oldValue#1"
+        }
+      ],
+      "program_verdict_eligible": false
+    },
+    {
+      "case": "live-unsupported",
+      "actual_capture": "experiments/controlled-round/live-unsupported",
+      "result": "REJECT",
+      "reason": "unsupported LLVM continuation instruction: br i1 %3, label %4, label %5",
+      "run_id": "5e1eb4bffd9a4d7d93dfbaad47d70408",
+      "candidate_sha256": "5375befb29e965397cda6ca11dad06698f1793190bc63cfa44b394e0b3bd1196",
+      "output_correspondence": [],
+      "program_verdict_eligible": false
+    }
+  ],
+  "single_factor_faults": [
+    {
+      "fault": "a-only",
+      "control": "SUPPORTED_WORKERS_EXACT",
+      "result": "REJECT",
+      "reason": "actual worker region rejected: inconsistent endpoint tags"
+    },
+    {
+      "fault": "pair-only",
+      "control": "SUPPORTED_WORKERS_EXACT",
+      "result": "REJECT",
+      "reason": "actual worker region rejected: RMWStore points outside paired read"
+    },
+    {
+      "fault": "guard-only",
+      "control": "SUPPORTED_WORKERS_EXACT",
+      "result": "REJECT",
+      "reason": "actual worker region rejected: unproved endpoint-1-presence"
+    },
+    {
+      "fault": "live-use-only",
+      "control": "SUPPORTED_WORKERS_EXACT",
+      "result": "REJECT",
+      "reason": "actual continuation rejected: unproved continuation condition assertion-0-condition"
+    },
+    {
+      "fault": "omit-instance",
+      "control": "SUPPORTED_WORKERS_EXACT",
+      "result": "REJECT",
+      "reason": "asm instance vanished or lost provenance"
+    }
+  ],
+  "third_party": {
+    "result": "REJECT",
+    "reason": "v2 requires exactly one GCCAsmStmt in the translation unit"
+  },
+  "new_compiler_or_backend_execution": false,
+  "program_verdict_eligible": false
+}

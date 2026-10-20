@@ -1,0 +1,70 @@
+{
+  "result": "REJECT",
+  "regions": [
+    {
+      "format": "dat3m-region-certificate-v1",
+      "result": "REJECT",
+      "snapshot_sha256": "9ea69c398921740b3c3e39d85d18ec70b1e0cbe11133bee4a98836e88300fd19",
+      "source_sha256": "3f27aea5cc2521ca201ca58f6c50eaf6fcf24a2ca1ee58445101fbbab3b546f5",
+      "interface_parameters_sha256": "3bfd588f73e44040af7533433896c3dd00bff3fac963509c64d884b4b9dce131",
+      "scope": "closed-region-under-authenticated-interface",
+      "program_verdict_eligible": false,
+      "obligations": [],
+      "reason": "RMWStore points outside paired read"
+    }
+  ],
+  "program_verdict_eligible": false,
+  "scope_note": "all potential worker activations in the restricted pthread model",
+  "external_conditions": [
+    "declared compiler/host/ISA/model/solver/checker TCB"
+  ],
+  "scope": {
+    "function": "worker",
+    "expected_instances": 2,
+    "pthread_create_lines": [
+      30,
+      31
+    ],
+    "pthread_create_source_lines": [
+      17,
+      18
+    ],
+    "globals": [
+      "x"
+    ],
+    "continuation": [
+      "%3 = icmp ne i32 %2, 2",
+      "%4 = zext i1 %3 to i32",
+      "tail call void @__VERIFIER_assert(i32 noundef %4) #3",
+      "ret ptr null"
+    ],
+    "live_output": true,
+    "projection_method": "unique actual assigned register read outside region",
+    "source_module_sha256": "08a73f0996c7caa4ce6682681418fd39ae2f992b93d453060b5d8654226bc91f"
+  },
+  "actual_worker_threads": [
+    1,
+    2
+  ],
+  "instance_links": [
+    {
+      "parent": 0,
+      "create_event": 3,
+      "worker": 1,
+      "source": {
+        "line": 17,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/live-output.c"
+      }
+    },
+    {
+      "parent": 0,
+      "create_event": 7,
+      "worker": 2,
+      "source": {
+        "line": 18,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/live-output.c"
+      }
+    }
+  ],
+  "reason": "actual worker region rejected: RMWStore points outside paired read"
+}

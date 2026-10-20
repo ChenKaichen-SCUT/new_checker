@@ -1,0 +1,28 @@
+{
+  "result": "CONTINUATION_EXACT",
+  "obligations": [
+    {
+      "name": "runtime-start-condition",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |context:__threadStateT1| () (_ BitVec 2))\n(assert\n (and (distinct (and (distinct (_ bv0 1) ((_ extract 0 0) |context:__threadStateT1|)) true) (and (distinct ((_ extract 0 0) |context:__threadStateT1|) (_ bv0 1)) true)) true))\n(check-sat)\n",
+      "file": "000-runtime-start-condition.smt2",
+      "smt_sha256": "a0893e3f26b5262e2dda1d4adac1760e6691ac29c750368771d019f4c47a0d3b"
+    },
+    {
+      "name": "runtime-completion-value",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |context:__threadStateT1| () (_ BitVec 2))\n(assert\n (let ((?x63 (bvand |context:__threadStateT1| (_ bv2 2))))\n(and (distinct ?x63 ?x63) true)))\n(check-sat)\n",
+      "file": "001-runtime-completion-value.smt2",
+      "smt_sha256": "30a87aca8bdc3d1cb3f8dc98fb610e300fdbaef1ad3d4d8ff22db885f38a06ab"
+    }
+  ],
+  "program_verdict_eligible": false,
+  "projection_discovery": "actual region writes intersect all outside reads",
+  "projection": {},
+  "llvm_result": "%2",
+  "assertion_events": [],
+  "assertion_count": 0,
+  "live_output": false
+}

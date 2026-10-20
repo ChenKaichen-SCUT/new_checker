@@ -1,0 +1,99 @@
+{
+  "format": "dat3m-region-certificate-v1",
+  "result": "REGION_EXACT",
+  "snapshot_sha256": "3b4e5cba6f5c888b312743244fc8e896d57ddcc5b5ca08f16f31f1c4dc6e0018",
+  "source_sha256": "3f27aea5cc2521ca201ca58f6c50eaf6fcf24a2ca1ee58445101fbbab3b546f5",
+  "interface_parameters_sha256": "4623590b4ecabd8a99df9992ae972dafab8dbdc5bcf6e2b40f16eca40fbea384",
+  "scope": "closed-region-under-authenticated-interface",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "total-exit",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x34 (or true)))\n(let (($x28 (or $x34)))\n(let (($x33 (or $x28)))\n(not $x33)))))\n(check-sat)\n",
+      "file": "000-total-exit.smt2",
+      "smt_sha256": "52b373777feab6aed0238cc2dd42532efcbd4324a5c1e925120762783c29b175"
+    },
+    {
+      "name": "endpoint-0-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x34 (or true)))\n(let (($x54 (= true $x34)))\n(not $x54))))\n(check-sat)\n",
+      "file": "001-endpoint-0-presence.smt2",
+      "smt_sha256": "6edd0804825a43f36c734e61610f61a7cf626acde8326b024479075e956eeafe"
+    },
+    {
+      "name": "endpoint-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x25 (=> true (= |object:x| |object:x|))))\n(not $x25)))\n(check-sat)\n",
+      "file": "002-endpoint-0-addr.smt2",
+      "smt_sha256": "e357e65ae3b3df526ac744a5ac6fa30892127a7426b6df8502b50ff4a1c93780"
+    },
+    {
+      "name": "endpoint-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x59 (=> true (= u0 u0))))\n(not $x59)))\n(check-sat)\n",
+      "file": "003-endpoint-0-read.smt2",
+      "smt_sha256": "e640dadf59314f83aaac9c551b6ba8db0b8ffb1057f7ad8f80799af24fffb4b0"
+    },
+    {
+      "name": "endpoint-1-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x34 (or true)))\n(let (($x28 (or $x34)))\n(let (($x25 (= true $x28)))\n(not $x25)))))\n(check-sat)\n",
+      "file": "004-endpoint-1-presence.smt2",
+      "smt_sha256": "29fa7c5f305ac904f0bb333ecc12c66f859c0ae6badf292fee6ffe93a26359c4"
+    },
+    {
+      "name": "endpoint-1-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x58 (=> true (= |object:x| |object:x|))))\n(not $x58)))\n(check-sat)\n",
+      "file": "005-endpoint-1-addr.smt2",
+      "smt_sha256": "f4bbeba91c192b6571bf93721ff1bd1fdca7cb0c8bc1ec05e1de3f3e65579d44"
+    },
+    {
+      "name": "endpoint-1-value",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:rcert_d0c1dc0e6121_0| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x34 (or true)))\n(let ((?x50 (ite $x34 u0 |entry:rcert_d0c1dc0e6121_0|)))\n(let ((?x62 (bvadd ?x50 (_ bv1 32))))\n(let ((?x37 (bvadd u0 (_ bv1 32))))\n(let (($x66 (=> true (= ?x37 ?x62))))\n(not $x66)))))))\n(check-sat)\n",
+      "file": "006-endpoint-1-value.smt2",
+      "smt_sha256": "e707a249e086db2367df880245512642072e063b8978ae10f2f2514c3f69ff59"
+    }
+  ],
+  "endpoint_counts": {
+    "source": 2,
+    "actual": 2
+  },
+  "static_endpoint_checks": {
+    "source_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "actual_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "source_atomic": [
+      true,
+      true
+    ],
+    "actual_atomic": [
+      true,
+      true
+    ],
+    "errors": []
+  },
+  "endpoint_count": 2,
+  "rmw_pairs": [
+    [
+      0,
+      1
+    ]
+  ],
+  "thread": 2,
+  "first": 53,
+  "last": 54,
+  "exit": 55,
+  "output_projection": {}
+}

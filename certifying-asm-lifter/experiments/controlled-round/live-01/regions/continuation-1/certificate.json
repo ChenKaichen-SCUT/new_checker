@@ -1,0 +1,49 @@
+{
+  "result": "CONTINUATION_EXACT",
+  "obligations": [
+    {
+      "name": "runtime-start-condition",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |context:__threadStateT1| () (_ BitVec 2))\n(assert\n (and (distinct (and (distinct (_ bv0 1) ((_ extract 0 0) |context:__threadStateT1|)) true) (and (distinct ((_ extract 0 0) |context:__threadStateT1|) (_ bv0 1)) true)) true))\n(check-sat)\n",
+      "file": "000-runtime-start-condition.smt2",
+      "smt_sha256": "a0893e3f26b5262e2dda1d4adac1760e6691ac29c750368771d019f4c47a0d3b"
+    },
+    {
+      "name": "runtime-completion-value",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |context:__threadStateT1| () (_ BitVec 2))\n(assert\n (let ((?x41 (bvand |context:__threadStateT1| (_ bv2 2))))\n(and (distinct ?x41 ?x41) true)))\n(check-sat)\n",
+      "file": "001-runtime-completion-value.smt2",
+      "smt_sha256": "b6f5816f00d22dacdb5a245a8430ed21e8b210f080dbff8aeb8936d6daa70b1e"
+    },
+    {
+      "name": "assertion-0-condition",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun llvm-live-result () (_ BitVec 32))\n(assert\n (let (($x45 (and (distinct (_ bv2 32) llvm-live-result) true)))\n(let (($x43 (and (distinct ((_ zero_extend 31) (ite $x45 (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(and (distinct $x43 $x45) true))))\n(check-sat)\n",
+      "file": "002-assertion-0-condition.smt2",
+      "smt_sha256": "f54bdd94c3e367f85b916d84448d15e18e06ab9d3e80f728e4ac871c9938b3a2"
+    },
+    {
+      "name": "source-output-really-influences-assertion",
+      "result": "sat",
+      "expected": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun different-live-result () (_ BitVec 32))\n(declare-fun llvm-live-result () (_ BitVec 32))\n(assert\n (let (($x44 (and (distinct ((_ zero_extend 31) (ite (and (distinct (_ bv2 32) different-live-result) true) (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(let (($x43 (and (distinct ((_ zero_extend 31) (ite (and (distinct (_ bv2 32) llvm-live-result) true) (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(or (and (distinct $x43 $x44) true)))))\n(check-sat)\n",
+      "model": "[llvm-live-result = 2, different-live-result = 4294967293]",
+      "file": "003-source-output-really-influences-assertion.smt2",
+      "smt_sha256": "4509e440fb4647568a8b0fa1772f7f5298ba64a7422ec805a3f565c2553634aa"
+    }
+  ],
+  "program_verdict_eligible": false,
+  "projection_discovery": "actual region writes intersect all outside reads",
+  "projection": {
+    "o0": "rcert_150e328a9c7e_0"
+  },
+  "llvm_result": "%2",
+  "assertion_events": [
+    46
+  ],
+  "assertion_count": 1,
+  "live_output": true
+}

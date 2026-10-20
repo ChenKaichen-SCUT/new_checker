@@ -1,0 +1,82 @@
+{
+  "format": "dat3m-region-certificate-v1",
+  "result": "REJECT",
+  "snapshot_sha256": "7964d5fb3ec67f13913fc46413b153a2410006c82980b019376214ce170e613e",
+  "source_sha256": "a03e7cbe102db04bb4a3f9924e04f777a43e8fbcb3a2bb5b1e1bf68e815d2811",
+  "interface_parameters_sha256": "edd34a05093c1215ca85a1e5f2ae96de502180e718374b362ec9a47e71b41a88",
+  "scope": "closed-region-under-authenticated-interface",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "merge-30-1",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x26 (not (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|))))))\n(let (($x51 (or true)))\n(let (($x75 (or $x51)))\n(let (($x40 (and $x75 $x26)))\n(let (($x46 (and $x75 (not $x26))))\n(let (($x31 (or $x46)))\n(let (($x57 (not (and $x31 $x40))))\n(not $x57)))))))))\n(check-sat)\n",
+      "file": "000-merge-30-1.smt2",
+      "smt_sha256": "5ff9dcb7bab1249d9301b2db08beac54b104b4422161a7297b1c8a9f2619446f"
+    },
+    {
+      "name": "total-exit",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x26 (not (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|))))))\n(let (($x51 (or true)))\n(let (($x75 (or $x51)))\n(let (($x46 (and $x75 (not $x26))))\n(let (($x31 (or $x46)))\n(let (($x40 (and $x75 $x26)))\n(let (($x62 (or $x40 $x31)))\n(let (($x24 (or $x62)))\n(not $x24))))))))))\n(check-sat)\n",
+      "file": "001-total-exit.smt2",
+      "smt_sha256": "efc8d805207033a864f87cfffd6adfa371dbd3f2c1512415b2732c3565ca8d99"
+    },
+    {
+      "name": "endpoint-0-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x51 (or true)))\n(let (($x57 (= true $x51)))\n(not $x57))))\n(check-sat)\n",
+      "file": "002-endpoint-0-presence.smt2",
+      "smt_sha256": "6ef4b0fcd2ebd08079ff32010a309c3db7a52446eae089255bedcd8829682dd5"
+    },
+    {
+      "name": "endpoint-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x35 (=> true (= |object:x| |object:x|))))\n(not $x35)))\n(check-sat)\n",
+      "file": "003-endpoint-0-addr.smt2",
+      "smt_sha256": "4a72ce91dc96f43f0617ba9d525224f17acb7eaa4ddf4c5ff7845580c16b0489"
+    },
+    {
+      "name": "endpoint-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x50 (=> true (= u0 u0))))\n(not $x50)))\n(check-sat)\n",
+      "file": "004-endpoint-0-read.smt2",
+      "smt_sha256": "1ab66ee56b6e4d4bee5656b1538787df0e0a161e6a0c637d6068ad2a1497a431"
+    },
+    {
+      "name": "endpoint-1-presence",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x26 (not (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|))))))\n(let (($x51 (or true)))\n(let (($x75 (or $x51)))\n(let (($x46 (and $x75 (not $x26))))\n(let (($x31 (or $x46)))\n(let (($x11 (= u0 (_ bv0 32))))\n(let (($x35 (= $x11 $x31)))\n(not $x35)))))))))\n(check-sat)\n",
+      "countermodel": "[]",
+      "file": "005-endpoint-1-presence.smt2",
+      "smt_sha256": "7421331ba39b401f31521469aba9c6f2ea2cc9badcb1ad1f08f196e60ae7b4b7"
+    }
+  ],
+  "endpoint_counts": {
+    "source": 2,
+    "actual": 2
+  },
+  "static_endpoint_checks": {
+    "source_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "actual_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "source_atomic": [
+      true,
+      true
+    ],
+    "actual_atomic": [
+      true,
+      true
+    ],
+    "errors": []
+  },
+  "reason": "unproved endpoint-1-presence"
+}

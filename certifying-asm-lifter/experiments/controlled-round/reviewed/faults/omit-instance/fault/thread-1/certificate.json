@@ -1,0 +1,99 @@
+{
+  "format": "dat3m-region-certificate-v1",
+  "result": "REGION_EXACT",
+  "snapshot_sha256": "e01ecdb6a6dc8c0dd7bd7b7cb596fdb88382dd2b0655b86305154cf68f02927d",
+  "source_sha256": "3f27aea5cc2521ca201ca58f6c50eaf6fcf24a2ca1ee58445101fbbab3b546f5",
+  "interface_parameters_sha256": "4623590b4ecabd8a99df9992ae972dafab8dbdc5bcf6e2b40f16eca40fbea384",
+  "scope": "closed-region-under-authenticated-interface",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "total-exit",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x65 (or true)))\n(let (($x73 (or $x65)))\n(let (($x62 (or $x73)))\n(not $x62)))))\n(check-sat)\n",
+      "file": "000-total-exit.smt2",
+      "smt_sha256": "8ad8bdaacac8c4006f3e68ab4a0d9f62fa908625d317c0a51f6e2d3acaf4d817"
+    },
+    {
+      "name": "endpoint-0-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x65 (or true)))\n(let (($x22 (= true $x65)))\n(not $x22))))\n(check-sat)\n",
+      "file": "001-endpoint-0-presence.smt2",
+      "smt_sha256": "a4f5693d2312e3f00f462552741844c9964a7eae189cc0a219c6d65c58e7a841"
+    },
+    {
+      "name": "endpoint-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x58 (=> true (= |object:x| |object:x|))))\n(not $x58)))\n(check-sat)\n",
+      "file": "002-endpoint-0-addr.smt2",
+      "smt_sha256": "f4bbeba91c192b6571bf93721ff1bd1fdca7cb0c8bc1ec05e1de3f3e65579d44"
+    },
+    {
+      "name": "endpoint-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x33 (=> true (= u0 u0))))\n(not $x33)))\n(check-sat)\n",
+      "file": "003-endpoint-0-read.smt2",
+      "smt_sha256": "d434b325481fbac7718f13c2cf76217419076f47d06812b4c289397fdca4433b"
+    },
+    {
+      "name": "endpoint-1-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x65 (or true)))\n(let (($x73 (or $x65)))\n(let (($x58 (= true $x73)))\n(not $x58)))))\n(check-sat)\n",
+      "file": "004-endpoint-1-presence.smt2",
+      "smt_sha256": "2c8655fdacf4ea48065baddbb8c65cc70490029812a3ce4283ff19ed2ce85e30"
+    },
+    {
+      "name": "endpoint-1-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x15 (=> true (= |object:x| |object:x|))))\n(not $x15)))\n(check-sat)\n",
+      "file": "005-endpoint-1-addr.smt2",
+      "smt_sha256": "46c6c2b1ee75161acd5af2876b43f1f66cdb0becf410e9f80be556007303ff10"
+    },
+    {
+      "name": "endpoint-1-value",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:rcert_d0c1dc0e6121_0| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x65 (or true)))\n(let ((?x43 (ite $x65 u0 |entry:rcert_d0c1dc0e6121_0|)))\n(let ((?x64 (bvadd ?x43 (_ bv1 32))))\n(let ((?x6 (bvadd u0 (_ bv1 32))))\n(let (($x7 (=> true (= ?x6 ?x64))))\n(not $x7)))))))\n(check-sat)\n",
+      "file": "006-endpoint-1-value.smt2",
+      "smt_sha256": "aae127cef141fa1efc3ce36df8baa4c0d85f6bae0df8003ffac04597f115ae34"
+    }
+  ],
+  "endpoint_counts": {
+    "source": 2,
+    "actual": 2
+  },
+  "static_endpoint_checks": {
+    "source_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "actual_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "source_atomic": [
+      true,
+      true
+    ],
+    "actual_atomic": [
+      true,
+      true
+    ],
+    "errors": []
+  },
+  "endpoint_count": 2,
+  "rmw_pairs": [
+    [
+      0,
+      1
+    ]
+  ],
+  "thread": 1,
+  "first": 43,
+  "last": 44,
+  "exit": 45,
+  "output_projection": {}
+}

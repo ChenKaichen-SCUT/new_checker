@@ -1,0 +1,14 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))
+(declare-fun u0 () (_ BitVec 32))
+(assert
+ (let (($x37 (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|)))))
+(let (($x32 (or true)))
+(let (($x45 (or $x32)))
+(let (($x46 (and $x45 $x37)))
+(let (($x15 (and $x45 (not $x37))))
+(let (($x34 (or $x15)))
+(let (($x48 (not (and $x34 $x46))))
+(not $x48)))))))))
+(check-sat)

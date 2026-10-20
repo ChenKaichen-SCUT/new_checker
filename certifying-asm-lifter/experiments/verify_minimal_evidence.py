@@ -1,11 +1,13 @@
 """Static distribution/provenance audit. Does NOT run compilers or SMT solvers."""
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "experiments/minimal-acceptance"
 PIN = "b81ec6c55503e824bb0ddc4ebac6c6f0a63d56d8"
+SOURCE_VERSION = "3e2326c1feec3b596d9e9a2d67a30a20df0c164a"
 
 
 def sha(data):
@@ -49,10 +51,14 @@ def verify():
         require(any(e["name"] == name and e["type"] == "blob" and e["sha"] == hashes["git_blob"]
                     for e in proof["nodes"][parent]), "source blob not in pinned tree: " + path)
     implementation = json.loads((EVIDENCE / "final/implementation.json").read_bytes())["files"]
+    def historical_bytes(path):
+        # Later authorized changes must not falsify or rewrite a historical run.
+        return subprocess.run(["git", "show", SOURCE_VERSION + ":certifying-asm-lifter/" + path],
+                              cwd=ROOT.parent, check=True, capture_output=True).stdout
     for path, expected in implementation.items():
-        require(sha((ROOT / path).read_bytes()) == expected, "executed implementation changed: " + path)
+        require(sha(historical_bytes(path)) == expected, "historical implementation mismatch: " + path)
     for path, expected in json.loads((EVIDENCE / "final-negatives/implementation.json").read_bytes()).items():
-        require(sha((ROOT / path).read_bytes()) == expected, "negative-check implementation changed: " + path)
+        require(sha(historical_bytes(path)) == expected, "historical negative implementation mismatch: " + path)
     normalized_queries = []
     checked_queries = 0
     # Legacy block checker hashes the LF query text before Windows write_text
@@ -94,6 +100,7 @@ def verify():
             require(sha(data) == item["sha256"] and len(data) == item["bytes"], "distribution hash: " + item["path"])
             checked_files += 1
     return {"result": "STATIC_INTEGRITY_CHECKS_PASSED", "git_commit": PIN,
+            "historical_checker_commit": SOURCE_VERSION,
             "root_tree": tree_root, "authenticated_build_inputs": len(inputs),
             "executed_implementation_files": len(implementation), "checked_queries": checked_queries,
             "legacy_LF_query_hashes": normalized_queries, "manifest_files_checked": checked_files,

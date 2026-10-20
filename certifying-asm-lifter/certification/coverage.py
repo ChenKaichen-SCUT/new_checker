@@ -1,9 +1,10 @@
 """Automatic coverage for a deliberately narrow REAL worker-function class.
 
-One asm site, straight-line worker containing only that call and `ret ptr null`,
+One asm site, straight-line worker with checked pure assertion continuation,
 constant scalar inputs, static global memory operands, direct pthread_create
 references from straight-line main. Every surviving worker thread is checked.
 No caller-provided site count, core register binding, or output projection.
+The C-live addendum supplies the additional conditional composition argument.
 """
 import re
 from pathlib import Path
@@ -11,6 +12,8 @@ from frontend.gnu import Reject
 from certification.interface import sha
 from certification.endpoints import check_region
 from certification.evidence import save_json, save_certificate
+from certification.continuation import automatic_projection, check_continuation, llvm_continuation
+import z3
 
 
 def supported_worker(module, interface):
@@ -37,14 +40,13 @@ def supported_worker(module, interface):
             continue
         text = re.sub(r",\s*!dbg\s*!\d+\s*$", "", text)
         other.append(text)
-    if other != ["ret ptr null"]:
-        raise Reject("worker must have only the asm call and a constant null return")
-    # The output cannot be used by ret, stores or other code in this worker.
-    # Exactly one use is its defining occurrence.
+    for i in range(begin + 1, index):
+        text = lines[i].strip()
+        if text and not text.startswith(";") and not re.fullmatch(r"[-\w.]+:", text):
+            raise Reject("worker has instructions before asm")
     result = interface["result_ssa"]
-    token = re.escape(result) + r"(?![-a-zA-Z$._0-9])"
-    if len(re.findall(token, "\n".join(lines[begin:end + 1]))) != 1:
-        raise Reject("automatic coverage requires a dead scalar result")
+    assertions = llvm_continuation(other, result, interface["width"],
+                                   z3.BitVec("scope-live-result", interface["width"]))
     references = []
     locations = []
     debug_lines = dict(re.findall(r"!(\d+) = !DILocation\(line: (\d+)", module))
@@ -83,7 +85,9 @@ def supported_worker(module, interface):
     return {"function": worker, "expected_instances": len(references),
             "pthread_create_lines": references, "pthread_create_source_lines": locations,
             "globals": sorted(globals_used),
-            "output_projection": {}, "source_module_sha256": sha(module)}
+            "continuation": other, "live_output": bool(assertions),
+            "projection_method": "unique actual assigned register read outside region",
+            "source_module_sha256": sha(module)}
 
 
 def _certify_workers(module, interface, before, after, result, evidence_dir):
@@ -144,13 +148,20 @@ def _certify_workers(module, interface, before, after, result, evidence_dir):
                     raise Reject("uncovered worker memory endpoint")
             if not lo <= i <= hi and "jump" in e:
                 raise Reject("unexpected worker branch outside certified region")
+        projection = automatic_projection(events, lo, hi, interface, scope["live_output"])
         report = check_region(interface["normalized"], interface["width"], before, thread["id"],
-                              events[lo]["id"], events[hi]["id"], interface["bindings"], {})
+                              events[lo]["id"], events[hi]["id"], interface["bindings"], projection)
         reports.append(report)
         if evidence_dir is not None:
             save_certificate(Path(evidence_dir) / f"thread-{thread['id']}", report)
         if report["result"] != "REGION_EXACT":
             raise Reject("actual worker region rejected: " + report.get("reason", "unknown"))
+        continuation = check_continuation(scope["continuation"], interface, thread, lo, hi, projection)
+        result.setdefault("continuations", []).append(continuation)
+        if evidence_dir is not None:
+            save_certificate(Path(evidence_dir) / f"continuation-{thread['id']}", continuation)
+        if continuation["result"] != "CONTINUATION_EXACT":
+            raise Reject("actual continuation rejected: " + continuation.get("reason", "unknown"))
     result["result"] = "SUPPORTED_WORKERS_EXACT"
 
 

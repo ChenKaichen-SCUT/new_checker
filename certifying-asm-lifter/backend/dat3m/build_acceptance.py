@@ -1,4 +1,4 @@
-"""Rebuild the pinned backend with ONLY the declared read-only hooks."""
+"""Pinned build: read-only positive hooks, or explicitly separate fault profile."""
 import argparse
 import hashlib
 import json
@@ -14,7 +14,7 @@ from frontend.gnu import Reject
 from backend.dat3m.instrument import install, REL
 
 
-def build(upstream, tree_index, destination, evidence):
+def build(upstream, tree_index, destination, evidence, fault_injection=False):
     upstream, destination, evidence = map(lambda p: Path(p).resolve(),
                                          (upstream, destination, evidence))
     if destination.exists() or evidence.exists():
@@ -49,7 +49,7 @@ def build(upstream, tree_index, destination, evidence):
     receipt = {"commit": pins["commit"], "status": "REJECT", "input_count": len(files),
                "upstream_inputs_sha256": sha((evidence / "upstream-inputs.json").read_bytes())}
     try:
-        receipt["instrumentation"] = install(destination)
+        receipt["instrumentation"] = install(destination, fault_injection=fault_injection)
         logs = Commands(evidence / "commands")
         logs.run(["wsl", "-d", "Ubuntu", "--", "java", "-version"])
         mvn = ROOT / "vendor/apache-maven-3.9.9/bin/mvn"
@@ -67,13 +67,18 @@ def build(upstream, tree_index, destination, evidence):
         exporter = destination / "dartagnan/src/main/java/certifying/Snapshot.java"
         if sha(exporter.read_bytes()) != receipt["instrumentation"]["exporter_sha256"]:
             raise Reject("exporter changed during build")
+        if fault_injection:
+            faults = destination / "dartagnan/src/main/java/certifying/ControlledFaults.java"
+            if sha(faults.read_bytes()) != receipt["instrumentation"]["fault_source_sha256"]:
+                raise Reject("fault injector changed during build")
         artifacts = [destination / "dartagnan/target/dartagnan.jar",
                      *sorted((destination / "dartagnan/target/libs").glob("*"))]
         receipt["runtime_artifacts"] = {
             p.relative_to(destination).as_posix(): sha(p.read_bytes())
             for p in artifacts if p.is_file()}
         receipt["runtime_artifacts"]["compilation.yml"] = sha((destination / "compilation.yml").read_bytes())
-        receipt["status"] = "BUILT_PINNED_WITH_DECLARED_HOOKS"
+        receipt["status"] = ("BUILT_PINNED_WITH_CONTROLLED_FAULTS" if fault_injection
+                             else "BUILT_PINNED_WITH_DECLARED_HOOKS")
     except Exception as error:
         receipt["reason"] = str(error)
         raise
@@ -88,6 +93,7 @@ if __name__ == "__main__":
     p.add_argument("--tree-index", required=True, type=Path)
     p.add_argument("--destination", required=True, type=Path)
     p.add_argument("--evidence", required=True, type=Path)
+    p.add_argument("--controlled-fault-build", action="store_true")
     a = p.parse_args()
-    result = build(a.upstream, a.tree_index, a.destination, a.evidence)
+    result = build(a.upstream, a.tree_index, a.destination, a.evidence, a.controlled_fault_build)
     print(json.dumps({k: result[k] for k in ("commit", "status", "input_count")}, indent=2))

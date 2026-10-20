@@ -1,0 +1,58 @@
+{
+  "result": "REJECT",
+  "regions": [
+    {
+      "format": "dat3m-region-certificate-v1",
+      "result": "REJECT",
+      "snapshot_sha256": "dbc0527a620bd91bd7d9e3aa1682481532572736d8bdb69930dc893e41253255",
+      "source_sha256": "a03e7cbe102db04bb4a3f9924e04f777a43e8fbcb3a2bb5b1e1bf68e815d2811",
+      "interface_parameters_sha256": "edd34a05093c1215ca85a1e5f2ae96de502180e718374b362ec9a47e71b41a88",
+      "scope": "closed-region-under-authenticated-interface",
+      "program_verdict_eligible": false,
+      "obligations": [],
+      "reason": "inconsistent endpoint tags"
+    }
+  ],
+  "program_verdict_eligible": false,
+  "scope_note": "all potential worker activations in the restricted pthread model",
+  "external_conditions": [
+    "declared compiler/host/ISA/model/solver/checker TCB"
+  ],
+  "scope": {
+    "function": "worker",
+    "expected_instances": 1,
+    "pthread_create_lines": [
+      28
+    ],
+    "pthread_create_source_lines": [
+      17
+    ],
+    "globals": [
+      "x"
+    ],
+    "continuation": [
+      "%3 = icmp eq i32 %2, 1",
+      "%4 = zext i1 %3 to i32",
+      "tail call void @__VERIFIER_assert(i32 noundef %4) #3",
+      "ret ptr null"
+    ],
+    "live_output": true,
+    "projection_method": "unique actual assigned register read outside region",
+    "source_module_sha256": "f9209110a61b3a23ce7e929650636b5bc798ebf1e1d2a6f280d1576a27b7e024"
+  },
+  "actual_worker_threads": [
+    1
+  ],
+  "instance_links": [
+    {
+      "parent": 0,
+      "create_event": 3,
+      "worker": 1,
+      "source": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/cas-failure.c",
+        "line": 17
+      }
+    }
+  ],
+  "reason": "actual worker region rejected: inconsistent endpoint tags"
+}

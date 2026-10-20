@@ -11,20 +11,40 @@
     "historical_exploration_artifacts": "restored byte-for-byte from baseline; pre-gate recount archived under after",
     "scope": "design, logical proofs, implementation for review; no program verdict release"
   },
-  "current_delivery": "minimum real-source acceptance",
-  "execution_gate": "MINIMUM_ACCEPTANCE_COMPLETE_STOP_FOR_USER_REVIEW",
-  "positive_result": "SCOPED_CHAIN_CHECKS_PASSED_UNDER_DECLARED_TCB",
+  "minimum_acceptance_historical_delivery": {
+    "current_delivery": "minimum real-source acceptance",
+    "execution_gate": "MINIMUM_ACCEPTANCE_COMPLETE_STOP_FOR_USER_REVIEW",
+    "positive_result": "SCOPED_CHAIN_CHECKS_PASSED_UNDER_DECLARED_TCB",
+    "program_verdict_eligible": false,
+    "input": "benchmarks/backend-source.c",
+    "covered_worker_instances": 2,
+    "local_unsat_obligations": 24,
+    "controlled_fault_classes": 4,
+    "report": "docs/13-minimal-acceptance.md",
+    "no_scope_expansion": [
+      "no third-party program",
+      "no full SV-COMP",
+      "no batch performance",
+      "no new asm instructions"
+    ],
+    "implementation_proof_status": "not mechanically refined; declared TCB retained"
+  },
+  "current_delivery": "controlled live-output/CAS/third-party admission",
+  "execution_gate": "CONTROLLED_ROUND_DELIVERED_STOP_FOR_USER_REVIEW",
+  "milestones": {
+    "live_output": "SCOPED_CHAIN_CHECKS_PASSED_UNDER_DECLARED_TCB",
+    "cas_success": "SCOPED_CHAIN_CHECKS_PASSED_UNDER_DECLARED_TCB",
+    "cas_failure": "SCOPED_CHAIN_CHECKS_PASSED_UNDER_DECLARED_TCB",
+    "original_ck_routine": "REJECT_MACRO_AND_MULTIPLE_AST_SITES; certification not achieved"
+  },
+  "single_factor_faults_rejected": 5,
   "program_verdict_eligible": false,
-  "input": "benchmarks/backend-source.c",
-  "covered_worker_instances": 2,
-  "local_unsat_obligations": 24,
-  "controlled_fault_classes": 4,
-  "report": "docs/13-minimal-acceptance.md",
+  "independent_method_novelty": "UNRESOLVED",
+  "report": "docs/14-controlled-acceptance.md",
   "no_scope_expansion": [
-    "no third-party program",
     "no full SV-COMP",
     "no batch performance",
-    "no new asm instructions"
+    "no new asm instruction families"
   ],
-  "implementation_proof_status": "not mechanically refined; declared TCB retained"
+  "implementation_proof_status": "conditional logical proofs; no mechanically checked implementation refinement"
 }

@@ -1,0 +1,212 @@
+{
+  "result": "SUPPORTED_WORKERS_EXACT",
+  "regions": [
+    {
+      "format": "dat3m-region-certificate-v1",
+      "result": "REGION_EXACT",
+      "snapshot_sha256": "03c10c8a737b648a5e1d0eb3c19c5e4d5175ae6421d34e4cade5a6ac2b2b999d",
+      "source_sha256": "a03e7cbe102db04bb4a3f9924e04f777a43e8fbcb3a2bb5b1e1bf68e815d2811",
+      "interface_parameters_sha256": "edd34a05093c1215ca85a1e5f2ae96de502180e718374b362ec9a47e71b41a88",
+      "scope": "closed-region-under-authenticated-interface",
+      "program_verdict_eligible": false,
+      "obligations": [
+        {
+          "name": "merge-30-1",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x33 (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|)))))\n(let (($x17 (or true)))\n(let (($x28 (or $x17)))\n(let (($x26 (and $x28 $x33)))\n(let (($x13 (and $x28 (not $x33))))\n(let (($x23 (or $x13)))\n(let (($x37 (not (and $x23 $x26))))\n(not $x37)))))))))\n(check-sat)\n",
+          "file": "000-merge-30-1.smt2",
+          "smt_sha256": "1513ffa82ddd001baeb79a677fc4cf051869b1bf2174104fab7b7363ac9c2e74"
+        },
+        {
+          "name": "total-exit",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x33 (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|)))))\n(let (($x17 (or true)))\n(let (($x28 (or $x17)))\n(let (($x13 (and $x28 (not $x33))))\n(let (($x23 (or $x13)))\n(let (($x26 (and $x28 $x33)))\n(let (($x11 (or $x26 $x23)))\n(let (($x50 (or $x11)))\n(not $x50))))))))))\n(check-sat)\n",
+          "file": "001-total-exit.smt2",
+          "smt_sha256": "3cf03ec3c3c12f2d767b63d9d2b6c22180348615fc7337de59a0b0cb7a5d0e55"
+        },
+        {
+          "name": "endpoint-0-presence",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x17 (or true)))\n(let (($x37 (= true $x17)))\n(not $x37))))\n(check-sat)\n",
+          "file": "002-endpoint-0-presence.smt2",
+          "smt_sha256": "06e1dbbbe41a06b438cc161be8770881989776b6d4126cddfc962328353cd48c"
+        },
+        {
+          "name": "endpoint-0-addr",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x56 (=> true (= |object:x| |object:x|))))\n(not $x56)))\n(check-sat)\n",
+          "file": "003-endpoint-0-addr.smt2",
+          "smt_sha256": "d392a953023bfa8a84bf54963818ef036c2edb2060bff356501e1efedc707771"
+        },
+        {
+          "name": "endpoint-0-read",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x55 (=> true (= u0 u0))))\n(not $x55)))\n(check-sat)\n",
+          "file": "004-endpoint-0-read.smt2",
+          "smt_sha256": "eea54481d24e3c2885c55562f44e0163740392fcdc038af48c541c90e568bac7"
+        },
+        {
+          "name": "endpoint-1-presence",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x33 (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|)))))\n(let (($x17 (or true)))\n(let (($x28 (or $x17)))\n(let (($x13 (and $x28 (not $x33))))\n(let (($x23 (or $x13)))\n(let (($x14 (= u0 (_ bv0 32))))\n(let (($x56 (= $x14 $x23)))\n(not $x56)))))))))\n(check-sat)\n",
+          "file": "005-endpoint-1-presence.smt2",
+          "smt_sha256": "591886758850987da091d27fe254f06e5936e7cbdb5d3f21b0d0efb25d7c5752"
+        },
+        {
+          "name": "endpoint-1-addr",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x14 (= u0 (_ bv0 32))))\n(let (($x40 (=> $x14 (= |object:x| |object:x|))))\n(not $x40))))\n(check-sat)\n",
+          "file": "006-endpoint-1-addr.smt2",
+          "smt_sha256": "b43269fa2d580bb092a416cf979cd3ae2df3ad9f49584163d1629dbc2f635698"
+        },
+        {
+          "name": "endpoint-1-value",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x14 (= u0 (_ bv0 32))))\n(let (($x57 (=> $x14 (= (_ bv2 32) (_ bv2 32)))))\n(not $x57))))\n(check-sat)\n",
+          "file": "007-endpoint-1-value.smt2",
+          "smt_sha256": "6e6aec7be9f295fccc037dcb0fffc01c3040dfbcccceb88d05f445c083ed41fa"
+        },
+        {
+          "name": "output-o0",
+          "result": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x17 (or true)))\n(let ((?x34 (ite $x17 u0 |entry:LlvmCmpXchg.oldValue#1|)))\n(let (($x33 (not (= (_ bv0 32) ?x34))))\n(let (($x28 (or $x17)))\n(let (($x26 (and $x28 $x33)))\n(let (($x13 (and $x28 (not $x33))))\n(let ((?x19 (ite $x13 ?x34 |entry:LlvmCmpXchg.oldValue#1|)))\n(let (($x23 (or $x13)))\n(let ((?x52 (ite $x23 ?x19 (ite $x26 ?x34 |entry:LlvmCmpXchg.oldValue#1|))))\n(let (($x11 (or $x26 $x23)))\n(let ((?x48 (ite $x11 ?x52 |entry:LlvmCmpXchg.oldValue#1|)))\n(let (($x40 (= u0 ?x48)))\n(not $x40))))))))))))))\n(check-sat)\n",
+          "file": "008-output-o0.smt2",
+          "smt_sha256": "384d46ed7ffb1176c94d2922c2e382dc35935733a3651bad1023bf815df73f1c"
+        }
+      ],
+      "endpoint_counts": {
+        "source": 2,
+        "actual": 2
+      },
+      "static_endpoint_checks": {
+        "source_rmw": [
+          [
+            0,
+            1
+          ]
+        ],
+        "actual_rmw": [
+          [
+            0,
+            1
+          ]
+        ],
+        "source_atomic": [
+          true,
+          true
+        ],
+        "actual_atomic": [
+          true,
+          true
+        ],
+        "errors": []
+      },
+      "endpoint_count": 2,
+      "rmw_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "thread": 1,
+      "first": 27,
+      "last": 30,
+      "exit": 31,
+      "output_projection": {
+        "o0": "LlvmCmpXchg.oldValue#1"
+      }
+    }
+  ],
+  "program_verdict_eligible": false,
+  "scope_note": "all potential worker activations in the restricted pthread model",
+  "external_conditions": [
+    "declared compiler/host/ISA/model/solver/checker TCB"
+  ],
+  "scope": {
+    "function": "worker",
+    "expected_instances": 1,
+    "pthread_create_lines": [
+      28
+    ],
+    "pthread_create_source_lines": [
+      17
+    ],
+    "globals": [
+      "x"
+    ],
+    "continuation": [
+      "%3 = icmp eq i32 %2, 0",
+      "%4 = zext i1 %3 to i32",
+      "tail call void @__VERIFIER_assert(i32 noundef %4) #3",
+      "ret ptr null"
+    ],
+    "live_output": true,
+    "projection_method": "unique actual assigned register read outside region",
+    "source_module_sha256": "8670b662cf47f02c18ac628fdaac5ef1a11f2c3adc97474c964ad3421fa7e49b"
+  },
+  "actual_worker_threads": [
+    1
+  ],
+  "instance_links": [
+    {
+      "parent": 0,
+      "create_event": 3,
+      "worker": 1,
+      "source": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/cas-success.c",
+        "line": 17
+      }
+    }
+  ],
+  "continuations": [
+    {
+      "result": "CONTINUATION_EXACT",
+      "obligations": [
+        {
+          "name": "runtime-start-condition",
+          "result": "unsat",
+          "expected": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |context:__threadStateT1| () (_ BitVec 2))\n(assert\n (and (distinct (and (distinct (_ bv0 1) ((_ extract 0 0) |context:__threadStateT1|)) true) (and (distinct ((_ extract 0 0) |context:__threadStateT1|) (_ bv0 1)) true)) true))\n(check-sat)\n",
+          "file": "000-runtime-start-condition.smt2",
+          "smt_sha256": "a0893e3f26b5262e2dda1d4adac1760e6691ac29c750368771d019f4c47a0d3b"
+        },
+        {
+          "name": "runtime-completion-value",
+          "result": "unsat",
+          "expected": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |context:__threadStateT1| () (_ BitVec 2))\n(assert\n (let ((?x15 (bvand |context:__threadStateT1| (_ bv2 2))))\n(and (distinct ?x15 ?x15) true)))\n(check-sat)\n",
+          "file": "001-runtime-completion-value.smt2",
+          "smt_sha256": "cddca67cc4ce0e21d2210a45478488930e506dfca394f33df4ed34629fc48d0d"
+        },
+        {
+          "name": "assertion-0-condition",
+          "result": "unsat",
+          "expected": "unsat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun llvm-live-result () (_ BitVec 32))\n(assert\n (let (($x50 (= (_ bv0 32) llvm-live-result)))\n(let (($x53 (and (distinct ((_ zero_extend 31) (ite $x50 (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(and (distinct $x53 $x50) true))))\n(check-sat)\n",
+          "file": "002-assertion-0-condition.smt2",
+          "smt_sha256": "e0882959b8021d4a18493686b244ab1907e36fee5e011f0b29850733d7186ca8"
+        },
+        {
+          "name": "source-output-really-influences-assertion",
+          "result": "sat",
+          "expected": "sat",
+          "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun different-live-result () (_ BitVec 32))\n(declare-fun llvm-live-result () (_ BitVec 32))\n(assert\n (let (($x25 (and (distinct ((_ zero_extend 31) (ite (= (_ bv0 32) different-live-result) (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(let (($x53 (and (distinct ((_ zero_extend 31) (ite (= (_ bv0 32) llvm-live-result) (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(or (and (distinct $x53 $x25) true)))))\n(check-sat)\n",
+          "model": "[llvm-live-result = 0, different-live-result = 4294967295]",
+          "file": "003-source-output-really-influences-assertion.smt2",
+          "smt_sha256": "5fc545f2db3838d9d3ca7c7a2569c3efc644006a3ac7e5aa54f1be010c725c81"
+        }
+      ],
+      "program_verdict_eligible": false,
+      "projection_discovery": "actual region writes intersect all outside reads",
+      "projection": {
+        "o0": "LlvmCmpXchg.oldValue#1"
+      },
+      "llvm_result": "%2",
+      "assertion_events": [
+        32
+      ],
+      "assertion_count": 1,
+      "live_output": true
+    }
+  ]
+}

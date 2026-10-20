@@ -6,10 +6,12 @@
 **当前状态：受限研究原型，尚未完成整个 GNU C → Dat3M 编译链的认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[最小真实源程序转换认证验收报告](certifying-asm-lifter/docs/13-minimal-acceptance.md)。
-仅对 `benchmarks/backend-source.c` 完成了限定范围内的真实接口、实际 LLVM、
-同次 Dat3M 核心对象和两个 worker 实例检查；四类受控变异均被拒绝。
-外部可信前提仍然存在，程序级判定转移保持关闭。已停止扩展，等待审阅。
+最新交付：[第二轮受控验收报告](certifying-asm-lifter/docs/14-controlled-acceptance.md)。
+活跃输出、真实成功/失败 CAS 在受限契约下通过；五个单因素真实后端故障被拒绝。
+原始 Concurrency Kit `ck_pr_faa_32` 因宏/多 asm 接口来源无法认证而拒绝，
+第三方接入目标尚未达标。外部可信前提和创新性问题仍在，程序级判定转移关闭。
+本轮已停止扩展，等待审阅。
+历史记录：[最小验收](certifying-asm-lifter/docs/13-minimal-acceptance.md)。
 前置理论材料见[第 1–4 阶段修订](certifying-asm-lifter/docs/12-review-repair.md)。
 
 ## 阅读入口

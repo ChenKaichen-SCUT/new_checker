@@ -1,0 +1,54 @@
+[
+  {
+    "args": [
+      "wsl",
+      "-d",
+      "Ubuntu",
+      "--",
+      "env",
+      "LD_LIBRARY_PATH=/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/lib/x86_64-linux-gnu",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/bin/clang-21",
+      "--version"
+    ],
+    "stdout": "000.stdout.log",
+    "stderr": "000.stderr.log",
+    "returncode": 0
+  },
+  {
+    "args": [
+      "wsl",
+      "-d",
+      "Ubuntu",
+      "--",
+      "ln",
+      "-s",
+      "--",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26",
+      "/tmp/cert-ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26-admission04"
+    ],
+    "stdout": "001.stdout.log",
+    "stderr": "001.stderr.log",
+    "returncode": 0
+  },
+  {
+    "args": [
+      "wsl",
+      "-d",
+      "Ubuntu",
+      "--",
+      "env",
+      "LD_LIBRARY_PATH=/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/lib/x86_64-linux-gnu",
+      "PATH=/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/bin:/usr/bin:/bin",
+      "GIT_CEILING_DIRECTORIES=/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor",
+      "CC=clang-21",
+      "sh",
+      "-c",
+      "cd \"$1\" && exec sh ./configure",
+      "ck-configure",
+      "/tmp/cert-ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26-admission04"
+    ],
+    "stdout": "002.stdout.log",
+    "stderr": "002.stderr.log",
+    "returncode": 2
+  }
+]

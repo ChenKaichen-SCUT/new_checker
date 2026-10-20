@@ -1,0 +1,87 @@
+{
+  "source_sha256": "8929d410e51952a5137cf4b039a4859730cd82e2864d5b957a324dfb41c4991d",
+  "ast_sha256": "d16325c5c9bc0b21a5c063d9fbcf27ff69903b3308ec940309bdfe3e715efa63",
+  "start_byte": 337,
+  "end_byte": 450,
+  "line": 10,
+  "raw": "__asm__ __volatile__(\"lock; cmpxchgl %2,%1\"\n        : \"+a\"(expected), \"+m\"(*ptr) : \"r\"(desired) : \"memory\", \"cc\")",
+  "normalized": "asm volatile(\"lock; cmpxchgl %2,%1\" : \"+a\"(v0),\"+m\"(*addr1) : \"r\"(v2) : \"memory\", \"cc\");",
+  "width": 32,
+  "operands": [
+    {
+      "index": 0,
+      "constraint": "+a",
+      "expression": "expected",
+      "output": true,
+      "memory": false,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "DeclRefExpr",
+      "decl_refs": [
+        {
+          "id": "0x5590066f9aa8",
+          "kind": "VarDecl",
+          "name": "expected",
+          "type": {
+            "qualType": "unsigned int"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "constraint": "+m",
+      "expression": "*ptr",
+      "output": true,
+      "memory": true,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "UnaryOperator",
+      "decl_refs": [
+        {
+          "id": "0x5590066f99d8",
+          "kind": "VarDecl",
+          "name": "ptr",
+          "type": {
+            "qualType": "unsigned int *"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "constraint": "r",
+      "expression": "desired",
+      "output": false,
+      "memory": false,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "ImplicitCastExpr",
+      "decl_refs": [
+        {
+          "id": "0x5590066f9b78",
+          "kind": "VarDecl",
+          "name": "desired",
+          "type": {
+            "qualType": "unsigned int"
+          }
+        }
+      ]
+    }
+  ],
+  "register_output": 0,
+  "llvm_sha256": "f9209110a61b3a23ce7e929650636b5bc798ebf1e1d2a6f280d1576a27b7e024",
+  "llvm_line_index": 9,
+  "llvm_call": "  %2 = tail call i32 asm sideeffect \"lock; cmpxchgl $2,$1\", \"={ax},=*m,r,0,*m,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, i32 2, i32 0, ptr nonnull elementtype(i32) @x) #3, !dbg !13, !srcloc !14\n",
+  "result_ssa": "%2",
+  "bindings": {
+    "p1": "@x",
+    "o2": "2",
+    "o0": "0"
+  },
+  "result": "INTERFACE_MATCH",
+  "source_path": "/cert-source/certifying-asm-lifter/benchmarks/cas-failure.c"
+}

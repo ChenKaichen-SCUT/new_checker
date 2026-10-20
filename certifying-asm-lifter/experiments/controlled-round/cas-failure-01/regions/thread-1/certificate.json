@@ -1,0 +1,115 @@
+{
+  "format": "dat3m-region-certificate-v1",
+  "result": "REGION_EXACT",
+  "snapshot_sha256": "124fcdd2c779c1a98b7006d6b27efdb181c0c07a37cfa71eae286e6e1e05f6f3",
+  "source_sha256": "a03e7cbe102db04bb4a3f9924e04f777a43e8fbcb3a2bb5b1e1bf68e815d2811",
+  "interface_parameters_sha256": "edd34a05093c1215ca85a1e5f2ae96de502180e718374b362ec9a47e71b41a88",
+  "scope": "closed-region-under-authenticated-interface",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "merge-30-1",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x67 (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|)))))\n(let (($x10 (or true)))\n(let (($x71 (or $x10)))\n(let (($x69 (and $x71 $x67)))\n(let (($x24 (and $x71 (not $x67))))\n(let (($x25 (or $x24)))\n(let (($x65 (not (and $x25 $x69))))\n(not $x65)))))))))\n(check-sat)\n",
+      "file": "000-merge-30-1.smt2",
+      "smt_sha256": "10e30548e254f7e2a925b9c8637803f1652dd2952c4d7f5e38bc65f5e7095a1a"
+    },
+    {
+      "name": "total-exit",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x67 (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|)))))\n(let (($x10 (or true)))\n(let (($x71 (or $x10)))\n(let (($x24 (and $x71 (not $x67))))\n(let (($x25 (or $x24)))\n(let (($x69 (and $x71 $x67)))\n(let (($x28 (or $x69 $x25)))\n(let (($x61 (or $x28)))\n(not $x61))))))))))\n(check-sat)\n",
+      "file": "001-total-exit.smt2",
+      "smt_sha256": "7d72737359d8676bb4756123c6a8475178c1ceb477629ecc9d4044cd1203b43d"
+    },
+    {
+      "name": "endpoint-0-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x10 (or true)))\n(let (($x65 (= true $x10)))\n(not $x65))))\n(check-sat)\n",
+      "file": "002-endpoint-0-presence.smt2",
+      "smt_sha256": "669525d089aaf58a3df521984df4f43df2ea5a8cb2ebcd3909a213d4441464d2"
+    },
+    {
+      "name": "endpoint-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x38 (=> true (= |object:x| |object:x|))))\n(not $x38)))\n(check-sat)\n",
+      "file": "003-endpoint-0-addr.smt2",
+      "smt_sha256": "455b09cc388c232375063d5846bcb523c01f13c11ffa3e17fce2a3c341e694a7"
+    },
+    {
+      "name": "endpoint-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x54 (=> true (= u0 u0))))\n(not $x54)))\n(check-sat)\n",
+      "file": "004-endpoint-0-read.smt2",
+      "smt_sha256": "e684469272d50f8ce7ed6e04a271dc67943f2ca0f1e4b5f23c4b63d5628cd84f"
+    },
+    {
+      "name": "endpoint-1-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x67 (not (= (_ bv0 32) (ite (or true) u0 |entry:LlvmCmpXchg.oldValue#1|)))))\n(let (($x10 (or true)))\n(let (($x71 (or $x10)))\n(let (($x24 (and $x71 (not $x67))))\n(let (($x25 (or $x24)))\n(let (($x34 (= u0 (_ bv0 32))))\n(let (($x38 (= $x34 $x25)))\n(not $x38)))))))))\n(check-sat)\n",
+      "file": "005-endpoint-1-presence.smt2",
+      "smt_sha256": "431974c5c6171a7c1bd01d9e3d27c377c9b8e22193020cf08924145b73581a5c"
+    },
+    {
+      "name": "endpoint-1-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x34 (= u0 (_ bv0 32))))\n(let (($x32 (=> $x34 (= |object:x| |object:x|))))\n(not $x32))))\n(check-sat)\n",
+      "file": "006-endpoint-1-addr.smt2",
+      "smt_sha256": "5724cc23674e294c62f3c813fc22908a3adf490f6d21bc1b349ba511e9e61de2"
+    },
+    {
+      "name": "endpoint-1-value",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x34 (= u0 (_ bv0 32))))\n(let (($x60 (=> $x34 (= (_ bv2 32) (_ bv2 32)))))\n(not $x60))))\n(check-sat)\n",
+      "file": "007-endpoint-1-value.smt2",
+      "smt_sha256": "9578d1db60edeb449a1f553b53622df8f48f6781f2a6c99b56d705d3b0d1564e"
+    },
+    {
+      "name": "output-o0",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:LlvmCmpXchg.oldValue#1| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x10 (or true)))\n(let ((?x37 (ite $x10 u0 |entry:LlvmCmpXchg.oldValue#1|)))\n(let (($x67 (not (= (_ bv0 32) ?x37))))\n(let (($x71 (or $x10)))\n(let (($x69 (and $x71 $x67)))\n(let (($x24 (and $x71 (not $x67))))\n(let ((?x22 (ite $x24 ?x37 |entry:LlvmCmpXchg.oldValue#1|)))\n(let (($x25 (or $x24)))\n(let ((?x62 (ite $x25 ?x22 (ite $x69 ?x37 |entry:LlvmCmpXchg.oldValue#1|))))\n(let (($x28 (or $x69 $x25)))\n(let ((?x56 (ite $x28 ?x62 |entry:LlvmCmpXchg.oldValue#1|)))\n(let (($x32 (= u0 ?x56)))\n(not $x32))))))))))))))\n(check-sat)\n",
+      "file": "008-output-o0.smt2",
+      "smt_sha256": "3ca1bccaa538c6ad34afbae8d3e34203cacd245af6f26b296a82c3168bd4f21e"
+    }
+  ],
+  "endpoint_counts": {
+    "source": 2,
+    "actual": 2
+  },
+  "static_endpoint_checks": {
+    "source_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "actual_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "source_atomic": [
+      true,
+      true
+    ],
+    "actual_atomic": [
+      true,
+      true
+    ],
+    "errors": []
+  },
+  "endpoint_count": 2,
+  "rmw_pairs": [
+    [
+      0,
+      1
+    ]
+  ],
+  "thread": 1,
+  "first": 27,
+  "last": 30,
+  "exit": 31,
+  "output_projection": {
+    "o0": "LlvmCmpXchg.oldValue#1"
+  }
+}

@@ -2,7 +2,7 @@
 
 Inputs must be artifacts from the declared Clang invocation. This command does
 not attest externally supplied AST/LLVM provenance and does not launch Dat3M.
-Implementation has not been executed in the current review-before-experiments phase.
+This local API alone does not establish source capture or backend provenance.
 """
 import argparse
 import json
