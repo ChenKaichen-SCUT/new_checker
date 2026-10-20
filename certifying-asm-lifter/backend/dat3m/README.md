@@ -29,6 +29,25 @@ Assume/Assert 条件和全局内存。未知表达式/事件标为不完整，�
 `check_region` 认证局部闭合区域；`coverage.py` 为窄 worker 子类自动重建全部实例；
 `host_contracts.py` 检查实际全局初始化、大小/对齐和线程边界。
 这些不代替普通宿主语义、pthread 模型、CAT encoder 和求解器的外部可信条件。
-所有程序级 verdict 转移开关保持关闭。
+上述历史局部入口的程序级 verdict 转移开关保持关闭。
 
 验收已结束，等待用户审阅后再决定下一步；不要自动启动更多源程序或批量实验。
+
+## P0：同次实际查询审计
+
+基线 7309c4e 后的受控授权增加 `build_acceptance --p0-query-audit`。
+`p0_instrument.py` 仍校验同一个原始 AssumeSolver 哈希；
+`P0Audit.java` 记录实际 Task/Program、属性种类、全部 Assert 执行/条件公式、
+四项基础编码、属性、assumption literal、bound 公式和实际 prover 调用的参数/返回值。
+返回给原 addConstraint 的是同一 Formula 对象；不增加求解约束或额外实际求解调用。
+SAT 模型来自同次实际 prover。导出忠实性仍在原 Γ_capture 内。
+
+正例新构建只含 Snapshot/P0Audit；测试专用构建另含 P0Faults。
+三项测试只删除实际主断言、修改一个实际 ThreadJoin，或改变实际安全查询 assumption。
+前后实际对象保留，故障构建不得授权 SAFE。
+
+`certification/p0_queries.py` 分别检查实际属性、监视器全集、assumption、
+SMT push/pop 栈及 safety/bound 返回值。EOF 完整性由实际 completed 和调用清单共同核对。
+`experiments/certify_p0.py` 是唯一新增的条件式程序门禁；
+只有完整主机/实例和实际查询都通过时才输出携带原 Γ 的 CONDITIONAL_SAFE。
+详见 [P0 交付](../../docs/p0/00-delivery.md)；P1 和批量实验仍未授权。

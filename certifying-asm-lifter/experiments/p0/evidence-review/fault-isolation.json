@@ -1,0 +1,75 @@
+{
+  "missing-main-assert": {
+    "removed_actual_event": {
+      "id": 35,
+      "class": "Assert",
+      "java_class": "com.dat3m.dartagnan.program.event.core.Assert",
+      "tags": [],
+      "successor": 36,
+      "cf_implies_exec": true,
+      "reads": [
+        {
+          "type": "bv32",
+          "name": "r9"
+        }
+      ],
+      "writes": null,
+      "source": {
+        "line": 19,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-live-unsafe.c"
+      },
+      "original_id": 21,
+      "compilation_id": 62,
+      "condition": {
+        "type": "bool",
+        "kind": "NEQ",
+        "args": [
+          {
+            "type": "bv32",
+            "kind": "register",
+            "name": "r9",
+            "java_class": "com.dat3m.dartagnan.program.Register",
+            "complete": true
+          },
+          {
+            "type": "bv32",
+            "kind": "int",
+            "value": "2",
+            "java_class": "com.dat3m.dartagnan.expression.integers.IntLiteral",
+            "complete": true
+          }
+        ],
+        "java_class": "com.dat3m.dartagnan.expression.integers.IntCmpExpr",
+        "complete": true
+      },
+      "error_message": "user assertion",
+      "complete": true
+    },
+    "changes": [
+      {
+        "event": 34,
+        "changes": [
+          {
+            "path": "/successor",
+            "before": 35,
+            "after": 36
+          }
+        ]
+      }
+    ]
+  },
+  "wrong-join": [
+    {
+      "path": "/threads/0/events/14/joined_thread",
+      "before": 1,
+      "after": 2
+    }
+  ],
+  "wrong-query": {
+    "program_differences": [],
+    "actual_assumptions": [
+      "(assert false)\n"
+    ],
+    "nominal_literal": "(declare-fun DAT3M_spec_assumption () Bool)\n(assert DAT3M_spec_assumption)\n"
+  }
+}

@@ -3,7 +3,15 @@
 2026-10-20。核心交付：有明确假设的开放事件等价数学证明、可运行独立检查器、
 真实 Dat3M 后端反例与实验材料。**不是已经完整认证的 GNU C→Dat3M 编译链，也未达到投稿完成状态。**
 
-当前审阅入口：[工具／系统论文可行性审阅](docs/system-review/00-delivery.md)。
+当前审阅入口：[P0 程序级条件式安全门禁](docs/p0/00-delivery.md)。
+以 `7309c4e48521f2b2baed6f9fb418dce5bb8f8fa5` 为基线，完成受限 main、
+初始化、create/join、完整断言与同次实际安全/bound 查询绑定。
+原 CK harness 得到携带原八项 Γ 的 `CONDITIONAL_SAFE`；一个不安全性质变体 SAT；
+三个隔离故障均拒绝，尽管其后端均显示 PASS。Clang/Dat3M/求解器等语义仍在原 TCB。
+范围只是 D₀ 的严格子集；没有无条件整程序正确性或论文成熟度结论。
+本轮完成后停止，等待审阅，不进入 P1。
+
+前次审阅入口：[工具／系统论文可行性审阅](docs/system-review/00-delivery.md)。
 以 `25e67f8cf379c74857dd78bdf6e83f334555a269` 为基线，交付条件式端到端定理
 及完整解析证明、实现缺口、真实库覆盖障碍和严格评测计划。
 当前 main/生命周期、完整属性与查询任务绑定尚未独立核对，程序级 gate 仍关闭。
@@ -39,9 +47,9 @@
 5. [弱内存扩展](docs/07-weak-memory-extension.md)、[模型实例完整证明及缺口](docs/08-complete-proofs.md)；
 6. [实验报告](docs/09-experimental-evaluation.md)、[对抗性审阅](docs/10-adversarial-review.md)。
 
-下列旧命令是原型接口说明，不代表本次授权执行范围。最新一批只做文献、静态审阅、
-设计和文档完整性检查；没有运行 Clang、Dat3M、SMT、pytest 或新转换实验。
-历史受控验收的执行事实见对应报告。
+下列旧命令是原型接口说明，不代表本次授权执行范围。
+P0 本轮仅运行原 CK harness、一个不安全性质变体和三个隔离故障；
+具体命令、原始对象和日志见 [P0 验收报告](docs/p0/02-acceptance.md)。
 
 ## 运行
 
@@ -87,6 +95,8 @@ SMT-LIB 可重放，但没有独立小内核检查 UNSAT 证明。
 翻译单元的 asm 清单；当前只认证一个 surviving 静态内联调用及其有限 worker
 激活，拒绝一般宿主 CFG。生产入口不接受用户指定的 AST 节点或寄存器映射。
 两种入口的局部 EXACT 均不授权整程序判定；本轮命令与材料见最新验收报告。
+只有新增 `experiments.certify_p0` 在完整 C0–C4 检查后，可以给携带原 Γ 的
+`CONDITIONAL_SAFE`；所有旧局部入口的 gate 保持关闭。
 
 目录中的 `benchmarks/upstream` 是固定版本原始资料；
 `raw-extracted` 保留原始约束/表达式；

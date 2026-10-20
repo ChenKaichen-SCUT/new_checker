@@ -1,0 +1,170 @@
+{
+  "result": "REVIEWED",
+  "scope": "static evidence review, not a semantic proof",
+  "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "local_z3": "5.0.0",
+  "cases": [
+    {
+      "case": "safe",
+      "result": "CONDITIONAL_SAFE",
+      "reason": null,
+      "obligations": {
+        "translation": {
+          "count": 11,
+          "results": {
+            "unsat": 11
+          }
+        },
+        "regions": {
+          "count": 24,
+          "results": {
+            "sat": 2,
+            "unsat": 22
+          }
+        },
+        "host": {
+          "count": 12,
+          "results": {
+            "unsat": 12
+          }
+        },
+        "queries": {
+          "count": 6,
+          "results": {
+            "unsat": 6
+          }
+        }
+      }
+    },
+    {
+      "case": "unsafe",
+      "result": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "reason": null,
+      "obligations": {
+        "translation": {
+          "count": 11,
+          "results": {
+            "unsat": 11
+          }
+        },
+        "regions": {
+          "count": 24,
+          "results": {
+            "sat": 2,
+            "unsat": 22
+          }
+        },
+        "host": {
+          "count": 12,
+          "results": {
+            "unsat": 12
+          }
+        },
+        "queries": {
+          "count": 4,
+          "results": {
+            "unsat": 4
+          }
+        }
+      }
+    },
+    {
+      "case": "missing-main-assert",
+      "result": "REJECT",
+      "reason": "C2/C3 host: main operation/event census: expected Assert",
+      "obligations": {
+        "translation": {
+          "count": 11,
+          "results": {
+            "unsat": 11
+          }
+        },
+        "regions": {
+          "count": 24,
+          "results": {
+            "sat": 2,
+            "unsat": 22
+          }
+        },
+        "host": {
+          "count": 11,
+          "results": {
+            "unsat": 11
+          }
+        },
+        "queries": {
+          "count": 0,
+          "results": {}
+        }
+      }
+    },
+    {
+      "case": "wrong-join",
+      "result": "REJECT",
+      "reason": "C2/C3 host: Program join association differs from source handle",
+      "obligations": {
+        "translation": {
+          "count": 11,
+          "results": {
+            "unsat": 11
+          }
+        },
+        "regions": {
+          "count": 24,
+          "results": {
+            "sat": 2,
+            "unsat": 22
+          }
+        },
+        "host": {
+          "count": 1,
+          "results": {
+            "unsat": 1
+          }
+        },
+        "queries": {
+          "count": 0,
+          "results": {}
+        }
+      }
+    },
+    {
+      "case": "wrong-query",
+      "result": "REJECT",
+      "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+      "obligations": {
+        "translation": {
+          "count": 11,
+          "results": {
+            "unsat": 11
+          }
+        },
+        "regions": {
+          "count": 24,
+          "results": {
+            "sat": 2,
+            "unsat": 22
+          }
+        },
+        "host": {
+          "count": 12,
+          "results": {
+            "unsat": 12
+          }
+        },
+        "queries": {
+          "count": 3,
+          "results": {
+            "sat": 1,
+            "unsat": 2
+          }
+        }
+      }
+    }
+  ],
+  "single_source_property_change": true,
+  "final_checker_sources_identical": true,
+  "actual_faults_isolated": true,
+  "all_worker_certificates_unchanged_in_scope": true
+}

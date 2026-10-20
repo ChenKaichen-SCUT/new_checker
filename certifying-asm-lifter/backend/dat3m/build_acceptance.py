@@ -14,7 +14,7 @@ from frontend.gnu import Reject
 from backend.dat3m.instrument import install, REL
 
 
-def build(upstream, tree_index, destination, evidence, fault_injection=False):
+def build(upstream, tree_index, destination, evidence, fault_injection=False, p0=False):
     upstream, destination, evidence = map(lambda p: Path(p).resolve(),
                                          (upstream, destination, evidence))
     if destination.exists() or evidence.exists():
@@ -49,7 +49,11 @@ def build(upstream, tree_index, destination, evidence, fault_injection=False):
     receipt = {"commit": pins["commit"], "status": "REJECT", "input_count": len(files),
                "upstream_inputs_sha256": sha((evidence / "upstream-inputs.json").read_bytes())}
     try:
-        receipt["instrumentation"] = install(destination, fault_injection=fault_injection)
+        if p0:
+            from backend.dat3m.p0_instrument import install_p0
+            receipt["instrumentation"] = install_p0(destination, fault_injection=fault_injection)
+        else:
+            receipt["instrumentation"] = install(destination, fault_injection=fault_injection)
         logs = Commands(evidence / "commands")
         logs.run(["wsl", "-d", "Ubuntu", "--", "java", "-version"])
         mvn = ROOT / "vendor/apache-maven-3.9.9/bin/mvn"
@@ -67,7 +71,10 @@ def build(upstream, tree_index, destination, evidence, fault_injection=False):
         exporter = destination / "dartagnan/src/main/java/certifying/Snapshot.java"
         if sha(exporter.read_bytes()) != receipt["instrumentation"]["exporter_sha256"]:
             raise Reject("exporter changed during build")
-        if fault_injection:
+        for name, digest in receipt["instrumentation"].get("additional_sources", {}).items():
+            if sha((exporter.parent / name).read_bytes()) != digest:
+                raise Reject("P0 audit source changed during build")
+        if fault_injection and not p0:
             faults = destination / "dartagnan/src/main/java/certifying/ControlledFaults.java"
             if sha(faults.read_bytes()) != receipt["instrumentation"]["fault_source_sha256"]:
                 raise Reject("fault injector changed during build")
@@ -94,6 +101,8 @@ if __name__ == "__main__":
     p.add_argument("--destination", required=True, type=Path)
     p.add_argument("--evidence", required=True, type=Path)
     p.add_argument("--controlled-fault-build", action="store_true")
+    p.add_argument("--p0-query-audit", action="store_true")
     a = p.parse_args()
-    result = build(a.upstream, a.tree_index, a.destination, a.evidence, a.controlled_fault_build)
+    result = build(a.upstream, a.tree_index, a.destination, a.evidence,
+                   a.controlled_fault_build, a.p0_query_audit)
     print(json.dumps({k: result[k] for k in ("commit", "status", "input_count")}, indent=2))

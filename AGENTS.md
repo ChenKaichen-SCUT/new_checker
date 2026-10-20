@@ -73,3 +73,19 @@
   approval; publication readiness NO_GO; program_verdict_eligible remains false.
   After static integrity checks, commit, push and verify remote. Then STOP for
   review. Do not start the proposed host/query checks or coverage implementation.
+- Latest authorization: baseline 7309c4e48521f2b2baed6f9fb418dce5bb8f8fa5;
+  implement P0 only: restricted D0 source/LLVM/actual-main correspondence,
+  initialization, create/join and monitors; bind actual same-run safety/bound
+  queries and results; release only explicitly conditional SAFE under the
+  unchanged theorem and Gamma. Use the existing CK harness and one unsafe
+  property variant, plus isolated missing-main-assertion, wrong-join and
+  wrong-query-binding faults. No P1, new instructions, new libraries or broad
+  experiments. Preserve all historical evidence and the baseline theorem.
+  Deliver code, proof/check correspondence, actual certificates/queries/logs and
+  counterexamples; commit, push, verify, then STOP for review.
+  P0 is delivered: original CK harness conditionally SAFE under the unchanged
+  eight Gamma contracts; one unsafe property SAT; three isolated actual faults
+  rejected despite backend PASS. Main/monitor/query checks, code snapshots,
+  analytic proof and raw evidence are in docs/p0 and experiments/p0.
+  No unconditional compiler/backend/solver correctness claim. Stop after
+  publication; P1, new instructions/libraries and broad experiments need approval.

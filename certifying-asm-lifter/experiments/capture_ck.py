@@ -10,7 +10,7 @@ from experiments.run_dat3m import linux
 from frontend.gnu import Reject
 
 
-def capture(out, build_dir):
+def capture(out, build_dir, source=None):
     out.mkdir(parents=True, exist_ok=False)
     logs = Commands(out / "commands")
     origin = json.loads((ROOT / "experiments/controlled-round/ck-origin/download.json").read_bytes())
@@ -19,7 +19,9 @@ def capture(out, build_dir):
     binary = ROOT / "vendor/clang-observer.so"
     observer = ROOT / "frontend/clang/Observe.cpp"
     build = json.loads((build_dir / "receipt.json").read_bytes())
-    source = ROOT / "benchmarks/ck-live.c"
+    source = Path(source).resolve() if source is not None else ROOT / "benchmarks/ck-live.c"
+    if source.parent != ROOT / "benchmarks" or source.name not in {"ck-live.c", "ck-live-unsafe.c"}:
+        raise Reject("CK capture outside authorized P0 source pair")
     result = {"result": "REJECT", "program_verdict_eligible": False}
 
     def invoke(args):
@@ -101,5 +103,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--build", required=True, type=Path)
+    ap.add_argument("--source", type=Path)
     args = ap.parse_args()
-    raise SystemExit(0 if capture(args.out, args.build)["result"] != "REJECT" else 1)
+    raise SystemExit(0 if capture(args.out, args.build, args.source)["result"] != "REJECT" else 1)
