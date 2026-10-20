@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "25e67f8cf379c74857dd78bdf6e83f334555a269",
+  "evidence_type": "MANUAL_STATIC_SOURCE_AUDIT_NOT_EXECUTION",
+  "selection": "Purposive existing-family 32/64-bit APIs and genuine callers; no configured TU census",
+  "rows": [
+    {
+      "id": "CK-FAA",
+      "project": "CK",
+      "object": "ck_pr_faa_32/64",
+      "source_url": "https://github.com/concurrencykit/ck/blob/8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h#L289",
+      "requirements": [
+        "parameter_binding",
+        "multiple_contexts"
+      ],
+      "scope_warning": false,
+      "note": "Original FAA32 constant/global harness is historical acceptance; general call not certified",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "CK-CAS",
+      "project": "CK",
+      "object": "ck_pr_cas_32 and value interface",
+      "source_url": "https://github.com/concurrencykit/ck/blob/8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h#L414",
+      "requirements": [
+        "flag_output",
+        "multiple_outputs",
+        "host_shared_output",
+        "parameter_binding"
+      ],
+      "scope_warning": false,
+      "note": "Flag-output and setz configurations must remain distinct",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "CK-EC",
+      "project": "CK",
+      "object": "ck_ec32_add_mp and epilogue",
+      "source_url": "https://github.com/concurrencykit/ck/blob/8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/ck_ec.h#L685",
+      "requirements": [
+        "field_address",
+        "nonconstant_scalar",
+        "nested_calls",
+        "live_control",
+        "compiler_barrier",
+        "external_callback"
+      ],
+      "scope_warning": true,
+      "note": "Cannot assume wake path absent",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "CK-TRY",
+      "project": "CK",
+      "object": "ck_spinlock_ticket_trylock",
+      "source_url": "https://github.com/concurrencykit/ck/blob/8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/spinlock/ticket.h#L147",
+      "requirements": [
+        "multiple_operations",
+        "live_control",
+        "nonconstant_cas",
+        "flag_output",
+        "fence",
+        "field_address"
+      ],
+      "scope_warning": false,
+      "note": "Local acyclic body only; helpers and configuration still need admission",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "URCU-ADD",
+      "project": "URCU",
+      "object": "__uatomic_add_return 32/64 cases",
+      "source_url": "https://github.com/urcu/userspace-rcu/blob/645fdc9b720606440a3b1ed74ad394e8eaad796b/include/urcu/uatomic/x86.h#L189",
+      "requirements": [
+        "type_erasure",
+        "memory_footprint",
+        "nonconstant_scalar",
+        "live_arithmetic",
+        "sizeof_switch",
+        "clobber_variant"
+      ],
+      "scope_warning": false,
+      "note": "Returns old plus original val, not old; 1/2-byte cases out of current width domain",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "URCU-CAS",
+      "project": "URCU",
+      "object": "__uatomic_cmpxchg 32/64 cases",
+      "source_url": "https://github.com/urcu/userspace-rcu/blob/645fdc9b720606440a3b1ed74ad394e8eaad796b/include/urcu/uatomic/x86.h#L60",
+      "requirements": [
+        "type_erasure",
+        "memory_footprint",
+        "parameter_binding",
+        "sizeof_switch",
+        "statement_expression",
+        "clobber_variant"
+      ],
+      "scope_warning": false,
+      "note": "No new actual Clang/Dat3M acceptance asserted",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "URCU-XCHG",
+      "project": "URCU",
+      "object": "__uatomic_exchange 32/64 cases",
+      "source_url": "https://github.com/urcu/userspace-rcu/blob/645fdc9b720606440a3b1ed74ad394e8eaad796b/include/urcu/uatomic/x86.h#L126",
+      "requirements": [
+        "tied_input",
+        "pointer_representation",
+        "parameter_binding",
+        "memory_footprint"
+      ],
+      "scope_warning": false,
+      "note": "Implicit atomic xchg must retain RMW semantics",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "URCU-APPEND",
+      "project": "URCU",
+      "object": "___cds_wfcq_append",
+      "source_url": "https://github.com/urcu/userspace-rcu/blob/645fdc9b720606440a3b1ed74ad394e8eaad796b/include/urcu/static/wfcqueue.h#L168",
+      "requirements": [
+        "field_address",
+        "live_address",
+        "host_shared_store",
+        "pointer_alias",
+        "return_comparison"
+      ],
+      "scope_warning": false,
+      "note": "Local body acyclic; candidate target, not an admitted complete task",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "URCU-PUSH",
+      "project": "URCU",
+      "object": "_cds_wfs_push",
+      "source_url": "https://github.com/urcu/userspace-rcu/blob/645fdc9b720606440a3b1ed74ad394e8eaad796b/include/urcu/static/wfstack.h#L126",
+      "requirements": [
+        "field_address",
+        "live_pointer",
+        "host_shared_store",
+        "container_of",
+        "barrier"
+      ],
+      "scope_warning": false,
+      "note": "Local body acyclic does not prove whole client within D0",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "URCU-SPLICE",
+      "project": "URCU",
+      "object": "___cds_wfcq_splice",
+      "source_url": "https://github.com/urcu/userspace-rcu/blob/645fdc9b720606440a3b1ed74ad394e8eaad796b/include/urcu/static/wfcqueue.h#L514",
+      "requirements": [
+        "multiple_contexts",
+        "nested_calls",
+        "field_address",
+        "loop",
+        "waiting"
+      ],
+      "scope_warning": true,
+      "note": "Evidence for repeated contexts; complete loop routine excluded, not manually unrolled",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "AO-FAA",
+      "project": "AO",
+      "object": "AO_int_fetch_and_add_full",
+      "source_url": "https://github.com/bdwgc/libatomic_ops/blob/c7901207f871e80c973bfeae71f04f7b59c69636/src/atomic_ops/sysdeps/gcc/x86.h#L389",
+      "requirements": [
+        "volatile",
+        "tied_input",
+        "parameter_binding",
+        "clobber_variant"
+      ],
+      "scope_warning": false,
+      "note": "Legacy configuration separate from Clang21 default builtins",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "AO-FCAS",
+      "project": "AO",
+      "object": "AO_fetch_compare_and_swap_full",
+      "source_url": "https://github.com/bdwgc/libatomic_ops/blob/c7901207f871e80c973bfeae71f04f7b59c69636/src/atomic_ops/sysdeps/gcc/x86.h#L309",
+      "requirements": [
+        "volatile",
+        "parameter_binding",
+        "implicit_width",
+        "accumulator_binding"
+      ],
+      "scope_warning": false,
+      "note": "ABI and optional builtin CAS configuration must be fixed",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "AO-BCAS",
+      "project": "AO",
+      "object": "AO_compare_and_swap_full",
+      "source_url": "https://github.com/bdwgc/libatomic_ops/blob/c7901207f871e80c973bfeae71f04f7b59c69636/src/atomic_ops/sysdeps/gcc/x86.h#L279",
+      "requirements": [
+        "flag_output",
+        "multiple_outputs",
+        "alternative_setz_instruction"
+      ],
+      "scope_warning": false,
+      "note": "Do not relax interface and instruction scope simultaneously",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    },
+    {
+      "id": "AO-TEST",
+      "project": "AO",
+      "object": "test_atomic_include.template repeated FAA/CAS calls",
+      "source_url": "https://github.com/bdwgc/libatomic_ops/blob/c7901207f871e80c973bfeae71f04f7b59c69636/tests/test_atomic_include.template#L127",
+      "requirements": [
+        "multiple_contexts",
+        "live_assertions"
+      ],
+      "scope_warning": true,
+      "note": "Upstream test template, not complete concurrent library-client validation",
+      "new_execution": "NOT_RUN",
+      "current_status": "STATIC_REVIEW_ONLY"
+    }
+  ],
+  "interpretation": [
+    "Feature tags are static requirements, not measured rejection outcomes",
+    "scope_warning marks callback/loop/template obstacles, not a general executable-domain decision",
+    "False scope_warning does not mean accepted",
+    "URCU x86 header acknowledges AO lineage; group duplicate templates when evaluating"
+  ],
+  "priority_order": [
+    "P0 complete host/monitor/runtime boundaries and actual query binding",
+    "P1a typed nonconstant live-in, finite host dataflow and live-out continuation",
+    "P1b multiple surviving asm and actual call-context/activation census",
+    "P2 same-family interface variants and actual fence/compiler-barrier obligations",
+    "defer general loops, arbitrary pointers/runtime, new instruction families"
+  ],
+  "unmeasured": [
+    "parse_rate",
+    "lift_rate",
+    "certification_rate",
+    "whole_program_verdict_accuracy",
+    "marginal_coverage_gain",
+    "runtime_overhead"
+  ]
+}

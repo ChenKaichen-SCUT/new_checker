@@ -60,3 +60,16 @@
   for user review; do not proceed to implementation or experiments.
 - Keep downloaded toolchains, literature caches, credentials, and temporary
   binaries out of Git. Preserve third-party attribution and artifact hashes.
+- Latest authorization (2026-10-20), superseding the completed combination review:
+  use baseline 25e67f8cf379c74857dd78bdf6e83f334555a269; suspend the generic
+  nonbijective correspondence-synthesis novelty route. Deliver ONLY tool/system
+  feasibility: conditional end-to-end guarantee with analytic proof, real-chain
+  implementation gaps, pinned third-party source barriers and strict evaluation
+  design. Keep theory novelty separate from possible system contributions.
+  Documents are in certifying-asm-lifter/docs/system-review.
+  No checker modifications, compiler/backend/SMT/test/replay executions, new
+  instruction families or full experiments. Historical evidence stays unchanged.
+  Current decision: conditional GO for controlled system development after user
+  approval; publication readiness NO_GO; program_verdict_eligible remains false.
+  After static integrity checks, commit, push and verify remote. Then STOP for
+  review. Do not start the proposed host/query checks or coverage implementation.

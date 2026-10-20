@@ -6,7 +6,14 @@
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[已有方法组合可行性审查](certifying-asm-lifter/docs/combination-review/00-delivery.md)。
+最新交付：[工具／系统论文可行性审阅](certifying-asm-lifter/docs/system-review/00-delivery.md)。
+基线 `25e67f8cf379c74857dd78bdf6e83f334555a269`。完成受限端到端安全转移的
+条件定理与解析证明、真实链实现缺口、三库源码障碍排序及严格评测设计。
+main/生命周期与实际错误查询绑定仍缺完整检查，程序级 gate 保持关闭。
+通用非双射新算法路线暂停；受控系统开发为条件性 Go，当前投稿成熟度仍为 No-Go。
+本轮仅静态审阅和文档，未改认证器、未执行实验；完成后停止等待批准。
+
+前次交付：[已有方法组合可行性审查](certifying-asm-lifter/docs/combination-review/00-delivery.md)。
 基线 `58dccfad29c9285f4280b90e6372fd202d1d2483`；固定有限无环、有限线程的
 x86/TSO，审查 PAA/JTFG、VALID、Stellite、SEQ、Kater/KATI 及补充方法。
 结论为 **No-Go（本轮候选的独立算法创新）**：完整执行包含有已知证书路线，
