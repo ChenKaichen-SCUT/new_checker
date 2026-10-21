@@ -173,3 +173,15 @@
   examples/faults only, no coverage/performance campaign. Audit prior slicing,
   compositional and translation-validation algorithms honestly; preserve all
   historical evidence, commit/push/verify, then STOP for review.
+- Latest authorization (2026-10-21): frozen baseline 5e744abf48669d3ee6014e127c344ac5a00e1d43.
+  Research multi-dynamic-writer FAA value repair on the exact pinned TSO CAT;
+  prove or refute extensions, design selection/certificate rules, and audit
+  independent algorithm novelty. No broad experiments or instruction growth.
+  This delivery is theory/design only: M0-M3 analytic proofs, counterexamples,
+  and novelty audit in docs/property-multiwriter. Production acceptance stays
+  single-owner; no new compiler/backend/SMT/test executions or program claims.
+  Stronger sufficient rule established under explicit checked premises and the
+  unchanged original Gamma; independent algorithm novelty and current ISSTA
+  method-paper basis remain NO_GO. Runtime completion remains an external
+  original contract, not a newly proved component. Preserve all old code,
+  theorems and evidence; static sealing, commit/push/verify, then STOP for review.
