@@ -232,3 +232,26 @@
   independent algorithm novelty. Total-order collapse is proved; guarded design
   has unimplemented extraction conditions. Existing Gamma/code/theorems/evidence
   remain byte-identical. Publish, verify remote, then STOP for independent review.
+
+- Latest authorization (2026-10-21), frozen baseline ebbe82856ea15e31b6ff5da352ee9ae51e0b08b9:
+  close three restricted gaps: guarded cross-layer correspondence, demonstrable
+  same-object capability beyond the old fixed sequence, and reliable optional
+  closed counterexamples. Finite acyclic control, existing FAA only; no broad
+  coverage/performance campaign, new ISA, general compiler proof or PD repair.
+  Delivery is docs/guarded, experiments/guarded/final-02, comparison-03, review-02.
+  Two fresh same-invocation compiler captures and actual O2 optimization, ten
+  backend runs, one reused historical raw backend. Real exclusive two-FAA to
+  one-FAA conversion passes path products; uniform static injection ablation
+  is UNSAT on the SAME extracted objects. Conditional Q paths fully checked.
+  Seven controlled semantic faults detected; query fault correctly leaves open
+  histories unchanged but fails the separate query gate. 15 classifications,
+  88 independent layer claims, 207 tests, 1419 SMT references/1167 byte-distinct
+  queries replayed. Historical side-effect-loss obtains a 20-event source CAT
+  graph and all-target-user-error exclusion under original Gamma. Read-7 open
+  witness is unreachable; no target exclusion gives source-error-only status.
+  D_C0 concretization is straight-line/main-error only, not general branch or
+  loop reachability. No new SAFE or upstream bug claim. Old code/theorems/evidence
+  unchanged; added checking code is explicit Gamma_check surface, no new semantic
+  Gamma. Restricted capability GO; independent algorithm novelty and full ISSTA
+  experiment route NO_GO. Preserve intermediate/failure records. Commit, push,
+  verify remote, then STOP for review; no automatic broad software expansion.

@@ -1,0 +1,18 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |r9(35)| () (_ BitVec 32))
+(declare-fun |cf 30| () Bool)
+(declare-fun |__joinStatus#1(31)| () (_ BitVec 8))
+(declare-fun |__joinStatus#0(19)| () (_ BitVec 8))
+(declare-fun |cf 18| () Bool)
+(declare-fun |Program specification| () Bool)
+(declare-fun DAT3M_spec_assumption () Bool)
+(assert
+ (let (($x3605 (and (=> |cf 18| (not (= |__joinStatus#0(19)| (_ bv1 8)))) (=> |cf 30| (not (= |__joinStatus#1(31)| (_ bv1 8)))) (=> |cf 30| (= |r9(35)| (_ bv0 32))))))
+(let (($x3098 (not |Program specification|)))
+(let (($x3565 (and $x3098 (=> $x3098 (not $x3605)))))
+(let (($x3566 (and $x3565)))
+(let (($x3608 (and (=> DAT3M_spec_assumption $x3565))))
+(let (($x3610 (= $x3608 (=> DAT3M_spec_assumption $x3566))))
+(not $x3610))))))))
+(check-sat)

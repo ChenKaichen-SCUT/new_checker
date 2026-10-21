@@ -1,0 +1,15 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |S1:647:response| () (_ BitVec 32))
+(declare-fun |object:input_b| () (_ BitVec 64))
+(declare-fun |object:x| () (_ BitVec 64))
+(assert
+ (let (($x226 (and true true true true true true true (= (_ bv2 32) (ite (= |S1:647:response| (_ bv0 32)) (_ bv2 32) (_ bv1 32))) true true true true true true true true true true true true)))
+(let (($x2056 (and true $x226)))
+(let (($x44 (and true (not (and (distinct |S1:647:response| (_ bv0 32)) true)))))
+(let ((?x125 ((_ zero_extend 1) |object:input_b|)))
+(let (($x196 (or (bvule (bvadd ?x125 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x125))))
+(let (($x167 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))
+(let (($x105 (and (and (distinct |object:input_b| |object:x|) true) $x167 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x196)))
+(and $x105 $x44 (not (or $x2056)))))))))))
+(check-sat)

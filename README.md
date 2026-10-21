@@ -6,7 +6,14 @@
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[转换语义差异检测：原型与审阅](certifying-asm-lifter/docs/diagnostics/00-delivery.md)。
+最新交付：[Guarded 跨层对应与反例具体化](certifying-asm-lifter/docs/guarded/00-delivery.md)。
+基线 `ebbe828`。真实两分支 FAA 经 Clang 合并为一个 atomicrmw，路径敏感认证通过，
+同对象统一静态单射消融 UNSAT；条件 Q、七类受控故障及查询门禁完成。历史副作用
+丢失获原八 Γ 下的完整源错误图与全部目标错误排除，另一个开放见证证明不可达。
+15 项结果、88 份跨层核验、207 项测试、1,419 条 SMT 引用重放。无新程序 SAFE、
+无新上游缺陷。受限功能增量 GO，独立 ISSTA 算法创新 No-Go；推送后停止供审阅。
+
+历史交付：[转换语义差异检测：原型与审阅](certifying-asm-lifter/docs/diagnostics/00-delivery.md)。
 基线 `3c67f7b`。最新授权恢复受控原型运行：两次 Clang、三次实际 Dat3M，
 13 项固定分类、24 份独立开放结论、39 项测试；2,434 条 SMT 引用逐字节核对。
 复现已有真实副作用丢失，区分人工故障/ITE 捕获缺陷/查询错绑；不颁发程序 SAFE。

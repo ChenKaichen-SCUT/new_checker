@@ -1,0 +1,30 @@
+{
+  "result": "UNSUPPORTED",
+  "obligations": [
+    {
+      "name": "argument",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x3598 (= |object:input_a| |object:input_a|)))\n(not $x3598)))\n(check-sat)\n",
+      "file": "000-argument.smt2",
+      "smt_sha256": "f65a1156f55ffbb647cb3198cee48127775f07eeb8b801c893e27c70daaf4c88"
+    },
+    {
+      "name": "startup",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x6027 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x6027)))\n(check-sat)\n",
+      "file": "001-startup.smt2",
+      "smt_sha256": "204d68ae28da6c9c0cb9c597902b7ca4823e10253bb23d198663910942c6e0b7"
+    },
+    {
+      "name": "completion",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x849 (bvand completion (_ bv2 2))))\n(let (($x319 (= ?x849 ?x849)))\n(not $x319))))\n(check-sat)\n",
+      "file": "002-completion.smt2",
+      "smt_sha256": "92e48ee5ab760199f579f2de03b06bef6646348d00a817b486639c84163f98c9"
+    }
+  ],
+  "reason": "unsupported Q public event CondJump"
+}

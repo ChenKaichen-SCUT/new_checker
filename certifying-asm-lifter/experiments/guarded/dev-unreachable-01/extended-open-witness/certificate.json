@@ -1,0 +1,55 @@
+{
+  "result": "OPEN_DIFFERENCE",
+  "program_verdict_eligible": false,
+  "semantics": "source-to-target open active endpoint history inclusion",
+  "source_paths": 1,
+  "target_paths": 1,
+  "uniform_ablation": false,
+  "obligations": [
+    {
+      "name": "domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64)))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612]",
+      "file": "000-domain.smt2",
+      "smt_sha256": "c3d46a7631203d98c859b004495bbb0b8a0e039bc3cbe21718d54c65a8f4e02a"
+    },
+    {
+      "name": "source-path-coverage",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x3232 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x3232 (not (or true)))))\n(check-sat)\n",
+      "file": "001-source-path-coverage.smt2",
+      "smt_sha256": "e430acb7b9e1376923b4757d41842d5ea901eacc2b89ad7d1914ce033cb407fa"
+    },
+    {
+      "name": "unmatched-source-path-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |S0:567:R:response| () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x5447 (= |S0:567:R:response| (_ bv7 32))))\n(let (($x3232 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and (and $x3232 true (not (or false))) $x5447))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612, S0:567:R:response = 7]",
+      "file": "002-unmatched-source-path-0.smt2",
+      "smt_sha256": "5c4149b6c50d260884d622354162d6dd7163f888066efdf99318b94c98b87fde"
+    }
+  ],
+  "products": [
+    {
+      "source_path": 0,
+      "target_path": 0,
+      "active_map": [],
+      "formula": "false"
+    }
+  ],
+  "source_path": 0,
+  "witness": [
+    {
+      "name": "object:x",
+      "type": "bv64",
+      "value": 18446744073709551612
+    },
+    {
+      "name": "S0:567:R:response",
+      "type": "bv32",
+      "value": 7
+    }
+  ],
+  "closed_execution_claim": false
+}

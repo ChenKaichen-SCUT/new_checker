@@ -1,0 +1,17 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |S0:656:response| () (_ BitVec 32))
+(declare-fun |object:input_a| () (_ BitVec 64))
+(declare-fun |object:x| () (_ BitVec 64))
+(assert
+ (let (($x104 (and true true true true true true true)))
+(let (($x79 (and (and (and true (not (= (_ bv0 32) |S0:656:response|))) (not true)) true)))
+(let (($x217 (and $x79 $x104)))
+(let (($x2599 (and (and (and true (= (_ bv0 32) |S0:656:response|)) true) $x104)))
+(let (($x62 (and true (not (and (distinct |S0:656:response| (_ bv0 32)) true)))))
+(let ((?x177 ((_ zero_extend 1) |object:input_a|)))
+(let (($x108 (or (bvule (bvadd ?x177 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x177))))
+(let (($x10 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))
+(let (($x225 (and (and (distinct |object:input_a| |object:x|) true) $x10 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x108)))
+(and $x225 $x62 (not (or $x2599 false false $x217 false)))))))))))))
+(check-sat)

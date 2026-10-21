@@ -1,0 +1,43 @@
+{
+  "result": "REJECT",
+  "program_verdict_eligible": false,
+  "semantic_encoder_contract": "Gamma_encode / ENC-minus remains external",
+  "obligations": [
+    {
+      "name": "assumed-property-binding",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |r8(77)| () (_ BitVec 32))\n(declare-fun |cf 0| () Bool)\n(declare-fun |r8(55)| () (_ BitVec 32))\n(declare-fun |r9(35)| () (_ BitVec 32))\n(declare-fun |cf 30| () Bool)\n(declare-fun |__joinStatus#1(31)| () (_ BitVec 8))\n(declare-fun |__joinStatus#0(19)| () (_ BitVec 8))\n(declare-fun |cf 18| () Bool)\n(declare-fun |Program specification| () Bool)\n(declare-fun DAT3M_spec_assumption () Bool)\n(assert\n (let (($x1582 (and (=> |cf 18| (not (= |__joinStatus#0(19)| (_ bv1 8)))) (=> |cf 30| (not (= |__joinStatus#1(31)| (_ bv1 8)))) (=> |cf 30| (= |r9(35)| (_ bv1 32))) (=> |cf 0| (not (= |r8(55)| (_ bv0 32)))) (=> |cf 0| (not (= |r8(77)| (_ bv0 32)))))))\n(let (($x8117 (not |Program specification|)))\n(let (($x7503 (and $x8117 (=> $x8117 (not $x1582)))))\n(let (($x694 (and $x7503)))\n(let (($x3296 (and (=> DAT3M_spec_assumption $x7503))))\n(let (($x1088 (= $x3296 (=> DAT3M_spec_assumption $x694))))\n(not $x1088))))))))\n(check-sat)\n",
+      "file": "000-assumed-property-binding.smt2",
+      "smt_sha256": "7e95529c39a999819f283d2241073c1105083a3e09fede695dcded5d61e2d77a"
+    },
+    {
+      "name": "property-covers-exact-actual-monitors",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |r8(77)| () (_ BitVec 32))\n(declare-fun |cf 0| () Bool)\n(declare-fun |r8(55)| () (_ BitVec 32))\n(declare-fun |r9(35)| () (_ BitVec 32))\n(declare-fun |cf 30| () Bool)\n(declare-fun |__joinStatus#1(31)| () (_ BitVec 8))\n(declare-fun |__joinStatus#0(19)| () (_ BitVec 8))\n(declare-fun |cf 18| () Bool)\n(assert\n (let (($x2062 (or (and (and |cf 18|) (not (and (not (= |__joinStatus#0(19)| (_ bv1 8)))))) (and (and |cf 30|) (not (and (not (= |__joinStatus#1(31)| (_ bv1 8)))))) (and (and |cf 30|) (not (and (= |r9(35)| (_ bv1 32))))) (and (and |cf 0|) (not (and (not (= |r8(55)| (_ bv0 32)))))) (and (and |cf 0|) (not (and (not (= |r8(77)| (_ bv0 32)))))))))\n(let (($x3273 (exists ((|Program specification| Bool) )(let (($x1582 (and (=> |cf 18| (not (= |__joinStatus#0(19)| (_ bv1 8)))) (=> |cf 30| (not (= |__joinStatus#1(31)| (_ bv1 8)))) (=> |cf 30| (= |r9(35)| (_ bv1 32))) (=> |cf 0| (not (= |r8(55)| (_ bv0 32)))) (=> |cf 0| (not (= |r8(77)| (_ bv0 32)))))))\n(let (($x63 (not $x1582)))\n(let (($x8067 (not |Program specification|)))\n(and (and $x8067 (=> $x8067 $x63)))))))\n))\n(let (($x5260 (= $x3273 $x2062)))\n(not $x5260)))))\n(check-sat)\n",
+      "file": "001-property-covers-exact-actual-monitors.smt2",
+      "smt_sha256": "89b05ba53d08f4aa03f3f72d8c50dfc7066a944c3f2106b4adfd25443c912c6b"
+    },
+    {
+      "name": "actual-safety-assumption-binding",
+      "result": "sat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun DAT3M_spec_assumption () Bool)\n(assert\n (let (($x7745 (and false)))\n(let (($x5260 (= $x7745 DAT3M_spec_assumption)))\n(not $x5260))))\n(check-sat)\n",
+      "model": "[DAT3M_spec_assumption = True]",
+      "file": "002-actual-safety-assumption-binding.smt2",
+      "smt_sha256": "58fe7a0a5bcc740027989b5e9e4d09795e73e719ef2eb4abb1bfd57ee253b068"
+    }
+  ],
+  "property_private_variables": [
+    "|Program specification|"
+  ],
+  "monitor_events": [
+    19,
+    31,
+    35,
+    55,
+    77
+  ],
+  "reason": "unproved P0 obligation: actual-safety-assumption-binding"
+}

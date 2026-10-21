@@ -1,0 +1,46 @@
+{
+  "obligations": [
+    {
+      "name": "thread-argument",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x643 (= |object:input_b| |object:input_b|)))\n(not $x643)))\n(check-sat)\n",
+      "file": "000-thread-argument.smt2",
+      "smt_sha256": "b6122ade08c6e12a21490f18aa084a77fb782c6822fb20acfb0196df81212bf2"
+    },
+    {
+      "name": "startup",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun start () (_ BitVec 2))\n(assert\n (let (($x5592 (= (and (distinct (_ bv0 1) ((_ extract 0 0) start)) true) (and (distinct ((_ extract 0 0) start) (_ bv0 1)) true))))\n(not $x5592)))\n(check-sat)\n",
+      "file": "001-startup.smt2",
+      "smt_sha256": "91831f26072a0d89759ae0476c08f11a1eb570c3c7d7b4bc8cfd76451140837e"
+    },
+    {
+      "name": "completion",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun finish () (_ BitVec 2))\n(assert\n (let ((?x6433 (bvand finish (_ bv2 2))))\n(let (($x195 (= ?x6433 ?x6433)))\n(not $x195))))\n(check-sat)\n",
+      "file": "002-completion.smt2",
+      "smt_sha256": "a28162becfb2164def4a3683d7d27b3d26dbedc77dc365aa0738b43e9afe7822"
+    }
+  ],
+  "result": "FINITE_Q_PATHS",
+  "complete_body_nodes": [
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78
+  ],
+  "paths": 5
+}

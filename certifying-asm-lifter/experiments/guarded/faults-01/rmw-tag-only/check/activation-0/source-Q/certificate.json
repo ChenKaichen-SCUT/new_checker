@@ -1,0 +1,354 @@
+{
+  "result": "OPEN_DIFFERENCE",
+  "program_verdict_eligible": false,
+  "semantics": "source-to-target open active endpoint history inclusion",
+  "source_paths": 2,
+  "target_paths": 5,
+  "uniform_ablation": false,
+  "obligations": [
+    {
+      "name": "domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let ((?x7935 ((_ zero_extend 1) |object:x|)))\n(let ((?x7 ((_ zero_extend 1) |object:input_b|)))\n(let ((?x6278 (bvadd ?x7 (_ bv4 65))))\n(let (($x224 (or (bvule (bvadd ((_ zero_extend 1) |object:input_a|) (_ bv4 65)) ?x7) (bvule ?x6278 ((_ zero_extend 1) |object:input_a|)))))\n(let (($x84 (or (bvule (bvadd ((_ zero_extend 1) |object:input_a|) (_ bv4 65)) ?x7935) (bvule (bvadd ?x7935 (_ bv4 65)) ((_ zero_extend 1) |object:input_a|)))))\n(let (($x1728 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x123 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x6527 (and (distinct |object:input_a| |object:x| |object:input_b|) true)))\n(and $x6527 $x123 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x1728 $x84 $x224 (or (bvule (bvadd ?x7935 (_ bv4 65)) ?x7) (bvule ?x6278 ?x7935))))))))))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073643032572,\n object:input_a = 18446744073643098108,\n object:input_b = 66519040]",
+      "file": "000-domain.smt2",
+      "smt_sha256": "f74357d0a3cd05f2038235f546e5716b14c7fb66cad554aef43c54aa59230301"
+    },
+    {
+      "name": "source-path-coverage",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |S0:656:response| () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x355 (and true (not (and (distinct |S0:656:response| (_ bv0 32)) true)))))\n(let (($x5831 (and (distinct |S0:656:response| (_ bv0 32)) true)))\n(let (($x773 (and true $x5831)))\n(let (($x3388 (or $x773 $x355)))\n(let ((?x7935 ((_ zero_extend 1) |object:x|)))\n(let ((?x7 ((_ zero_extend 1) |object:input_b|)))\n(let ((?x6278 (bvadd ?x7 (_ bv4 65))))\n(let (($x224 (or (bvule (bvadd ((_ zero_extend 1) |object:input_a|) (_ bv4 65)) ?x7) (bvule ?x6278 ((_ zero_extend 1) |object:input_a|)))))\n(let (($x84 (or (bvule (bvadd ((_ zero_extend 1) |object:input_a|) (_ bv4 65)) ?x7935) (bvule (bvadd ?x7935 (_ bv4 65)) ((_ zero_extend 1) |object:input_a|)))))\n(let (($x1728 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x123 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x6527 (and (distinct |object:input_a| |object:x| |object:input_b|) true)))\n(let (($x2610 (and $x6527 $x123 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x1728 $x84 $x224 (or (bvule (bvadd ?x7935 (_ bv4 65)) ?x7) (bvule ?x6278 ?x7935)))))\n(and $x2610 (not $x3388))))))))))))))))\n(check-sat)\n",
+      "file": "001-source-path-coverage.smt2",
+      "smt_sha256": "fb9cbcfa8db8b08554f621bc8331f81d6a7f850bc893dd5a19ca52a79bee1281"
+    },
+    {
+      "name": "unmatched-source-path-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |S0:656:response| () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x681 (and true true true true true false true true true false true true true true true true true true true true)))\n(let (($x2892 (not true)))\n(let (($x104 (and (and (and (and true (not (= (_ bv0 32) |S0:656:response|))) $x2892) $x2892) $x681)))\n(let (($x7273 (and (and (and true (not (= (_ bv0 32) |S0:656:response|))) true) $x681)))\n(let (($x257 (and (and (and true (= (_ bv0 32) |S0:656:response|)) $x2892) $x681)))\n(let (($x5831 (and (distinct |S0:656:response| (_ bv0 32)) true)))\n(let (($x773 (and true $x5831)))\n(let ((?x7935 ((_ zero_extend 1) |object:x|)))\n(let ((?x7 ((_ zero_extend 1) |object:input_b|)))\n(let ((?x6278 (bvadd ?x7 (_ bv4 65))))\n(let (($x224 (or (bvule (bvadd ((_ zero_extend 1) |object:input_a|) (_ bv4 65)) ?x7) (bvule ?x6278 ((_ zero_extend 1) |object:input_a|)))))\n(let (($x84 (or (bvule (bvadd ((_ zero_extend 1) |object:input_a|) (_ bv4 65)) ?x7935) (bvule (bvadd ?x7935 (_ bv4 65)) ((_ zero_extend 1) |object:input_a|)))))\n(let (($x1728 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x123 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x6527 (and (distinct |object:input_a| |object:x| |object:input_b|) true)))\n(let (($x2610 (and $x6527 $x123 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x1728 $x84 $x224 (or (bvule (bvadd ?x7935 (_ bv4 65)) ?x7) (bvule ?x6278 ?x7935)))))\n(and $x2610 $x773 (not (or false $x257 $x7273 false $x104))))))))))))))))))))\n(check-sat)\n",
+      "model": "[S0:656:response = 4294967295,\n object:x = 33554428,\n object:input_a = 9222787096635244544,\n object:input_b = 18446744073675997184]",
+      "file": "002-unmatched-source-path-0.smt2",
+      "smt_sha256": "6fc33ef15e96cc1bead7cbd4e9b7ec304bbd54c44574676c0f0ab53314e5183e"
+    }
+  ],
+  "products": [
+    {
+      "source_path": 0,
+      "target_path": 0,
+      "active_map": [],
+      "formula": "false"
+    },
+    {
+      "source_path": 0,
+      "target_path": 1,
+      "active_map": [
+        [
+          "S0:656",
+          "Q1:43"
+        ],
+        [
+          "S0:706:451:R",
+          "Q1:50"
+        ],
+        [
+          "S0:706:451:W",
+          "Q1:51"
+        ],
+        [
+          "S0:722",
+          "Q1:55"
+        ]
+      ],
+      "formula": "(and true\n     (= #x00000000 |S0:656:response|)\n     (not true)\n     true\n     true\n     true\n     true\n     true\n     false\n     true\n     true\n     true\n     false\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true)"
+    },
+    {
+      "source_path": 0,
+      "target_path": 2,
+      "active_map": [
+        [
+          "S0:656",
+          "Q1:43"
+        ],
+        [
+          "S0:706:451:R",
+          "Q1:50"
+        ],
+        [
+          "S0:706:451:W",
+          "Q1:51"
+        ],
+        [
+          "S0:722",
+          "Q1:55"
+        ]
+      ],
+      "formula": "(and true\n     (not (= #x00000000 |S0:656:response|))\n     true\n     true\n     true\n     true\n     true\n     true\n     false\n     true\n     true\n     true\n     false\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true)"
+    },
+    {
+      "source_path": 0,
+      "target_path": 3,
+      "active_map": [],
+      "formula": "false"
+    },
+    {
+      "source_path": 0,
+      "target_path": 4,
+      "active_map": [
+        [
+          "S0:656",
+          "Q1:43"
+        ],
+        [
+          "S0:706:451:R",
+          "Q1:50"
+        ],
+        [
+          "S0:706:451:W",
+          "Q1:51"
+        ],
+        [
+          "S0:722",
+          "Q1:55"
+        ]
+      ],
+      "formula": "(and true\n     (not (= #x00000000 |S0:656:response|))\n     (not true)\n     (not true)\n     true\n     true\n     true\n     true\n     true\n     false\n     true\n     true\n     true\n     false\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true\n     true)"
+    }
+  ],
+  "source_path": 0,
+  "witness": [
+    {
+      "name": "object:input_a",
+      "type": "bv64",
+      "value": 9222787096635244544
+    },
+    {
+      "name": "object:x",
+      "type": "bv64",
+      "value": 33554428
+    },
+    {
+      "name": "object:input_b",
+      "type": "bv64",
+      "value": 18446744073675997184
+    },
+    {
+      "name": "S0:656:response",
+      "type": "bv32",
+      "value": 4294967295
+    }
+  ],
+  "excluded_alternatives": [
+    {
+      "target_path": 0,
+      "blocking_conditions": [
+        {
+          "category": "active-event-count",
+          "source_count": 4,
+          "target_count": 2
+        }
+      ],
+      "source_nodes": [
+        "S0:585",
+        "S0:591",
+        "S0:636",
+        "S0:664",
+        "S0:690",
+        "S0:700",
+        "S0:722",
+        "S0:757"
+      ],
+      "target_nodes": [
+        43,
+        44,
+        46,
+        47,
+        48,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "target_path": 1,
+      "blocking_conditions": [
+        {
+          "category": "label:RMW",
+          "source": [
+            "S0:706:451:R"
+          ],
+          "target": [
+            "Q1:50"
+          ]
+        },
+        {
+          "category": "label:RMW",
+          "source": [
+            "S0:706:451:W"
+          ],
+          "target": [
+            "Q1:51"
+          ]
+        },
+        {
+          "category": "target-path-guard"
+        }
+      ],
+      "source_nodes": [
+        "S0:585",
+        "S0:591",
+        "S0:636",
+        "S0:664",
+        "S0:690",
+        "S0:700",
+        "S0:722",
+        "S0:757"
+      ],
+      "target_nodes": [
+        43,
+        44,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "target_path": 2,
+      "blocking_conditions": [
+        {
+          "category": "label:RMW",
+          "source": [
+            "S0:706:451:R"
+          ],
+          "target": [
+            "Q1:50"
+          ]
+        },
+        {
+          "category": "label:RMW",
+          "source": [
+            "S0:706:451:W"
+          ],
+          "target": [
+            "Q1:51"
+          ]
+        }
+      ],
+      "source_nodes": [
+        "S0:585",
+        "S0:591",
+        "S0:636",
+        "S0:664",
+        "S0:690",
+        "S0:700",
+        "S0:722",
+        "S0:757"
+      ],
+      "target_nodes": [
+        43,
+        44,
+        45,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "target_path": 3,
+      "blocking_conditions": [
+        {
+          "category": "active-event-count",
+          "source_count": 4,
+          "target_count": 2
+        }
+      ],
+      "source_nodes": [
+        "S0:585",
+        "S0:591",
+        "S0:636",
+        "S0:664",
+        "S0:690",
+        "S0:700",
+        "S0:722",
+        "S0:757"
+      ],
+      "target_nodes": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "target_path": 4,
+      "blocking_conditions": [
+        {
+          "category": "label:RMW",
+          "source": [
+            "S0:706:451:R"
+          ],
+          "target": [
+            "Q1:50"
+          ]
+        },
+        {
+          "category": "label:RMW",
+          "source": [
+            "S0:706:451:W"
+          ],
+          "target": [
+            "Q1:51"
+          ]
+        },
+        {
+          "category": "target-path-guard"
+        }
+      ],
+      "source_nodes": [
+        "S0:585",
+        "S0:591",
+        "S0:636",
+        "S0:664",
+        "S0:690",
+        "S0:700",
+        "S0:722",
+        "S0:757"
+      ],
+      "target_nodes": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ]
+    }
+  ],
+  "closed_execution_claim": false
+}

@@ -1,0 +1,8 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun finish () (_ BitVec 2))
+(assert
+ (let ((?x41 (bvand finish (_ bv2 2))))
+(let (($x110 (= ?x41 ?x41)))
+(not $x110))))
+(check-sat)

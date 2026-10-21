@@ -1,0 +1,69 @@
+{
+  "source_sha256": "20885a4f2e4cbd3243753becd4227a4e00ba2924094c13f92c06d315e5ae033b",
+  "ast_sha256": "508f63f7c919d467d6518b590b006662d91ca46912574be8ed1d3f5c508f786a",
+  "start_byte": 442,
+  "end_byte": 528,
+  "line": 10,
+  "raw": "__asm__ __volatile__(\"lock; xaddl %0,%1\" : \"+r\"(delta), \"+m\"(*ptr) : : \"memory\", \"cc\")",
+  "normalized": "asm volatile(\"lock; xaddl %0,%1\" : \"+r\"(v0),\"+m\"(*addr1) :  : \"memory\", \"cc\");",
+  "width": 32,
+  "operands": [
+    {
+      "index": 0,
+      "constraint": "+r",
+      "expression": "delta",
+      "output": true,
+      "memory": false,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "DeclRefExpr",
+      "decl_refs": [
+        {
+          "id": "0x5774e91ffb88",
+          "kind": "ParmVarDecl",
+          "name": "delta",
+          "type": {
+            "qualType": "unsigned int"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "constraint": "+m",
+      "expression": "*ptr",
+      "output": true,
+      "memory": true,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "UnaryOperator",
+      "decl_refs": [
+        {
+          "id": "0x5774e91ffb08",
+          "kind": "ParmVarDecl",
+          "name": "ptr",
+          "type": {
+            "qualType": "unsigned int *"
+          }
+        }
+      ]
+    }
+  ],
+  "register_output": 0,
+  "llvm_sha256": "2bbd41919c8ba5c46d21870453e87cc5c0f82e83f5955e757048cc3fc1b51187",
+  "llvm_line_index": 20,
+  "llvm_call": "  %7 = tail call i32 asm sideeffect \"lock; xaddl $0,$1\", \"=r,=*m,0,*m,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, i32 2, ptr nonnull elementtype(i32) @x) #3, !dbg !24, !srcloc !22\n",
+  "result_ssa": "%7",
+  "bindings": {
+    "p1": "@x",
+    "o0": "2"
+  },
+  "llvm_entry_conditions": [],
+  "instance_namespace": "20_",
+  "worker_name": "worker",
+  "call_context": {
+    "actual_llvm_line": 20
+  }
+}

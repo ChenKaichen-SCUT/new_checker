@@ -1,0 +1,34 @@
+{
+  "source_sha256": "223a72d722433533cb618bd13ce784f8569e197f1fac541d26fd56283ecb9e61",
+  "compiler_candidate_sha256": "fc58c34efb04e4a738542f83836df09245c9d1119efee66a4657b7a8b57a57fa",
+  "LLVM_faults": [
+    [
+      "wrong-guard",
+      "icmp eq i32 %2, 0",
+      "icmp ne i32 %2, 0"
+    ],
+    [
+      "omitted-branch",
+      "br i1 %3, label %7, label %4",
+      "br i1 true, label %7, label %4"
+    ],
+    [
+      "wrong-operand",
+      "atomicrmw add ptr @x, i32 1 monotonic",
+      "atomicrmw add ptr @x, i32 2 monotonic"
+    ],
+    [
+      "wrong-return",
+      "icmp ne i32 %cert_[\\w]+, 42",
+      "icmp ne i32 0, 42"
+    ]
+  ],
+  "actual_Q_faults": [
+    "a-only",
+    "rmw-tag-only",
+    "omit-activation",
+    "safety-query-binding"
+  ],
+  "origin": "CONTROLLED_INJECTION, not an upstream defect",
+  "frozen_before_backend_runs": true
+}

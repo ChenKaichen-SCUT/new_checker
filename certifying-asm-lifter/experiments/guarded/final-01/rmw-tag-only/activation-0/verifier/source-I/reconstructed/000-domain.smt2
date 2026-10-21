@@ -1,0 +1,16 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |object:x| () (_ BitVec 64))
+(declare-fun |object:input_b| () (_ BitVec 64))
+(declare-fun |object:input_a| () (_ BitVec 64))
+(assert
+ (let ((?x1774 ((_ zero_extend 1) |object:x|)))
+(let ((?x204 ((_ zero_extend 1) |object:input_b|)))
+(let ((?x3066 (bvadd ?x204 (_ bv4 65))))
+(let (($x3118 (or (bvule (bvadd ((_ zero_extend 1) |object:input_a|) (_ bv4 65)) ?x204) (bvule ?x3066 ((_ zero_extend 1) |object:input_a|)))))
+(let (($x8503 (or (bvule (bvadd ((_ zero_extend 1) |object:input_a|) (_ bv4 65)) ?x1774) (bvule (bvadd ?x1774 (_ bv4 65)) ((_ zero_extend 1) |object:input_a|)))))
+(let (($x4311 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))
+(let (($x3931 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))
+(let (($x187 (and (distinct |object:input_a| |object:x| |object:input_b|) true)))
+(and $x187 $x3931 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x4311 $x8503 $x3118 (or (bvule (bvadd ?x1774 (_ bv4 65)) ?x204) (bvule ?x3066 ?x1774))))))))))))
+(check-sat)

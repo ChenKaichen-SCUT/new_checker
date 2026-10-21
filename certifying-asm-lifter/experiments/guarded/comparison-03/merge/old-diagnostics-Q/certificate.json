@@ -1,0 +1,105 @@
+{
+  "result": "Q_OPEN_SUMMARY",
+  "obligations": [
+    {
+      "name": "argument",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x54 (= |object:input_a| |object:input_a|)))\n(not $x54)))\n(check-sat)\n",
+      "file": "000-argument.smt2",
+      "smt_sha256": "d186393f28ae563b1734d3468f34c538f0f8bd21c7240a95b21b16889de3a5a7"
+    },
+    {
+      "name": "startup",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x62 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x62)))\n(check-sat)\n",
+      "file": "001-startup.smt2",
+      "smt_sha256": "f31fe8dd420c8088251aeded7501a6f4a04cc1933e8c54cc11462b08b59a4581"
+    },
+    {
+      "name": "completion",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x73 (bvand completion (_ bv2 2))))\n(let (($x70 (= ?x73 ?x73)))\n(not $x70))))\n(check-sat)\n",
+      "file": "002-completion.smt2",
+      "smt_sha256": "0413c34b5a69a3b9f19b79eddeddabf08f8778d8eec48cb1827d32cbf95efa8c"
+    }
+  ],
+  "actual_thread": 1,
+  "consumed_body_nodes": [
+    43,
+    44,
+    45,
+    46,
+    47,
+    48
+  ],
+  "endpoints": [
+    {
+      "id": 43,
+      "actual_class": "Load",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/guarded-merge.c",
+        "line": 15
+      },
+      "tags": [],
+      "fields": {
+        "address": "|object:input_a|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-1-read-43"
+    },
+    {
+      "id": 44,
+      "actual_class": "Load",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/guarded-merge.c",
+        "line": 10
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-1-read-44"
+    },
+    {
+      "id": 45,
+      "actual_class": "RMWStore",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/guarded-merge.c",
+        "line": 10
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|",
+        "value": "(ite (= #x00000000 diagnostic-q-1-read-43)\n     (bvadd diagnostic-q-1-read-44 #x00000002)\n     (bvadd diagnostic-q-1-read-44 #x00000001))"
+      },
+      "kind": "W",
+      "width": 32,
+      "pair": 44
+    },
+    {
+      "id": 47,
+      "actual_class": "Assert",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/guarded-merge.c",
+        "line": 18
+      },
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x0000002a diagnostic-q-1-read-44)"
+      },
+      "kind": "O"
+    }
+  ]
+}

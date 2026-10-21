@@ -1,0 +1,17 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |r9(35)| () (_ BitVec 32))
+(declare-fun |cf 30| () Bool)
+(declare-fun |__joinStatus#1(31)| () (_ BitVec 8))
+(declare-fun |__joinStatus#0(19)| () (_ BitVec 8))
+(declare-fun |cf 18| () Bool)
+(assert
+ (let (($x3118 (or (and (and |cf 18|) (not (and (not (= |__joinStatus#0(19)| (_ bv1 8)))))) (and (and |cf 30|) (not (and (not (= |__joinStatus#1(31)| (_ bv1 8)))))) (and (and |cf 30|) (not (and (= |r9(35)| (_ bv0 32))))))))
+(let (($x3624 (exists ((|Program specification| Bool) )(let (($x3605 (and (=> |cf 18| (not (= |__joinStatus#0(19)| (_ bv1 8)))) (=> |cf 30| (not (= |__joinStatus#1(31)| (_ bv1 8)))) (=> |cf 30| (= |r9(35)| (_ bv0 32))))))
+(let (($x3099 (not $x3605)))
+(let (($x3618 (not |Program specification|)))
+(and (and $x3618 (=> $x3618 $x3099)))))))
+))
+(let (($x3623 (= $x3624 $x3118)))
+(not $x3623)))))
+(check-sat)

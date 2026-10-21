@@ -1,0 +1,92 @@
+{
+  "result": "GUARDED_OPEN_INCLUSION",
+  "program_verdict_eligible": false,
+  "semantics": "source-to-target open active endpoint history inclusion",
+  "source_paths": 2,
+  "target_paths": 2,
+  "uniform_ablation": false,
+  "obligations": [
+    {
+      "name": "domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let ((?x8634 ((_ zero_extend 1) |object:x|)))\n(let ((?x7045 ((_ zero_extend 1) |object:input_a|)))\n(let ((?x8932 (bvadd ?x7045 (_ bv4 65))))\n(let (($x3541 (or (bvule (bvadd ((_ zero_extend 1) |object:input_b|) (_ bv4 65)) ?x7045) (bvule ?x8932 ((_ zero_extend 1) |object:input_b|)))))\n(let (($x722 (or (bvule (bvadd ((_ zero_extend 1) |object:input_b|) (_ bv4 65)) ?x8634) (bvule (bvadd ?x8634 (_ bv4 65)) ((_ zero_extend 1) |object:input_b|)))))\n(let (($x7579 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x212 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x75 (and (distinct |object:input_b| |object:x| |object:input_a|) true)))\n(and $x75 $x212 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x7579 $x722 $x3541 (or (bvule (bvadd ?x8634 (_ bv4 65)) ?x7045) (bvule ?x8932 ?x8634))))))))))))\n(check-sat)\n",
+      "model": "[object:x = 18446744065253900284,\n object:input_b = 8455653376,\n object:input_a = 8455651328]",
+      "file": "000-domain.smt2",
+      "smt_sha256": "efa6628fca00bdba928b22c2c2bb5c3ba04af46b56817cc1b0a38d426cdc182a"
+    },
+    {
+      "name": "source-path-coverage",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |S1:656:response| () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x620 (and true (not (and (distinct |S1:656:response| (_ bv0 32)) true)))))\n(let (($x3422 (and (distinct |S1:656:response| (_ bv0 32)) true)))\n(let (($x145 (and true $x3422)))\n(let (($x7538 (or $x145 $x620)))\n(let ((?x8634 ((_ zero_extend 1) |object:x|)))\n(let ((?x7045 ((_ zero_extend 1) |object:input_a|)))\n(let ((?x8932 (bvadd ?x7045 (_ bv4 65))))\n(let (($x3541 (or (bvule (bvadd ((_ zero_extend 1) |object:input_b|) (_ bv4 65)) ?x7045) (bvule ?x8932 ((_ zero_extend 1) |object:input_b|)))))\n(let (($x722 (or (bvule (bvadd ((_ zero_extend 1) |object:input_b|) (_ bv4 65)) ?x8634) (bvule (bvadd ?x8634 (_ bv4 65)) ((_ zero_extend 1) |object:input_b|)))))\n(let (($x7579 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x212 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x75 (and (distinct |object:input_b| |object:x| |object:input_a|) true)))\n(let (($x208 (and $x75 $x212 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x7579 $x722 $x3541 (or (bvule (bvadd ?x8634 (_ bv4 65)) ?x7045) (bvule ?x8932 ?x8634)))))\n(and $x208 (not $x7538))))))))))))))))\n(check-sat)\n",
+      "file": "001-source-path-coverage.smt2",
+      "smt_sha256": "4b828384f27ea7d671a42c38c136aea4c78dc9d1f43f371cd582090a0044458d"
+    },
+    {
+      "name": "unmatched-source-path-0",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |S1:656:response| () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x6721 (and true true true true true true true true true true true true true true true true true true true true)))\n(let (($x231 (and true (not (and (distinct (ite (= (_ bv0 32) |S1:656:response|) (_ bv1 1) (_ bv0 1)) (_ bv0 1)) true)))))\n(let (($x7453 (and $x231 $x6721)))\n(let (($x3422 (and (distinct |S1:656:response| (_ bv0 32)) true)))\n(let (($x145 (and true $x3422)))\n(let ((?x8634 ((_ zero_extend 1) |object:x|)))\n(let ((?x7045 ((_ zero_extend 1) |object:input_a|)))\n(let ((?x8932 (bvadd ?x7045 (_ bv4 65))))\n(let (($x3541 (or (bvule (bvadd ((_ zero_extend 1) |object:input_b|) (_ bv4 65)) ?x7045) (bvule ?x8932 ((_ zero_extend 1) |object:input_b|)))))\n(let (($x722 (or (bvule (bvadd ((_ zero_extend 1) |object:input_b|) (_ bv4 65)) ?x8634) (bvule (bvadd ?x8634 (_ bv4 65)) ((_ zero_extend 1) |object:input_b|)))))\n(let (($x7579 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x212 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x75 (and (distinct |object:input_b| |object:x| |object:input_a|) true)))\n(let (($x208 (and $x75 $x212 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x7579 $x722 $x3541 (or (bvule (bvadd ?x8634 (_ bv4 65)) ?x7045) (bvule ?x8932 ?x8634)))))\n(and $x208 $x145 (not (or false $x7453))))))))))))))))))\n(check-sat)\n",
+      "file": "002-unmatched-source-path-0.smt2",
+      "smt_sha256": "e158de35778a75a03837c0e402c7b500e3a74c61ab66cdd72208f96cc18e302f"
+    },
+    {
+      "name": "unmatched-source-path-1",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |S1:656:response| () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x7203 (and (and true (and (distinct (ite (= (_ bv0 32) |S1:656:response|) (_ bv1 1) (_ bv0 1)) (_ bv0 1)) true)) (and true true true true true true true))))\n(let (($x620 (and true (not (and (distinct |S1:656:response| (_ bv0 32)) true)))))\n(let ((?x8634 ((_ zero_extend 1) |object:x|)))\n(let ((?x7045 ((_ zero_extend 1) |object:input_a|)))\n(let ((?x8932 (bvadd ?x7045 (_ bv4 65))))\n(let (($x3541 (or (bvule (bvadd ((_ zero_extend 1) |object:input_b|) (_ bv4 65)) ?x7045) (bvule ?x8932 ((_ zero_extend 1) |object:input_b|)))))\n(let (($x722 (or (bvule (bvadd ((_ zero_extend 1) |object:input_b|) (_ bv4 65)) ?x8634) (bvule (bvadd ?x8634 (_ bv4 65)) ((_ zero_extend 1) |object:input_b|)))))\n(let (($x7579 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x212 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x75 (and (distinct |object:input_b| |object:x| |object:input_a|) true)))\n(let (($x208 (and $x75 $x212 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x7579 $x722 $x3541 (or (bvule (bvadd ?x8634 (_ bv4 65)) ?x7045) (bvule ?x8932 ?x8634)))))\n(and $x208 $x620 (not (or $x7203 false)))))))))))))))\n(check-sat)\n",
+      "file": "003-unmatched-source-path-1.smt2",
+      "smt_sha256": "96fa0c31fbbaebd9084403c0e7272b990b5903e09b7c2f936ba4e9e46e683483"
+    }
+  ],
+  "products": [
+    {
+      "source_path": 0,
+      "target_path": 0,
+      "active_map": [],
+      "formula": "false"
+    },
+    {
+      "source_path": 0,
+      "target_path": 1,
+      "active_map": [
+        [
+          "S1:656",
+          "L1:11"
+        ],
+        [
+          "S1:706:451:R",
+          "L1:16:R"
+        ],
+        [
+          "S1:706:451:W",
+          "L1:16:W"
+        ],
+        [
+          "S1:722",
+          "L1:23"
+        ]
+      ],
+      "formula": "(let ((a!1 (not (distinct (ite (= #x00000000 |S1:656:response|) #b1 #b0) #b0))))\n  (and true\n       a!1\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true\n       true))"
+    },
+    {
+      "source_path": 1,
+      "target_path": 0,
+      "active_map": [
+        [
+          "S1:656",
+          "L1:11"
+        ],
+        [
+          "S1:722",
+          "L1:23"
+        ]
+      ],
+      "formula": "(and true\n     (distinct (ite (= #x00000000 |S1:656:response|) #b1 #b0) #b0)\n     true\n     true\n     true\n     true\n     true\n     true\n     true)"
+    },
+    {
+      "source_path": 1,
+      "target_path": 1,
+      "active_map": [],
+      "formula": "false"
+    }
+  ],
+  "closed_execution_claim": false
+}

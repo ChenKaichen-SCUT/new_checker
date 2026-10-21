@@ -1,0 +1,333 @@
+{
+  "source": [
+    {
+      "env": {
+        "0x5774e9202998": "|object:input_a|",
+        "0x5774e9202af8": "|object:input_a|",
+        "0x5774e9202c08": "|S0:647:response|",
+        "0x5774e9202d08": "|S0:693:442:R:response|"
+      },
+      "guard": "(and true (distinct |S0:647:response| #x00000000))",
+      "events": [
+        {
+          "kind": "R",
+          "id": "S0:647",
+          "width": 32,
+          "tags": [],
+          "fields": {
+            "address": "|object:input_a|"
+          },
+          "response": "|S0:647:response|"
+        },
+        {
+          "kind": "R",
+          "id": "S0:693:442:R",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|"
+          },
+          "response": "|S0:693:442:R:response|"
+        },
+        {
+          "kind": "W",
+          "id": "S0:693:442:W",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|",
+            "value": "(bvadd |S0:693:442:R:response| #x00000001)"
+          },
+          "pair": "S0:693:442:R"
+        },
+        {
+          "kind": "O",
+          "id": "S0:732",
+          "width": 0,
+          "tags": [],
+          "fields": {
+            "condition": "(distinct (ite (distinct #x0000002a |S0:693:442:R:response|)\n               #x00000001\n               #x00000000)\n          #x00000000)"
+          }
+        }
+      ],
+      "visited": [
+        "S0:576",
+        "S0:582",
+        "S0:627",
+        "S0:655",
+        "S0:677",
+        "S0:687",
+        "S0:732",
+        "S0:767"
+      ],
+      "returned": true,
+      "return": "#x0000000000000000"
+    },
+    {
+      "env": {
+        "0x5774e9202998": "|object:input_a|",
+        "0x5774e9202af8": "|object:input_a|",
+        "0x5774e9202c08": "|S0:647:response|",
+        "0x5774e9202d08": "|S0:716:442:R:response|"
+      },
+      "guard": "(and true (not (distinct |S0:647:response| #x00000000)))",
+      "events": [
+        {
+          "kind": "R",
+          "id": "S0:647",
+          "width": 32,
+          "tags": [],
+          "fields": {
+            "address": "|object:input_a|"
+          },
+          "response": "|S0:647:response|"
+        },
+        {
+          "kind": "R",
+          "id": "S0:716:442:R",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|"
+          },
+          "response": "|S0:716:442:R:response|"
+        },
+        {
+          "kind": "W",
+          "id": "S0:716:442:W",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|",
+            "value": "(bvadd |S0:716:442:R:response| #x00000002)"
+          },
+          "pair": "S0:716:442:R"
+        },
+        {
+          "kind": "O",
+          "id": "S0:732",
+          "width": 0,
+          "tags": [],
+          "fields": {
+            "condition": "(distinct (ite (distinct #x0000002a |S0:716:442:R:response|)\n               #x00000001\n               #x00000000)\n          #x00000000)"
+          }
+        }
+      ],
+      "visited": [
+        "S0:576",
+        "S0:582",
+        "S0:627",
+        "S0:655",
+        "S0:677",
+        "S0:710",
+        "S0:732",
+        "S0:767"
+      ],
+      "returned": true,
+      "return": "#x0000000000000000"
+    }
+  ],
+  "llvm": [
+    {
+      "guard": "(and true (distinct (ite (= #x00000000 |L0:11:response|) #b1 #b0) #b0))",
+      "events": [
+        {
+          "kind": "R",
+          "id": "L0:11",
+          "width": 32,
+          "tags": [],
+          "fields": {
+            "address": "|object:input_a|"
+          },
+          "response": "|L0:11:response|"
+        },
+        {
+          "kind": "R",
+          "id": "L0:20:R",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|"
+          },
+          "response": "|L0:20:R:response|"
+        },
+        {
+          "kind": "W",
+          "id": "L0:20:W",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|",
+            "value": "(bvadd |L0:20:R:response| #x00000002)"
+          },
+          "pair": "L0:20:R"
+        },
+        {
+          "kind": "O",
+          "id": "L0:27",
+          "width": 0,
+          "tags": [],
+          "fields": {
+            "condition": "(let ((a!1 ((_ zero_extend 31)\n             (ite (not (= #x0000002a |L0:20:R:response|)) #b1 #b0))))\n  (distinct a!1 #x00000000))"
+          }
+        }
+      ],
+      "visited": [
+        11,
+        12,
+        13,
+        20,
+        21,
+        24,
+        25,
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "guard": "(let ((a!1 (not (distinct (ite (= #x00000000 |L0:11:response|) #b1 #b0) #b0))))\n  (and true a!1))",
+      "events": [
+        {
+          "kind": "R",
+          "id": "L0:11",
+          "width": 32,
+          "tags": [],
+          "fields": {
+            "address": "|object:input_a|"
+          },
+          "response": "|L0:11:response|"
+        },
+        {
+          "kind": "R",
+          "id": "L0:16:R",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|"
+          },
+          "response": "|L0:16:R:response|"
+        },
+        {
+          "kind": "W",
+          "id": "L0:16:W",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|",
+            "value": "(bvadd |L0:16:R:response| #x00000001)"
+          },
+          "pair": "L0:16:R"
+        },
+        {
+          "kind": "O",
+          "id": "L0:27",
+          "width": 0,
+          "tags": [],
+          "fields": {
+            "condition": "(let ((a!1 ((_ zero_extend 31)\n             (ite (not (= #x0000002a |L0:16:R:response|)) #b1 #b0))))\n  (distinct a!1 #x00000000))"
+          }
+        }
+      ],
+      "visited": [
+        11,
+        12,
+        13,
+        16,
+        17,
+        24,
+        25,
+        26,
+        27,
+        28
+      ]
+    }
+  ],
+  "optimized": [
+    {
+      "guard": "true",
+      "events": [
+        {
+          "kind": "R",
+          "id": "I0:11",
+          "width": 32,
+          "tags": [],
+          "fields": {
+            "address": "|object:input_a|"
+          },
+          "response": "|I0:11:response|"
+        },
+        {
+          "kind": "R",
+          "id": "I0:14:R",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|"
+          },
+          "response": "|I0:14:R:response|"
+        },
+        {
+          "kind": "W",
+          "id": "I0:14:W",
+          "width": 32,
+          "tags": [
+            "A",
+            "RMW"
+          ],
+          "fields": {
+            "address": "|object:x|",
+            "value": "(let ((a!1 (ite (distinct (ite (= #x00000000 |I0:11:response|) #b1 #b0) #b0)\n                #x00000002\n                #x00000001)))\n  (bvadd |I0:14:R:response| a!1))"
+          },
+          "pair": "I0:14:R"
+        },
+        {
+          "kind": "O",
+          "id": "I0:17",
+          "width": 0,
+          "tags": [],
+          "fields": {
+            "condition": "(let ((a!1 ((_ zero_extend 31)\n             (ite (not (= #x0000002a |I0:14:R:response|)) #b1 #b0))))\n  (distinct a!1 #x00000000))"
+          }
+        }
+      ],
+      "visited": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    }
+  ]
+}
