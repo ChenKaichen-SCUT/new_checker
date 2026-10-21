@@ -1,0 +1,340 @@
+{
+  "binding": {
+    "source_sha256": "21bdbd648ec14215c2cd6308a25b08040189d96ee8c5fe0533a02198eb08bb3c",
+    "capture_receipt_sha256": "b0866f6738afb81f71a64257ad8f4f14166f5c4e2ff1007b5925364fe150f047",
+    "llvm_sha256": "e1b2e8e1bfd74e74575b1506fe86c6caa98512b00934a9bd160ba7d2f607c7dd",
+    "candidate_sha256": "dec0a45770104328bbddd88f9d15f99ee6ac4a7566ac8789eae1e86ee60b321e",
+    "q_sha256": "49a186033ffffb616e6f8b2d50a7e8db03f8fa641ba5b0b3c3c037ea53be2b57",
+    "run_id": "0e8dff85228d4880add96c1f2b68738f",
+    "property": "all-user-assertions"
+  },
+  "owners": {},
+  "accesses": [
+    {
+      "object": "x",
+      "thread": 0,
+      "kind": "read",
+      "width": 32,
+      "event": 33
+    },
+    {
+      "object": "input_a",
+      "thread": 1,
+      "kind": "read",
+      "width": 32,
+      "event": 43
+    },
+    {
+      "object": "x",
+      "thread": 1,
+      "kind": "RMW-read",
+      "width": 32,
+      "event": 44
+    },
+    {
+      "object": "x",
+      "thread": 1,
+      "kind": "RMW-write",
+      "width": 32,
+      "event": 45
+    },
+    {
+      "object": "input_b",
+      "thread": 2,
+      "kind": "read",
+      "width": 32,
+      "event": 57
+    },
+    {
+      "object": "x",
+      "thread": 2,
+      "kind": "RMW-read",
+      "width": 32,
+      "event": 58
+    },
+    {
+      "object": "x",
+      "thread": 2,
+      "kind": "RMW-write",
+      "width": 32,
+      "event": 59
+    }
+  ],
+  "nodes": [
+    "o:completion-1",
+    "o:completion-2",
+    "o:startup-1",
+    "o:startup-2",
+    "o:thread-1-asm-1-read-address",
+    "o:thread-1-asm-1-reference-return",
+    "o:thread-1-asm-1-write-address",
+    "o:thread-1-asm-1-write-presence",
+    "o:thread-1-monitor-47",
+    "o:thread-1-read-0-address",
+    "o:thread-2-asm-1-read-address",
+    "o:thread-2-asm-1-reference-return",
+    "o:thread-2-asm-1-write-address",
+    "o:thread-2-asm-1-write-presence",
+    "o:thread-2-monitor-61",
+    "o:thread-2-read-0-address",
+    "o:thread-argument-1",
+    "o:thread-argument-2",
+    "r:43",
+    "r:44",
+    "r:57",
+    "r:58",
+    "w:45",
+    "w:59"
+  ],
+  "roots": [
+    "o:completion-1",
+    "o:completion-2",
+    "o:startup-1",
+    "o:startup-2",
+    "o:thread-1-asm-1-read-address",
+    "o:thread-1-asm-1-write-address",
+    "o:thread-1-asm-1-write-presence",
+    "o:thread-1-monitor-47",
+    "o:thread-1-read-0-address",
+    "o:thread-2-asm-1-read-address",
+    "o:thread-2-asm-1-write-address",
+    "o:thread-2-asm-1-write-presence",
+    "o:thread-2-monitor-61",
+    "o:thread-2-read-0-address",
+    "o:thread-argument-1",
+    "o:thread-argument-2",
+    "w:45",
+    "w:59"
+  ],
+  "edges": [
+    [
+      "o:thread-1-asm-1-reference-return",
+      "r:44"
+    ],
+    [
+      "o:thread-1-monitor-47",
+      "r:44"
+    ],
+    [
+      "o:thread-2-asm-1-reference-return",
+      "r:58"
+    ],
+    [
+      "o:thread-2-monitor-61",
+      "r:58"
+    ],
+    [
+      "r:44",
+      "w:45"
+    ],
+    [
+      "r:44",
+      "w:59"
+    ],
+    [
+      "r:58",
+      "w:45"
+    ],
+    [
+      "r:58",
+      "w:59"
+    ],
+    [
+      "w:45",
+      "r:43"
+    ],
+    [
+      "w:45",
+      "r:44"
+    ],
+    [
+      "w:59",
+      "r:57"
+    ],
+    [
+      "w:59",
+      "r:58"
+    ]
+  ],
+  "read_bindings": [
+    {
+      "event": 43,
+      "thread": 1,
+      "object": "input_a",
+      "width": 32,
+      "variable": "|activation-1:\\|pd-source-0:p1-open-read-0\\||",
+      "kind": "ordinary"
+    },
+    {
+      "event": 44,
+      "thread": 1,
+      "object": "x",
+      "width": 32,
+      "variable": "|activation-1:\\|pd-source-0:p1-open-rmw-1\\||",
+      "kind": "RMW"
+    },
+    {
+      "event": 57,
+      "thread": 2,
+      "object": "input_b",
+      "width": 32,
+      "variable": "|activation-2:\\|pd-source-1:p1-open-read-0\\||",
+      "kind": "ordinary"
+    },
+    {
+      "event": 58,
+      "thread": 2,
+      "object": "x",
+      "width": 32,
+      "variable": "|activation-2:\\|pd-source-1:p1-open-rmw-1\\||",
+      "kind": "RMW"
+    }
+  ],
+  "regions": [
+    {
+      "thread": 1,
+      "source_operation": 1,
+      "create_index": 0,
+      "worker_definition": "0x5c8c00fc2b90",
+      "worker_name": "worker",
+      "call_context": {
+        "begin_raw": 386,
+        "end_raw": 408
+      },
+      "llvm_line_index": 12,
+      "read": 44,
+      "write": 45,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_21bdbd648ec1_port0_0"
+      },
+      "input": "|activation-1:\\|pd-source-0:p1-open-read-0\\||",
+      "output": "|activation-1:\\|pd-source-0:p1-open-rmw-1\\||",
+      "result": "RMW_OBLIGATIONS_PENDING",
+      "object": "x",
+      "write_value_obligation": "thread-1-asm-1-write-value",
+      "reference_return_obligation": "thread-1-asm-1-reference-return"
+    },
+    {
+      "thread": 2,
+      "source_operation": 1,
+      "create_index": 1,
+      "worker_definition": "0x5c8c00fc32a0",
+      "worker_name": "worker_other",
+      "call_context": {
+        "begin_raw": 583,
+        "end_raw": 605
+      },
+      "llvm_line_index": 30,
+      "read": 58,
+      "write": 59,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_21bdbd648ec1_port1_0"
+      },
+      "input": "|activation-2:\\|pd-source-1:p1-open-read-0\\||",
+      "output": "|activation-2:\\|pd-source-1:p1-open-rmw-1\\||",
+      "result": "RMW_OBLIGATIONS_PENDING",
+      "object": "x",
+      "write_value_obligation": "thread-2-asm-1-write-value",
+      "reference_return_obligation": "thread-2-asm-1-reference-return"
+    }
+  ],
+  "equations": [
+    {
+      "name": "thread-argument-1",
+      "statement_sha256": "c1df16a46d76b78b15673745a5d4e9ff9200e58285302b9af2d2ee57dc584964"
+    },
+    {
+      "name": "startup-1",
+      "statement_sha256": "303ad902fa8ea78cdb754fbb57e16543b43d6c1ab44cebd2f1c00ff3e88d5a5f"
+    },
+    {
+      "name": "completion-1",
+      "statement_sha256": "b69b3b256b9fa8e590905a757b1d3dbdce9f262b3bec40137e060292b4ea0585"
+    },
+    {
+      "name": "thread-1-read-0-address",
+      "statement_sha256": "c1df16a46d76b78b15673745a5d4e9ff9200e58285302b9af2d2ee57dc584964"
+    },
+    {
+      "name": "thread-1-asm-1-read-address",
+      "statement_sha256": "4b4596ce82441ad3a8a60a169ddb7f50efc119131db872e2669b44e660044491"
+    },
+    {
+      "name": "thread-1-asm-1-write-address",
+      "statement_sha256": "4b4596ce82441ad3a8a60a169ddb7f50efc119131db872e2669b44e660044491"
+    },
+    {
+      "name": "thread-1-asm-1-write-value",
+      "statement_sha256": "b7ae9c8b55c70b6934afef4a0c70e2c1686bc4a6bc2e51c1cb6dc5c19fb35a7f"
+    },
+    {
+      "name": "thread-1-asm-1-write-presence",
+      "statement_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "name": "thread-1-asm-1-reference-return",
+      "statement_sha256": "f77389f40b20af081af8052941717f4d6e1c73e26a3e18f21a2b846d735151be"
+    },
+    {
+      "name": "thread-1-monitor-47",
+      "statement_sha256": "a624b1ee4f843ff5f89c190a4baae41e85b73239ce2f35990f1f2de6a902268e"
+    },
+    {
+      "name": "thread-argument-2",
+      "statement_sha256": "83a0b1c42dfc2d99683c7c54406cacb2b43e03fcf2437c341b9b795284775221"
+    },
+    {
+      "name": "startup-2",
+      "statement_sha256": "303ad902fa8ea78cdb754fbb57e16543b43d6c1ab44cebd2f1c00ff3e88d5a5f"
+    },
+    {
+      "name": "completion-2",
+      "statement_sha256": "b69b3b256b9fa8e590905a757b1d3dbdce9f262b3bec40137e060292b4ea0585"
+    },
+    {
+      "name": "thread-2-read-0-address",
+      "statement_sha256": "83a0b1c42dfc2d99683c7c54406cacb2b43e03fcf2437c341b9b795284775221"
+    },
+    {
+      "name": "thread-2-asm-1-read-address",
+      "statement_sha256": "4b4596ce82441ad3a8a60a169ddb7f50efc119131db872e2669b44e660044491"
+    },
+    {
+      "name": "thread-2-asm-1-write-address",
+      "statement_sha256": "4b4596ce82441ad3a8a60a169ddb7f50efc119131db872e2669b44e660044491"
+    },
+    {
+      "name": "thread-2-asm-1-write-value",
+      "statement_sha256": "819c67164218c14dfefc03e603e301f98fb905c9ec6f55520e6c1b285355eda4"
+    },
+    {
+      "name": "thread-2-asm-1-write-presence",
+      "statement_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "name": "thread-2-asm-1-reference-return",
+      "statement_sha256": "2d49fcad86e409842433ef1586bef1fad8b87b1b7f703442f7da3172779c944f"
+    },
+    {
+      "name": "thread-2-monitor-61",
+      "statement_sha256": "04c8def60dae893940ad41781cbb73da16ce3fa3f70caf0c16379847d1fe06a3"
+    }
+  ],
+  "phi": {
+    "kind": "all-user-assertions",
+    "actual_events": [
+      35,
+      47,
+      61
+    ]
+  },
+  "all_actual_monitors": [
+    19,
+    31,
+    35,
+    47,
+    61
+  ]
+}

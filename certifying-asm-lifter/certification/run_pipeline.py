@@ -61,7 +61,8 @@ def run_backend(candidate, dat3m, receipt_path, out, fault=None):
                          "entry-ssa", "operand-only", "assert-only", "swap-returns", "second-operand",
                          "omit-call", "omit-activation", "cross-read", "continuation-assert",
                          "thread-argument", "input-alias", "omit-worker-call", "ite-swap",
-                         "ite-missing-dependency", "ite-wrong-type", "ite-truncated", "rmw-tag-only"}:
+                         "ite-missing-dependency", "ite-wrong-type", "ite-truncated", "rmw-tag-only",
+                         "pd-private-value", "pd-public-value", "pd-private-a", "pd-private-omit", "pd-sync-omit"}:
             raise Reject("unknown controlled fault")
         build = verify_build(dat3m, receipt_path, fault)
         for rel, expected in build["cat_pins"].items():

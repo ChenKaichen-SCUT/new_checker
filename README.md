@@ -6,7 +6,14 @@
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[四级认证与真实客户端逐位置审阅](certifying-asm-lifter/docs/levels/00-delivery.md)。
+最新交付：[性质驱动组合认证的受限定理与验收](certifying-asm-lifter/docs/property/00-delivery.md)。
+基线 `51d8c63`。完整实际 Q/查询不变，只允许省略经单动态 owner 和双侧依赖闭包
+证明无干扰的 FAA 写值等式；其余事件/原子性/宿主/实例/查询检查保留。完成解析证明、
+纯局部 C 分支检查及 16 项真实验收、16 项原始对象重放、144 项测试；旧 D2=L4、分支=L3。
+新标签是性质专用 `PROPERTY_CONDITIONAL_SAFE`，不重标 L3/L4；原八项 Γ 不变，可信代码增加。
+独立算法创新和当前 ISSTA Research Paper 方法基础 No-Go；无大规模/性能实验。停止等待审阅。
+
+历史交付：[四级认证与真实客户端逐位置审阅](certifying-asm-lifter/docs/levels/00-delivery.md)。
 基线 `795e2a9ee95ba7446d4964430f7bda78bf6ddf76`。冻结原始 CK 完整客户端的 113 个
 存活 asm 位置，6 个达到 L1/L2，完整客户端 L3/L4 仍为 0/1。修复实际 ITE 导出，
 受控分支的 4 个实例达到 L3，宿主契约不足而拒绝 L4；D2 正例保持条件式 L4。

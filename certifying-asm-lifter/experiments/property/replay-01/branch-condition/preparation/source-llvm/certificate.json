@@ -1,0 +1,1556 @@
+{
+  "result": "PD0_SOURCE_LLVM_EXACT",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "activation-0-operation-1-input",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-read-0| () (_ BitVec 32))\n(assert\n (let (($x723 (= |pd-source-0:p1-open-read-0| |pd-source-0:p1-open-read-0|)))\n(not $x723)))\n(check-sat)\n",
+      "file": "000-activation-0-operation-1-input.smt2",
+      "smt_sha256": "b9a52e6dee315dab05406bc864d9b21e695e69fa8f188d27847b0e2827da40f9"
+    },
+    {
+      "name": "activation-0-operation-3-input",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-read-2| () (_ BitVec 32))\n(assert\n (let ((?x1622 (ite (= (ite (= (_ bv2 32) |pd-source-0:p1-open-read-2|) (_ bv1 1) (_ bv0 1)) (_ bv1 1)) |pd-source-0:p1-open-read-0| (_ bv0 32))))\n(let ((?x385 (bvadd |pd-source-0:p1-open-read-0| |pd-source-0:p1-open-rmw-1|)))\n(let (($x401 (= (_ bv2 32) |pd-source-0:p1-open-read-2|)))\n(let ((?x3049 (ite $x401 ?x385 |pd-source-0:p1-open-rmw-1|)))\n(let (($x1718 (= ?x3049 (bvadd ?x1622 |pd-source-0:p1-open-rmw-1|))))\n(not $x1718)))))))\n(check-sat)\n",
+      "file": "001-activation-0-operation-3-input.smt2",
+      "smt_sha256": "f8757d26ae2851222454c9bd1b8448b49f6d18cede488214cce3dbc682a37536"
+    },
+    {
+      "name": "activation-0-operation-4-monitor",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-rmw-3| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-read-2| () (_ BitVec 32))\n(assert\n (let ((?x436 (ite (and (distinct |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-rmw-3|) true) (_ bv1 1) (_ bv0 1))))\n(let (($x401 (= (_ bv2 32) |pd-source-0:p1-open-read-2|)))\n(let (($x457 (and (distinct (ite $x401 |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-rmw-1|) |pd-source-0:p1-open-rmw-3|) true)))\n(let (($x1368 (= $x457 (and (distinct ((_ zero_extend 31) ?x436) (_ bv0 32)) true))))\n(not $x1368))))))\n(check-sat)\n",
+      "file": "002-activation-0-operation-4-monitor.smt2",
+      "smt_sha256": "00f2c949da084f7d34797a76133f7e6ec5b234d50c01782e8b6a3e76a30d3d29"
+    },
+    {
+      "name": "activation-0-operation-5-monitor",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-rmw-3| () (_ BitVec 32))\n(assert\n (let (($x2538 (and (distinct ((_ zero_extend 31) (ite (and (distinct (_ bv0 32) |pd-source-0:p1-open-rmw-3|) true) (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(let (($x575 (and (distinct (_ bv0 32) |pd-source-0:p1-open-rmw-3|) true)))\n(let (($x434 (= $x575 $x2538)))\n(not $x434)))))\n(check-sat)\n",
+      "file": "003-activation-0-operation-5-monitor.smt2",
+      "smt_sha256": "e3f31598578e28192257fe53dd0835b69ca2331a0ee32f0fc1a14f14e3181cd2"
+    },
+    {
+      "name": "activation-0-operation-6-monitor",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-read-2| () (_ BitVec 32))\n(assert\n (let (($x372 (and (distinct ((_ zero_extend 31) (ite (and (distinct (_ bv0 32) |pd-source-0:p1-open-read-2|) true) (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(let (($x401 (= (_ bv2 32) |pd-source-0:p1-open-read-2|)))\n(let (($x722 (and (distinct (_ bv0 32) (ite $x401 |pd-source-0:p1-open-read-2| |pd-source-0:p1-open-read-2|)) true)))\n(let (($x2976 (= $x722 $x372)))\n(not $x2976))))))\n(check-sat)\n",
+      "file": "004-activation-0-operation-6-monitor.smt2",
+      "smt_sha256": "bcbabb47c3630bb5a84ac67e0eabfd4ca02682110e71ba03aa6128297545655e"
+    },
+    {
+      "name": "activation-1-operation-1-input",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))\n(assert\n (let (($x580 (= |pd-source-1:p1-open-read-0| |pd-source-1:p1-open-read-0|)))\n(not $x580)))\n(check-sat)\n",
+      "file": "005-activation-1-operation-1-input.smt2",
+      "smt_sha256": "a09cef084b10dfa610e37205d3979f3955857a9301a7c5e9d94803875176dfaf"
+    },
+    {
+      "name": "activation-1-operation-3-input",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-2| () (_ BitVec 32))\n(assert\n (let ((?x1718 (ite (= (ite (= (_ bv2 32) |pd-source-1:p1-open-read-2|) (_ bv1 1) (_ bv0 1)) (_ bv1 1)) |pd-source-1:p1-open-read-0| (_ bv0 32))))\n(let ((?x974 (bvadd |pd-source-1:p1-open-read-0| |pd-source-1:p1-open-rmw-1|)))\n(let (($x2030 (= (_ bv2 32) |pd-source-1:p1-open-read-2|)))\n(let ((?x389 (ite $x2030 ?x974 |pd-source-1:p1-open-rmw-1|)))\n(let (($x734 (= ?x389 (bvadd ?x1718 |pd-source-1:p1-open-rmw-1|))))\n(not $x734)))))))\n(check-sat)\n",
+      "file": "006-activation-1-operation-3-input.smt2",
+      "smt_sha256": "67410bde9db3b1b108f4c2ac8257b16ea84737e2ab4e0db44b32f4a1168f8aec"
+    },
+    {
+      "name": "activation-1-operation-4-monitor",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-3| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-2| () (_ BitVec 32))\n(assert\n (let ((?x434 (ite (and (distinct |pd-source-1:p1-open-rmw-1| |pd-source-1:p1-open-rmw-3|) true) (_ bv1 1) (_ bv0 1))))\n(let (($x2030 (= (_ bv2 32) |pd-source-1:p1-open-read-2|)))\n(let (($x742 (and (distinct (ite $x2030 |pd-source-1:p1-open-rmw-1| |pd-source-1:p1-open-rmw-1|) |pd-source-1:p1-open-rmw-3|) true)))\n(let (($x2683 (= $x742 (and (distinct ((_ zero_extend 31) ?x434) (_ bv0 32)) true))))\n(not $x2683))))))\n(check-sat)\n",
+      "file": "007-activation-1-operation-4-monitor.smt2",
+      "smt_sha256": "c8e3623335931da4f76f264903682f67a31563abca008178db4da2931ea6d1a3"
+    },
+    {
+      "name": "activation-1-operation-5-monitor",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-3| () (_ BitVec 32))\n(assert\n (let (($x542 (and (distinct ((_ zero_extend 31) (ite (and (distinct (_ bv0 32) |pd-source-1:p1-open-rmw-3|) true) (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(let (($x2810 (and (distinct (_ bv0 32) |pd-source-1:p1-open-rmw-3|) true)))\n(let (($x2525 (= $x2810 $x542)))\n(not $x2525)))))\n(check-sat)\n",
+      "file": "008-activation-1-operation-5-monitor.smt2",
+      "smt_sha256": "2e6ef749a1984a8812233cbe7b61211e64c9abbb8d41b95171343e045bd736d7"
+    },
+    {
+      "name": "activation-1-operation-6-monitor",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-read-2| () (_ BitVec 32))\n(assert\n (let (($x580 (and (distinct ((_ zero_extend 31) (ite (and (distinct (_ bv0 32) |pd-source-1:p1-open-read-2|) true) (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(let (($x2030 (= (_ bv2 32) |pd-source-1:p1-open-read-2|)))\n(let (($x733 (and (distinct (_ bv0 32) (ite $x2030 |pd-source-1:p1-open-read-2| |pd-source-1:p1-open-read-2|)) true)))\n(let (($x2397 (= $x733 $x580)))\n(not $x2397))))))\n(check-sat)\n",
+      "file": "009-activation-1-operation-6-monitor.smt2",
+      "smt_sha256": "e2368e0ccddc6549f80608611d1ed5e3fa2a79365ac2461f723f80d2598441db"
+    }
+  ],
+  "source_conflict_check": {
+    "reads": [
+      "input_a",
+      "input_b"
+    ],
+    "writes": [
+      "x"
+    ]
+  },
+  "activations": [
+    {
+      "create_index": 0,
+      "create": {
+        "kind": "create",
+        "handle": "0x57eb436d6ab0",
+        "target": "worker",
+        "argument": "@input_a",
+        "line": 27,
+        "offset": 743,
+        "statement": 1
+      },
+      "worker": "worker",
+      "argument": "@input_a",
+      "interfaces": [
+        {
+          "source_sha256": "c024f0933b038d01c06af1c8ca4bad10346a28235b6fc7d754777869d938034d",
+          "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) : : \"memory\", \"cc\");",
+          "width": 32,
+          "register_output": 1,
+          "operands": [
+            {
+              "index": 0,
+              "constraint": "+m",
+              "output": true,
+              "memory": true,
+              "clang_type": {
+                "bits": 32,
+                "canonical": "unsigned int",
+                "integer": true,
+                "pointer": false,
+                "qualifiers": 0,
+                "spelled": "uint32_t",
+                "unsigned": true
+              }
+            },
+            {
+              "index": 1,
+              "constraint": "+q",
+              "output": true,
+              "memory": false,
+              "clang_type": {
+                "bits": 32,
+                "canonical": "unsigned int",
+                "integer": true,
+                "pointer": false,
+                "qualifiers": 0,
+                "spelled": "uint32_t",
+                "unsigned": true
+              }
+            }
+          ],
+          "line": 309,
+          "source_path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+          "host_source_path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+          "provenance": {
+            "all_ast_asm_sites": 188,
+            "cookies": [
+              2147751988
+            ],
+            "asm_location": {
+              "chain": [
+                {
+                  "argument_expansion": false,
+                  "caller_raw": 2147751574,
+                  "expansion_begin": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_begin_raw": 2147751574,
+                  "expansion_end": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_end_raw": 2147751597,
+                  "raw": 2147751717,
+                  "spelling": {
+                    "column": 3,
+                    "file_id": 575,
+                    "line": 293,
+                    "offset": 7763,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "spelling_raw": 235368
+                },
+                {
+                  "argument_expansion": false,
+                  "caller_raw": 235783,
+                  "expansion_begin": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_begin_raw": 235783,
+                  "expansion_end": {
+                    "column": 34,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8211,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_end_raw": 235816,
+                  "raw": 2147751574,
+                  "spelling": {
+                    "column": 30,
+                    "file_id": 575,
+                    "line": 303,
+                    "offset": 8012,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "spelling_raw": 235617
+                }
+              ],
+              "expansion": {
+                "column": 1,
+                "file_id": 575,
+                "line": 309,
+                "offset": 8178,
+                "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                "valid": true
+              },
+              "macro": true,
+              "raw": 2147751717,
+              "spelling": {
+                "column": 3,
+                "file_id": 575,
+                "line": 293,
+                "offset": 7763,
+                "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                "valid": true
+              },
+              "valid": true
+            },
+            "original_spelling_strings": [
+              "lock ",
+              "xaddl",
+              " %1, %0"
+            ],
+            "source_function_decl": "0x57eb4364ded8",
+            "inline_context": {
+              "asm_debug_id": "18",
+              "inlined_at_debug_id": "21",
+              "wrapper_decl": "0x57eb4364ded8",
+              "worker_decl": "0x57eb436d1ba0",
+              "call_raw_location": 386
+            }
+          },
+          "slots": {
+            "pointer": "p0",
+            "value": "o1"
+          },
+          "llvm_sha256": "95faf3994ea1de2b04332e7630e4d1806134586e56df6518c31fd73dfbe2b480",
+          "llvm_line_index": 12,
+          "llvm_call": "  %3 = tail call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, ptr nonnull elementtype(i32) @x, i32 %2) #3, !dbg !18, !srcloc !22\n",
+          "result_ssa": "%3",
+          "bindings": {
+            "p0": "@x",
+            "o1": "%2"
+          },
+          "llvm_entry_conditions": [],
+          "result": "INTERFACE_MATCH",
+          "call_context": {
+            "begin_raw": 386,
+            "end_raw": 408
+          },
+          "worker_definition": "0x57eb436d1ba0",
+          "worker_name": "worker",
+          "instance_namespace": "port0_"
+        },
+        {
+          "source_sha256": "c024f0933b038d01c06af1c8ca4bad10346a28235b6fc7d754777869d938034d",
+          "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) : : \"memory\", \"cc\");",
+          "width": 32,
+          "register_output": 1,
+          "operands": [
+            {
+              "index": 0,
+              "constraint": "+m",
+              "output": true,
+              "memory": true,
+              "clang_type": {
+                "bits": 32,
+                "canonical": "unsigned int",
+                "integer": true,
+                "pointer": false,
+                "qualifiers": 0,
+                "spelled": "uint32_t",
+                "unsigned": true
+              }
+            },
+            {
+              "index": 1,
+              "constraint": "+q",
+              "output": true,
+              "memory": false,
+              "clang_type": {
+                "bits": 32,
+                "canonical": "unsigned int",
+                "integer": true,
+                "pointer": false,
+                "qualifiers": 0,
+                "spelled": "uint32_t",
+                "unsigned": true
+              }
+            }
+          ],
+          "line": 309,
+          "source_path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+          "host_source_path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+          "provenance": {
+            "all_ast_asm_sites": 188,
+            "cookies": [
+              2147751988
+            ],
+            "asm_location": {
+              "chain": [
+                {
+                  "argument_expansion": false,
+                  "caller_raw": 2147751574,
+                  "expansion_begin": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_begin_raw": 2147751574,
+                  "expansion_end": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_end_raw": 2147751597,
+                  "raw": 2147751717,
+                  "spelling": {
+                    "column": 3,
+                    "file_id": 575,
+                    "line": 293,
+                    "offset": 7763,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "spelling_raw": 235368
+                },
+                {
+                  "argument_expansion": false,
+                  "caller_raw": 235783,
+                  "expansion_begin": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_begin_raw": 235783,
+                  "expansion_end": {
+                    "column": 34,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8211,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_end_raw": 235816,
+                  "raw": 2147751574,
+                  "spelling": {
+                    "column": 30,
+                    "file_id": 575,
+                    "line": 303,
+                    "offset": 8012,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "spelling_raw": 235617
+                }
+              ],
+              "expansion": {
+                "column": 1,
+                "file_id": 575,
+                "line": 309,
+                "offset": 8178,
+                "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                "valid": true
+              },
+              "macro": true,
+              "raw": 2147751717,
+              "spelling": {
+                "column": 3,
+                "file_id": 575,
+                "line": 293,
+                "offset": 7763,
+                "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                "valid": true
+              },
+              "valid": true
+            },
+            "original_spelling_strings": [
+              "lock ",
+              "xaddl",
+              " %1, %0"
+            ],
+            "source_function_decl": "0x57eb4364ded8",
+            "inline_context": {
+              "asm_debug_id": "25",
+              "inlined_at_debug_id": "26",
+              "wrapper_decl": "0x57eb4364ded8",
+              "worker_decl": "0x57eb436d1ba0",
+              "call_raw_location": 545
+            }
+          },
+          "slots": {
+            "pointer": "p0",
+            "value": "o1"
+          },
+          "llvm_sha256": "95faf3994ea1de2b04332e7630e4d1806134586e56df6518c31fd73dfbe2b480",
+          "llvm_line_index": 17,
+          "llvm_call": "  %8 = tail call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, ptr nonnull elementtype(i32) @x, i32 %7) #3, !dbg !25, !srcloc !22\n",
+          "result_ssa": "%8",
+          "bindings": {
+            "p0": "@x",
+            "o1": "%7"
+          },
+          "llvm_entry_conditions": [],
+          "result": "INTERFACE_MATCH",
+          "call_context": {
+            "begin_raw": 545,
+            "end_raw": 571
+          },
+          "worker_definition": "0x57eb436d1ba0",
+          "worker_name": "worker",
+          "instance_namespace": "port1_"
+        }
+      ],
+      "ops": [
+        {
+          "kind": "read",
+          "object": "input_a",
+          "width": 32,
+          "value": "|pd-source-0:p1-open-read-0|"
+        },
+        {
+          "kind": "asm",
+          "pointer": "@x",
+          "input": "|pd-source-0:p1-open-read-0|",
+          "value": "|pd-source-0:p1-open-rmw-1|",
+          "interface": {
+            "source_sha256": "c024f0933b038d01c06af1c8ca4bad10346a28235b6fc7d754777869d938034d",
+            "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) : : \"memory\", \"cc\");",
+            "width": 32,
+            "register_output": 1,
+            "operands": [
+              {
+                "index": 0,
+                "constraint": "+m",
+                "output": true,
+                "memory": true,
+                "clang_type": {
+                  "bits": 32,
+                  "canonical": "unsigned int",
+                  "integer": true,
+                  "pointer": false,
+                  "qualifiers": 0,
+                  "spelled": "uint32_t",
+                  "unsigned": true
+                }
+              },
+              {
+                "index": 1,
+                "constraint": "+q",
+                "output": true,
+                "memory": false,
+                "clang_type": {
+                  "bits": 32,
+                  "canonical": "unsigned int",
+                  "integer": true,
+                  "pointer": false,
+                  "qualifiers": 0,
+                  "spelled": "uint32_t",
+                  "unsigned": true
+                }
+              }
+            ],
+            "line": 309,
+            "source_path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+            "host_source_path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+            "provenance": {
+              "all_ast_asm_sites": 188,
+              "cookies": [
+                2147751988
+              ],
+              "asm_location": {
+                "chain": [
+                  {
+                    "argument_expansion": false,
+                    "caller_raw": 2147751574,
+                    "expansion_begin": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_begin_raw": 2147751574,
+                    "expansion_end": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_end_raw": 2147751597,
+                    "raw": 2147751717,
+                    "spelling": {
+                      "column": 3,
+                      "file_id": 575,
+                      "line": 293,
+                      "offset": 7763,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "spelling_raw": 235368
+                  },
+                  {
+                    "argument_expansion": false,
+                    "caller_raw": 235783,
+                    "expansion_begin": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_begin_raw": 235783,
+                    "expansion_end": {
+                      "column": 34,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8211,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_end_raw": 235816,
+                    "raw": 2147751574,
+                    "spelling": {
+                      "column": 30,
+                      "file_id": 575,
+                      "line": 303,
+                      "offset": 8012,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "spelling_raw": 235617
+                  }
+                ],
+                "expansion": {
+                  "column": 1,
+                  "file_id": 575,
+                  "line": 309,
+                  "offset": 8178,
+                  "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                  "valid": true
+                },
+                "macro": true,
+                "raw": 2147751717,
+                "spelling": {
+                  "column": 3,
+                  "file_id": 575,
+                  "line": 293,
+                  "offset": 7763,
+                  "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                  "valid": true
+                },
+                "valid": true
+              },
+              "original_spelling_strings": [
+                "lock ",
+                "xaddl",
+                " %1, %0"
+              ],
+              "source_function_decl": "0x57eb4364ded8",
+              "inline_context": {
+                "asm_debug_id": "18",
+                "inlined_at_debug_id": "21",
+                "wrapper_decl": "0x57eb4364ded8",
+                "worker_decl": "0x57eb436d1ba0",
+                "call_raw_location": 386
+              }
+            },
+            "slots": {
+              "pointer": "p0",
+              "value": "o1"
+            },
+            "llvm_sha256": "95faf3994ea1de2b04332e7630e4d1806134586e56df6518c31fd73dfbe2b480",
+            "llvm_line_index": 12,
+            "llvm_call": "  %3 = tail call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, ptr nonnull elementtype(i32) @x, i32 %2) #3, !dbg !18, !srcloc !22\n",
+            "result_ssa": "%3",
+            "bindings": {
+              "p0": "@x",
+              "o1": "%2"
+            },
+            "llvm_entry_conditions": [],
+            "result": "INTERFACE_MATCH",
+            "call_context": {
+              "begin_raw": 386,
+              "end_raw": 408
+            },
+            "worker_definition": "0x57eb436d1ba0",
+            "worker_name": "worker",
+            "instance_namespace": "port0_"
+          }
+        },
+        {
+          "kind": "read",
+          "object": "input_a",
+          "width": 32,
+          "value": "|pd-source-0:p1-open-read-2|"
+        },
+        {
+          "kind": "asm",
+          "pointer": "@x",
+          "input": "(ite (= #x00000002 |pd-source-0:p1-open-read-2|)\n     (bvadd |pd-source-0:p1-open-read-0| |pd-source-0:p1-open-rmw-1|)\n     |pd-source-0:p1-open-rmw-1|)",
+          "value": "|pd-source-0:p1-open-rmw-3|",
+          "interface": {
+            "source_sha256": "c024f0933b038d01c06af1c8ca4bad10346a28235b6fc7d754777869d938034d",
+            "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) : : \"memory\", \"cc\");",
+            "width": 32,
+            "register_output": 1,
+            "operands": [
+              {
+                "index": 0,
+                "constraint": "+m",
+                "output": true,
+                "memory": true,
+                "clang_type": {
+                  "bits": 32,
+                  "canonical": "unsigned int",
+                  "integer": true,
+                  "pointer": false,
+                  "qualifiers": 0,
+                  "spelled": "uint32_t",
+                  "unsigned": true
+                }
+              },
+              {
+                "index": 1,
+                "constraint": "+q",
+                "output": true,
+                "memory": false,
+                "clang_type": {
+                  "bits": 32,
+                  "canonical": "unsigned int",
+                  "integer": true,
+                  "pointer": false,
+                  "qualifiers": 0,
+                  "spelled": "uint32_t",
+                  "unsigned": true
+                }
+              }
+            ],
+            "line": 309,
+            "source_path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+            "host_source_path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+            "provenance": {
+              "all_ast_asm_sites": 188,
+              "cookies": [
+                2147751988
+              ],
+              "asm_location": {
+                "chain": [
+                  {
+                    "argument_expansion": false,
+                    "caller_raw": 2147751574,
+                    "expansion_begin": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_begin_raw": 2147751574,
+                    "expansion_end": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_end_raw": 2147751597,
+                    "raw": 2147751717,
+                    "spelling": {
+                      "column": 3,
+                      "file_id": 575,
+                      "line": 293,
+                      "offset": 7763,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "spelling_raw": 235368
+                  },
+                  {
+                    "argument_expansion": false,
+                    "caller_raw": 235783,
+                    "expansion_begin": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_begin_raw": 235783,
+                    "expansion_end": {
+                      "column": 34,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8211,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_end_raw": 235816,
+                    "raw": 2147751574,
+                    "spelling": {
+                      "column": 30,
+                      "file_id": 575,
+                      "line": 303,
+                      "offset": 8012,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "spelling_raw": 235617
+                  }
+                ],
+                "expansion": {
+                  "column": 1,
+                  "file_id": 575,
+                  "line": 309,
+                  "offset": 8178,
+                  "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                  "valid": true
+                },
+                "macro": true,
+                "raw": 2147751717,
+                "spelling": {
+                  "column": 3,
+                  "file_id": 575,
+                  "line": 293,
+                  "offset": 7763,
+                  "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                  "valid": true
+                },
+                "valid": true
+              },
+              "original_spelling_strings": [
+                "lock ",
+                "xaddl",
+                " %1, %0"
+              ],
+              "source_function_decl": "0x57eb4364ded8",
+              "inline_context": {
+                "asm_debug_id": "25",
+                "inlined_at_debug_id": "26",
+                "wrapper_decl": "0x57eb4364ded8",
+                "worker_decl": "0x57eb436d1ba0",
+                "call_raw_location": 545
+              }
+            },
+            "slots": {
+              "pointer": "p0",
+              "value": "o1"
+            },
+            "llvm_sha256": "95faf3994ea1de2b04332e7630e4d1806134586e56df6518c31fd73dfbe2b480",
+            "llvm_line_index": 17,
+            "llvm_call": "  %8 = tail call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, ptr nonnull elementtype(i32) @x, i32 %7) #3, !dbg !25, !srcloc !22\n",
+            "result_ssa": "%8",
+            "bindings": {
+              "p0": "@x",
+              "o1": "%7"
+            },
+            "llvm_entry_conditions": [],
+            "result": "INTERFACE_MATCH",
+            "call_context": {
+              "begin_raw": 545,
+              "end_raw": 571
+            },
+            "worker_definition": "0x57eb436d1ba0",
+            "worker_name": "worker",
+            "instance_namespace": "port1_"
+          }
+        },
+        {
+          "kind": "assert",
+          "condition": "(distinct (ite (= #x00000002 |pd-source-0:p1-open-read-2|)\n               |pd-source-0:p1-open-rmw-1|\n               |pd-source-0:p1-open-rmw-1|)\n          |pd-source-0:p1-open-rmw-3|)"
+        },
+        {
+          "kind": "assert",
+          "condition": "(distinct #x00000000 |pd-source-0:p1-open-rmw-3|)"
+        },
+        {
+          "kind": "assert",
+          "condition": "(distinct #x00000000\n          (ite (= #x00000002 |pd-source-0:p1-open-read-2|)\n               |pd-source-0:p1-open-read-2|\n               |pd-source-0:p1-open-read-2|))"
+        },
+        {
+          "kind": "return"
+        }
+      ]
+    },
+    {
+      "create_index": 1,
+      "create": {
+        "kind": "create",
+        "handle": "0x57eb436d6b28",
+        "target": "worker",
+        "argument": "@input_b",
+        "line": 28,
+        "offset": 789,
+        "statement": 2
+      },
+      "worker": "worker",
+      "argument": "@input_b",
+      "interfaces": [
+        {
+          "source_sha256": "c024f0933b038d01c06af1c8ca4bad10346a28235b6fc7d754777869d938034d",
+          "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) : : \"memory\", \"cc\");",
+          "width": 32,
+          "register_output": 1,
+          "operands": [
+            {
+              "index": 0,
+              "constraint": "+m",
+              "output": true,
+              "memory": true,
+              "clang_type": {
+                "bits": 32,
+                "canonical": "unsigned int",
+                "integer": true,
+                "pointer": false,
+                "qualifiers": 0,
+                "spelled": "uint32_t",
+                "unsigned": true
+              }
+            },
+            {
+              "index": 1,
+              "constraint": "+q",
+              "output": true,
+              "memory": false,
+              "clang_type": {
+                "bits": 32,
+                "canonical": "unsigned int",
+                "integer": true,
+                "pointer": false,
+                "qualifiers": 0,
+                "spelled": "uint32_t",
+                "unsigned": true
+              }
+            }
+          ],
+          "line": 309,
+          "source_path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+          "host_source_path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+          "provenance": {
+            "all_ast_asm_sites": 188,
+            "cookies": [
+              2147751988
+            ],
+            "asm_location": {
+              "chain": [
+                {
+                  "argument_expansion": false,
+                  "caller_raw": 2147751574,
+                  "expansion_begin": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_begin_raw": 2147751574,
+                  "expansion_end": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_end_raw": 2147751597,
+                  "raw": 2147751717,
+                  "spelling": {
+                    "column": 3,
+                    "file_id": 575,
+                    "line": 293,
+                    "offset": 7763,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "spelling_raw": 235368
+                },
+                {
+                  "argument_expansion": false,
+                  "caller_raw": 235783,
+                  "expansion_begin": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_begin_raw": 235783,
+                  "expansion_end": {
+                    "column": 34,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8211,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_end_raw": 235816,
+                  "raw": 2147751574,
+                  "spelling": {
+                    "column": 30,
+                    "file_id": 575,
+                    "line": 303,
+                    "offset": 8012,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "spelling_raw": 235617
+                }
+              ],
+              "expansion": {
+                "column": 1,
+                "file_id": 575,
+                "line": 309,
+                "offset": 8178,
+                "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                "valid": true
+              },
+              "macro": true,
+              "raw": 2147751717,
+              "spelling": {
+                "column": 3,
+                "file_id": 575,
+                "line": 293,
+                "offset": 7763,
+                "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                "valid": true
+              },
+              "valid": true
+            },
+            "original_spelling_strings": [
+              "lock ",
+              "xaddl",
+              " %1, %0"
+            ],
+            "source_function_decl": "0x57eb4364ded8",
+            "inline_context": {
+              "asm_debug_id": "18",
+              "inlined_at_debug_id": "21",
+              "wrapper_decl": "0x57eb4364ded8",
+              "worker_decl": "0x57eb436d1ba0",
+              "call_raw_location": 386
+            }
+          },
+          "slots": {
+            "pointer": "p0",
+            "value": "o1"
+          },
+          "llvm_sha256": "95faf3994ea1de2b04332e7630e4d1806134586e56df6518c31fd73dfbe2b480",
+          "llvm_line_index": 12,
+          "llvm_call": "  %3 = tail call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, ptr nonnull elementtype(i32) @x, i32 %2) #3, !dbg !18, !srcloc !22\n",
+          "result_ssa": "%3",
+          "bindings": {
+            "p0": "@x",
+            "o1": "%2"
+          },
+          "llvm_entry_conditions": [],
+          "result": "INTERFACE_MATCH",
+          "call_context": {
+            "begin_raw": 386,
+            "end_raw": 408
+          },
+          "worker_definition": "0x57eb436d1ba0",
+          "worker_name": "worker",
+          "instance_namespace": "port0_"
+        },
+        {
+          "source_sha256": "c024f0933b038d01c06af1c8ca4bad10346a28235b6fc7d754777869d938034d",
+          "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) : : \"memory\", \"cc\");",
+          "width": 32,
+          "register_output": 1,
+          "operands": [
+            {
+              "index": 0,
+              "constraint": "+m",
+              "output": true,
+              "memory": true,
+              "clang_type": {
+                "bits": 32,
+                "canonical": "unsigned int",
+                "integer": true,
+                "pointer": false,
+                "qualifiers": 0,
+                "spelled": "uint32_t",
+                "unsigned": true
+              }
+            },
+            {
+              "index": 1,
+              "constraint": "+q",
+              "output": true,
+              "memory": false,
+              "clang_type": {
+                "bits": 32,
+                "canonical": "unsigned int",
+                "integer": true,
+                "pointer": false,
+                "qualifiers": 0,
+                "spelled": "uint32_t",
+                "unsigned": true
+              }
+            }
+          ],
+          "line": 309,
+          "source_path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+          "host_source_path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+          "provenance": {
+            "all_ast_asm_sites": 188,
+            "cookies": [
+              2147751988
+            ],
+            "asm_location": {
+              "chain": [
+                {
+                  "argument_expansion": false,
+                  "caller_raw": 2147751574,
+                  "expansion_begin": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_begin_raw": 2147751574,
+                  "expansion_end": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_end_raw": 2147751597,
+                  "raw": 2147751717,
+                  "spelling": {
+                    "column": 3,
+                    "file_id": 575,
+                    "line": 293,
+                    "offset": 7763,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "spelling_raw": 235368
+                },
+                {
+                  "argument_expansion": false,
+                  "caller_raw": 235783,
+                  "expansion_begin": {
+                    "column": 1,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8178,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_begin_raw": 235783,
+                  "expansion_end": {
+                    "column": 34,
+                    "file_id": 575,
+                    "line": 309,
+                    "offset": 8211,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "expansion_end_raw": 235816,
+                  "raw": 2147751574,
+                  "spelling": {
+                    "column": 30,
+                    "file_id": 575,
+                    "line": 303,
+                    "offset": 8012,
+                    "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                    "valid": true
+                  },
+                  "spelling_raw": 235617
+                }
+              ],
+              "expansion": {
+                "column": 1,
+                "file_id": 575,
+                "line": 309,
+                "offset": 8178,
+                "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                "valid": true
+              },
+              "macro": true,
+              "raw": 2147751717,
+              "spelling": {
+                "column": 3,
+                "file_id": 575,
+                "line": 293,
+                "offset": 7763,
+                "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                "valid": true
+              },
+              "valid": true
+            },
+            "original_spelling_strings": [
+              "lock ",
+              "xaddl",
+              " %1, %0"
+            ],
+            "source_function_decl": "0x57eb4364ded8",
+            "inline_context": {
+              "asm_debug_id": "25",
+              "inlined_at_debug_id": "26",
+              "wrapper_decl": "0x57eb4364ded8",
+              "worker_decl": "0x57eb436d1ba0",
+              "call_raw_location": 545
+            }
+          },
+          "slots": {
+            "pointer": "p0",
+            "value": "o1"
+          },
+          "llvm_sha256": "95faf3994ea1de2b04332e7630e4d1806134586e56df6518c31fd73dfbe2b480",
+          "llvm_line_index": 17,
+          "llvm_call": "  %8 = tail call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, ptr nonnull elementtype(i32) @x, i32 %7) #3, !dbg !25, !srcloc !22\n",
+          "result_ssa": "%8",
+          "bindings": {
+            "p0": "@x",
+            "o1": "%7"
+          },
+          "llvm_entry_conditions": [],
+          "result": "INTERFACE_MATCH",
+          "call_context": {
+            "begin_raw": 545,
+            "end_raw": 571
+          },
+          "worker_definition": "0x57eb436d1ba0",
+          "worker_name": "worker",
+          "instance_namespace": "port1_"
+        }
+      ],
+      "ops": [
+        {
+          "kind": "read",
+          "object": "input_b",
+          "width": 32,
+          "value": "|pd-source-1:p1-open-read-0|"
+        },
+        {
+          "kind": "asm",
+          "pointer": "@x",
+          "input": "|pd-source-1:p1-open-read-0|",
+          "value": "|pd-source-1:p1-open-rmw-1|",
+          "interface": {
+            "source_sha256": "c024f0933b038d01c06af1c8ca4bad10346a28235b6fc7d754777869d938034d",
+            "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) : : \"memory\", \"cc\");",
+            "width": 32,
+            "register_output": 1,
+            "operands": [
+              {
+                "index": 0,
+                "constraint": "+m",
+                "output": true,
+                "memory": true,
+                "clang_type": {
+                  "bits": 32,
+                  "canonical": "unsigned int",
+                  "integer": true,
+                  "pointer": false,
+                  "qualifiers": 0,
+                  "spelled": "uint32_t",
+                  "unsigned": true
+                }
+              },
+              {
+                "index": 1,
+                "constraint": "+q",
+                "output": true,
+                "memory": false,
+                "clang_type": {
+                  "bits": 32,
+                  "canonical": "unsigned int",
+                  "integer": true,
+                  "pointer": false,
+                  "qualifiers": 0,
+                  "spelled": "uint32_t",
+                  "unsigned": true
+                }
+              }
+            ],
+            "line": 309,
+            "source_path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+            "host_source_path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+            "provenance": {
+              "all_ast_asm_sites": 188,
+              "cookies": [
+                2147751988
+              ],
+              "asm_location": {
+                "chain": [
+                  {
+                    "argument_expansion": false,
+                    "caller_raw": 2147751574,
+                    "expansion_begin": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_begin_raw": 2147751574,
+                    "expansion_end": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_end_raw": 2147751597,
+                    "raw": 2147751717,
+                    "spelling": {
+                      "column": 3,
+                      "file_id": 575,
+                      "line": 293,
+                      "offset": 7763,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "spelling_raw": 235368
+                  },
+                  {
+                    "argument_expansion": false,
+                    "caller_raw": 235783,
+                    "expansion_begin": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_begin_raw": 235783,
+                    "expansion_end": {
+                      "column": 34,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8211,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_end_raw": 235816,
+                    "raw": 2147751574,
+                    "spelling": {
+                      "column": 30,
+                      "file_id": 575,
+                      "line": 303,
+                      "offset": 8012,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "spelling_raw": 235617
+                  }
+                ],
+                "expansion": {
+                  "column": 1,
+                  "file_id": 575,
+                  "line": 309,
+                  "offset": 8178,
+                  "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                  "valid": true
+                },
+                "macro": true,
+                "raw": 2147751717,
+                "spelling": {
+                  "column": 3,
+                  "file_id": 575,
+                  "line": 293,
+                  "offset": 7763,
+                  "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                  "valid": true
+                },
+                "valid": true
+              },
+              "original_spelling_strings": [
+                "lock ",
+                "xaddl",
+                " %1, %0"
+              ],
+              "source_function_decl": "0x57eb4364ded8",
+              "inline_context": {
+                "asm_debug_id": "18",
+                "inlined_at_debug_id": "21",
+                "wrapper_decl": "0x57eb4364ded8",
+                "worker_decl": "0x57eb436d1ba0",
+                "call_raw_location": 386
+              }
+            },
+            "slots": {
+              "pointer": "p0",
+              "value": "o1"
+            },
+            "llvm_sha256": "95faf3994ea1de2b04332e7630e4d1806134586e56df6518c31fd73dfbe2b480",
+            "llvm_line_index": 12,
+            "llvm_call": "  %3 = tail call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, ptr nonnull elementtype(i32) @x, i32 %2) #3, !dbg !18, !srcloc !22\n",
+            "result_ssa": "%3",
+            "bindings": {
+              "p0": "@x",
+              "o1": "%2"
+            },
+            "llvm_entry_conditions": [],
+            "result": "INTERFACE_MATCH",
+            "call_context": {
+              "begin_raw": 386,
+              "end_raw": 408
+            },
+            "worker_definition": "0x57eb436d1ba0",
+            "worker_name": "worker",
+            "instance_namespace": "port0_"
+          }
+        },
+        {
+          "kind": "read",
+          "object": "input_b",
+          "width": 32,
+          "value": "|pd-source-1:p1-open-read-2|"
+        },
+        {
+          "kind": "asm",
+          "pointer": "@x",
+          "input": "(ite (= #x00000002 |pd-source-1:p1-open-read-2|)\n     (bvadd |pd-source-1:p1-open-read-0| |pd-source-1:p1-open-rmw-1|)\n     |pd-source-1:p1-open-rmw-1|)",
+          "value": "|pd-source-1:p1-open-rmw-3|",
+          "interface": {
+            "source_sha256": "c024f0933b038d01c06af1c8ca4bad10346a28235b6fc7d754777869d938034d",
+            "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) : : \"memory\", \"cc\");",
+            "width": 32,
+            "register_output": 1,
+            "operands": [
+              {
+                "index": 0,
+                "constraint": "+m",
+                "output": true,
+                "memory": true,
+                "clang_type": {
+                  "bits": 32,
+                  "canonical": "unsigned int",
+                  "integer": true,
+                  "pointer": false,
+                  "qualifiers": 0,
+                  "spelled": "uint32_t",
+                  "unsigned": true
+                }
+              },
+              {
+                "index": 1,
+                "constraint": "+q",
+                "output": true,
+                "memory": false,
+                "clang_type": {
+                  "bits": 32,
+                  "canonical": "unsigned int",
+                  "integer": true,
+                  "pointer": false,
+                  "qualifiers": 0,
+                  "spelled": "uint32_t",
+                  "unsigned": true
+                }
+              }
+            ],
+            "line": 309,
+            "source_path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+            "host_source_path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+            "provenance": {
+              "all_ast_asm_sites": 188,
+              "cookies": [
+                2147751988
+              ],
+              "asm_location": {
+                "chain": [
+                  {
+                    "argument_expansion": false,
+                    "caller_raw": 2147751574,
+                    "expansion_begin": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_begin_raw": 2147751574,
+                    "expansion_end": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_end_raw": 2147751597,
+                    "raw": 2147751717,
+                    "spelling": {
+                      "column": 3,
+                      "file_id": 575,
+                      "line": 293,
+                      "offset": 7763,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "spelling_raw": 235368
+                  },
+                  {
+                    "argument_expansion": false,
+                    "caller_raw": 235783,
+                    "expansion_begin": {
+                      "column": 1,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8178,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_begin_raw": 235783,
+                    "expansion_end": {
+                      "column": 34,
+                      "file_id": 575,
+                      "line": 309,
+                      "offset": 8211,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "expansion_end_raw": 235816,
+                    "raw": 2147751574,
+                    "spelling": {
+                      "column": 30,
+                      "file_id": 575,
+                      "line": 303,
+                      "offset": 8012,
+                      "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                      "valid": true
+                    },
+                    "spelling_raw": 235617
+                  }
+                ],
+                "expansion": {
+                  "column": 1,
+                  "file_id": 575,
+                  "line": 309,
+                  "offset": 8178,
+                  "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                  "valid": true
+                },
+                "macro": true,
+                "raw": 2147751717,
+                "spelling": {
+                  "column": 3,
+                  "file_id": 575,
+                  "line": 293,
+                  "offset": 7763,
+                  "path": "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+                  "valid": true
+                },
+                "valid": true
+              },
+              "original_spelling_strings": [
+                "lock ",
+                "xaddl",
+                " %1, %0"
+              ],
+              "source_function_decl": "0x57eb4364ded8",
+              "inline_context": {
+                "asm_debug_id": "25",
+                "inlined_at_debug_id": "26",
+                "wrapper_decl": "0x57eb4364ded8",
+                "worker_decl": "0x57eb436d1ba0",
+                "call_raw_location": 545
+              }
+            },
+            "slots": {
+              "pointer": "p0",
+              "value": "o1"
+            },
+            "llvm_sha256": "95faf3994ea1de2b04332e7630e4d1806134586e56df6518c31fd73dfbe2b480",
+            "llvm_line_index": 17,
+            "llvm_call": "  %8 = tail call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, ptr nonnull elementtype(i32) @x, i32 %7) #3, !dbg !25, !srcloc !22\n",
+            "result_ssa": "%8",
+            "bindings": {
+              "p0": "@x",
+              "o1": "%7"
+            },
+            "llvm_entry_conditions": [],
+            "result": "INTERFACE_MATCH",
+            "call_context": {
+              "begin_raw": 545,
+              "end_raw": 571
+            },
+            "worker_definition": "0x57eb436d1ba0",
+            "worker_name": "worker",
+            "instance_namespace": "port1_"
+          }
+        },
+        {
+          "kind": "assert",
+          "condition": "(distinct (ite (= #x00000002 |pd-source-1:p1-open-read-2|)\n               |pd-source-1:p1-open-rmw-1|\n               |pd-source-1:p1-open-rmw-1|)\n          |pd-source-1:p1-open-rmw-3|)"
+        },
+        {
+          "kind": "assert",
+          "condition": "(distinct #x00000000 |pd-source-1:p1-open-rmw-3|)"
+        },
+        {
+          "kind": "assert",
+          "condition": "(distinct #x00000000\n          (ite (= #x00000002 |pd-source-1:p1-open-read-2|)\n               |pd-source-1:p1-open-read-2|\n               |pd-source-1:p1-open-read-2|))"
+        },
+        {
+          "kind": "return"
+        }
+      ]
+    }
+  ],
+  "scope": "finite unconditional FAA; typed pure if assignments; all statements consumed"
+}

@@ -106,7 +106,7 @@ def wrapper_interface(obs, receipt, buffers, module, source, worker, call, line_
     return interface, wrapper
 
 
-def source_worker(worker, wrapper, interface, argument, objects, obs, *, call_count=1):
+def source_worker(worker, wrapper, interface, argument, objects, obs, *, call_count=1, pure_conditionals=False):
     params = worker["parameters"]
     require(len(params) == 1 and signature_void(params[0]["type"])
             and signature_void(worker["return_type"]) and worker["body"]["kind"] == "CompoundStmt",
@@ -124,6 +124,10 @@ def source_worker(worker, wrapper, interface, argument, objects, obs, *, call_co
         if k == "ParenExpr":
             require(same_type(t, single(e)["type"]), "parenthesis type")
             return value(single(e))
+        if pure_conditionals and k == "BinaryOperator" and e["opcode"] == "+":
+            require(len(cs) == 2 and unsigned(t) and all(same_type(t, c["type"]) for c in cs),
+                    "unsigned modular addition types")
+            return value(cs[0]) + value(cs[1])
         if k == "IntegerLiteral":
             v = evaluate(e, {}, globals_)
             return z3.BitVecVal(int(v["value"]), t["bits"])
@@ -211,6 +215,42 @@ def source_worker(worker, wrapper, interface, argument, objects, obs, *, call_co
         elif st["kind"] == "ReturnStmt":
             require(i == len(body) - 1 and evaluate(single(st), {}, globals_)["value"] == "null", "worker return")
             ops.append({"kind": "return"})
+        elif pure_conditionals and st["kind"] == "IfStmt":
+            parts = children(st)
+            require(len(parts) in {2, 3}, "pure if shape")
+            cond = parts[0]
+            require(cond["kind"] == "BinaryOperator" and cond["opcode"] in {"==", "!="}
+                    and signature(cond["type"]) == ("int", 0, 32) and len(children(cond)) == 2
+                    and unsigned(children(cond)[0]["type"])
+                    and same_type(children(cond)[0]["type"], children(cond)[1]["type"]), "pure if condition type")
+            def local_only(e):
+                require(not any(n["kind"] == "CallExpr" or (n["kind"] == "UnaryOperator" and n["opcode"] == "*")
+                                or (n["kind"] == "DeclRefExpr" and n["decl"] in globals_) for n in walk(e)),
+                        "pure conditional contains memory/call")
+            local_only(cond)
+            a, b = [value(c) for c in children(cond)]
+            test = a == b if cond["opcode"] == "==" else a != b
+            entry, after = dict(env), []
+            before_effects = len(ops)
+            for arm in [parts[1], parts[2] if len(parts) == 3 else None]:
+                env.clear(); env.update(entry)
+                if arm is not None:
+                    require(arm["kind"] == "CompoundStmt", "pure if compound arm")
+                    for assignment in children(arm):
+                        cs = children(assignment)
+                        require(assignment["kind"] == "BinaryOperator" and assignment["opcode"] == "="
+                                and len(cs) == 2 and cs[0]["kind"] == "DeclRefExpr" and not children(cs[0])
+                                and cs[0]["decl"] in env, "pure if assignment")
+                        ident = cs[0]["decl"]; ty, _ = env[ident]
+                        require(unsigned(ty) and all(same_type(ty, c["type"]) for c in cs)
+                                and same_type(ty, assignment["type"]), "pure if assignment types")
+                        local_only(cs[1]); env[ident] = ty, value(cs[1])
+                after.append(dict(env))
+            require(len(ops) == before_effects and all(set(e) == set(entry) for e in after), "pure branch changed effects/scope")
+            env.clear()
+            for ident, (ty, old) in entry.items():
+                t, f = after[0][ident][1], after[1][ident][1]
+                env[ident] = ty, z3.If(test, t, f) if unsigned(ty) else old
         else:
             raise Reject("unconsumed C worker statement")
     require(ops and ops[-1]["kind"] == "return" and any(o["kind"] == "assert" for o in ops),
@@ -457,9 +497,14 @@ def qexpr(x, env):
     return core_expr(x, env)
 
 
-def program_workers(q, prepared, out):
+def program_workers(q, prepared, out, *, collect_only=False):
     report = {"result": "REJECT", "program_verdict_eligible": False}
-    proof = Obligations(report)
+    if collect_only:
+        from certification.property_obligations import Collector
+        proof = Collector(report)
+    else:
+        proof = Obligations(report)
+    read_bindings = []
     try:
         require(q["format"] == "dat3m-core-snapshot-v1" and q["arch"] == "TSO", "actual Q target")
         worker_names = {a["worker"] for a in prepared["activations"]}
@@ -548,6 +593,8 @@ def program_workers(q, prepared, out):
                     require(set(e["tags"]) == {"M", "R", "_"} and e["width"] == op["width"], "ordinary read tags/width")
                     proof.prove(f"thread-{thread['id']}-read-{oi}-address", qexpr(e["addr"], env) == obj("@" + op["object"]))
                     writer(e, op["value"])
+                    read_bindings.append({"event":e["id"], "thread":thread["id"], "object":op["object"],
+                                          "width":op["width"], "variable":op["value"].sexpr(), "kind":"ordinary"})
                 elif op["kind"] == "asm":
                     interface = op["interface"]
                     rd = take("Load")
@@ -555,6 +602,8 @@ def program_workers(q, prepared, out):
                             and rd["width"] == interface["width"], "RMW read width/labels")
                     proof.prove(f"thread-{thread['id']}-asm-{oi}-read-address", qexpr(rd["addr"], env) == obj(op["pointer"]))
                     writer(rd, op["value"])
+                    read_bindings.append({"event":rd["id"], "thread":thread["id"], "object":op["pointer"][1:],
+                                          "width":interface["width"], "variable":op["value"].sexpr(), "kind":"RMW"})
                     wr = take("RMWStore")
                     require(set(wr["tags"]) == {"A", "M", "W", "RMW", "_"}
                             and wr["width"] == interface["width"] and wr["rmw_load"] == rd["id"],
@@ -581,7 +630,10 @@ def program_workers(q, prepared, out):
                                          "llvm_line_index": interface["llvm_line_index"],
                                          "read": rd["id"], "write": wr["id"],
                                          "actual_read_register": rd["writes"], "input": op["input"].sexpr(),
-                                         "output": op["value"].sexpr(), "result": "OPEN_RMW_EXACT"})
+                                         "output": op["value"].sexpr(), "result": "RMW_OBLIGATIONS_PENDING" if collect_only else "OPEN_RMW_EXACT"})
+                    if collect_only:
+                        certificates[-1].update(object=op["pointer"][1:], write_value_obligation=prefix+"-write-value",
+                                                reference_return_obligation=prefix+"-reference-return")
                 elif op["kind"] == "assert":
                     e = take("Assert")
                     require(e["error_message"] == "user assertion", "worker monitor role")
@@ -596,12 +648,14 @@ def program_workers(q, prepared, out):
         endpoints = [e for c in certificates for e in (c["read"], c["write"])]
         require(len(actual) == len(expected_coverage) and set(actual) == expected_coverage and len(set(endpoints)) == len(endpoints),
                 "complete disjoint static-call by activation product")
-        report.update(result="TYPED_WORKERS_EXACT", actual_worker_threads=[t["id"] for t in threads],
+        report.update(result="WORKER_OBLIGATIONS_PENDING" if collect_only else "TYPED_WORKERS_EXACT", actual_worker_threads=[t["id"] for t in threads],
                       continuations=continuations, regions=certificates,
                       scope={"functions": sorted(worker_names), "coverage": "dependent-create-call-union"})
     except Exception as error:
         report["reason"] = str(error)
+    if collect_only: report["read_bindings"] = read_bindings
     save_certificate(out, report)
+    if collect_only: report["_equations"] = proof.equations
     return report
 
 

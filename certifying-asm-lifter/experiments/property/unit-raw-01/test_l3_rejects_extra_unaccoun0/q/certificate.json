@@ -1,0 +1,408 @@
+{
+  "result": "TYPED_WORKERS_EXACT",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "thread-argument-1",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x53 (= |object:input_a| |object:input_a|)))\n(not $x53)))\n(check-sat)\n",
+      "file": "000-thread-argument-1.smt2",
+      "smt_sha256": "2dd690fad07ba2df67e77ef10ec1bad7bd5c1770845c7f0351d0d94f26cdf5e9"
+    },
+    {
+      "name": "startup-1",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x69 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x69)))\n(check-sat)\n",
+      "file": "001-startup-1.smt2",
+      "smt_sha256": "711fb044d426eff9ccc374b769083a2c0a40e756fc1e2f3ff4f3a3b8eca9d586"
+    },
+    {
+      "name": "completion-1",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x79 (bvand completion (_ bv2 2))))\n(let (($x76 (= ?x79 ?x79)))\n(not $x76))))\n(check-sat)\n",
+      "file": "002-completion-1.smt2",
+      "smt_sha256": "aa8bc38e46ef4c50fadbef71f3c3153712cb631c9099136dd1c7dee479c012dc"
+    },
+    {
+      "name": "thread-1-read-0-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x74 (= |object:input_a| |object:input_a|)))\n(not $x74)))\n(check-sat)\n",
+      "file": "003-thread-1-read-0-address.smt2",
+      "smt_sha256": "1af281b455660f2a347b1a902e1b6b6139dfebaef6cf52a16772dd1e8794836f"
+    },
+    {
+      "name": "thread-1-asm-1-read-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x25 (= |object:x| |object:x|)))\n(not $x25)))\n(check-sat)\n",
+      "file": "004-thread-1-asm-1-read-address.smt2",
+      "smt_sha256": "d42b01960aad0e0f267d7b40c63c1610844f5c0b0c29a6a4b73ab8a513593b51"
+    },
+    {
+      "name": "thread-1-asm-1-write-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x25 (= |object:x| |object:x|)))\n(not $x25)))\n(check-sat)\n",
+      "file": "005-thread-1-asm-1-write-address.smt2",
+      "smt_sha256": "d42b01960aad0e0f267d7b40c63c1610844f5c0b0c29a6a4b73ab8a513593b51"
+    },
+    {
+      "name": "thread-1-asm-1-write-value",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-1:llvm-create-0-read-0| () (_ BitVec 32))\n(declare-fun |activation-1:llvm-create-0-read-1| () (_ BitVec 32))\n(assert\n (let ((?x104 (bvadd |activation-1:llvm-create-0-read-1| |activation-1:llvm-create-0-read-0|)))\n(let (($x107 (= ?x104 ?x104)))\n(not $x107))))\n(check-sat)\n",
+      "file": "006-thread-1-asm-1-write-value.smt2",
+      "smt_sha256": "0ea5dc232c3fb7b37b2f4820e7cc77a2ff8b29616f94dc5f137932d89a3675ba"
+    },
+    {
+      "name": "thread-1-asm-1-write-presence",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n",
+      "file": "007-thread-1-asm-1-write-presence.smt2",
+      "smt_sha256": "53c3f760452fe1a373012ddac61ac4948c1c7a3e2254e0d478c2ee8abbd13cff"
+    },
+    {
+      "name": "thread-1-asm-1-reference-return",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-1:llvm-create-0-read-1| () (_ BitVec 32))\n(assert\n (let (($x50 (= |activation-1:llvm-create-0-read-1| |activation-1:llvm-create-0-read-1|)))\n(not $x50)))\n(check-sat)\n",
+      "file": "008-thread-1-asm-1-reference-return.smt2",
+      "smt_sha256": "823a901036c3955cee6f9fda0c982c6edb81d4ab96a12151152401357cf835fd"
+    },
+    {
+      "name": "thread-1-read-2-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x77 (= |object:input_a| |object:input_a|)))\n(not $x77)))\n(check-sat)\n",
+      "file": "009-thread-1-read-2-address.smt2",
+      "smt_sha256": "069ae06a08b8e2c0cefb781ab7363ea63a4a4db9e11f9c28abb2d7fc85506e13"
+    },
+    {
+      "name": "thread-1-asm-3-read-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x74 (= |object:x| |object:x|)))\n(not $x74)))\n(check-sat)\n",
+      "file": "010-thread-1-asm-3-read-address.smt2",
+      "smt_sha256": "66fe70e662fb41480f011eb19bfd294b33506f215586735cf6a24818833df586"
+    },
+    {
+      "name": "thread-1-asm-3-write-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x74 (= |object:x| |object:x|)))\n(not $x74)))\n(check-sat)\n",
+      "file": "011-thread-1-asm-3-write-address.smt2",
+      "smt_sha256": "66fe70e662fb41480f011eb19bfd294b33506f215586735cf6a24818833df586"
+    },
+    {
+      "name": "thread-1-asm-3-write-value",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-1:llvm-create-0-read-1| () (_ BitVec 32))\n(declare-fun |activation-1:llvm-create-0-read-0| () (_ BitVec 32))\n(declare-fun |activation-1:llvm-create-0-read-2| () (_ BitVec 32))\n(declare-fun |activation-1:llvm-create-0-read-3| () (_ BitVec 32))\n(assert\n (let ((?x67 (ite (= (ite (= (_ bv2 32) |activation-1:llvm-create-0-read-2|) (_ bv1 1) (_ bv0 1)) (_ bv1 1)) |activation-1:llvm-create-0-read-0| (_ bv0 32))))\n(let ((?x68 (bvadd ?x67 |activation-1:llvm-create-0-read-1|)))\n(let ((?x102 (bvadd |activation-1:llvm-create-0-read-3| |activation-1:llvm-create-0-read-1|)))\n(let ((?x96 (bvadd |activation-1:llvm-create-0-read-0| |activation-1:llvm-create-0-read-1|)))\n(let (($x110 (= (_ bv2 32) |activation-1:llvm-create-0-read-2|)))\n(let (($x104 (= (ite $x110 (bvadd |activation-1:llvm-create-0-read-3| ?x96) ?x102) (bvadd |activation-1:llvm-create-0-read-3| ?x68))))\n(not $x104))))))))\n(check-sat)\n",
+      "file": "012-thread-1-asm-3-write-value.smt2",
+      "smt_sha256": "36285395cdc5722914567a359663aabd73e8fee15340b70dc5a604d4ac259995"
+    },
+    {
+      "name": "thread-1-asm-3-write-presence",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n",
+      "file": "013-thread-1-asm-3-write-presence.smt2",
+      "smt_sha256": "53c3f760452fe1a373012ddac61ac4948c1c7a3e2254e0d478c2ee8abbd13cff"
+    },
+    {
+      "name": "thread-1-asm-3-reference-return",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-1:llvm-create-0-read-3| () (_ BitVec 32))\n(assert\n (let (($x121 (= |activation-1:llvm-create-0-read-3| |activation-1:llvm-create-0-read-3|)))\n(not $x121)))\n(check-sat)\n",
+      "file": "014-thread-1-asm-3-reference-return.smt2",
+      "smt_sha256": "e8d5fd1141a43e8aa536b999aaff525f867e8b3f9477eb97232549a6f8b05610"
+    },
+    {
+      "name": "thread-1-monitor-50",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-1:llvm-create-0-read-3| () (_ BitVec 32))\n(declare-fun |activation-1:llvm-create-0-read-1| () (_ BitVec 32))\n(assert\n (let (($x81 (and (distinct |activation-1:llvm-create-0-read-1| |activation-1:llvm-create-0-read-3|) true)))\n(let (($x53 (and (distinct ((_ zero_extend 31) (ite $x81 (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(let (($x91 (= $x81 $x53)))\n(not $x91)))))\n(check-sat)\n",
+      "file": "015-thread-1-monitor-50.smt2",
+      "smt_sha256": "7c4b4a37565bfe8ed50cda4afe327805e887d377d8c8059d2fad53f60e3724b1"
+    },
+    {
+      "name": "thread-1-monitor-53",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-1:llvm-create-0-read-3| () (_ BitVec 32))\n(assert\n (let ((?x33 ((_ zero_extend 31) (ite (and (distinct (_ bv0 32) |activation-1:llvm-create-0-read-3|) true) (_ bv1 1) (_ bv0 1)))))\n(let (($x18 (and (distinct ?x33 (_ bv0 32)) true)))\n(let (($x63 (and (distinct (_ bv0 32) |activation-1:llvm-create-0-read-3|) true)))\n(let (($x83 (= $x63 $x18)))\n(not $x83))))))\n(check-sat)\n",
+      "file": "016-thread-1-monitor-53.smt2",
+      "smt_sha256": "b49bbc70b8ddf5a71a9672b60edd72f060cd91c97db7768a92c3fe5d33888a4e"
+    },
+    {
+      "name": "thread-1-monitor-56",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-1:llvm-create-0-read-2| () (_ BitVec 32))\n(assert\n (let ((?x72 ((_ zero_extend 31) (ite (and (distinct (_ bv0 32) |activation-1:llvm-create-0-read-2|) true) (_ bv1 1) (_ bv0 1)))))\n(let (($x73 (and (distinct ?x72 (_ bv0 32)) true)))\n(let (($x40 (and (distinct (_ bv0 32) |activation-1:llvm-create-0-read-2|) true)))\n(let (($x89 (= $x40 $x73)))\n(not $x89))))))\n(check-sat)\n",
+      "file": "017-thread-1-monitor-56.smt2",
+      "smt_sha256": "29c30e990ca99d6dca3830c606e61472ad07adf8c5418fc197bab21c708ec6b4"
+    },
+    {
+      "name": "thread-argument-2",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x98 (= |object:input_b| |object:input_b|)))\n(not $x98)))\n(check-sat)\n",
+      "file": "018-thread-argument-2.smt2",
+      "smt_sha256": "d450d92faa4bb4688da0a5e7024348ad9e366181d2bc9d5db0d75f309a182bab"
+    },
+    {
+      "name": "startup-2",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x83 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x83)))\n(check-sat)\n",
+      "file": "019-startup-2.smt2",
+      "smt_sha256": "77995e8f4e8c498b90ab4e8c5489fd21b6c5cba48f94a37cd51dee3a4edd81c2"
+    },
+    {
+      "name": "completion-2",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x103 (bvand completion (_ bv2 2))))\n(let (($x88 (= ?x103 ?x103)))\n(not $x88))))\n(check-sat)\n",
+      "file": "020-completion-2.smt2",
+      "smt_sha256": "e07f5ee7b646373f22a726897ca4666a655cb590e1b25c25ca7add81d6567d90"
+    },
+    {
+      "name": "thread-2-read-0-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x81 (= |object:input_b| |object:input_b|)))\n(not $x81)))\n(check-sat)\n",
+      "file": "021-thread-2-read-0-address.smt2",
+      "smt_sha256": "3029dc35bad65e300a31748afae2f0687fad7cf73cea93f278149acd8e8cd6d3"
+    },
+    {
+      "name": "thread-2-asm-1-read-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x33 (= |object:x| |object:x|)))\n(not $x33)))\n(check-sat)\n",
+      "file": "022-thread-2-asm-1-read-address.smt2",
+      "smt_sha256": "4bd764108001fca14aeb66a00b33d427efdf6c1e91674ef9f6f7ebc90f4df823"
+    },
+    {
+      "name": "thread-2-asm-1-write-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x33 (= |object:x| |object:x|)))\n(not $x33)))\n(check-sat)\n",
+      "file": "023-thread-2-asm-1-write-address.smt2",
+      "smt_sha256": "4bd764108001fca14aeb66a00b33d427efdf6c1e91674ef9f6f7ebc90f4df823"
+    },
+    {
+      "name": "thread-2-asm-1-write-value",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-2:llvm-create-1-read-0| () (_ BitVec 32))\n(declare-fun |activation-2:llvm-create-1-read-1| () (_ BitVec 32))\n(assert\n (let ((?x111 (bvadd |activation-2:llvm-create-1-read-1| |activation-2:llvm-create-1-read-0|)))\n(let (($x36 (= ?x111 ?x111)))\n(not $x36))))\n(check-sat)\n",
+      "file": "024-thread-2-asm-1-write-value.smt2",
+      "smt_sha256": "bac1a572e4e3f4021513cfa34004607c8233c63a62d463e6c937df468828c4f3"
+    },
+    {
+      "name": "thread-2-asm-1-write-presence",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n",
+      "file": "025-thread-2-asm-1-write-presence.smt2",
+      "smt_sha256": "53c3f760452fe1a373012ddac61ac4948c1c7a3e2254e0d478c2ee8abbd13cff"
+    },
+    {
+      "name": "thread-2-asm-1-reference-return",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-2:llvm-create-1-read-1| () (_ BitVec 32))\n(assert\n (let (($x65 (= |activation-2:llvm-create-1-read-1| |activation-2:llvm-create-1-read-1|)))\n(not $x65)))\n(check-sat)\n",
+      "file": "026-thread-2-asm-1-reference-return.smt2",
+      "smt_sha256": "57fc932a6a4ecce9878032f511bf9e319234b6b0874b8c788fd09239b7e61e32"
+    },
+    {
+      "name": "thread-2-read-2-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x66 (= |object:input_b| |object:input_b|)))\n(not $x66)))\n(check-sat)\n",
+      "file": "027-thread-2-read-2-address.smt2",
+      "smt_sha256": "156a04f5219ccdf2c5b7787eebe025a1b761be6b9f931710de5fbe8efd6410ca"
+    },
+    {
+      "name": "thread-2-asm-3-read-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x53 (= |object:x| |object:x|)))\n(not $x53)))\n(check-sat)\n",
+      "file": "028-thread-2-asm-3-read-address.smt2",
+      "smt_sha256": "c5194ddd3bd76d299bd5dd3090197423c2f07fe27a01de4c4664cc93f50b5667"
+    },
+    {
+      "name": "thread-2-asm-3-write-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x53 (= |object:x| |object:x|)))\n(not $x53)))\n(check-sat)\n",
+      "file": "029-thread-2-asm-3-write-address.smt2",
+      "smt_sha256": "c5194ddd3bd76d299bd5dd3090197423c2f07fe27a01de4c4664cc93f50b5667"
+    },
+    {
+      "name": "thread-2-asm-3-write-value",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-2:llvm-create-1-read-1| () (_ BitVec 32))\n(declare-fun |activation-2:llvm-create-1-read-0| () (_ BitVec 32))\n(declare-fun |activation-2:llvm-create-1-read-2| () (_ BitVec 32))\n(declare-fun |activation-2:llvm-create-1-read-3| () (_ BitVec 32))\n(assert\n (let ((?x50 (ite (= (ite (= (_ bv2 32) |activation-2:llvm-create-1-read-2|) (_ bv1 1) (_ bv0 1)) (_ bv1 1)) |activation-2:llvm-create-1-read-0| (_ bv0 32))))\n(let ((?x84 (bvadd ?x50 |activation-2:llvm-create-1-read-1|)))\n(let ((?x40 (bvadd |activation-2:llvm-create-1-read-3| |activation-2:llvm-create-1-read-1|)))\n(let ((?x88 (bvadd |activation-2:llvm-create-1-read-0| |activation-2:llvm-create-1-read-1|)))\n(let (($x87 (= (_ bv2 32) |activation-2:llvm-create-1-read-2|)))\n(let (($x111 (= (ite $x87 (bvadd |activation-2:llvm-create-1-read-3| ?x88) ?x40) (bvadd |activation-2:llvm-create-1-read-3| ?x84))))\n(not $x111))))))))\n(check-sat)\n",
+      "file": "030-thread-2-asm-3-write-value.smt2",
+      "smt_sha256": "5dee5908b6d91e8bec2e60067093fde48f62cf517b37070b0e9720e16ff2bb0b"
+    },
+    {
+      "name": "thread-2-asm-3-write-presence",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n",
+      "file": "031-thread-2-asm-3-write-presence.smt2",
+      "smt_sha256": "53c3f760452fe1a373012ddac61ac4948c1c7a3e2254e0d478c2ee8abbd13cff"
+    },
+    {
+      "name": "thread-2-asm-3-reference-return",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-2:llvm-create-1-read-3| () (_ BitVec 32))\n(assert\n (let (($x123 (= |activation-2:llvm-create-1-read-3| |activation-2:llvm-create-1-read-3|)))\n(not $x123)))\n(check-sat)\n",
+      "file": "032-thread-2-asm-3-reference-return.smt2",
+      "smt_sha256": "385e432baadebd6efa491c027797ca1e0eda7ef993216b5898ff00baa16a23c9"
+    },
+    {
+      "name": "thread-2-monitor-73",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-2:llvm-create-1-read-3| () (_ BitVec 32))\n(declare-fun |activation-2:llvm-create-1-read-1| () (_ BitVec 32))\n(assert\n (let (($x102 (and (distinct |activation-2:llvm-create-1-read-1| |activation-2:llvm-create-1-read-3|) true)))\n(let (($x120 (and (distinct ((_ zero_extend 31) (ite $x102 (_ bv1 1) (_ bv0 1))) (_ bv0 32)) true)))\n(let (($x96 (= $x102 $x120)))\n(not $x96)))))\n(check-sat)\n",
+      "file": "033-thread-2-monitor-73.smt2",
+      "smt_sha256": "42f7feecccb780c5fef7100427e3d2f8b357445f15f9e04358c17fd93ff68fc9"
+    },
+    {
+      "name": "thread-2-monitor-76",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-2:llvm-create-1-read-3| () (_ BitVec 32))\n(assert\n (let ((?x77 ((_ zero_extend 31) (ite (and (distinct (_ bv0 32) |activation-2:llvm-create-1-read-3|) true) (_ bv1 1) (_ bv0 1)))))\n(let (($x100 (and (distinct ?x77 (_ bv0 32)) true)))\n(let (($x98 (and (distinct (_ bv0 32) |activation-2:llvm-create-1-read-3|) true)))\n(let (($x83 (= $x98 $x100)))\n(not $x83))))))\n(check-sat)\n",
+      "file": "034-thread-2-monitor-76.smt2",
+      "smt_sha256": "4953ce7f3ff49b0621e9d5ffeebf050c8b50bb71b019550a460287103bdd6ce2"
+    },
+    {
+      "name": "thread-2-monitor-79",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |activation-2:llvm-create-1-read-2| () (_ BitVec 32))\n(assert\n (let ((?x74 ((_ zero_extend 31) (ite (and (distinct (_ bv0 32) |activation-2:llvm-create-1-read-2|) true) (_ bv1 1) (_ bv0 1)))))\n(let (($x121 (and (distinct ?x74 (_ bv0 32)) true)))\n(let (($x105 (and (distinct (_ bv0 32) |activation-2:llvm-create-1-read-2|) true)))\n(let (($x91 (= $x105 $x121)))\n(not $x91))))))\n(check-sat)\n",
+      "file": "035-thread-2-monitor-79.smt2",
+      "smt_sha256": "7c6d1e2cf9824448cd2b0ba97f94c79e96a291701735f10a60f541e2378d61a4"
+    }
+  ],
+  "actual_worker_threads": [
+    1,
+    2
+  ],
+  "continuations": [
+    {
+      "thread": 1,
+      "assertion_events": [
+        50,
+        53,
+        56
+      ]
+    },
+    {
+      "thread": 2,
+      "assertion_events": [
+        73,
+        76,
+        79
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "thread": 1,
+      "source_operation": 1,
+      "create_index": 0,
+      "worker_definition": "0x57eb436d1ba0",
+      "worker_name": "worker",
+      "call_context": {
+        "begin_raw": 386,
+        "end_raw": 408
+      },
+      "llvm_line_index": 12,
+      "read": 44,
+      "write": 45,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_c024f0933b03_port0_0"
+      },
+      "input": "|activation-1:llvm-create-0-read-0|",
+      "output": "|activation-1:llvm-create-0-read-1|",
+      "result": "OPEN_RMW_EXACT"
+    },
+    {
+      "thread": 1,
+      "source_operation": 3,
+      "create_index": 0,
+      "worker_definition": "0x57eb436d1ba0",
+      "worker_name": "worker",
+      "call_context": {
+        "begin_raw": 545,
+        "end_raw": 571
+      },
+      "llvm_line_index": 17,
+      "read": 47,
+      "write": 48,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_c024f0933b03_port1_0"
+      },
+      "input": "(let ((a!1 (ite (= (ite (= #x00000002 |activation-1:llvm-create-0-read-2|)\n                        #b1\n                        #b0)\n                   #b1)\n                |activation-1:llvm-create-0-read-0|\n                #x00000000)))\n  (bvadd a!1 |activation-1:llvm-create-0-read-1|))",
+      "output": "|activation-1:llvm-create-0-read-3|",
+      "result": "OPEN_RMW_EXACT"
+    },
+    {
+      "thread": 2,
+      "source_operation": 1,
+      "create_index": 1,
+      "worker_definition": "0x57eb436d1ba0",
+      "worker_name": "worker",
+      "call_context": {
+        "begin_raw": 386,
+        "end_raw": 408
+      },
+      "llvm_line_index": 12,
+      "read": 67,
+      "write": 68,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_c024f0933b03_port0_0"
+      },
+      "input": "|activation-2:llvm-create-1-read-0|",
+      "output": "|activation-2:llvm-create-1-read-1|",
+      "result": "OPEN_RMW_EXACT"
+    },
+    {
+      "thread": 2,
+      "source_operation": 3,
+      "create_index": 1,
+      "worker_definition": "0x57eb436d1ba0",
+      "worker_name": "worker",
+      "call_context": {
+        "begin_raw": 545,
+        "end_raw": 571
+      },
+      "llvm_line_index": 17,
+      "read": 70,
+      "write": 71,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_c024f0933b03_port1_0"
+      },
+      "input": "(let ((a!1 (ite (= (ite (= #x00000002 |activation-2:llvm-create-1-read-2|)\n                        #b1\n                        #b0)\n                   #b1)\n                |activation-2:llvm-create-1-read-0|\n                #x00000000)))\n  (bvadd a!1 |activation-2:llvm-create-1-read-1|))",
+      "output": "|activation-2:llvm-create-1-read-3|",
+      "result": "OPEN_RMW_EXACT"
+    }
+  ],
+  "scope": {
+    "functions": [
+      "worker"
+    ],
+    "coverage": "dependent-create-call-union"
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "result": "BOUND_SAFETY_QUERY_SAT",
+  "program_verdict_eligible": false,
+  "semantic_encoder_contract": "Gamma_encode / ENC-minus remains external",
+  "obligations": [
+    {
+      "name": "assumed-property-binding",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |r2(61)| () (_ BitVec 32))\n(declare-fun |cf 0| () Bool)\n(declare-fun |rcert_8feab541ae78_port0_0(47)| () (_ BitVec 32))\n(declare-fun |r9(35)| () (_ BitVec 32))\n(declare-fun |cf 30| () Bool)\n(declare-fun |__joinStatus#1(31)| () (_ BitVec 8))\n(declare-fun |__joinStatus#0(19)| () (_ BitVec 8))\n(declare-fun |cf 18| () Bool)\n(declare-fun |Program specification| () Bool)\n(declare-fun DAT3M_spec_assumption () Bool)\n(assert\n (let (($x13 (and (=> |cf 18| (not (= |__joinStatus#0(19)| (_ bv1 8)))) (=> |cf 30| (not (= |__joinStatus#1(31)| (_ bv1 8)))) (=> |cf 30| (= |r9(35)| (_ bv0 32))) (=> |cf 0| (not (= |rcert_8feab541ae78_port0_0(47)| (_ bv0 32)))) (=> |cf 0| (not (= |r2(61)| (_ bv0 32)))))))\n(let (($x73 (not |Program specification|)))\n(let (($x49 (and $x73 (=> $x73 (not $x13)))))\n(let (($x33 (and $x49)))\n(let (($x15 (and (=> DAT3M_spec_assumption $x49))))\n(let (($x74 (= $x15 (=> DAT3M_spec_assumption $x33))))\n(not $x74))))))))\n(check-sat)\n",
+      "file": "000-assumed-property-binding.smt2",
+      "smt_sha256": "7da57b087a3c515df47f3ba18b4e6e7e61f1be63cc5c59219bf25288ebcfc7f8"
+    },
+    {
+      "name": "property-covers-exact-actual-monitors",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |r2(61)| () (_ BitVec 32))\n(declare-fun |cf 0| () Bool)\n(declare-fun |rcert_8feab541ae78_port0_0(47)| () (_ BitVec 32))\n(declare-fun |r9(35)| () (_ BitVec 32))\n(declare-fun |cf 30| () Bool)\n(declare-fun |__joinStatus#1(31)| () (_ BitVec 8))\n(declare-fun |__joinStatus#0(19)| () (_ BitVec 8))\n(declare-fun |cf 18| () Bool)\n(assert\n (let (($x1263 (and |cf 0|)))\n(let (($x59 (or (and (and |cf 18|) (not (and (not (= |__joinStatus#0(19)| (_ bv1 8)))))) (and (and |cf 30|) (not (and (not (= |__joinStatus#1(31)| (_ bv1 8)))))) (and (and |cf 30|) (not (and (= |r9(35)| (_ bv0 32))))) (and $x1263 (not (and (not (= |rcert_8feab541ae78_port0_0(47)| (_ bv0 32)))))) (and $x1263 (not (and (not (= |r2(61)| (_ bv0 32)))))))))\n(let (($x1041 (exists ((|Program specification| Bool) )(let (($x13 (and (=> |cf 18| (not (= |__joinStatus#0(19)| (_ bv1 8)))) (=> |cf 30| (not (= |__joinStatus#1(31)| (_ bv1 8)))) (=> |cf 30| (= |r9(35)| (_ bv0 32))) (=> |cf 0| (not (= |rcert_8feab541ae78_port0_0(47)| (_ bv0 32)))) (=> |cf 0| (not (= |r2(61)| (_ bv0 32)))))))\n(let (($x26 (not $x13)))\n(let (($x1076 (not |Program specification|)))\n(and (and $x1076 (=> $x1076 $x26)))))))\n))\n(let (($x1228 (= $x1041 $x59)))\n(not $x1228))))))\n(check-sat)\n",
+      "file": "001-property-covers-exact-actual-monitors.smt2",
+      "smt_sha256": "0ccb45be67c2f1691ebcafa24181121d6c65e216446c704d7a7984543aeeaac1"
+    },
+    {
+      "name": "actual-safety-assumption-binding",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun DAT3M_spec_assumption () Bool)\n(assert\n (let (($x21 (and DAT3M_spec_assumption)))\n(let (($x1228 (= $x21 DAT3M_spec_assumption)))\n(not $x1228))))\n(check-sat)\n",
+      "file": "002-actual-safety-assumption-binding.smt2",
+      "smt_sha256": "e012bbf2593e96e19a23bf421df08b218a64c919e8574e078d1237310d831543"
+    },
+    {
+      "name": "actual-query-stack-0",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun DAT3M_spec_assumption () Bool)\n(declare-fun |r2(61)| () (_ BitVec 32))\n(declare-fun |cf 0| () Bool)\n(declare-fun |rcert_8feab541ae78_port0_0(47)| () (_ BitVec 32))\n(declare-fun |r9(35)| () (_ BitVec 32))\n(declare-fun |cf 30| () Bool)\n(declare-fun |__joinStatus#1(31)| () (_ BitVec 8))\n(declare-fun |__joinStatus#0(19)| () (_ BitVec 8))\n(declare-fun |cf 18| () Bool)\n(declare-fun |Program specification| () Bool)\n(declare-fun |cycle ghb-tso 64 24| () Bool)\n(declare-fun |cycle ghb-tso 24 64| () Bool)\n(declare-fun |cycle ghb-tso 64 23| () Bool)\n(declare-fun |cycle ghb-tso 23 64| () Bool)\n(declare-fun |cycle ghb-tso 24 23| () Bool)\n(declare-fun |cycle ghb-tso 64 63| () Bool)\n(declare-fun |cycle ghb-tso 24 63| () Bool)\n(declare-fun |cycle ghb-tso 63 24| () Bool)\n(declare-fun |cycle ghb-tso 23 45| () Bool)\n(declare-fun |cycle ghb-tso 45 23| () Bool)\n(declare-fun |cycle ghb-tso 45 33| () Bool)\n(declare-fun |cycle ghb-tso 33 45| () Bool)\n(declare-fun |cycle ghb-tso 23 49| () Bool)\n(declare-fun |cycle ghb-tso 49 23| () Bool)\n(declare-fun |cycle ghb-tso 49 12| () Bool)\n(declare-fun |cycle ghb-tso 12 49| () Bool)\n(declare-fun |cycle ghb-tso 23 12| () Bool)\n(declare-fun |cycle ghb-tso 12 50| () Bool)\n(declare-fun |cycle ghb-tso 50 12| () Bool)\n(declare-fun |cycle ghb-tso 50 11| () Bool)\n(declare-fun |cycle ghb-tso 11 50| () Bool)\n(declare-fun |cycle ghb-tso 12 11| () Bool)\n(declare-fun |cycle ghb-tso 23 24| () Bool)\n(declare-fun |cycle ghb-tso 63 64| () Bool)\n(declare-fun |cycle ghb-tso 24 45| () Bool)\n(declare-fun |cycle ghb-tso 24 33| () Bool)\n(declare-fun |cycle ghb-tso 45 49| () Bool)\n(declare-fun |cycle ghb-tso 12 23| () Bool)\n(declare-fun |cycle ghb-tso 49 50| () Bool)\n(declare-fun |cycle ghb-tso 11 12| () Bool)\n(declare-fun |ghb-tso 64 24| () Bool)\n(declare-fun |ghb-tso 64 23| () Bool)\n(declare-fun |ghb-tso 63 24| () Bool)\n(declare-fun |ghb-tso 50 12| () Bool)\n(declare-fun |ghb-tso 50 11| () Bool)\n(declare-fun |ghb-tso 49 12| () Bool)\n(declare-fun |ghb-tso 45 33| () Bool)\n(declare-fun |ghb-tso 33 45| () Bool)\n(declare-fun |ghb-tso 24 64| () Bool)\n(declare-fun |ghb-tso 24 63| () Bool)\n(declare-fun |ghb-tso 23 64| () Bool)\n(declare-fun |ghb-tso 12 50| () Bool)\n(declare-fun |ghb-tso 12 49| () Bool)\n(declare-fun |ghb-tso 11 50| () Bool)\n(declare-fun |cycle po-loc $pipe com 63 24| () Bool)\n(declare-fun |cycle po-loc $pipe com 24 63| () Bool)\n(declare-fun |cycle po-loc $pipe com 24 64| () Bool)\n(declare-fun |cycle po-loc $pipe com 64 24| () Bool)\n(declare-fun |cycle po-loc $pipe com 64 23| () Bool)\n(declare-fun |cycle po-loc $pipe com 23 64| () Bool)\n(declare-fun |cycle po-loc $pipe com 24 23| () Bool)\n(declare-fun |cycle po-loc $pipe com 49 12| () Bool)\n(declare-fun |cycle po-loc $pipe com 12 49| () Bool)\n(declare-fun |cycle po-loc $pipe com 12 50| () Bool)\n(declare-fun |cycle po-loc $pipe com 50 12| () Bool)\n(declare-fun |cycle po-loc $pipe com 50 11| () Bool)\n(declare-fun |cycle po-loc $pipe com 11 50| () Bool)\n(declare-fun |cycle po-loc $pipe com 12 11| () Bool)\n(declare-fun |cycle po-loc $pipe com 45 33| () Bool)\n(declare-fun |cycle po-loc $pipe com 33 45| () Bool)\n(declare-fun |cycle po-loc $pipe com 63 64| () Bool)\n(declare-fun |cycle po-loc $pipe com 23 24| () Bool)\n(declare-fun |cycle po-loc $pipe com 49 50| () Bool)\n(declare-fun |cycle po-loc $pipe com 11 12| () Bool)\n(declare-fun |po-loc $pipe com 64 24| () Bool)\n(declare-fun |po-loc $pipe com 64 23| () Bool)\n(declare-fun |po-loc $pipe com 63 24| () Bool)\n(declare-fun |po-loc $pipe com 50 12| () Bool)\n(declare-fun |po-loc $pipe com 50 11| () Bool)\n(declare-fun |po-loc $pipe com 49 12| () Bool)\n(declare-fun |po-loc $pipe com 45 33| () Bool)\n(declare-fun |po-loc $pipe com 33 45| () Bool)\n(declare-fun |po-loc $pipe com 24 64| () Bool)\n(declare-fun |po-loc $pipe com 24 63| () Bool)\n(declare-fun |po-loc $pipe com 23 64| () Bool)\n(declare-fun |po-loc $pipe com 12 50| () Bool)\n(declare-fun |po-loc $pipe com 12 49| () Bool)\n(declare-fun |po-loc $pipe com 11 50| () Bool)\n(declare-fun |com-tso 64 24| () Bool)\n(declare-fun |com-tso 64 23| () Bool)\n(declare-fun |com-tso 63 24| () Bool)\n(declare-fun |com-tso 50 12| () Bool)\n(declare-fun |com-tso 50 11| () Bool)\n(declare-fun |com-tso 49 12| () Bool)\n(declare-fun |com-tso 45 33| () Bool)\n(declare-fun |com-tso 33 45| () Bool)\n(declare-fun |com-tso 24 64| () Bool)\n(declare-fun |com-tso 24 63| () Bool)\n(declare-fun |com-tso 23 64| () Bool)\n(declare-fun |com-tso 12 50| () Bool)\n(declare-fun |com-tso 12 49| () Bool)\n(declare-fun |com-tso 11 50| () Bool)\n(declare-fun |co $pipe fr 64 24| () Bool)\n(declare-fun |rfe 64 23| () Bool)\n(declare-fun |co $pipe fr 63 24| () Bool)\n(declare-fun |co $pipe fr 50 12| () Bool)\n(declare-fun |rfe 50 11| () Bool)\n(declare-fun |co $pipe fr 49 12| () Bool)\n(declare-fun |rfe 45 33| () Bool)\n(declare-fun |co $pipe fr 33 45| () Bool)\n(declare-fun |co $pipe fr 24 64| () Bool)\n(declare-fun |rfe 24 63| () Bool)\n(declare-fun |co $pipe fr 23 64| () Bool)\n(declare-fun |co $pipe fr 12 50| () Bool)\n(declare-fun |rfe 12 49| () Bool)\n(declare-fun |co $pipe fr 11 50| () Bool)\n(declare-fun |coe 24 64| () Bool)\n(declare-fun |fre 63 24| () Bool)\n(declare-fun |coe 12 50| () Bool)\n(declare-fun |fre 49 12| () Bool)\n(declare-fun |coe 64 24| () Bool)\n(declare-fun |fre 23 64| () Bool)\n(declare-fun |coe 50 12| () Bool)\n(declare-fun |fre 11 50| () Bool)\n(declare-fun |com 64 24| () Bool)\n(declare-fun |com 64 23| () Bool)\n(declare-fun |com 63 24| () Bool)\n(declare-fun |com 50 12| () Bool)\n(declare-fun |com 50 11| () Bool)\n(declare-fun |com 49 12| () Bool)\n(declare-fun |com 45 33| () Bool)\n(declare-fun |com 33 45| () Bool)\n(declare-fun |com 24 64| () Bool)\n(declare-fun |com 24 63| () Bool)\n(declare-fun |com 23 64| () Bool)\n(declare-fun |com 12 50| () Bool)\n(declare-fun |com 12 49| () Bool)\n(declare-fun |com 11 50| () Bool)\n(declare-fun |rf 64 23| () Bool)\n(declare-fun |rf 50 11| () Bool)\n(declare-fun |rf 45 33| () Bool)\n(declare-fun |rf 24 63| () Bool)\n(declare-fun |rf 12 49| () Bool)\n(declare-fun |co 64 24| () Bool)\n(declare-fun |fr 63 24| () Bool)\n(declare-fun |co 50 12| () Bool)\n(declare-fun |fr 49 12| () Bool)\n(declare-fun |fr 33 45| () Bool)\n(declare-fun |co 24 64| () Bool)\n(declare-fun |fr 23 64| () Bool)\n(declare-fun |co 12 50| () Bool)\n(declare-fun |fr 11 50| () Bool)\n(declare-fun |(rf^-1) ; co 63 24| () Bool)\n(declare-fun |(rf^-1) ; co 49 12| () Bool)\n(declare-fun |(rf^-1) ; co 33 45| () Bool)\n(declare-fun |(rf^-1) ; co 23 64| () Bool)\n(declare-fun |(rf^-1) ; co 11 50| () Bool)\n(declare-fun |range(rf) 63 63| () Bool)\n(declare-fun |R $backslash (range(rf)) 63 63| () Bool)\n(declare-fun |range(rf) 58 58| () Bool)\n(declare-fun |R $backslash (range(rf)) 58 58| () Bool)\n(declare-fun |range(rf) 57 57| () Bool)\n(declare-fun |R $backslash (range(rf)) 57 57| () Bool)\n(declare-fun |range(rf) 49 49| () Bool)\n(declare-fun |R $backslash (range(rf)) 49 49| () Bool)\n(declare-fun |range(rf) 44 44| () Bool)\n(declare-fun |R $backslash (range(rf)) 44 44| () Bool)\n(declare-fun |range(rf) 43 43| () Bool)\n(declare-fun |R $backslash (range(rf)) 43 43| () Bool)\n(declare-fun |range(rf) 33 33| () Bool)\n(declare-fun |R $backslash (range(rf)) 33 33| () Bool)\n(declare-fun |range(rf) 23 23| () Bool)\n(declare-fun |R $backslash (range(rf)) 23 23| () Bool)\n(declare-fun |range(rf) 11 11| () Bool)\n(declare-fun |R $backslash (range(rf)) 11 11| () Bool)\n(declare-fun |rf 6 63| () Bool)\n(declare-fun |rf 71 58| () Bool)\n(declare-fun |rf 77 57| () Bool)\n(declare-fun |rf 2 49| () Bool)\n(declare-fun |rf 68 44| () Bool)\n(declare-fun |rf 74 43| () Bool)\n(declare-fun |rf 68 33| () Bool)\n(declare-fun |rf 6 23| () Bool)\n(declare-fun |rf 2 11| () Bool)\n(declare-fun |rf^-1 63 6| () Bool)\n(declare-fun |rf^-1 49 2| () Bool)\n(declare-fun |rf^-1 33 68| () Bool)\n(declare-fun |rf^-1 23 6| () Bool)\n(declare-fun |rf^-1 11 2| () Bool)\n(declare-fun |seqVar_rf_E63#2| () Bool)\n(declare-fun |seqVar_rf_E63#1| () Bool)\n(declare-fun |uninit_read 63| () Bool)\n(declare-fun |__threadStateT2(63_result)| () (_ BitVec 2))\n(declare-fun |seqVar_rf_E58#1| () Bool)\n(declare-fun |uninit_read 58| () Bool)\n(declare-fun |rcert_8feab541ae78_port1_0(58_result)| () (_ BitVec 32))\n(declare-fun |seqVar_rf_E57#1| () Bool)\n(declare-fun |uninit_read 57| () Bool)\n(declare-fun |r2(57_result)| () (_ BitVec 32))\n(declare-fun |seqVar_rf_E54#1| () Bool)\n(declare-fun |uninit_read 54| () Bool)\n(declare-fun |__threadStateT2(54_result)| () (_ BitVec 2))\n(declare-fun |seqVar_rf_E49#2| () Bool)\n(declare-fun |seqVar_rf_E49#1| () Bool)\n(declare-fun |uninit_read 49| () Bool)\n(declare-fun |__threadStateT1(49_result)| () (_ BitVec 2))\n(declare-fun |seqVar_rf_E44#1| () Bool)\n(declare-fun |uninit_read 44| () Bool)\n(declare-fun |rcert_8feab541ae78_port0_0(44_result)| () (_ BitVec 32))\n(declare-fun |seqVar_rf_E43#1| () Bool)\n(declare-fun |uninit_read 43| () Bool)\n(declare-fun |r2(43_result)| () (_ BitVec 32))\n(declare-fun |seqVar_rf_E40#1| () Bool)\n(declare-fun |uninit_read 40| () Bool)\n(declare-fun |__threadStateT1(40_result)| () (_ BitVec 2))\n(declare-fun |seqVar_rf_E33#2| () Bool)\n(declare-fun |seqVar_rf_E33#1| () Bool)\n(declare-fun |uninit_read 33| () Bool)\n(declare-fun |r9(33_result)| () (_ BitVec 32))\n(declare-fun |seqVar_rf_E23#2| () Bool)\n(declare-fun |seqVar_rf_E23#1| () Bool)\n(declare-fun |uninit_read 23| () Bool)\n(declare-fun |__joinThreadState#1(23_result)| () (_ BitVec 2))\n(declare-fun |seqVar_rf_E11#2| () Bool)\n(declare-fun |seqVar_rf_E11#1| () Bool)\n(declare-fun |uninit_read 11| () Bool)\n(declare-fun |__joinThreadState#0(11_result)| () (_ BitVec 2))\n(declare-fun |__threadStateT2(64)| () (_ BitVec 2))\n(declare-fun |__threadStateT1(50)| () (_ BitVec 2))\n(declare-fun |r2(45)| () (_ BitVec 32))\n(declare-fun |rcert_8feab541ae78_port0_0(45)| () (_ BitVec 32))\n(declare-fun |__joinThreadState#1(24)| () (_ BitVec 2))\n(declare-fun |__joinThreadState#0(12)| () (_ BitVec 2))\n(declare-fun |r2(59)| () (_ BitVec 32))\n(declare-fun |rcert_8feab541ae78_port1_0(59)| () (_ BitVec 32))\n(declare-fun |__threadStateT2(55)| () (_ BitVec 2))\n(declare-fun |__threadStateT1(41)| () (_ BitVec 2))\n(declare-fun |__joinStatus#1(22_result)| () (_ BitVec 8))\n(declare-fun |idd 22 31| () Bool)\n(declare-fun |cf 27| () Bool)\n(declare-fun |__joinStatus#1(28_result)| () (_ BitVec 8))\n(declare-fun |__joinThreadState#1(27)| () (_ BitVec 2))\n(declare-fun |__joinThreadState#1(25)| () (_ BitVec 2))\n(declare-fun |__joinStatus#0(10_result)| () (_ BitVec 8))\n(declare-fun |idd 10 19| () Bool)\n(declare-fun |cf 15| () Bool)\n(declare-fun |__joinStatus#0(16_result)| () (_ BitVec 8))\n(declare-fun |__joinThreadState#0(15)| () (_ BitVec 2))\n(declare-fun |__joinThreadState#0(13)| () (_ BitVec 2))\n(declare-fun |__joinRetVal#1(26_result)| () (_ BitVec 64))\n(declare-fun |exec 26| () Bool)\n(declare-fun |cf 26| () Bool)\n(declare-fun |__joinRetVal#0(14_result)| () (_ BitVec 64))\n(declare-fun |exec 14| () Bool)\n(declare-fun |cf 14| () Bool)\n(declare-fun |addrof(&input_b)| () (_ BitVec 64))\n(declare-fun |r0(56_result)| () (_ BitVec 64))\n(declare-fun |addrof(&input_a)| () (_ BitVec 64))\n(declare-fun |r0(42_result)| () (_ BitVec 64))\n(declare-fun |hasProgress T2:worker_other#2@__root| () Bool)\n(declare-fun |hasProgress T1:worker#1@__root| () Bool)\n(declare-fun |hasProgress T0:main#0@__root| () Bool)\n(declare-fun |hasProgress __root(size=3)| () Bool)\n(declare-fun |wasScheduledOnce T2:worker_other#2@__root| () Bool)\n(declare-fun |schedulable T2:worker_other#2@__root| () Bool)\n(declare-fun |wasScheduledOnce T1:worker#1@__root| () Bool)\n(declare-fun |schedulable T1:worker#1@__root| () Bool)\n(declare-fun |wasScheduledOnce T0:main#0@__root| () Bool)\n(declare-fun |schedulable T0:main#0@__root| () Bool)\n(declare-fun |schedulable __root(size=3)| () Bool)\n(declare-fun |wasScheduledOnce __root(size=3)| () Bool)\n(declare-fun |sizeof(&__com_worker#1)| () (_ BitVec 64))\n(declare-fun |addrof(&__com_worker#1)| () (_ BitVec 64))\n(declare-fun |addrof(&__com_worker_other#2)| () (_ BitVec 64))\n(declare-fun |sizeof(&__com_worker_other#2)| () (_ BitVec 64))\n(declare-fun |sizeof(&input_b)| () (_ BitVec 64))\n(declare-fun |sizeof(&input_a)| () (_ BitVec 64))\n(declare-fun |sizeof(&side)| () (_ BitVec 64))\n(declare-fun |addrof(&side)| () (_ BitVec 64))\n(declare-fun |sizeof(&x)| () (_ BitVec 64))\n(declare-fun |addrof(&x)| () (_ BitVec 64))\n(assert\n (let (($x13 (and (=> |cf 18| (not (= |__joinStatus#0(19)| (_ bv1 8)))) (=> |cf 30| (not (= |__joinStatus#1(31)| (_ bv1 8)))) (=> |cf 30| (= |r9(35)| (_ bv0 32))) (=> |cf 0| (not (= |rcert_8feab541ae78_port0_0(47)| (_ bv0 32)))) (=> |cf 0| (not (= |r2(61)| (_ bv0 32)))))))\n(let (($x26 (not $x13)))\n(let (($x73 (not |Program specification|)))\n(let (($x49 (and $x73 (=> $x73 $x26))))\n(let (($x32 (=> DAT3M_spec_assumption $x49)))\n(let (($x15 (and $x32)))\n(let (($x41 (and true)))\n(let (($x977 (and |cycle ghb-tso 24 23| |cycle ghb-tso 23 64|)))\n(let (($x975 (and |cycle ghb-tso 64 23| |cycle ghb-tso 23 24|)))\n(let (($x973 (and |cycle ghb-tso 24 63| |cycle ghb-tso 63 64|)))\n(let (($x989 (and |cycle ghb-tso 24 45| |cycle ghb-tso 45 23|)))\n(let (($x966 (and |cycle ghb-tso 24 33| |cycle ghb-tso 33 45|)))\n(let (($x963 (and |cycle ghb-tso 45 49| |cycle ghb-tso 49 23|)))\n(let (($x960 (and |cycle ghb-tso 49 12| |cycle ghb-tso 12 23|)))\n(let (($x958 (and |cycle ghb-tso 49 50| |cycle ghb-tso 50 12|)))\n(let (($x956 (and |cycle ghb-tso 50 11| |cycle ghb-tso 11 12|)))\n(let (($x892 (and |cycle po-loc $pipe com 63 64| |cycle po-loc $pipe com 64 24|)))\n(let (($x890 (and |cycle po-loc $pipe com 64 23| |cycle po-loc $pipe com 23 24|)))\n(let (($x888 (and |cycle po-loc $pipe com 49 50| |cycle po-loc $pipe com 50 12|)))\n(let (($x886 (and |cycle po-loc $pipe com 50 11| |cycle po-loc $pipe com 11 12|)))\n(let (($x849 (= |ghb-tso 64 24| |com-tso 64 24|)))\n(let (($x847 (= |ghb-tso 64 23| |com-tso 64 23|)))\n(let (($x845 (= |ghb-tso 63 24| |com-tso 63 24|)))\n(let (($x843 (= |ghb-tso 50 12| |com-tso 50 12|)))\n(let (($x841 (= |ghb-tso 50 11| |com-tso 50 11|)))\n(let (($x839 (= |ghb-tso 49 12| |com-tso 49 12|)))\n(let (($x837 (= |ghb-tso 45 33| |com-tso 45 33|)))\n(let (($x835 (= |ghb-tso 33 45| |com-tso 33 45|)))\n(let (($x833 (= |ghb-tso 24 64| |com-tso 24 64|)))\n(let (($x831 (= |ghb-tso 24 63| |com-tso 24 63|)))\n(let (($x829 (= |ghb-tso 23 64| |com-tso 23 64|)))\n(let (($x827 (= |ghb-tso 12 50| |com-tso 12 50|)))\n(let (($x825 (= |ghb-tso 12 49| |com-tso 12 49|)))\n(let (($x823 (= |ghb-tso 11 50| |com-tso 11 50|)))\n(let (($x821 (= |com-tso 64 24| |co $pipe fr 64 24|)))\n(let (($x819 (= |com-tso 64 23| |rfe 64 23|)))\n(let (($x817 (= |com-tso 63 24| |co $pipe fr 63 24|)))\n(let (($x815 (= |com-tso 50 12| |co $pipe fr 50 12|)))\n(let (($x813 (= |com-tso 50 11| |rfe 50 11|)))\n(let (($x811 (= |com-tso 49 12| |co $pipe fr 49 12|)))\n(let (($x809 (= |com-tso 45 33| |rfe 45 33|)))\n(let (($x807 (= |com-tso 33 45| |co $pipe fr 33 45|)))\n(let (($x805 (= |com-tso 24 64| |co $pipe fr 24 64|)))\n(let (($x803 (= |com-tso 24 63| |rfe 24 63|)))\n(let (($x801 (= |com-tso 23 64| |co $pipe fr 23 64|)))\n(let (($x799 (= |com-tso 12 50| |co $pipe fr 12 50|)))\n(let (($x797 (= |com-tso 12 49| |rfe 12 49|)))\n(let (($x795 (= |com-tso 11 50| |co $pipe fr 11 50|)))\n(let (($x785 (= |po-loc $pipe com 64 24| |com 64 24|)))\n(let (($x783 (= |po-loc $pipe com 64 23| |com 64 23|)))\n(let (($x781 (= |po-loc $pipe com 63 24| |com 63 24|)))\n(let (($x779 (= |po-loc $pipe com 50 12| |com 50 12|)))\n(let (($x777 (= |po-loc $pipe com 50 11| |com 50 11|)))\n(let (($x775 (= |po-loc $pipe com 49 12| |com 49 12|)))\n(let (($x773 (= |po-loc $pipe com 45 33| |com 45 33|)))\n(let (($x771 (= |po-loc $pipe com 33 45| |com 33 45|)))\n(let (($x769 (= |po-loc $pipe com 24 64| |com 24 64|)))\n(let (($x767 (= |po-loc $pipe com 24 63| |com 24 63|)))\n(let (($x765 (= |po-loc $pipe com 23 64| |com 23 64|)))\n(let (($x763 (= |po-loc $pipe com 12 50| |com 12 50|)))\n(let (($x761 (= |po-loc $pipe com 12 49| |com 12 49|)))\n(let (($x759 (= |po-loc $pipe com 11 50| |com 11 50|)))\n(let (($x757 (= |com 64 24| |co $pipe fr 64 24|)))\n(let (($x755 (= |com 64 23| |rf 64 23|)))\n(let (($x753 (= |com 63 24| |co $pipe fr 63 24|)))\n(let (($x751 (= |com 50 12| |co $pipe fr 50 12|)))\n(let (($x749 (= |com 50 11| |rf 50 11|)))\n(let (($x747 (= |com 49 12| |co $pipe fr 49 12|)))\n(let (($x745 (= |com 45 33| |rf 45 33|)))\n(let (($x743 (= |com 33 45| |co $pipe fr 33 45|)))\n(let (($x741 (= |com 24 64| |co $pipe fr 24 64|)))\n(let (($x739 (= |com 24 63| |rf 24 63|)))\n(let (($x737 (= |com 23 64| |co $pipe fr 23 64|)))\n(let (($x735 (= |com 12 50| |co $pipe fr 12 50|)))\n(let (($x733 (= |com 12 49| |rf 12 49|)))\n(let (($x731 (= |com 11 50| |co $pipe fr 11 50|)))\n(let (($x729 (= |co $pipe fr 64 24| |co 64 24|)))\n(let (($x727 (= |co $pipe fr 63 24| |fr 63 24|)))\n(let (($x725 (= |co $pipe fr 50 12| |co 50 12|)))\n(let (($x723 (= |co $pipe fr 49 12| |fr 49 12|)))\n(let (($x721 (= |co $pipe fr 33 45| |fr 33 45|)))\n(let (($x719 (= |co $pipe fr 24 64| |co 24 64|)))\n(let (($x717 (= |co $pipe fr 23 64| |fr 23 64|)))\n(let (($x715 (= |co $pipe fr 12 50| |co 12 50|)))\n(let (($x713 (= |co $pipe fr 11 50| |fr 11 50|)))\n(let (($x711 (= |fre 63 24| |fr 63 24|)))\n(let (($x709 (= |fre 49 12| |fr 49 12|)))\n(let (($x707 (= |fre 23 64| |fr 23 64|)))\n(let (($x705 (= |fre 11 50| |fr 11 50|)))\n(let (($x703 (= |coe 64 24| |co 64 24|)))\n(let (($x701 (= |coe 50 12| |co 50 12|)))\n(let (($x699 (= |coe 24 64| |co 24 64|)))\n(let (($x697 (= |coe 12 50| |co 12 50|)))\n(let (($x695 (= |rfe 64 23| |rf 64 23|)))\n(let (($x693 (= |rfe 50 11| |rf 50 11|)))\n(let (($x691 (= |rfe 45 33| |rf 45 33|)))\n(let (($x689 (= |rfe 24 63| |rf 24 63|)))\n(let (($x687 (= |rfe 12 49| |rf 12 49|)))\n(let (($x685 (= |fr 63 24| |(rf^-1) ; co 63 24|)))\n(let (($x683 (= |fr 49 12| |(rf^-1) ; co 49 12|)))\n(let (($x681 (= |fr 33 45| |(rf^-1) ; co 33 45|)))\n(let (($x679 (= |fr 23 64| |(rf^-1) ; co 23 64|)))\n(let (($x677 (= |fr 11 50| |(rf^-1) ; co 11 50|)))\n(let (($x675 (= |R $backslash (range(rf)) 63 63| (and |cf 0| (not |range(rf) 63 63|)))))\n(let (($x672 (= |R $backslash (range(rf)) 58 58| (and |cf 0| (not |range(rf) 58 58|)))))\n(let (($x669 (= |R $backslash (range(rf)) 57 57| (and |cf 0| (not |range(rf) 57 57|)))))\n(let (($x666 (= |R $backslash (range(rf)) 49 49| (and |cf 0| (not |range(rf) 49 49|)))))\n(let (($x663 (= |R $backslash (range(rf)) 44 44| (and |cf 0| (not |range(rf) 44 44|)))))\n(let (($x660 (= |R $backslash (range(rf)) 43 43| (and |cf 0| (not |range(rf) 43 43|)))))\n(let (($x657 (= |R $backslash (range(rf)) 33 33| (and |cf 30| (not |range(rf) 33 33|)))))\n(let (($x654 (= |R $backslash (range(rf)) 23 23| (and |cf 18| (not |range(rf) 23 23|)))))\n(let (($x651 (= |R $backslash (range(rf)) 11 11| (and |cf 0| (not |range(rf) 11 11|)))))\n(let (($x645 (= |range(rf) 58 58| |rf 71 58|)))\n(let (($x643 (= |range(rf) 57 57| |rf 77 57|)))\n(let (($x638 (= |range(rf) 44 44| |rf 68 44|)))\n(let (($x636 (= |range(rf) 43 43| |rf 74 43|)))\n(let (($x634 (= |range(rf) 33 33| (or |rf 45 33| |rf 68 33|))))\n(let (($x631 (= |range(rf) 23 23| (or |rf 6 23| |rf 64 23|))))\n(let (($x628 (= |range(rf) 11 11| (or |rf 2 11| |rf 50 11|))))\n(let (($x607 (= |rf^-1 63 6| |rf 6 63|)))\n(let (($x606 (= |rf^-1 49 2| |rf 2 49|)))\n(let (($x605 (= |rf^-1 33 68| |rf 68 33|)))\n(let (($x604 (= |rf^-1 23 6| |rf 6 23|)))\n(let (($x603 (= |rf^-1 11 2| |rf 2 11|)))\n(let (($x602 (= |(rf^-1) ; co 63 24| (and |rf^-1 63 6| |cf 18|))))\n(let (($x598 (= |(rf^-1) ; co 49 12| (and |rf^-1 49 2| |cf 0|))))\n(let (($x594 (= |(rf^-1) ; co 33 45| (and |rf^-1 33 68| |cf 0|))))\n(let (($x590 (= |(rf^-1) ; co 23 64| (and |rf^-1 23 6| |cf 0|))))\n(let (($x586 (= |(rf^-1) ; co 11 50| (and |rf^-1 11 2| |cf 0|))))\n(let (($x434 (not (and |rf 24 63| |seqVar_rf_E63#1|))))\n(let (($x429 (not (and |rf 6 63| |uninit_read 63|))))\n(let (($x535 (= |seqVar_rf_E63#1| (or |uninit_read 63| |rf 6 63|))))\n(let (($x436 (and $x535 $x429 (= |seqVar_rf_E63#2| (or |seqVar_rf_E63#1| |rf 24 63|)) $x434 |seqVar_rf_E63#2|)))\n(let (($x423 (and (= |seqVar_rf_E58#1| (or |uninit_read 58| |rf 71 58|)) (not (and |rf 71 58| |uninit_read 58|)) |seqVar_rf_E58#1|)))\n(let (($x533 (and (= |seqVar_rf_E57#1| (or |uninit_read 57| |rf 77 57|)) (not (and |rf 77 57| |uninit_read 57|)) |seqVar_rf_E57#1|)))\n(let (($x531 (not (and |cf 0| |uninit_read 54|))))\n(let (($x404 (and (= |seqVar_rf_E54#1| (or |uninit_read 54| |cf 0|)) $x531 |seqVar_rf_E54#1|)))\n(let (($x398 (not (and |rf 12 49| |seqVar_rf_E49#1|))))\n(let (($x394 (not (and |rf 2 49| |uninit_read 49|))))\n(let (($x392 (= |seqVar_rf_E49#1| (or |uninit_read 49| |rf 2 49|))))\n(let (($x399 (and $x392 $x394 (= |seqVar_rf_E49#2| (or |seqVar_rf_E49#1| |rf 12 49|)) $x398 |seqVar_rf_E49#2|)))\n(let (($x526 (and (= |seqVar_rf_E44#1| (or |uninit_read 44| |rf 68 44|)) (not (and |rf 68 44| |uninit_read 44|)) |seqVar_rf_E44#1|)))\n(let (($x378 (and (= |seqVar_rf_E43#1| (or |uninit_read 43| |rf 74 43|)) (not (and |rf 74 43| |uninit_read 43|)) |seqVar_rf_E43#1|)))\n(let (($x370 (not (and |cf 0| |uninit_read 40|))))\n(let (($x371 (and (= |seqVar_rf_E40#1| (or |uninit_read 40| |cf 0|)) $x370 |seqVar_rf_E40#1|)))\n(let (($x362 (not (and |rf 68 33| |seqVar_rf_E33#1|))))\n(let (($x523 (= |seqVar_rf_E33#2| (or |seqVar_rf_E33#1| |rf 68 33|))))\n(let (($x357 (not (and |rf 45 33| |uninit_read 33|))))\n(let (($x363 (and (= |seqVar_rf_E33#1| (or |uninit_read 33| |rf 45 33|)) $x357 $x523 $x362 |seqVar_rf_E33#2|)))\n(let (($x349 (not (and |rf 64 23| |seqVar_rf_E23#1|))))\n(let (($x519 (not (and |rf 6 23| |uninit_read 23|))))\n(let (($x518 (= |seqVar_rf_E23#1| (or |uninit_read 23| |rf 6 23|))))\n(let (($x350 (and $x518 $x519 (= |seqVar_rf_E23#2| (or |seqVar_rf_E23#1| |rf 64 23|)) $x349 |seqVar_rf_E23#2|)))\n(let (($x512 (not (and |rf 50 11| |seqVar_rf_E11#1|))))\n(let (($x29 (not (and |rf 2 11| |uninit_read 11|))))\n(let (($x508 (= |seqVar_rf_E11#1| (or |uninit_read 11| |rf 2 11|))))\n(let (($x513 (and $x508 $x29 (= |seqVar_rf_E11#2| (or |seqVar_rf_E11#1| |rf 50 11|)) $x512 |seqVar_rf_E11#2|)))\n(let (($x551 (= |rcert_8feab541ae78_port1_0(58_result)| (_ bv0 32))))\n(let (($x552 (and |cf 0| $x551)))\n(let (($x549 (and |cf 0| (= |rcert_8feab541ae78_port0_0(44_result)| (_ bv1 32)))))\n(let (($x503 (and |cf 18| (= |__joinThreadState#1(23_result)| (bvand |__threadStateT2(64)| (_ bv2 2))))))\n(let (($x342 (and |cf 0| (= |__joinThreadState#0(11_result)| (bvand |__threadStateT1(50)| (_ bv2 2))))))\n(let (($x337 (and |cf 30| (= |r9(33_result)| (bvadd |rcert_8feab541ae78_port0_0(45)| |r2(45)|)))))\n(let (($x333 (and |cf 18| (= |__threadStateT2(63_result)| (bvand |__joinThreadState#1(24)| (_ bv1 2))))))\n(let (($x328 (and |cf 0| (= |__threadStateT1(49_result)| (bvand |__joinThreadState#0(12)| (_ bv1 2))))))\n(let (($x451 (or (not |co 24 64|) (not |co 64 24|))))\n(let (($x448 (= |cf 18| (or |co 24 64| |co 64 24|))))\n(let (($x445 (or (not |co 12 50|) (not |co 50 12|))))\n(let (($x441 (= |cf 0| (or |co 12 50| |co 50 12|))))\n(let (($x58 (and (= |cf 0| |cf 0|) (= |cf 18| |cf 18|) $x441 $x445 $x448 $x451 (=> |rf 2 11| (and |cf 0| (= |__joinThreadState#0(11_result)| (_ bv3 2)))) (=> |cf 0| (and |cf 0| (= |__threadStateT1(40_result)| (_ bv3 2)))) (=> |rf 2 49| (and |cf 0| (= |__threadStateT1(49_result)| (_ bv3 2)))) (=> |rf 6 23| (and |cf 18| (= |__joinThreadState#1(23_result)| (_ bv3 2)))) (=> |cf 0| (and |cf 0| (= |__threadStateT2(54_result)| (_ bv3 2)))) (=> |rf 6 63| (and |cf 0| (= |__threadStateT2(63_result)| (_ bv3 2)))) (=> |rf 12 49| $x328) (=> |rf 24 63| $x333) (=> |rf 45 33| $x337) (=> |rf 50 11| $x342) (=> |rf 64 23| $x503) (=> |rf 68 33| (and |cf 30| (= |r9(33_result)| (_ bv1 32)))) (=> |rf 68 44| $x549) (=> |rf 71 58| $x552) (=> |rf 74 43| (and |cf 0| (= |r2(43_result)| (_ bv1 32)))) (=> |rf 77 57| (and |cf 0| (= |r2(57_result)| (_ bv2 32)))) (=> |uninit_read 11| (= |__joinThreadState#0(11_result)| (_ bv0 2))) (=> |cf 0| $x513) (=> |uninit_read 23| (= |__joinThreadState#1(23_result)| (_ bv0 2))) (=> |cf 18| $x350) (=> |uninit_read 33| (= |r9(33_result)| (_ bv0 32))) (=> |cf 30| $x363) (=> |uninit_read 40| (= |__threadStateT1(40_result)| (_ bv0 2))) (=> |cf 0| $x371) (=> |uninit_read 43| (= |r2(43_result)| (_ bv0 32))) (=> |cf 0| $x378) (=> |uninit_read 44| (= |rcert_8feab541ae78_port0_0(44_result)| (_ bv0 32))) (=> |cf 0| $x526) (=> |uninit_read 49| (= |__threadStateT1(49_result)| (_ bv0 2))) (=> |cf 0| $x399) (=> |uninit_read 54| (= |__threadStateT2(54_result)| (_ bv0 2))) (=> |cf 0| $x404) (=> |uninit_read 57| (= |r2(57_result)| (_ bv0 32))) (=> |cf 0| $x533) (=> |uninit_read 58| $x551) (=> |cf 0| $x423) (=> |uninit_read 63| (= |__threadStateT2(63_result)| (_ bv0 2))) (=> |cf 0| $x436) $x586 $x590 $x594 $x598 $x602 $x603 $x604 $x605 $x606 $x607 (= false |R $backslash (range(rf)) 11 11|) (= false |R $backslash (range(rf)) 23 23|) (= false |R $backslash (range(rf)) 33 33|) (= false |R $backslash (range(rf)) 43 43|) (= false |R $backslash (range(rf)) 44 44|) (= false |R $backslash (range(rf)) 49 49|) (= false |R $backslash (range(rf)) 57 57|) (= false |R $backslash (range(rf)) 58 58|) (= false |R $backslash (range(rf)) 63 63|) $x628 $x631 $x634 $x636 $x638 (= |range(rf) 49 49| (or |rf 2 49| |rf 12 49|)) $x643 $x645 (= |range(rf) 63 63| (or |rf 6 63| |rf 24 63|)) $x651 $x654 $x657 $x660 $x663 $x666 $x669 $x672 $x675 $x677 $x679 $x681 $x683 $x685 $x687 $x689 $x691 $x693 $x695 $x697 $x699 $x701 $x703 $x705 $x707 $x709 $x711 $x713 $x715 $x717 $x719 $x721 $x723 $x725 $x727 $x729 $x731 $x733 $x735 $x737 $x739 $x741 $x743 $x745 $x747 $x749 $x751 $x753 $x755 $x757 $x759 $x761 $x763 $x765 $x767 $x769 $x771 $x773 $x775 $x777 $x779 $x781 $x783 $x785 (= false (and |fre 11 50| |coe 50 12|)) (= false (and |fre 23 64| |coe 64 24|)) (= false (and |fre 49 12| |coe 12 50|)) (= false (and |fre 63 24| |coe 24 64|)) $x795 $x797 $x799 $x801 $x803 $x805 $x807 $x809 $x811 $x813 $x815 $x817 $x819 $x821 $x823 $x825 $x827 $x829 $x831 $x833 $x835 $x837 $x839 $x841 $x843 $x845 $x847 $x849 (=> true |cycle po-loc $pipe com 11 12|) (=> |po-loc $pipe com 11 50| |cycle po-loc $pipe com 11 50|) (=> |po-loc $pipe com 12 49| |cycle po-loc $pipe com 12 49|) (=> |po-loc $pipe com 12 50| |cycle po-loc $pipe com 12 50|) (=> true |cycle po-loc $pipe com 23 24|) (=> |po-loc $pipe com 23 64| |cycle po-loc $pipe com 23 64|) (=> |po-loc $pipe com 24 63| |cycle po-loc $pipe com 24 63|) (=> |po-loc $pipe com 24 64| |cycle po-loc $pipe com 24 64|) (=> |po-loc $pipe com 33 45| |cycle po-loc $pipe com 33 45|) (=> |po-loc $pipe com 45 33| |cycle po-loc $pipe com 45 33|) (=> |po-loc $pipe com 49 12| |cycle po-loc $pipe com 49 12|) (=> true |cycle po-loc $pipe com 49 50|) (=> |po-loc $pipe com 50 11| |cycle po-loc $pipe com 50 11|) (=> |po-loc $pipe com 50 12| |cycle po-loc $pipe com 50 12|) (=> |po-loc $pipe com 63 24| |cycle po-loc $pipe com 63 24|) (=> true |cycle po-loc $pipe com 63 64|) (=> |po-loc $pipe com 64 23| |cycle po-loc $pipe com 64 23|) (=> |po-loc $pipe com 64 24| |cycle po-loc $pipe com 64 24|) (=> $x886 |cycle po-loc $pipe com 50 12|) (=> $x888 |cycle po-loc $pipe com 49 12|) (=> $x890 |cycle po-loc $pipe com 64 24|) (=> $x892 |cycle po-loc $pipe com 63 24|) (=> |cycle po-loc $pipe com 33 45| (not |cycle po-loc $pipe com 45 33|)) (=> true (not |cycle po-loc $pipe com 12 11|)) (=> |cycle po-loc $pipe com 11 50| (not |cycle po-loc $pipe com 50 11|)) (=> |cycle po-loc $pipe com 50 12| (not |cycle po-loc $pipe com 12 50|)) (=> |cycle po-loc $pipe com 12 49| (not |cycle po-loc $pipe com 49 12|)) (=> true (not |cycle po-loc $pipe com 24 23|)) (=> |cycle po-loc $pipe com 23 64| (not |cycle po-loc $pipe com 64 23|)) (=> |cycle po-loc $pipe com 64 24| (not |cycle po-loc $pipe com 24 64|)) (=> |cycle po-loc $pipe com 24 63| (not |cycle po-loc $pipe com 63 24|)) (=> true |cycle ghb-tso 11 12|) (=> |ghb-tso 11 50| |cycle ghb-tso 11 50|) (=> true |cycle ghb-tso 12 23|) (=> |ghb-tso 12 49| |cycle ghb-tso 12 49|) (=> |ghb-tso 12 50| |cycle ghb-tso 12 50|) (=> true |cycle ghb-tso 23 24|) (=> |ghb-tso 23 64| |cycle ghb-tso 23 64|) (=> true |cycle ghb-tso 24 33|) (=> |ghb-tso 24 63| |cycle ghb-tso 24 63|) (=> |ghb-tso 24 64| |cycle ghb-tso 24 64|) (=> |ghb-tso 33 45| |cycle ghb-tso 33 45|) (=> |ghb-tso 45 33| |cycle ghb-tso 45 33|) (=> true |cycle ghb-tso 45 49|) (=> |ghb-tso 49 12| |cycle ghb-tso 49 12|) (=> true |cycle ghb-tso 49 50|) (=> |ghb-tso 50 11| |cycle ghb-tso 50 11|) (=> |ghb-tso 50 12| |cycle ghb-tso 50 12|) (=> |ghb-tso 63 24| |cycle ghb-tso 63 24|) (=> true |cycle ghb-tso 63 64|) (=> |ghb-tso 64 23| |cycle ghb-tso 64 23|) (=> |ghb-tso 64 24| |cycle ghb-tso 64 24|) (=> $x956 |cycle ghb-tso 50 12|) (=> $x958 |cycle ghb-tso 49 12|) (=> $x960 |cycle ghb-tso 49 23|) (=> $x963 |cycle ghb-tso 45 23|) (=> $x966 |cycle ghb-tso 24 45|) (=> $x989 |cycle ghb-tso 24 23|) (=> $x973 |cycle ghb-tso 24 64|) (=> $x975 |cycle ghb-tso 64 24|) (=> $x977 |cycle ghb-tso 24 64|) (=> true (not |cycle ghb-tso 12 11|)) (=> |cycle ghb-tso 11 50| (not |cycle ghb-tso 50 11|)) (=> |cycle ghb-tso 50 12| (not |cycle ghb-tso 12 50|)) (=> true (not |cycle ghb-tso 23 12|)) (=> |cycle ghb-tso 12 49| (not |cycle ghb-tso 49 12|)) (=> |cycle ghb-tso 49 23| (not |cycle ghb-tso 23 49|)) (=> |cycle ghb-tso 33 45| (not |cycle ghb-tso 45 33|)) (=> |cycle ghb-tso 45 23| (not |cycle ghb-tso 23 45|)) (=> |cycle ghb-tso 63 24| (not |cycle ghb-tso 24 63|)) (=> true (not |cycle ghb-tso 64 63|)) (=> true (not |cycle ghb-tso 24 23|)) (=> |cycle ghb-tso 23 64| (not |cycle ghb-tso 64 23|)) (=> |cycle ghb-tso 24 64| (not |cycle ghb-tso 64 24|)))))\n(let (($x36 (and $x58)))\n(let (($x494 (= |rcert_8feab541ae78_port1_0(59)| |rcert_8feab541ae78_port1_0(58_result)|)))\n(let (($x485 (= |rcert_8feab541ae78_port0_0(47)| |rcert_8feab541ae78_port0_0(44_result)|)))\n(let (($x479 (= |rcert_8feab541ae78_port0_0(45)| |rcert_8feab541ae78_port0_0(44_result)|)))\n(let (($x467 (= |idd 22 31| (and |cf 18| |cf 30| (not |cf 27|)))))\n(let (($x315 (= |__joinStatus#1(31)| |__joinStatus#1(28_result)|)))\n(let (($x313 (and |cf 27| |cf 30|)))\n(let (($x302 (= |idd 10 19| (and |cf 0| |cf 18| (not |cf 15|)))))\n(let (($x298 (= |__joinStatus#0(19)| |__joinStatus#0(16_result)|)))\n(let (($x296 (and |cf 15| |cf 18|)))\n(let (($x274 (= |r0(56_result)| |addrof(&input_b)|)))\n(let (($x272 (= |r0(42_result)| |addrof(&input_a)|)))\n(let (($x270 (= |__joinStatus#1(28_result)| (_ bv0 8))))\n(let (($x263 (= |__joinStatus#1(22_result)| (_ bv3 8))))\n(let (($x261 (= |__joinStatus#0(16_result)| (_ bv0 8))))\n(let (($x253 (= |__joinStatus#0(10_result)| (_ bv3 8))))\n(let (($x249 (and |hasProgress T0:main#0@__root| |hasProgress T1:worker#1@__root| |hasProgress T2:worker_other#2@__root|)))\n(let (($x248 (= |cf 0| |wasScheduledOnce T2:worker_other#2@__root|)))\n(let (($x245 (= |cf 0| |wasScheduledOnce T1:worker#1@__root|)))\n(let (($x240 (= |cf 0| |wasScheduledOnce T0:main#0@__root|)))\n(let (($x116 (=> |cf 30| |cf 30|)))\n(let (($x114 (=> |cf 27| |cf 27|)))\n(let (($x109 (=> |cf 18| |cf 18|)))\n(let (($x105 (=> |cf 15| |cf 15|)))\n(let (($x190 (=> |cf 0| |cf 0|)))\n(let (($x189 (=> true |cf 0|)))\n(let (($x118 (and $x189 $x190 (=> |cf 0| (or |cf 14| |cf 18|)) (=> (and |cf 14| |exec 14|) |cf 15|) $x105 (=> |cf 15| |cf 18|) $x109 (=> |cf 18| (or |cf 26| |cf 30|)) (=> (and |cf 26| |exec 26|) |cf 27|) $x114 (=> |cf 27| |cf 30|) $x116)))\n(let (($x237 (not |cf 30|)))\n(let (($x238 (and $x237 (not (or (and |cf 14| (not |exec 14|)) (and |cf 26| (not |exec 26|)))))))\n(let (($x239 (= $x238 |schedulable T0:main#0@__root|)))\n(let (($x234 (and |hasProgress T2:worker_other#2@__root| |schedulable T2:worker_other#2@__root|)))\n(let (($x233 (and |hasProgress T1:worker#1@__root| |schedulable T1:worker#1@__root|)))\n(let (($x232 (and |hasProgress T0:main#0@__root| |schedulable T0:main#0@__root|)))\n(let (($x231 (and |hasProgress __root(size=3)| |schedulable __root(size=3)|)))\n(let (($x230 (=> |wasScheduledOnce T2:worker_other#2@__root| |wasScheduledOnce __root(size=3)|)))\n(let (($x212 (=> |cf 0| true)))\n(let (($x172 (and |cf 18| (= ((_ extract 1 1) |__joinThreadState#1(25)|) (_ bv0 1)))))\n(let (($x165 (and |cf 0| (= ((_ extract 1 1) |__joinThreadState#0(13)|) (_ bv0 1)))))\n(let ((?x145 (bvsub (_ bv8 64) (bvsrem (bvadd |addrof(&__com_worker#1)| |sizeof(&__com_worker#1)|) (_ bv8 64)))))\n(let ((?x64 (bvadd |addrof(&__com_worker#1)| |sizeof(&__com_worker#1)|)))\n(let (($x209 (= |sizeof(&__com_worker_other#2)| (_ bv1 64))))\n(let ((?x117 (bvadd |addrof(&input_b)| |sizeof(&input_b)|)))\n(let (($x207 (= |addrof(&__com_worker#1)| (bvadd ?x117 (bvsub (_ bv8 64) (bvsrem ?x117 (_ bv8 64)))))))\n(let (($x206 (= |sizeof(&__com_worker#1)| (_ bv1 64))))\n(let ((?x44 (bvadd |addrof(&input_a)| |sizeof(&input_a)|)))\n(let (($x203 (= |sizeof(&input_b)| (_ bv4 64))))\n(let ((?x27 (bvadd |addrof(&side)| |sizeof(&side)|)))\n(let (($x201 (= |sizeof(&input_a)| (_ bv4 64))))\n(let ((?x88 (bvadd |addrof(&x)| |sizeof(&x)|)))\n(let (($x199 (= |sizeof(&side)| (_ bv4 64))))\n(let (($x198 (= |addrof(&x)| (_ bv8 64))))\n(let (($x197 (= |sizeof(&x)| (_ bv4 64))))\n(let (($x323 (and $x197 $x198 $x199 (= |addrof(&side)| (bvadd ?x88 (bvsub (_ bv8 64) (bvsrem ?x88 (_ bv8 64))))) $x201 (= |addrof(&input_a)| (bvadd ?x27 (bvsub (_ bv8 64) (bvsrem ?x27 (_ bv8 64))))) $x203 (= |addrof(&input_b)| (bvadd ?x44 (bvsub (_ bv8 64) (bvsrem ?x44 (_ bv8 64))))) $x206 $x207 $x209 (= |addrof(&__com_worker_other#2)| (bvadd ?x64 ?x145)) $x212 $x190 (=> |cf 14| (and |cf 0| (not $x165))) (=> |cf 15| (and |cf 14| |exec 14|)) $x105 (=> |cf 18| (or (and |cf 15| (not |cf 15|)) $x165 |cf 15|)) $x109 (=> |cf 26| (and |cf 18| (not $x172))) (=> |cf 27| (and |cf 26| |exec 26|)) $x114 (=> |cf 30| (or (and |cf 27| (not |cf 27|)) $x172 |cf 27|)) $x116 $x190 $x212 $x190 $x189 $x190 |hasProgress __root(size=3)| (=> |hasProgress T0:main#0@__root| |hasProgress __root(size=3)|) (=> |schedulable T0:main#0@__root| |schedulable __root(size=3)|) (=> |wasScheduledOnce T0:main#0@__root| |wasScheduledOnce __root(size=3)|) (=> |hasProgress T1:worker#1@__root| |hasProgress __root(size=3)|) (=> |schedulable T1:worker#1@__root| |schedulable __root(size=3)|) (=> |wasScheduledOnce T1:worker#1@__root| |wasScheduledOnce __root(size=3)|) (=> |hasProgress T2:worker_other#2@__root| |hasProgress __root(size=3)|) (=> |schedulable T2:worker_other#2@__root| |schedulable __root(size=3)|) $x230 (=> $x231 (or $x232 $x233 $x234)) $x239 (=> |hasProgress T0:main#0@__root| $x118) $x240 (= (and |cf 0| (not |cf 0|)) |schedulable T1:worker#1@__root|) (=> (and |hasProgress T1:worker#1@__root| |cf 0|) |cf 0|) $x245 (= (and |cf 0| (not |cf 0|)) |schedulable T2:worker_other#2@__root|) (=> (and |hasProgress T2:worker_other#2@__root| |cf 0|) |cf 0|) $x248 (=> |hasProgress __root(size=3)| $x249) $x253 (=> |exec 14| |cf 14|) (=> |cf 15| (= ((_ extract 0 0) |__joinThreadState#0(15)|) (_ bv0 1))) $x261 $x263 (=> |exec 26| |cf 26|) (=> |cf 27| (= ((_ extract 0 0) |__joinThreadState#1(27)|) (_ bv0 1))) $x270 (=> |cf 0| (not (= ((_ extract 0 0) |__threadStateT1(41)|) (_ bv0 1)))) $x272 (=> |cf 0| (not (= ((_ extract 0 0) |__threadStateT2(55)|) (_ bv0 1)))) $x274 (=> |exec 14| |cf 0|) (=> (and |cf 0| |cf 14|) |exec 14|) (=> |exec 14| (= |__joinRetVal#0(14_result)| (_ bv0 64))) (=> |exec 26| |cf 0|) (=> (and |cf 0| |cf 26|) |exec 26|) (=> |exec 26| (= |__joinRetVal#1(26_result)| (_ bv0 64))) (=> true (= |__joinThreadState#0(12)| |__joinThreadState#0(11_result)|)) (=> true (= |__joinThreadState#0(13)| |__joinThreadState#0(11_result)|)) (=> true (= |__joinThreadState#0(15)| |__joinThreadState#0(11_result)|)) (=> $x296 $x298) $x302 (=> |idd 10 19| (= |__joinStatus#0(19)| |__joinStatus#0(10_result)|)) (=> true (= |__joinThreadState#1(24)| |__joinThreadState#1(23_result)|)) (=> true (= |__joinThreadState#1(25)| |__joinThreadState#1(23_result)|)) (=> true (= |__joinThreadState#1(27)| |__joinThreadState#1(23_result)|)) (=> $x313 $x315) $x467 (=> |idd 22 31| (= |__joinStatus#1(31)| |__joinStatus#1(22_result)|)) (=> true (= |r9(35)| |r9(33_result)|)) (=> true (= |__threadStateT1(41)| |__threadStateT1(40_result)|)) (=> true $x479) (=> true (= |r2(45)| |r2(43_result)|)) (=> true $x485) (=> true (= |__threadStateT1(50)| |__threadStateT1(49_result)|)) (=> true (= |__threadStateT2(55)| |__threadStateT2(54_result)|)) (=> true $x494) (=> true (= |r2(59)| |r2(57_result)|)) (=> true (= |r2(61)| |r2(57_result)|)) (=> true (= |__threadStateT2(64)| |__threadStateT2(63_result)|)))))\n(let (($x324 (and $x323)))\n(let (($x51 (and $x324 $x36 $x41 $x41)))\n(let (($x1174 (and $x51 $x15 DAT3M_spec_assumption)))\n(let (($x1228 (and $x323 $x58 true true $x32 DAT3M_spec_assumption)))\n(let (($x994 (= $x1228 $x1174)))\n(not $x994))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))\n(check-sat)\n",
+      "file": "003-actual-query-stack-0.smt2",
+      "smt_sha256": "29923c2724c387c279d870df3634f449fd6ab27ff3e51ef33648837d5d1e9ca7"
+    }
+  ],
+  "property_private_variables": [
+    "|Program specification|"
+  ],
+  "monitor_events": [
+    19,
+    31,
+    35,
+    47,
+    61
+  ],
+  "queries": [
+    {
+      "index": 0,
+      "stage": "safety",
+      "actual_result": "SAT",
+      "replay": "sat",
+      "file": "actual-query-0.smt2",
+      "stack_depth": 1,
+      "replay_model": "[po-loc $pipe com 12 49 = False,\n fre 23 64 = False,\n cycle po-loc $pipe com 63 24 = True,\n uninit_read 49 = False,\n cycle ghb-tso 24 45 = False,\n coe 24 64 = False,\n cycle ghb-tso 12 49 = False,\n schedulable T0:main#0@__root = False,\n r9(33_result) = 2,\n po-loc $pipe com 24 63 = False,\n uninit_read 23 = False,\n cycle po-loc $pipe com 12 49 = False,\n cycle po-loc $pipe com 24 63 = False,\n schedulable __root(size=3) = False,\n cycle po-loc $pipe com 33 45 = False,\n cycle ghb-tso 49 12 = True,\n exec 14 = True,\n cycle ghb-tso 11 50 = False,\n idd 22 31 = False,\n cf 15 = True,\n cycle ghb-tso 45 23 = True,\n fre 11 50 = False,\n __joinStatus#1(31) = 0,\n cycle ghb-tso 63 24 = True,\n cf 14 = True,\n cycle po-loc $pipe com 11 50 = False,\n __joinThreadState#1(25) = 2,\n seqVar_rf_E33#1 = True,\n cycle po-loc $pipe com 50 11 = True,\n seqVar_rf_E23#2 = True,\n coe 64 24 = True,\n cycle ghb-tso 64 23 = True,\n cycle ghb-tso 50 12 = True,\n uninit_read 33 = False,\n cf 27 = True,\n cycle ghb-tso 50 11 = True,\n rf 6 63 = True,\n cycle ghb-tso 23 64 = False,\n ghb-tso 45 33 = True,\n ghb-tso 64 23 = True,\n cycle ghb-tso 12 50 = False,\n cycle po-loc $pipe com 64 24 = True,\n cycle ghb-tso 24 63 = False,\n seqVar_rf_E33#2 = True,\n exec 26 = True,\n cycle po-loc $pipe com 49 12 = True,\n __threadStateT1(49_result) = 3,\n seqVar_rf_E23#1 = False,\n po-loc $pipe com 33 45 = False,\n cycle ghb-tso 45 33 = True,\n __joinStatus#0(19) = 0,\n cycle ghb-tso 23 49 = False,\n cycle ghb-tso 24 64 = False,\n cf 30 = True,\n cycle ghb-tso 49 23 = True,\n uninit_read 11 = False,\n po-loc $pipe com 12 50 = False,\n uninit_read 63 = False,\n cycle po-loc $pipe com 45 33 = True,\n po-loc $pipe com 50 12 = True,\n cycle ghb-tso 23 45 = False,\n fre 49 12 = True,\n cycle po-loc $pipe com 23 64 = False,\n (rf^-1) ; co 63 24 = True,\n idd 10 19 = False,\n cycle po-loc $pipe com 64 23 = True,\n __threadStateT2(63_result) = 3,\n cycle ghb-tso 33 45 = False,\n po-loc $pipe com 50 11 = True,\n cycle po-loc $pipe com 24 64 = False,\n cycle po-loc $pipe com 50 12 = True,\n cycle ghb-tso 64 24 = True,\n cf 26 = True,\n cycle po-loc $pipe com 12 50 = False,\n __joinThreadState#0(13) = 2,\n __joinRetVal#1(26_result) = 0,\n __joinRetVal#0(14_result) = 0,\n uninit_read 58 = False,\n r2(43_result) = 1,\n rcert_8feab541ae78_port1_0(58_result) = 0,\n uninit_read 43 = False,\n ghb-tso 24 63 = False,\n hasProgress T1:worker#1@__root = True,\n po-loc $pipe com 45 33 = True,\n sizeof(&input_b) = 4,\n ghb-tso 23 64 = False,\n ghb-tso 11 50 = False,\n ghb-tso 12 49 = False,\n ghb-tso 64 24 = True,\n __threadStateT1(50) = 3,\n wasScheduledOnce __root(size=3) = True,\n (rf^-1) ; co 11 50 = False,\n rf 64 23 = True,\n (rf^-1) ; co 49 12 = True,\n co 12 50 = False,\n com-tso 49 12 = True,\n seqVar_rf_E43#1 = True,\n addrof(&__com_worker#1) = 40,\n com 24 63 = False,\n cycle ghb-tso 63 64 = True,\n coe 50 12 = True,\n com 63 24 = True,\n co 50 12 = True,\n r2(57_result) = 2,\n ghb-tso 50 11 = True,\n cycle ghb-tso 11 12 = True,\n rf^-1 33 68 = False,\n com-tso 12 49 = False,\n sizeof(&input_a) = 4,\n R $backslash (range(rf)) 11 11 = False,\n com-tso 23 64 = False,\n com 64 23 = True,\n ghb-tso 12 50 = False,\n cycle ghb-tso 64 63 = False,\n rf 77 57 = True,\n rf 6 23 = False,\n po-loc $pipe com 23 64 = False,\n com 64 24 = True,\n com 50 11 = True,\n rf^-1 49 2 = True,\n rf 45 33 = True,\n R $backslash (range(rf)) 44 44 = False,\n hasProgress __root(size=3) = True,\n (rf^-1) ; co 33 45 = False,\n seqVar_rf_E11#2 = True,\n range(rf) 44 44 = True,\n cycle ghb-tso 24 33 = True,\n ghb-tso 50 12 = True,\n co $pipe fr 64 24 = True,\n ...]"
+    }
+  ],
+  "actual_model_values": [
+    {
+      "event": 0,
+      "executed": true
+    },
+    {
+      "event": 1,
+      "executed": true
+    },
+    {
+      "event": 2,
+      "executed": true,
+      "store_value": "3"
+    },
+    {
+      "event": 3,
+      "executed": true
+    },
+    {
+      "event": 4,
+      "executed": true
+    },
+    {
+      "event": 5,
+      "executed": true
+    },
+    {
+      "event": 6,
+      "executed": true,
+      "store_value": "3"
+    },
+    {
+      "event": 7,
+      "executed": true
+    },
+    {
+      "event": 8,
+      "executed": true
+    },
+    {
+      "event": 9,
+      "executed": true
+    },
+    {
+      "event": 10,
+      "executed": true,
+      "written_value": "3"
+    },
+    {
+      "event": 11,
+      "executed": true,
+      "written_value": "2"
+    },
+    {
+      "event": 12,
+      "executed": true,
+      "store_value": "0"
+    },
+    {
+      "event": 13,
+      "executed": true
+    },
+    {
+      "event": 14,
+      "executed": true,
+      "written_value": "0"
+    },
+    {
+      "event": 15,
+      "executed": true
+    },
+    {
+      "event": 16,
+      "executed": true,
+      "written_value": "0"
+    },
+    {
+      "event": 17,
+      "executed": true
+    },
+    {
+      "event": 18,
+      "executed": true
+    },
+    {
+      "event": 19,
+      "executed": true,
+      "condition": true
+    },
+    {
+      "event": 20,
+      "executed": true
+    },
+    {
+      "event": 21,
+      "executed": true
+    },
+    {
+      "event": 22,
+      "executed": true,
+      "written_value": "3"
+    },
+    {
+      "event": 23,
+      "executed": true,
+      "written_value": "2"
+    },
+    {
+      "event": 24,
+      "executed": true,
+      "store_value": "0"
+    },
+    {
+      "event": 25,
+      "executed": true
+    },
+    {
+      "event": 26,
+      "executed": true,
+      "written_value": "0"
+    },
+    {
+      "event": 27,
+      "executed": true
+    },
+    {
+      "event": 28,
+      "executed": true,
+      "written_value": "0"
+    },
+    {
+      "event": 29,
+      "executed": true
+    },
+    {
+      "event": 30,
+      "executed": true
+    },
+    {
+      "event": 31,
+      "executed": true,
+      "condition": true
+    },
+    {
+      "event": 32,
+      "executed": true
+    },
+    {
+      "event": 33,
+      "executed": true,
+      "written_value": "2"
+    },
+    {
+      "event": 34,
+      "executed": true
+    },
+    {
+      "event": 35,
+      "executed": true,
+      "condition": false
+    },
+    {
+      "event": 36,
+      "executed": true
+    },
+    {
+      "event": 37,
+      "executed": true
+    },
+    {
+      "event": 38,
+      "executed": true
+    },
+    {
+      "event": 39,
+      "executed": true
+    },
+    {
+      "event": 40,
+      "executed": true,
+      "written_value": "3"
+    },
+    {
+      "event": 41,
+      "executed": true
+    },
+    {
+      "event": 42,
+      "executed": true,
+      "written_value": "24"
+    },
+    {
+      "event": 43,
+      "executed": true,
+      "written_value": "1"
+    },
+    {
+      "event": 44,
+      "executed": true,
+      "written_value": "1"
+    },
+    {
+      "event": 45,
+      "executed": true,
+      "store_value": "2"
+    },
+    {
+      "event": 46,
+      "executed": true
+    },
+    {
+      "event": 47,
+      "executed": true,
+      "condition": true
+    },
+    {
+      "event": 48,
+      "executed": true
+    },
+    {
+      "event": 49,
+      "executed": true,
+      "written_value": "3"
+    },
+    {
+      "event": 50,
+      "executed": true,
+      "store_value": "2"
+    },
+    {
+      "event": 51,
+      "executed": true
+    },
+    {
+      "event": 52,
+      "executed": true
+    },
+    {
+      "event": 53,
+      "executed": true
+    },
+    {
+      "event": 54,
+      "executed": true,
+      "written_value": "3"
+    },
+    {
+      "event": 55,
+      "executed": true
+    },
+    {
+      "event": 56,
+      "executed": true,
+      "written_value": "32"
+    },
+    {
+      "event": 57,
+      "executed": true,
+      "written_value": "2"
+    },
+    {
+      "event": 58,
+      "executed": true,
+      "written_value": "0"
+    },
+    {
+      "event": 59,
+      "executed": true,
+      "store_value": "2"
+    },
+    {
+      "event": 60,
+      "executed": true
+    },
+    {
+      "event": 61,
+      "executed": true,
+      "condition": true
+    },
+    {
+      "event": 62,
+      "executed": true
+    },
+    {
+      "event": 63,
+      "executed": true,
+      "written_value": "3"
+    },
+    {
+      "event": 64,
+      "executed": true,
+      "store_value": "2"
+    },
+    {
+      "event": 65,
+      "executed": true
+    },
+    {
+      "event": 66,
+      "executed": true
+    },
+    {
+      "event": 67,
+      "executed": true
+    },
+    {
+      "event": 68,
+      "executed": true,
+      "store_value": "1"
+    },
+    {
+      "event": 69,
+      "executed": true
+    },
+    {
+      "event": 70,
+      "executed": true
+    },
+    {
+      "event": 71,
+      "executed": true,
+      "store_value": "0"
+    },
+    {
+      "event": 72,
+      "executed": true
+    },
+    {
+      "event": 73,
+      "executed": true
+    },
+    {
+      "event": 74,
+      "executed": true,
+      "store_value": "1"
+    },
+    {
+      "event": 75,
+      "executed": true
+    },
+    {
+      "event": 76,
+      "executed": true
+    },
+    {
+      "event": 77,
+      "executed": true,
+      "store_value": "2"
+    },
+    {
+      "event": 78,
+      "executed": true
+    },
+    {
+      "event": 79,
+      "executed": true
+    },
+    {
+      "event": 80,
+      "executed": true,
+      "store_value": "0"
+    },
+    {
+      "event": 81,
+      "executed": true
+    },
+    {
+      "event": 82,
+      "executed": true
+    },
+    {
+      "event": 83,
+      "executed": true,
+      "store_value": "0"
+    },
+    {
+      "event": 84,
+      "executed": true
+    }
+  ]
+}

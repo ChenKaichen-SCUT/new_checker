@@ -39,7 +39,7 @@ def install_p0(root, fault_injection=False, fault_class="P0Faults"):
             '        prover.addConstraint(certifying.P0Audit.component("assumed_property", assumedSpec));\n'
             '        certifying.Snapshot.write(task, "after-encoding");')
     # Same collection object goes to observer and original actual solver call.
-    if fault_class not in {"P0Faults", "P1Faults", "P1bFaults", "P2Faults", "LevelsFaults"} or (fault_class != "P0Faults" and not fault_injection):
+    if fault_class not in {"P0Faults", "P1Faults", "P1bFaults", "P2Faults", "LevelsFaults", "PropertyFaults"} or (fault_class != "P0Faults" and not fault_injection):
         raise Reject("invalid fault instrumentation profile")
     assumption = (f"certifying.{fault_class}.assumption(assumptionLiteral, bmgr)"
                   if fault_injection else "assumptionLiteral")
@@ -80,7 +80,7 @@ def install_p0(root, fault_injection=False, fault_class="P0Faults"):
         sources[name] = sha(data)
     path.write_bytes(code.encode("utf-8"))
     return {"profile": {"P0Faults": "p0-query-audit-v1", "P1Faults": "p1-query-audit-v1",
-                        "P1bFaults": "p1b-query-audit-v1", "P2Faults": "p2-query-audit-v1", "LevelsFaults": "levels-query-audit-v1"}[fault_class], "original_sha256": sha(raw),
+                        "P1bFaults": "p1b-query-audit-v1", "P2Faults": "p2-query-audit-v1", "LevelsFaults": "levels-query-audit-v1", "PropertyFaults": "property-query-audit-v1"}[fault_class], "original_sha256": sha(raw),
             "instrumented_sha256": sha(path.read_bytes()),
             "exporter_sha256": sources["Snapshot.java"],
             "fault_source_sha256": sources.get(fault_class + ".java"),

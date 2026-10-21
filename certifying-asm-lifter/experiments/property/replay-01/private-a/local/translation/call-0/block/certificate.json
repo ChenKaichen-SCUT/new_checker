@@ -1,0 +1,108 @@
+{
+  "address_width": 64,
+  "backend": "UNVERIFIED",
+  "cutpoints": [
+    {
+      "kind": "RMW",
+      "mode": "tso",
+      "source": 0,
+      "source_fields": {
+        "addr": "addr:addr0",
+        "has_write": "True",
+        "kind": "RMW",
+        "mode": "tso",
+        "read": "u0",
+        "value": "u0 + in:v1",
+        "width": "32"
+      },
+      "state_relation": {
+        "quantification": "common entry X; independently fresh shared responses U",
+        "source": {
+          "o1": "u0",
+          "p0": "addr:addr0"
+        },
+        "target": {
+          "o1": "in:v1",
+          "p0": "addr:addr0",
+          "tmp0": "u0"
+        }
+      },
+      "target": 0
+    }
+  ],
+  "final_symbolic_relation": {
+    "definition": "paired reachable symbolic states under common entry X and fresh U",
+    "source": {
+      "o1": "u0",
+      "p0": "addr:addr0"
+    },
+    "target": {
+      "o1": "u0",
+      "p0": "addr:addr0",
+      "tmp0": "u0"
+    }
+  },
+  "model": "RC11Ex86-B8-restricted-v1",
+  "obligations": [
+    {
+      "file": "000-e0-addr.smt2",
+      "name": "e0-addr",
+      "result": "unsat",
+      "seconds": 5.409994628280401e-05,
+      "smt_sha256": "0b702432dab530347fe17637e6753bc33bebadea6aecc8017678913b7a5b5ece"
+    },
+    {
+      "file": "001-e0-read.smt2",
+      "name": "e0-read",
+      "result": "unsat",
+      "seconds": 4.2599975131452084e-05,
+      "smt_sha256": "d61a1e9478555579f9dba7e34cd817e7d97f0ee25545ba2f18c23c95abe17b35"
+    },
+    {
+      "file": "002-e0-has_write.smt2",
+      "name": "e0-has_write",
+      "result": "unsat",
+      "seconds": 4.179996903985739e-05,
+      "smt_sha256": "7f2a8c06892f267ccbe8c20d8de979069ff00edfb244540d9b35cd0465c54974"
+    },
+    {
+      "file": "003-e0-value.smt2",
+      "name": "e0-value",
+      "result": "unsat",
+      "seconds": 4.309997893869877e-05,
+      "smt_sha256": "3b08cbc1b63737ec4a92274c4f3d447e275c28bb2a2a8fe0bd783a872c41f13c"
+    },
+    {
+      "file": "004-output-o1.smt2",
+      "name": "output-o1",
+      "result": "unsat",
+      "seconds": 4.109996370971203e-05,
+      "smt_sha256": "d61a1e9478555579f9dba7e34cd817e7d97f0ee25545ba2f18c23c95abe17b35"
+    }
+  ],
+  "precondition": "true over valid aligned fixed-width WB domain",
+  "proof_artifact": "replayable-SMT; solver-in-TCB",
+  "result": "EXACT",
+  "scope": "restricted-open-block; conditional GNU interface/host contract",
+  "seconds": 0.009126200107857585,
+  "solver": "5.0.0",
+  "source_sha256": "f9720853c19974d99a0583e9c308f356a57b8f2ad64349b36681079d47f80e4c",
+  "target_sha256": "e8a1a2b2414345d78cd34cb186c49867ba60c8adfbe6f689344111150c880b8b",
+  "trusted_implementation_sha256": {
+    "checker/check.py": "8651a4b310b358be73bc4fcab701538a70e8f6e26307c721b64b56a0c1e29717",
+    "checker/target.py": "8dde5bb78a9e9d5b5f1bd82d556738dcb6ca779497a99d0f6b7cf91b05737516",
+    "docs/01-scope-and-semantics.md": "2841954c31078dbb4a453bb5aeeee88258577546fed5b663c725d0a478e77fd9",
+    "frontend/gnu.py": "4683aa713af60d5d89a1b8a9d01bc67f7d1f040a8bbee64a4f18371ba26374c4",
+    "semantics/reference.py": "4a4c0700018a7b7c6c9366a4aafbff0e365a97bf5ad17826a49b73cf0a43c57e"
+  },
+  "version": 1,
+  "width": 32,
+  "template_reference": {
+    "key": "a0f2848bf07f641127848c1514ccdb49d1868e4e97cb88d061e3705dc3b1d4ac",
+    "evidence_directory": "experiments/property/replay-01/private-a/templates/a0f2848bf07f641127848c1514ccdb49d1868e4e97cb88d061e3705dc3b1d4ac",
+    "certificate_sha256": "fd057071a2aea57f053bf797c55279025266fd510102253a36475d0e9b22b8b2",
+    "reused_in_this_run": false,
+    "scope": "BLOCK_ONLY; per-site interface/LLVM and per-Q-instance checks required"
+  },
+  "layer_result": "BLOCK_EXACT"
+}

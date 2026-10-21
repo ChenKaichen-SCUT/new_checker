@@ -1,5 +1,17 @@
 # Repository workflow
 
+- Property-directed round from 51d8c63 is delivered for review (2026-10-21).
+  D_PD0 retains full actual Q/query and every structural/host/lifecycle check;
+  only single-dynamic-owner, dependency-closed irrelevant FAA write-value
+  equalities may be omitted. PD-SAFE has a restricted analytic proof under the
+  original eight Gamma. PROPERTY_CONDITIONAL_SAFE is not legacy L3/L4.
+  Final evidence: experiments/property/final-02, replay-01, unit-commands-02,
+  legacy-01. 16 targeted cases, 16 raw-object replays, 144 tests; old D2=L4 and
+  branch=L3 preserved. Algorithm novelty / ISSTA Research method foundation
+  NOT_ESTABLISHED / NO_GO. No general HCC, new ISA, broad coverage or performance
+  claim. Preserve all history. After integrity/commit/push/remote verification,
+  STOP for review; no further extension without new authorization.
+
 - The user authorized uploading this research to
   `https://github.com/ChenKaichen-SCUT/new_checker` and pushing subsequent updates.
   After completing an authorized update, run relevant checks, commit it, push to
@@ -152,3 +164,12 @@
   comparison-02 and llvm-faults-02. Earlier attempts remain superseded evidence.
   No new generic HCC/provider, no new ISA, no independent algorithm novelty.
   Commit/push/verify this delivery, then STOP pending review.
+- Latest authorization (2026-10-21): baseline 51d8c63c796877f7fa6fcb9d4d1195ac3cce68d2;
+  investigate property-directed compositional certification. Prove a restricted
+  sound selection/composition rule before implementing it; keep complete actual
+  Q and queries unchanged, no assumed source safety or new semantic Gamma.
+  Preserve L1-L4 meanings: a property-only transfer is not full L3/L4. Unknown
+  dependencies/aliases/coverage expand checking or reject. Finite controlled
+  examples/faults only, no coverage/performance campaign. Audit prior slicing,
+  compositional and translation-validation algorithms honestly; preserve all
+  historical evidence, commit/push/verify, then STOP for review.

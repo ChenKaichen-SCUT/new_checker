@@ -1,0 +1,397 @@
+{
+  "result": "REVIEWED",
+  "baseline": "51d8c63c796877f7fa6fcb9d4d1195ac3cce68d2",
+  "cases": 16,
+  "unit_tests": 144,
+  "raw_object_replays": 16,
+  "legacy": [
+    {
+      "case": "d2",
+      "level": 4,
+      "program_eligible": true
+    },
+    {
+      "case": "branch",
+      "level": 3,
+      "program_eligible": false
+    }
+  ],
+  "rows": [
+    {
+      "case": "owned",
+      "result": "PROPERTY_CONDITIONAL_SAFE",
+      "reason": null,
+      "backend_text": "PASS",
+      "property_eligible": true,
+      "Q_sha256": "86d8551cac16dc16509a2866232e8cbb9b703387012f9324ba15e9f3d24170b0",
+      "selected": 19,
+      "omitted": [
+        "thread-2-asm-1-write-value"
+      ],
+      "regions": 2,
+      "owners": [
+        "side"
+      ]
+    },
+    {
+      "case": "unsafe",
+      "result": "PROPERTY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "reason": null,
+      "backend_text": "FAIL",
+      "property_eligible": false,
+      "Q_sha256": "c76ef72d3b5d3db1b3fd7769112a91ac19657b571ad96099d1aefee6386de823",
+      "selected": 19,
+      "omitted": [
+        "thread-2-asm-1-write-value"
+      ],
+      "regions": 2,
+      "owners": [
+        "side"
+      ]
+    },
+    {
+      "case": "relevant",
+      "result": "PROPERTY_CONDITIONAL_SAFE",
+      "reason": null,
+      "backend_text": "PASS",
+      "property_eligible": true,
+      "Q_sha256": "3051d5d04a95577ac850a6704b913b8c3688cad844b9d66f9c7f3a8a92cdc70b",
+      "selected": 20,
+      "omitted": [],
+      "regions": 2,
+      "owners": [
+        "side"
+      ]
+    },
+    {
+      "case": "dependent",
+      "result": "PROPERTY_CONDITIONAL_SAFE",
+      "reason": null,
+      "backend_text": "PASS",
+      "property_eligible": true,
+      "Q_sha256": "2bfe443666d5b8af5ba9276f264412c30d47560f2e13e05dcd69efcd627251b4",
+      "selected": 26,
+      "omitted": [],
+      "regions": 3,
+      "owners": [
+        "side"
+      ]
+    },
+    {
+      "case": "branch",
+      "result": "PROPERTY_CONDITIONAL_SAFE",
+      "reason": null,
+      "backend_text": "PASS",
+      "property_eligible": true,
+      "Q_sha256": "da1cbfab4f60919fef64532ca107a31aaf5a9c2c84a39863bf5a5d1b26fa6f24",
+      "selected": 36,
+      "omitted": [],
+      "regions": 4,
+      "owners": []
+    },
+    {
+      "case": "d2",
+      "result": "PROPERTY_CONDITIONAL_SAFE",
+      "reason": null,
+      "backend_text": "PASS",
+      "property_eligible": true,
+      "Q_sha256": "98197373460c56ebe3adc2df099f447f1aaeba4f86ceb90aa6c2323308a6debf",
+      "selected": 20,
+      "omitted": [],
+      "regions": 2,
+      "owners": []
+    },
+    {
+      "case": "private-value",
+      "result": "PROPERTY_TRANSFER_TEST_ONLY",
+      "reason": null,
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "4853a85f846c95fff63c2dcc67ddd54c26224f1e9fdfd66114ecfe07c311ad0f",
+      "selected": 19,
+      "omitted": [
+        "thread-2-asm-1-write-value"
+      ],
+      "regions": 2,
+      "owners": [
+        "side"
+      ]
+    },
+    {
+      "case": "public-value",
+      "result": "REJECT",
+      "reason": "unproved P0 obligation: thread-1-asm-1-write-value",
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "3f91eb7bbf749f90070a4b68d1b472159860ab76d83dc75c8e3ee441a25035f8"
+    },
+    {
+      "case": "private-a",
+      "result": "REJECT",
+      "reason": "RMW read width/labels",
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "cb74af373fa8910a414c852b483221603831c374cd15f4b3bac2279f5f543750"
+    },
+    {
+      "case": "private-omit",
+      "result": "REJECT",
+      "reason": "complete Program worker effect census: Load",
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "dac5ad699796b9dbed7f810452bcf3080f3738832edfe37618a7a913369a3745"
+    },
+    {
+      "case": "sync-omit",
+      "result": "REJECT",
+      "reason": "complete worker runtime shape",
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "f55762f45d62550b7f250363319dc90e0d561a484cda60b90bd3161fb0ce161e"
+    },
+    {
+      "case": "cross-return",
+      "result": "REJECT",
+      "reason": "unproved P0 obligation: thread-1-monitor-53",
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "0094a3fe213da1481f3d488d413d08fb9f2103339783c0f74a0299f33d80251e"
+    },
+    {
+      "case": "cross-read",
+      "result": "REJECT",
+      "reason": "ordinary read tags/width",
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "b610b1b22c7af85b76e1bd8b577a1ec649975d1e3f4a3d09649aa322acb3399a"
+    },
+    {
+      "case": "missing-instance",
+      "result": "REJECT",
+      "reason": "complete Program worker effect census: Load",
+      "backend_text": "FAIL",
+      "property_eligible": false,
+      "Q_sha256": "0f57cbb79bc4d094eea5380c60dd12040d1355503fcea5be64eebb48d9b2f79b"
+    },
+    {
+      "case": "branch-condition",
+      "result": "REJECT",
+      "reason": "unproved P0 obligation: thread-1-asm-3-write-value",
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "25a123651f36e277c78b55a72563585494efe191b1daeeaa114ce776b2655b48"
+    },
+    {
+      "case": "query-binding",
+      "result": "REJECT",
+      "reason": "unproved P0 obligation: actual-safety-assumption-binding",
+      "backend_text": "PASS",
+      "property_eligible": false,
+      "Q_sha256": "312e4a01db03b0569d058ebd435df33e9b2345d8b8b82028416070de7fadea8a",
+      "selected": 19,
+      "omitted": [
+        "thread-2-asm-1-write-value"
+      ],
+      "regions": 2,
+      "owners": [
+        "side"
+      ]
+    }
+  ],
+  "faults": [
+    {
+      "case": "private-value",
+      "changed": [
+        {
+          "event": 59,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "public-value",
+      "changed": [
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "private-a",
+      "changed": [
+        {
+          "event": 58,
+          "class_before": "Load",
+          "class_after": "Load",
+          "fields": [
+            "tags"
+          ]
+        },
+        {
+          "event": 59,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "tags"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "private-omit",
+      "changed": [
+        {
+          "event": 58,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        59
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "case": "sync-omit",
+      "changed": [
+        {
+          "event": 63,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        64
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "case": "cross-return",
+      "changed": [
+        {
+          "event": 50,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition"
+          ]
+        },
+        {
+          "event": 53,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition",
+            "reads"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "cross-read",
+      "changed": [
+        {
+          "event": 46,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "missing-instance",
+      "changed": [
+        {
+          "event": 70,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        71
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "case": "branch-condition",
+      "changed": [
+        {
+          "event": 48,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "query-binding",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    }
+  ],
+  "obligation_references_checked": 2811,
+  "backend_PASS_but_rejected": 8,
+  "new_external_semantic_assumptions": [],
+  "no_statistical_cost_claim": true,
+  "semantics_proved_by_this_audit": false
+}

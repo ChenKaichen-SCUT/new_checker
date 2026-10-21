@@ -1,0 +1,15 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |activation-2:llvm-create-1-read-1| () (_ BitVec 32))
+(declare-fun |activation-2:llvm-create-1-read-0| () (_ BitVec 32))
+(declare-fun |activation-2:llvm-create-1-read-2| () (_ BitVec 32))
+(declare-fun |activation-2:llvm-create-1-read-3| () (_ BitVec 32))
+(assert
+ (let ((?x50 (ite (= (ite (= (_ bv2 32) |activation-2:llvm-create-1-read-2|) (_ bv1 1) (_ bv0 1)) (_ bv1 1)) |activation-2:llvm-create-1-read-0| (_ bv0 32))))
+(let ((?x84 (bvadd ?x50 |activation-2:llvm-create-1-read-1|)))
+(let ((?x40 (bvadd |activation-2:llvm-create-1-read-3| |activation-2:llvm-create-1-read-1|)))
+(let ((?x88 (bvadd |activation-2:llvm-create-1-read-0| |activation-2:llvm-create-1-read-1|)))
+(let (($x87 (= (_ bv2 32) |activation-2:llvm-create-1-read-2|)))
+(let (($x111 (= (ite $x87 (bvadd |activation-2:llvm-create-1-read-3| ?x88) ?x40) (bvadd |activation-2:llvm-create-1-read-3| ?x84))))
+(not $x111))))))))
+(check-sat)

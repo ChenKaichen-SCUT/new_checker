@@ -129,8 +129,14 @@ def check_queries(q, audit_path, backend, host, out, *, host_profile="D0"):
                 and audit["specification_type"] == "ASSERT", "actual safety property mismatch")
         require(audit["bound_events"] == [] and not any("BOUND" in e["tags"] for t in q["threads"] for e in t["events"]),
                 "P0 requires no truncation events")
-        require(host_profile in {"D0", "D1a", "D1b", "D2"} and host["result"] == host_profile + "_OPEN_HOST_EXACT",
-                "missing complete host/monitor coverage")
+        if host_profile == "PD0":
+            require(host["result"] == "PD0_PROPERTY_HOST_COVERED"
+                    and host.get("property_transfer") == "PROPERTY_OBSERVATION_TRANSFER"
+                    and host.get("q_sha256") == sha((backend_dir / "snapshots/before-encoding.json").read_bytes()),
+                    "missing property-specific host/monitor transfer")
+        else:
+            require(host_profile in {"D0", "D1a", "D1b", "D2"} and host["result"] == host_profile + "_OPEN_HOST_EXACT",
+                    "missing complete host/monitor coverage")
         ids = [m["event"] for m in audit["monitors"]]
         require(sorted(ids) == sorted(host["all_assertions"]) and len(set(ids)) == len(ids), "Task monitor census")
         c = {name: formula(text) for name, text in audit["components"].items()}

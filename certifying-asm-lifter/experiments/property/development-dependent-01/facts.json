@@ -1,0 +1,463 @@
+{
+  "binding": {
+    "source_sha256": "4936f38f5795f9062f2e28bd29caa80ffa1aa33ee4186eada281f5ad88c34066",
+    "capture_receipt_sha256": "cfb836f817c6e31a14fc28e68bf9926ffe70b89430c7b6ae04bbbe6e95b8c69c",
+    "llvm_sha256": "d335089397bfa2151adcac8b467783d3cba18c914a3de2cca63be39936e37b18",
+    "candidate_sha256": "3f5388aeeaf7d11b13e25023ae67625051a10778b8b328710cd2faa47ba1fde7",
+    "q_sha256": "314854b3413ae540a6af29f0406faacbd8f8f2569b3e1d01bfaa2eb766d7f542",
+    "run_id": "eb1aaecdd44c42e9aadfdae5773bcc0c",
+    "property": "all-user-assertions"
+  },
+  "owners": {
+    "side": {
+      "thread": 2,
+      "accesses": [
+        {
+          "object": "side",
+          "thread": 2,
+          "kind": "RMW-read",
+          "width": 32,
+          "event": 58
+        },
+        {
+          "object": "side",
+          "thread": 2,
+          "kind": "RMW-write",
+          "width": 32,
+          "event": 59
+        }
+      ]
+    }
+  },
+  "accesses": [
+    {
+      "object": "x",
+      "thread": 0,
+      "kind": "read",
+      "width": 32,
+      "event": 33
+    },
+    {
+      "object": "input_a",
+      "thread": 1,
+      "kind": "read",
+      "width": 32,
+      "event": 43
+    },
+    {
+      "object": "x",
+      "thread": 1,
+      "kind": "RMW-read",
+      "width": 32,
+      "event": 44
+    },
+    {
+      "object": "x",
+      "thread": 1,
+      "kind": "RMW-write",
+      "width": 32,
+      "event": 45
+    },
+    {
+      "object": "input_b",
+      "thread": 2,
+      "kind": "read",
+      "width": 32,
+      "event": 57
+    },
+    {
+      "object": "side",
+      "thread": 2,
+      "kind": "RMW-read",
+      "width": 32,
+      "event": 58
+    },
+    {
+      "object": "side",
+      "thread": 2,
+      "kind": "RMW-write",
+      "width": 32,
+      "event": 59
+    },
+    {
+      "object": "x",
+      "thread": 2,
+      "kind": "RMW-read",
+      "width": 32,
+      "event": 60
+    },
+    {
+      "object": "x",
+      "thread": 2,
+      "kind": "RMW-write",
+      "width": 32,
+      "event": 61
+    }
+  ],
+  "nodes": [
+    "o:completion-1",
+    "o:completion-2",
+    "o:startup-1",
+    "o:startup-2",
+    "o:thread-1-asm-1-read-address",
+    "o:thread-1-asm-1-reference-return",
+    "o:thread-1-asm-1-write-address",
+    "o:thread-1-asm-1-write-presence",
+    "o:thread-1-monitor-47",
+    "o:thread-1-read-0-address",
+    "o:thread-2-asm-1-read-address",
+    "o:thread-2-asm-1-reference-return",
+    "o:thread-2-asm-1-write-address",
+    "o:thread-2-asm-1-write-presence",
+    "o:thread-2-asm-2-read-address",
+    "o:thread-2-asm-2-reference-return",
+    "o:thread-2-asm-2-write-address",
+    "o:thread-2-asm-2-write-presence",
+    "o:thread-2-monitor-63",
+    "o:thread-2-monitor-66",
+    "o:thread-2-read-0-address",
+    "o:thread-argument-1",
+    "o:thread-argument-2",
+    "r:43",
+    "r:44",
+    "r:57",
+    "r:58",
+    "r:60",
+    "w:45",
+    "w:59",
+    "w:61"
+  ],
+  "roots": [
+    "o:completion-1",
+    "o:completion-2",
+    "o:startup-1",
+    "o:startup-2",
+    "o:thread-1-asm-1-read-address",
+    "o:thread-1-asm-1-write-address",
+    "o:thread-1-asm-1-write-presence",
+    "o:thread-1-monitor-47",
+    "o:thread-1-read-0-address",
+    "o:thread-2-asm-1-read-address",
+    "o:thread-2-asm-1-write-address",
+    "o:thread-2-asm-1-write-presence",
+    "o:thread-2-asm-2-read-address",
+    "o:thread-2-asm-2-write-address",
+    "o:thread-2-asm-2-write-presence",
+    "o:thread-2-monitor-63",
+    "o:thread-2-monitor-66",
+    "o:thread-2-read-0-address",
+    "o:thread-argument-1",
+    "o:thread-argument-2",
+    "w:45",
+    "w:61"
+  ],
+  "edges": [
+    [
+      "o:thread-1-asm-1-reference-return",
+      "r:44"
+    ],
+    [
+      "o:thread-1-monitor-47",
+      "r:44"
+    ],
+    [
+      "o:thread-2-asm-1-reference-return",
+      "r:58"
+    ],
+    [
+      "o:thread-2-asm-2-reference-return",
+      "r:60"
+    ],
+    [
+      "o:thread-2-monitor-63",
+      "r:57"
+    ],
+    [
+      "o:thread-2-monitor-66",
+      "r:60"
+    ],
+    [
+      "r:44",
+      "w:45"
+    ],
+    [
+      "r:44",
+      "w:61"
+    ],
+    [
+      "r:58",
+      "w:59"
+    ],
+    [
+      "r:60",
+      "w:45"
+    ],
+    [
+      "r:60",
+      "w:61"
+    ],
+    [
+      "w:45",
+      "r:43"
+    ],
+    [
+      "w:45",
+      "r:44"
+    ],
+    [
+      "w:59",
+      "r:57"
+    ],
+    [
+      "w:59",
+      "r:58"
+    ],
+    [
+      "w:61",
+      "r:58"
+    ],
+    [
+      "w:61",
+      "r:60"
+    ]
+  ],
+  "read_bindings": [
+    {
+      "event": 43,
+      "thread": 1,
+      "object": "input_a",
+      "width": 32,
+      "variable": "|activation-1:\\|pd-source-0:p1-open-read-0\\||",
+      "kind": "ordinary"
+    },
+    {
+      "event": 44,
+      "thread": 1,
+      "object": "x",
+      "width": 32,
+      "variable": "|activation-1:\\|pd-source-0:p1-open-rmw-1\\||",
+      "kind": "RMW"
+    },
+    {
+      "event": 57,
+      "thread": 2,
+      "object": "input_b",
+      "width": 32,
+      "variable": "|activation-2:\\|pd-source-1:p1-open-read-0\\||",
+      "kind": "ordinary"
+    },
+    {
+      "event": 58,
+      "thread": 2,
+      "object": "side",
+      "width": 32,
+      "variable": "|activation-2:\\|pd-source-1:p1-open-rmw-1\\||",
+      "kind": "RMW"
+    },
+    {
+      "event": 60,
+      "thread": 2,
+      "object": "x",
+      "width": 32,
+      "variable": "|activation-2:\\|pd-source-1:p1-open-rmw-2\\||",
+      "kind": "RMW"
+    }
+  ],
+  "regions": [
+    {
+      "thread": 1,
+      "source_operation": 1,
+      "create_index": 0,
+      "worker_definition": "0x577d2b1c3f50",
+      "worker_name": "worker",
+      "call_context": {
+        "begin_raw": 405,
+        "end_raw": 427
+      },
+      "llvm_line_index": 13,
+      "read": 44,
+      "write": 45,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_4936f38f5795_port0_0"
+      },
+      "input": "|activation-1:\\|pd-source-0:p1-open-read-0\\||",
+      "output": "|activation-1:\\|pd-source-0:p1-open-rmw-1\\||",
+      "result": "RMW_OBLIGATIONS_PENDING",
+      "object": "x",
+      "write_value_obligation": "thread-1-asm-1-write-value",
+      "reference_return_obligation": "thread-1-asm-1-reference-return"
+    },
+    {
+      "thread": 2,
+      "source_operation": 1,
+      "create_index": 1,
+      "worker_definition": "0x577d2b1c4660",
+      "worker_name": "worker_other",
+      "call_context": {
+        "begin_raw": 605,
+        "end_raw": 630
+      },
+      "llvm_line_index": 31,
+      "read": 58,
+      "write": 59,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_4936f38f5795_port1_0"
+      },
+      "input": "|activation-2:\\|pd-source-1:p1-open-read-0\\||",
+      "output": "|activation-2:\\|pd-source-1:p1-open-rmw-1\\||",
+      "result": "RMW_OBLIGATIONS_PENDING",
+      "object": "side",
+      "write_value_obligation": "thread-2-asm-1-write-value",
+      "reference_return_obligation": "thread-2-asm-1-reference-return"
+    },
+    {
+      "thread": 2,
+      "source_operation": 2,
+      "create_index": 1,
+      "worker_definition": "0x577d2b1c4660",
+      "worker_name": "worker_other",
+      "call_context": {
+        "begin_raw": 653,
+        "end_raw": 676
+      },
+      "llvm_line_index": 32,
+      "read": 60,
+      "write": 61,
+      "actual_read_register": {
+        "type": "bv32",
+        "name": "rcert_4936f38f5795_port2_0"
+      },
+      "input": "|activation-2:\\|pd-source-1:p1-open-rmw-1\\||",
+      "output": "|activation-2:\\|pd-source-1:p1-open-rmw-2\\||",
+      "result": "RMW_OBLIGATIONS_PENDING",
+      "object": "x",
+      "write_value_obligation": "thread-2-asm-2-write-value",
+      "reference_return_obligation": "thread-2-asm-2-reference-return"
+    }
+  ],
+  "equations": [
+    {
+      "name": "thread-argument-1",
+      "statement_sha256": "c1df16a46d76b78b15673745a5d4e9ff9200e58285302b9af2d2ee57dc584964"
+    },
+    {
+      "name": "startup-1",
+      "statement_sha256": "303ad902fa8ea78cdb754fbb57e16543b43d6c1ab44cebd2f1c00ff3e88d5a5f"
+    },
+    {
+      "name": "completion-1",
+      "statement_sha256": "b69b3b256b9fa8e590905a757b1d3dbdce9f262b3bec40137e060292b4ea0585"
+    },
+    {
+      "name": "thread-1-read-0-address",
+      "statement_sha256": "c1df16a46d76b78b15673745a5d4e9ff9200e58285302b9af2d2ee57dc584964"
+    },
+    {
+      "name": "thread-1-asm-1-read-address",
+      "statement_sha256": "4b4596ce82441ad3a8a60a169ddb7f50efc119131db872e2669b44e660044491"
+    },
+    {
+      "name": "thread-1-asm-1-write-address",
+      "statement_sha256": "4b4596ce82441ad3a8a60a169ddb7f50efc119131db872e2669b44e660044491"
+    },
+    {
+      "name": "thread-1-asm-1-write-value",
+      "statement_sha256": "b7ae9c8b55c70b6934afef4a0c70e2c1686bc4a6bc2e51c1cb6dc5c19fb35a7f"
+    },
+    {
+      "name": "thread-1-asm-1-write-presence",
+      "statement_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "name": "thread-1-asm-1-reference-return",
+      "statement_sha256": "f77389f40b20af081af8052941717f4d6e1c73e26a3e18f21a2b846d735151be"
+    },
+    {
+      "name": "thread-1-monitor-47",
+      "statement_sha256": "a624b1ee4f843ff5f89c190a4baae41e85b73239ce2f35990f1f2de6a902268e"
+    },
+    {
+      "name": "thread-argument-2",
+      "statement_sha256": "83a0b1c42dfc2d99683c7c54406cacb2b43e03fcf2437c341b9b795284775221"
+    },
+    {
+      "name": "startup-2",
+      "statement_sha256": "303ad902fa8ea78cdb754fbb57e16543b43d6c1ab44cebd2f1c00ff3e88d5a5f"
+    },
+    {
+      "name": "completion-2",
+      "statement_sha256": "b69b3b256b9fa8e590905a757b1d3dbdce9f262b3bec40137e060292b4ea0585"
+    },
+    {
+      "name": "thread-2-read-0-address",
+      "statement_sha256": "83a0b1c42dfc2d99683c7c54406cacb2b43e03fcf2437c341b9b795284775221"
+    },
+    {
+      "name": "thread-2-asm-1-read-address",
+      "statement_sha256": "b2476baa6cb1aff38b7bddc0f7873a6edac8664288a819d5706086e744967939"
+    },
+    {
+      "name": "thread-2-asm-1-write-address",
+      "statement_sha256": "b2476baa6cb1aff38b7bddc0f7873a6edac8664288a819d5706086e744967939"
+    },
+    {
+      "name": "thread-2-asm-1-write-value",
+      "statement_sha256": "819c67164218c14dfefc03e603e301f98fb905c9ec6f55520e6c1b285355eda4"
+    },
+    {
+      "name": "thread-2-asm-1-write-presence",
+      "statement_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "name": "thread-2-asm-1-reference-return",
+      "statement_sha256": "2d49fcad86e409842433ef1586bef1fad8b87b1b7f703442f7da3172779c944f"
+    },
+    {
+      "name": "thread-2-asm-2-read-address",
+      "statement_sha256": "4b4596ce82441ad3a8a60a169ddb7f50efc119131db872e2669b44e660044491"
+    },
+    {
+      "name": "thread-2-asm-2-write-address",
+      "statement_sha256": "4b4596ce82441ad3a8a60a169ddb7f50efc119131db872e2669b44e660044491"
+    },
+    {
+      "name": "thread-2-asm-2-write-value",
+      "statement_sha256": "a536e6f25ccfb00f4fea9a3c58c53d484c7cf5e670a3d160ff2ee7c5c7e690cf"
+    },
+    {
+      "name": "thread-2-asm-2-write-presence",
+      "statement_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "name": "thread-2-asm-2-reference-return",
+      "statement_sha256": "227b725337237a5c9aceafdc1ac0eb6d3014c06c5e31a4ab4965d48315390cd1"
+    },
+    {
+      "name": "thread-2-monitor-63",
+      "statement_sha256": "9e821a41945a595d1a67d45beef73dcdc9dc7bd37bbd34e33067149a7cccf1f6"
+    },
+    {
+      "name": "thread-2-monitor-66",
+      "statement_sha256": "f7869574feac7fe8af9988522283621275ab1b47e7fe3505569cc923a2ea74f2"
+    }
+  ],
+  "phi": {
+    "kind": "all-user-assertions",
+    "actual_events": [
+      35,
+      47,
+      63,
+      66
+    ]
+  },
+  "all_actual_monitors": [
+    19,
+    31,
+    35,
+    47,
+    63,
+    66
+  ]
+}

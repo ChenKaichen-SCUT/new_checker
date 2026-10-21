@@ -21,6 +21,7 @@ def capture(out, build_dir, source=None):
     build = json.loads((build_dir / "receipt.json").read_bytes())
     source = Path(source).resolve() if source is not None else ROOT / "benchmarks/ck-live.c"
     if source.parent != ROOT / "benchmarks" or source.name not in {
+            "ck-property-owned.c", "ck-property-unsafe.c", "ck-property-relevant.c", "ck-property-dependent.c",
             "ck-hcc-branch.c", "ck-live.c", "ck-live-unsafe.c", "ck-input.c", "ck-input-unsafe.c",
             "ck-multi.c", "ck-multi-unsafe.c", "ck-contexts.c",
             "ck-readonly.c", "ck-readonly-unsafe.c", "ck-readonly-multi.c", "ck-readonly-multi-unsafe.c",
