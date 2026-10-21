@@ -7,6 +7,7 @@ import argparse
 import json
 import re
 import shlex
+import subprocess
 from pathlib import Path
 from certification.run_pipeline import ROOT
 from certification.evidence import save_json
@@ -16,8 +17,17 @@ from experiments.gap45.common import BASELINE, digest, execute, read
 def compiler_commands(text, cwd):
     rows = []
     for line in text.replace('\\\n', ' ').splitlines():
+        expanded = None
+        if '`' in line:
+            # Autoconf source-path fallback is evaluated by its real shell.
+            # Admit only the read-only test/echo form; never run a build recipe
+            # while discovering argv. Retain the unexpanded original line.
+            rest = re.sub(r"`test -f '[^']+' \|\| echo '[^']*'`", '', line)
+            if '`' in rest or any(x in rest for x in ['&&', '||', ';', '$(', '>', '<']):
+                raise ValueError('unrecognized shell recipe during argv discovery')
+            expanded = subprocess.check_output(['/bin/sh', '-c', "printf '%s\\0' " + line], cwd=cwd).decode().split('\0')[:-1]
         try:
-            words = shlex.split(line)
+            words = expanded if expanded is not None else shlex.split(line)
         except ValueError:
             continue
         indices = [i for i, s in enumerate(words) if s.endswith('/bin/clang-21')]
@@ -96,7 +106,7 @@ def main():
         main = [c for c in commands if any(Path(s).name == 'test_uatomic.c' for s in c['sources'])]
         assert main, 'URCU original command missing'
         add('urcu-' + sub + '-uatomic', 'urcu', 'tests/' + sub + '/test_uatomic.c',
-            main + common + (tap if sub == 'unit' else []),
+            main + common + tap if sub == 'unit' else main,
             link='COMPLETE_SOURCE_LINK_SET' if all(x['exit_code'] == 0 for x in [status, rc, rt]) else 'BUILD_GRAPH_INCOMPLETE')
 
     ao = roots['atomic_ops']

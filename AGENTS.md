@@ -255,3 +255,21 @@
   Gamma. Restricted capability GO; independent algorithm novelty and full ISSTA
   experiment route NO_GO. Preserve intermediate/failure records. Commit, push,
   verify remote, then STOP for review; no automatic broad software expansion.
+
+- Latest explicit authorization: baseline b0a788edafbd6c1251c93f49c52e8c4d111c96cb;
+  Gap4/Gap5 native Linux applicability/system evaluation on the supplied server.
+  Delivery: docs/gap45 and experiments/gap45, branch codex/gap4-gap5-linux-evaluation.
+  Original compiler/observer hashes retained; Java/runtime/platform differences
+  documented. Native process/path adapters only; no existing semantic core or
+  theorem/Gamma changes. Preserve all raw bytes via published lossless CAS.
+  Four fixed projects, 37 original tasks, 52 TUs, 641 LLVM asm sites: 15 L2 sites
+  in CK only, zero real task L3/L4. Complete CK remains 6/113 L2 and 0/1 complete.
+  24 original actual Q captures, 13 explicit capture/import/resource refusals;
+  observed/bounded Q is not full activation coverage. No new upstream bug.
+  207 tests, 16 historical levels cases, 15 guarded replay classifications pass;
+  100 prespecified isolated measurements retained. 5719 SMT references / 3007
+  byte-distinct obligations replay; 51 actual same-run Q bindings checked.
+  Controlled guarded/static-map increment does not establish real-client value.
+  Current ISSTA independent algorithm and tool/system readiness: NO_GO.
+  Commit/push/verify this authorized experiment delivery, then STOP for review.
+  Never publish credentials or tool binaries; use raw evidence hydration/replay.
