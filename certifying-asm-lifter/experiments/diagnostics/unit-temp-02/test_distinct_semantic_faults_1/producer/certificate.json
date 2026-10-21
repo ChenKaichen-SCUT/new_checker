@@ -1,0 +1,91 @@
+{
+  "format": "semantic-difference-v1",
+  "result": "OPEN_HISTORY_DIFFERENCE",
+  "program_verdict_eligible": false,
+  "closed_reachability_checked": false,
+  "candidate_complete": true,
+  "source_census": {
+    "('R', 32)": 1,
+    "('W', 32)": 1
+  },
+  "target_census": {
+    "('R', 32)": 1,
+    "('W', 32)": 1
+  },
+  "obligations": [
+    {
+      "name": "domain-feasible",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64)))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612]",
+      "file": "000-domain-feasible.smt2",
+      "smt_sha256": "c3d46a7631203d98c859b004495bbb0b8a0e039bc3cbe21718d54c65a8f4e02a"
+    },
+    {
+      "name": "candidate-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x66 (and true true true true true false true true true)))\n(let (($x17 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x17 (not $x66)))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612]",
+      "file": "001-candidate-0.smt2",
+      "smt_sha256": "5dbdb598cc4ac54b84d72ee982901519d683375667d4b306a2c0698680911aa5"
+    },
+    {
+      "name": "common-counterexample",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x66 (and true true true true true false true true true)))\n(let (($x17 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x17 (not $x66)))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612]",
+      "file": "002-common-counterexample.smt2",
+      "smt_sha256": "5dbdb598cc4ac54b84d72ee982901519d683375667d4b306a2c0698680911aa5"
+    }
+  ],
+  "candidates": 1,
+  "witness_kind": "COMMON_OPEN_ASSIGNMENT",
+  "assignment": [
+    {
+      "name": "s-r",
+      "type": "bv32",
+      "value": 0
+    },
+    {
+      "name": "object:x",
+      "type": "bv64",
+      "value": 18446744073709551612
+    }
+  ],
+  "diagnosis": {
+    "cost": "number of nonuniversal labelled fields/relations",
+    "minimum": 1,
+    "candidate_indices": [
+      0
+    ],
+    "mappings": [
+      [
+        0,
+        1
+      ]
+    ],
+    "forced": [
+      {
+        "category": "label:A",
+        "source": [
+          "sW"
+        ],
+        "target": [
+          "qW"
+        ]
+      }
+    ],
+    "possible": [
+      {
+        "category": "label:A",
+        "source": [
+          "sW"
+        ],
+        "target": [
+          "qW"
+        ]
+      }
+    ],
+    "root_cause_proved": false
+  }
+}

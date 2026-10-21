@@ -1,0 +1,15 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))
+(declare-fun |pd-source-1:p1-open-rmw-3| () (_ BitVec 32))
+(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))
+(declare-fun |pd-source-1:p1-open-read-2| () (_ BitVec 32))
+(assert
+ (let ((?x341 (bvadd |pd-source-1:p1-open-read-0| |pd-source-1:p1-open-rmw-1|)))
+(let (($x153 (= (_ bv2 32) |pd-source-1:p1-open-read-2|)))
+(let ((?x42 (ite $x153 (bvadd |pd-source-1:p1-open-rmw-3| ?x341) (bvadd |pd-source-1:p1-open-rmw-3| |pd-source-1:p1-open-rmw-1|))))
+(let ((?x337 (ite $x153 ?x341 |pd-source-1:p1-open-rmw-1|)))
+(let ((?x7 (bvadd |pd-source-1:p1-open-rmw-3| ?x337)))
+(let (($x181 (= ?x7 ?x42)))
+(not $x181))))))))
+(check-sat)

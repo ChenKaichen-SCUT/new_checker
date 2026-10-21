@@ -1,0 +1,102 @@
+{
+  "format": "semantic-difference-v1",
+  "result": "OPEN_HISTORY_DIFFERENCE",
+  "program_verdict_eligible": false,
+  "closed_reachability_checked": false,
+  "candidate_complete": true,
+  "source_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 1,
+    "('W', 32)": 1
+  },
+  "target_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 1,
+    "('W', 32)": 1
+  },
+  "obligations": [
+    {
+      "name": "domain-feasible",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64)))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612]",
+      "file": "000-domain-feasible.smt2",
+      "smt_sha256": "c3d46a7631203d98c859b004495bbb0b8a0e039bc3cbe21718d54c65a8f4e02a"
+    },
+    {
+      "name": "candidate-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun s-r () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x63 (= s-r (_ bv0 32))))\n(let (($x15 (= $x63 (= s-r (_ bv1 32)))))\n(let (($x33 (and true true true true true true true $x15 true true true true true true)))\n(let (($x34 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x34 (not $x33)))))))\n(check-sat)\n",
+      "model": "[s-r = 1, object:x = 18446744073709551612]",
+      "file": "001-candidate-0.smt2",
+      "smt_sha256": "acd9fa2ed63063d439962a6b55405920eee93769c2bfd25c97927baa7edb2da2"
+    },
+    {
+      "name": "common-counterexample",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun s-r () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x63 (= s-r (_ bv0 32))))\n(let (($x15 (= $x63 (= s-r (_ bv1 32)))))\n(let (($x33 (and true true true true true true true $x15 true true true true true true)))\n(let (($x34 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x34 (not $x33)))))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612, s-r = 1]",
+      "file": "002-common-counterexample.smt2",
+      "smt_sha256": "acd9fa2ed63063d439962a6b55405920eee93769c2bfd25c97927baa7edb2da2"
+    },
+    {
+      "name": "field-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun s-r () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x63 (= s-r (_ bv0 32))))\n(let (($x15 (= $x63 (= s-r (_ bv1 32)))))\n(let (($x61 (not $x15)))\n(let (($x34 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x34 $x61))))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612, s-r = 1]",
+      "file": "003-field-0.smt2",
+      "smt_sha256": "445d51b94bfa8d49cbad7c9a055e5c525d2235a231444a2317bf472a3b634820"
+    }
+  ],
+  "candidates": 1,
+  "witness_kind": "COMMON_OPEN_ASSIGNMENT",
+  "assignment": [
+    {
+      "name": "s-r",
+      "type": "bv32",
+      "value": 1
+    },
+    {
+      "name": "object:x",
+      "type": "bv64",
+      "value": 18446744073709551612
+    }
+  ],
+  "diagnosis": {
+    "cost": "number of nonuniversal labelled fields/relations",
+    "minimum": 1,
+    "candidate_indices": [
+      0
+    ],
+    "mappings": [
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    "forced": [
+      {
+        "category": "condition",
+        "source": [
+          "sO"
+        ],
+        "target": [
+          "qO"
+        ]
+      }
+    ],
+    "possible": [
+      {
+        "category": "condition",
+        "source": [
+          "sO"
+        ],
+        "target": [
+          "qO"
+        ]
+      }
+    ],
+    "root_cause_proved": false
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "result": "Q_OPEN_SUMMARY",
+  "obligations": [
+    {
+      "name": "argument",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x52 (= (_ bv0 64) (_ bv0 64))))\n(not $x52)))\n(check-sat)\n",
+      "file": "000-argument.smt2",
+      "smt_sha256": "f74f9822abd73a824f2dbd2c383b5431b475056fbd9aeef6b6ec7bb463975e15"
+    },
+    {
+      "name": "startup",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x38 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x38)))\n(check-sat)\n",
+      "file": "001-startup.smt2",
+      "smt_sha256": "2c4baab151b836c9683b1e508b98dfaaa9ac1d525da70ba043a27b59b6bb5b76"
+    },
+    {
+      "name": "completion",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x56 (bvand completion (_ bv2 2))))\n(let (($x42 (= ?x56 ?x56)))\n(not $x42))))\n(check-sat)\n",
+      "file": "002-completion.smt2",
+      "smt_sha256": "56f18700b08502837aed20cc268cb3b5a26fbcf209681548a9f18be8d0ff3297"
+    }
+  ],
+  "actual_thread": 1,
+  "consumed_body_nodes": [
+    43,
+    44
+  ],
+  "endpoints": [
+    {
+      "id": 43,
+      "actual_class": "Load",
+      "source_hint": {
+        "line": 18,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/backend-source.c"
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-1-read-43"
+    },
+    {
+      "id": 44,
+      "actual_class": "RMWStore",
+      "source_hint": {
+        "line": 18,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/backend-source.c"
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|",
+        "value": "(bvadd diagnostic-q-1-read-43 #x00000001)"
+      },
+      "kind": "W",
+      "width": 32,
+      "pair": 43
+    }
+  ]
+}

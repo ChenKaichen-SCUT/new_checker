@@ -1,0 +1,42 @@
+{
+  "format": "semantic-difference-v1",
+  "result": "OPEN_HISTORY_EQUIVALENT",
+  "program_verdict_eligible": false,
+  "closed_reachability_checked": false,
+  "candidate_complete": true,
+  "source_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 2,
+    "('W', 32)": 1
+  },
+  "target_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 2,
+    "('W', 32)": 1
+  },
+  "obligations": [
+    {
+      "name": "domain-feasible",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:side| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))))))\n(check-sat)\n",
+      "model": "[object:side = 18446744073709551612,\n object:input_b = 18446744073709551604]",
+      "file": "000-domain-feasible.smt2",
+      "smt_sha256": "10010d5fa3185dc4250163fefec8e14e07b59c0e31f2fe95504b4d482636d9b5"
+    },
+    {
+      "name": "candidate-0",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:side| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x99 (and true true true true true true true true true true true true true true true true true true true true)))\n(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x30 (and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))))))\n(and $x30 (not $x99))))))\n(check-sat)\n",
+      "file": "001-candidate-0.smt2",
+      "smt_sha256": "bdd685eec63d77ff8d32ffeec80d5386ad94b30bd45c4e274a9cc09b23d1617d"
+    }
+  ],
+  "candidates": 2,
+  "mapping": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "witness_kind": "UNIFORM_MAP"
+}

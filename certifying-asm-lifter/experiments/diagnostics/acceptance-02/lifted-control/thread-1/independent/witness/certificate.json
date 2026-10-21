@@ -1,0 +1,24 @@
+{
+  "result": "VERIFIED_OPEN_CLAIM",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "independent-domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64)))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612]",
+      "file": "000-independent-domain.smt2",
+      "smt_sha256": "c3d46a7631203d98c859b004495bbb0b8a0e039bc3cbe21718d54c65a8f4e02a"
+    },
+    {
+      "name": "independent-equivalence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x59 (not (and true true true true true true true true true))))\n(let (($x22 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x22 $x59))))\n(check-sat)\n",
+      "file": "001-independent-equivalence.smt2",
+      "smt_sha256": "00095857c75cb1033c6dff29cb96ba961483ba32fd669b435789fdc1a95fec52"
+    }
+  ],
+  "claim_result": "OPEN_HISTORY_EQUIVALENT",
+  "candidate_count": 1,
+  "closed_program_counterexample": false
+}

@@ -1,0 +1,24 @@
+{
+  "result": "VERIFIED_OPEN_CLAIM",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "independent-domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let ((?x122 ((_ zero_extend 1) |object:input_b|)))\n(let (($x159 (or (bvule (bvadd ?x122 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x122))))\n(let (($x43 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_b| |object:x|) true) $x43 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x159)))))\n(check-sat)\n",
+      "model": "[object:x = 4611686018427387900,\n object:input_b = 18446744073709549052]",
+      "file": "000-independent-domain.smt2",
+      "smt_sha256": "96647cf1fae18108081d25408de6ff4a87c148229b7bf28b122d5fb18f171ed4"
+    },
+    {
+      "name": "independent-equivalence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-3| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-2| () (_ BitVec 32))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let ((?x256 (bvadd |pd-source-1:p1-open-read-0| |pd-source-1:p1-open-rmw-1| |pd-source-1:p1-open-rmw-3|)))\n(let (($x38 (= |pd-source-1:p1-open-read-2| (_ bv2 32))))\n(let ((?x136 (ite $x38 ?x256 (bvadd |pd-source-1:p1-open-rmw-1| |pd-source-1:p1-open-rmw-3|))))\n(let ((?x107 (bvadd |pd-source-1:p1-open-read-0| |pd-source-1:p1-open-rmw-1|)))\n(let ((?x21 (ite $x38 ?x107 |pd-source-1:p1-open-rmw-1|)))\n(let (($x52 (and true true true true true true true true true true true true true true true true true (= (bvadd |pd-source-1:p1-open-rmw-3| ?x21) ?x136) true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true)))\n(let ((?x122 ((_ zero_extend 1) |object:input_b|)))\n(let (($x159 (or (bvule (bvadd ?x122 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x122))))\n(let (($x43 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x301 (and (and (distinct |object:input_b| |object:x|) true) $x43 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x159)))\n(and $x301 (not $x52)))))))))))))\n(check-sat)\n",
+      "file": "001-independent-equivalence.smt2",
+      "smt_sha256": "709b4a012f6521a40a900a190dd5ce68f6b05333b70de00d3141b22d221d6004"
+    }
+  ],
+  "claim_result": "OPEN_HISTORY_EQUIVALENT",
+  "candidate_count": 288,
+  "closed_program_counterexample": false
+}

@@ -1,0 +1,42 @@
+{
+  "format": "semantic-difference-v1",
+  "result": "OPEN_HISTORY_EQUIVALENT",
+  "program_verdict_eligible": false,
+  "closed_reachability_checked": false,
+  "candidate_complete": true,
+  "source_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 2,
+    "('W', 32)": 1
+  },
+  "target_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 2,
+    "('W', 32)": 1
+  },
+  "obligations": [
+    {
+      "name": "domain-feasible",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x40 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_a| |object:x|) true) $x40 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612,\n object:input_a = 18446744073709551608]",
+      "file": "000-domain-feasible.smt2",
+      "smt_sha256": "5daa9723e2fe0eb3f7b1f39ea5a38f86488a1020d682d025b79dac4436210348"
+    },
+    {
+      "name": "candidate-0",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x82 (and true true true true true true true true true true true true true true true true true true true true)))\n(let (($x40 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x57 (and (and (distinct |object:input_a| |object:x|) true) $x40 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x57 (not $x82))))))\n(check-sat)\n",
+      "file": "001-candidate-0.smt2",
+      "smt_sha256": "44ad100affdfe0565e253bf821b72cca2444cdf0c4289363efe5087c89c0fa16"
+    }
+  ],
+  "candidates": 2,
+  "mapping": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "witness_kind": "UNIFORM_MAP"
+}

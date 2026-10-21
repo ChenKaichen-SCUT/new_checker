@@ -1,0 +1,24 @@
+{
+  "result": "VERIFIED_OPEN_CLAIM",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "independent-domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let ((?x69 ((_ zero_extend 1) |object:input_a|)))\n(let (($x160 (or (bvule (bvadd ?x69 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x69))))\n(let (($x45 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_a| |object:x|) true) $x45 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x160)))))\n(check-sat)\n",
+      "model": "[object:x = 614741349136072704,\n object:input_a = 18446744073709551612]",
+      "file": "000-independent-domain.smt2",
+      "smt_sha256": "143844a912ea5952d96631fa94c00548372066e055d61aa97e0b1f098069f136"
+    },
+    {
+      "name": "independent-equivalence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x70 (and true true true true true true true true true true true true true true true true true true true true)))\n(let ((?x69 ((_ zero_extend 1) |object:input_a|)))\n(let (($x160 (or (bvule (bvadd ?x69 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x69))))\n(let (($x45 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x95 (and (and (distinct |object:input_a| |object:x|) true) $x45 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x160)))\n(and $x95 (not $x70))))))))\n(check-sat)\n",
+      "file": "001-independent-equivalence.smt2",
+      "smt_sha256": "9391fd443c8b3f6426acd59b737654d8aeb4982d70ce8948f034b908a579f17e"
+    }
+  ],
+  "claim_result": "OPEN_HISTORY_EQUIVALENT",
+  "candidate_count": 2,
+  "closed_program_counterexample": false
+}

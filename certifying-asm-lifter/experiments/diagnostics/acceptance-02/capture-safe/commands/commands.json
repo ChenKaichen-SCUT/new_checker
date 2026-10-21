@@ -1,0 +1,89 @@
+[
+  {
+    "args": [
+      "wsl",
+      "-d",
+      "Ubuntu",
+      "--exec",
+      "env",
+      "LD_LIBRARY_PATH=/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/lib/x86_64-linux-gnu",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/bin/clang-21",
+      "--version"
+    ],
+    "stdout": "000.stdout.log",
+    "stderr": "000.stderr.log",
+    "returncode": 0
+  },
+  {
+    "args": [
+      "wsl",
+      "-d",
+      "Ubuntu",
+      "--exec",
+      "sha256sum",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/bin/clang-21"
+    ],
+    "stdout": "001.stdout.log",
+    "stderr": "001.stderr.log",
+    "returncode": 0
+  },
+  {
+    "args": [
+      "wsl",
+      "-d",
+      "Ubuntu",
+      "--exec",
+      "env",
+      "LD_LIBRARY_PATH=/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/lib/x86_64-linux-gnu",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/bin/clang-21",
+      "-std=gnu11",
+      "-target",
+      "x86_64-pc-linux-gnu",
+      "-O1",
+      "-gline-tables-only",
+      "-fdebug-prefix-map=/mnt/e/5 面向并发验证的可验证 asm 转换=/cert-source",
+      "-DEXPECT=2",
+      "-M",
+      "-MT",
+      "CERT",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/benchmarks/backend-source.c"
+    ],
+    "stdout": "002.stdout.log",
+    "stderr": "002.stderr.log",
+    "returncode": 0
+  },
+  {
+    "args": [
+      "wsl",
+      "-d",
+      "Ubuntu",
+      "--exec",
+      "env",
+      "LD_LIBRARY_PATH=/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/lib/x86_64-linux-gnu",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-local/root/usr/bin/clang-21",
+      "-std=gnu11",
+      "-target",
+      "x86_64-pc-linux-gnu",
+      "-O1",
+      "-gline-tables-only",
+      "-fdebug-prefix-map=/mnt/e/5 面向并发验证的可验证 asm 转换=/cert-source",
+      "-DEXPECT=2",
+      "-Xclang",
+      "-load",
+      "-Xclang",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/vendor/clang-observer.so",
+      "-Xclang",
+      "-plugin-arg-cert-observe",
+      "-Xclang",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/experiments/diagnostics/acceptance-02/capture-safe/observer.json",
+      "-S",
+      "-emit-llvm",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/benchmarks/backend-source.c",
+      "-o",
+      "/mnt/e/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/experiments/diagnostics/acceptance-02/capture-safe/source.ll"
+    ],
+    "stdout": "003.stdout.log",
+    "stderr": "003.stderr.log",
+    "returncode": 0
+  }
+]

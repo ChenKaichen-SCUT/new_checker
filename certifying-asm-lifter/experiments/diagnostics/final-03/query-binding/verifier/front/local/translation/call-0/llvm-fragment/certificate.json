@@ -1,0 +1,53 @@
+{
+  "format": "llvm-fragment-certificate-v1",
+  "result": "LLVM_FRAGMENT_EXACT",
+  "source_sha256": "f9720853c19974d99a0583e9c308f356a57b8f2ad64349b36681079d47f80e4c",
+  "fragment_sha256": "5e1db831bba063195f73a2213167049d6fa583ca91fb99003fb64056527b0033",
+  "interface_sha256": "6ee8921e008772a57127188410850dce068971d74e7ea8dd6caa4acec4cdc395",
+  "semantics": "fixed-Dat3M-TSO; not generic LLVM weak memory",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "event-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |llvm-entry:@x| () (_ BitVec 64))\n(assert\n (let (($x95 (= |llvm-entry:@x| |llvm-entry:@x|)))\n(not $x95)))\n(check-sat)\n",
+      "file": "000-event-0-addr.smt2",
+      "smt_sha256": "a06d2a391ad90e31379edb121e087092dedbb2c14cf0b600e0419d5dde2d8739"
+    },
+    {
+      "name": "event-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x115 (= u0 u0)))\n(not $x115)))\n(check-sat)\n",
+      "file": "001-event-0-read.smt2",
+      "smt_sha256": "7ced89d8d087bc835e038d0e26b0ed516c11e39a87f1900bb40dc75e5a1693f6"
+    },
+    {
+      "name": "event-0-has_write",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x14 (= true true)))\n(not $x14)))\n(check-sat)\n",
+      "file": "002-event-0-has_write.smt2",
+      "smt_sha256": "5d96d9f5947be9b8a54cd59f4bab3bbaa1bc1a5bc0cb4e8f1b819a7b525d33e8"
+    },
+    {
+      "name": "event-0-value",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |llvm-entry:%2| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x23 (=> true (= (bvadd u0 |llvm-entry:%2|) (bvadd u0 |llvm-entry:%2|)))))\n(not $x23)))\n(check-sat)\n",
+      "file": "003-event-0-value.smt2",
+      "smt_sha256": "04e60f0516537f00f59b2e2f26239e73ad75018b6f1beda6286d21a4f8d1154b"
+    },
+    {
+      "name": "output-o1",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let ((?x37 (bvadd (_ bv0 32) u0)))\n(let (($x115 (= u0 ?x37)))\n(not $x115))))\n(check-sat)\n",
+      "file": "004-output-o1.smt2",
+      "smt_sha256": "7cd9057f57c94e89c1f6197105175eafe345d41f60067d7e85c0e0d5106e1912"
+    }
+  ],
+  "event_count": 1,
+  "assumptions": [
+    "authenticated compiler interface",
+    "no further LLVM optimization after replacement",
+    "fixed Dat3M TSO interpretation",
+    "valid aligned WB memory"
+  ]
+}

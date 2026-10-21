@@ -1,0 +1,155 @@
+{
+  "format": "semantic-difference-v1",
+  "result": "OPEN_HISTORY_DIFFERENCE",
+  "program_verdict_eligible": false,
+  "closed_reachability_checked": false,
+  "candidate_complete": true,
+  "source_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 2,
+    "('W', 32)": 1
+  },
+  "target_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 2,
+    "('W', 32)": 1
+  },
+  "obligations": [
+    {
+      "name": "domain-feasible",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:side| () (_ BitVec 64))\n(assert\n (let ((?x43 ((_ zero_extend 1) |object:input_b|)))\n(let (($x7 (or (bvule (bvadd ?x43 (_ bv4 65)) ((_ zero_extend 1) |object:side|)) (bvule (bvadd ((_ zero_extend 1) |object:side|) (_ bv4 65)) ?x43))))\n(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))) $x7)))))\n(check-sat)\n",
+      "model": "[object:input_b = 17293822569102763112,\n object:side = 1146166105164980896]",
+      "file": "000-domain-feasible.smt2",
+      "smt_sha256": "3dfaeff43168e2c9cedb87deb333278ff6fd20aa692edfcf54b0a346f20ca846"
+    },
+    {
+      "name": "candidate-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:side| () (_ BitVec 64))\n(assert\n (let (($x69 (and true true true true false true true true false true true true true true true true true true true true)))\n(let ((?x43 ((_ zero_extend 1) |object:input_b|)))\n(let (($x7 (or (bvule (bvadd ?x43 (_ bv4 65)) ((_ zero_extend 1) |object:side|)) (bvule (bvadd ((_ zero_extend 1) |object:side|) (_ bv4 65)) ?x43))))\n(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x18 (and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))) $x7)))\n(and $x18 (not $x69))))))))\n(check-sat)\n",
+      "model": "[object:input_b = 18446744073709551612,\n object:side = 4611686018427387900]",
+      "file": "001-candidate-0.smt2",
+      "smt_sha256": "a86baecc21d56810c6ab0d5b7540ff94585bcff1c060842609edc64bb045f44d"
+    },
+    {
+      "name": "candidate-1",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:side| () (_ BitVec 64))\n(assert\n (let (($x134 (= (= |pd-source-1:p1-open-read-0| (_ bv0 32)) (= |pd-source-1:p1-open-rmw-1| (_ bv0 32)))))\n(let (($x70 (= |object:side| |object:input_b|)))\n(let (($x36 (= |object:input_b| |object:side|)))\n(let (($x136 (and $x36 true false $x70 false false true true false true $x134 true true false true true true true true false false)))\n(let ((?x43 ((_ zero_extend 1) |object:input_b|)))\n(let (($x7 (or (bvule (bvadd ?x43 (_ bv4 65)) ((_ zero_extend 1) |object:side|)) (bvule (bvadd ((_ zero_extend 1) |object:side|) (_ bv4 65)) ?x43))))\n(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x18 (and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))) $x7)))\n(and $x18 (not $x136)))))))))))\n(check-sat)\n",
+      "model": "[object:input_b = 16140901064495843200,\n object:side = 4611686018427404284]",
+      "file": "002-candidate-1.smt2",
+      "smt_sha256": "409b0755fa5f5148ad670c503ba3852a8c8a88d656a63dbd9764e8d5b449eb16"
+    },
+    {
+      "name": "common-counterexample",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:side| () (_ BitVec 64))\n(assert\n (let (($x134 (= (= |pd-source-1:p1-open-read-0| (_ bv0 32)) (= |pd-source-1:p1-open-rmw-1| (_ bv0 32)))))\n(let (($x70 (= |object:side| |object:input_b|)))\n(let (($x36 (= |object:input_b| |object:side|)))\n(let (($x136 (and $x36 true false $x70 false false true true false true $x134 true true false true true true true true false false)))\n(let (($x69 (and true true true true false true true true false true true true true true true true true true true true)))\n(let ((?x43 ((_ zero_extend 1) |object:input_b|)))\n(let (($x7 (or (bvule (bvadd ?x43 (_ bv4 65)) ((_ zero_extend 1) |object:side|)) (bvule (bvadd ((_ zero_extend 1) |object:side|) (_ bv4 65)) ?x43))))\n(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x18 (and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))) $x7)))\n(and $x18 (not $x69) (not $x136))))))))))))\n(check-sat)\n",
+      "model": "[object:input_b = 6913024666096123312,\n object:side = 9223374021568773552]",
+      "file": "003-common-counterexample.smt2",
+      "smt_sha256": "6925d3ee8882de238176cc0fb54e443fa23aed95dfcd1a6b05c3940b9cef3ad2"
+    },
+    {
+      "name": "field-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:side| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x36 (= |object:input_b| |object:side|)))\n(let (($x2042 (not $x36)))\n(let ((?x43 ((_ zero_extend 1) |object:input_b|)))\n(let (($x7 (or (bvule (bvadd ?x43 (_ bv4 65)) ((_ zero_extend 1) |object:side|)) (bvule (bvadd ((_ zero_extend 1) |object:side|) (_ bv4 65)) ?x43))))\n(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x18 (and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))) $x7)))\n(and $x18 $x2042))))))))\n(check-sat)\n",
+      "model": "[object:input_b = 18446744073709551612,\n object:side = 4611686018427387900]",
+      "file": "004-field-0.smt2",
+      "smt_sha256": "5523bad30b4bedb83b5f9a2db239985d917a98d0a23357a5cc7c117e3cf058d4"
+    },
+    {
+      "name": "field-1",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:side| () (_ BitVec 64))\n(assert\n (let (($x70 (= |object:side| |object:input_b|)))\n(let (($x2042 (not $x70)))\n(let ((?x43 ((_ zero_extend 1) |object:input_b|)))\n(let (($x7 (or (bvule (bvadd ?x43 (_ bv4 65)) ((_ zero_extend 1) |object:side|)) (bvule (bvadd ((_ zero_extend 1) |object:side|) (_ bv4 65)) ?x43))))\n(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x18 (and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))) $x7)))\n(and $x18 $x2042))))))))\n(check-sat)\n",
+      "model": "[object:input_b = 18446744073709551612,\n object:side = 2305843009213693948]",
+      "file": "005-field-1.smt2",
+      "smt_sha256": "a7e642a7d64ce2be0f328b5754ff21d41df9f6bf80782ab760518e5eb3f21a5c"
+    },
+    {
+      "name": "field-2",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:side| () (_ BitVec 64))\n(assert\n (let (($x134 (= (= |pd-source-1:p1-open-read-0| (_ bv0 32)) (= |pd-source-1:p1-open-rmw-1| (_ bv0 32)))))\n(let (($x2042 (not $x134)))\n(let ((?x43 ((_ zero_extend 1) |object:input_b|)))\n(let (($x7 (or (bvule (bvadd ?x43 (_ bv4 65)) ((_ zero_extend 1) |object:side|)) (bvule (bvadd ((_ zero_extend 1) |object:side|) (_ bv4 65)) ?x43))))\n(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x18 (and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))) $x7)))\n(and $x18 $x2042))))))))\n(check-sat)\n",
+      "model": "[pd-source-1:p1-open-read-0 = 0,\n object:input_b = 18446744073709551612,\n object:side = 4611686018427387900,\n pd-source-1:p1-open-rmw-1 = 4294967295]",
+      "file": "006-field-2.smt2",
+      "smt_sha256": "3be7efbe524efc1bdfc3adc8f1d10e941826104b1e11c2013f020eecfdc9df94"
+    }
+  ],
+  "candidates": 2,
+  "witness_kind": "COMMON_OPEN_ASSIGNMENT",
+  "assignment": [
+    {
+      "name": "object:input_b",
+      "type": "bv64",
+      "value": 6913024666096123312
+    },
+    {
+      "name": "object:side",
+      "type": "bv64",
+      "value": 9223374021568773552
+    },
+    {
+      "name": "pd-source-1:p1-open-read-0",
+      "type": "bv32",
+      "value": 0
+    },
+    {
+      "name": "pd-source-1:p1-open-rmw-1",
+      "type": "bv32",
+      "value": 0
+    }
+  ],
+  "diagnosis": {
+    "cost": "number of nonuniversal labelled fields/relations",
+    "minimum": 2,
+    "candidate_indices": [
+      0
+    ],
+    "mappings": [
+      [
+        0,
+        1,
+        2,
+        3
+      ]
+    ],
+    "forced": [
+      {
+        "category": "label:A",
+        "source": [
+          "a1:u1:R"
+        ],
+        "target": [
+          58
+        ]
+      },
+      {
+        "category": "label:A",
+        "source": [
+          "a1:u1:W"
+        ],
+        "target": [
+          59
+        ]
+      }
+    ],
+    "possible": [
+      {
+        "category": "label:A",
+        "source": [
+          "a1:u1:R"
+        ],
+        "target": [
+          58
+        ]
+      },
+      {
+        "category": "label:A",
+        "source": [
+          "a1:u1:W"
+        ],
+        "target": [
+          59
+        ]
+      }
+    ],
+    "root_cause_proved": false
+  }
+}

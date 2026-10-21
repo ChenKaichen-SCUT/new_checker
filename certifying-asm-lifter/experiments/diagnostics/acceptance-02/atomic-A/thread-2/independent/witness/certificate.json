@@ -1,0 +1,41 @@
+{
+  "result": "VERIFIED_OPEN_CLAIM",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "independent-domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:side| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x512 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_b| |object:side|) true) $x512 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))))))\n(check-sat)\n",
+      "model": "[object:input_b = 18446744073709420540,\n object:side = 18446744073709551612]",
+      "file": "000-independent-domain.smt2",
+      "smt_sha256": "312bd540347881d5b8d5c5906f3adca670510aba0ed8dfdd676f5af16bda0bc8"
+    },
+    {
+      "name": "field-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:side| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x41 (= |object:input_b| |object:side|)))\n(let (($x68 (not $x41)))\n(let (($x512 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x60 (and (and (distinct |object:input_b| |object:side|) true) $x512 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))))))\n(and $x60 $x68))))))\n(check-sat)\n",
+      "model": "[object:side = 18446744073709551612,\n object:input_b = 18446744073709551100]",
+      "file": "001-field-0.smt2",
+      "smt_sha256": "78040ec866d03fc9b7e1ae90948cec0a5daee22679ef95c25de563a13aba9be7"
+    },
+    {
+      "name": "field-1",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:side| () (_ BitVec 64))\n(assert\n (let (($x9 (= |object:side| |object:input_b|)))\n(let (($x68 (not $x9)))\n(let (($x512 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x60 (and (and (distinct |object:input_b| |object:side|) true) $x512 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))))))\n(and $x60 $x68))))))\n(check-sat)\n",
+      "model": "[object:input_b = 128, object:side = 18446744073709551484]",
+      "file": "002-field-1.smt2",
+      "smt_sha256": "044c41968684f91f76762062178ab170fa44c8cab7e599ce26bc2526833979ae"
+    },
+    {
+      "name": "field-2",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |object:side| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x94 (= (= |pd-source-1:p1-open-read-0| (_ bv0 32)) (= |pd-source-1:p1-open-rmw-1| (_ bv0 32)))))\n(let (($x68 (not $x94)))\n(let (($x512 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x60 (and (and (distinct |object:input_b| |object:side|) true) $x512 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))))))\n(and $x60 $x68))))))\n(check-sat)\n",
+      "model": "[object:input_b = 18428729675200069628,\n object:side = 18446744073709551612,\n pd-source-1:p1-open-read-0 = 0,\n pd-source-1:p1-open-rmw-1 = 4294967295]",
+      "file": "003-field-2.smt2",
+      "smt_sha256": "0e1012945c8512714644a32ba302eb3a45ed5221259a6d24b92d2808b54e662d"
+    }
+  ],
+  "claim_result": "OPEN_HISTORY_DIFFERENCE",
+  "candidate_count": 2,
+  "closed_program_counterexample": false
+}

@@ -1,0 +1,132 @@
+{
+  "source": [
+    {
+      "source_operation": 0,
+      "width": 32,
+      "id": "a0:u0:R",
+      "kind": "R",
+      "response": "|pd-source-0:p1-open-read-0|",
+      "tags": [],
+      "fields": {
+        "address": "|object:input_a|"
+      }
+    },
+    {
+      "source_operation": 1,
+      "width": 32,
+      "llvm_site": 13,
+      "call_context": {
+        "begin_raw": 405,
+        "end_raw": 427
+      },
+      "source_definition": "0x55ac92fa0c80",
+      "id": "a0:u1:R",
+      "kind": "R",
+      "response": "|pd-source-0:p1-open-rmw-1|",
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      }
+    },
+    {
+      "source_operation": 1,
+      "width": 32,
+      "llvm_site": 13,
+      "call_context": {
+        "begin_raw": 405,
+        "end_raw": 427
+      },
+      "source_definition": "0x55ac92fa0c80",
+      "id": "a0:u1:W",
+      "kind": "W",
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "pair": "a0:u1:R",
+      "fields": {
+        "address": "|object:x|",
+        "value": "(bvadd |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-read-0|)"
+      }
+    },
+    {
+      "source_operation": 2,
+      "id": "a0:u2",
+      "kind": "O",
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000000 |pd-source-0:p1-open-rmw-1|)"
+      }
+    }
+  ],
+  "target": [
+    {
+      "id": 43,
+      "actual_class": "Load",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-property-owned.c",
+        "line": 13
+      },
+      "tags": [],
+      "fields": {
+        "address": "|object:input_a|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-1-read-43"
+    },
+    {
+      "id": 44,
+      "actual_class": "Load",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+        "line": 309
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-1-read-44"
+    },
+    {
+      "id": 45,
+      "actual_class": "RMWStore",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+        "line": 309
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|",
+        "value": "(bvadd diagnostic-q-1-read-44 diagnostic-q-1-read-43)"
+      },
+      "kind": "W",
+      "width": 32,
+      "pair": 44
+    },
+    {
+      "id": 47,
+      "actual_class": "Assert",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-property-owned.c",
+        "line": 15
+      },
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000000 diagnostic-q-1-read-44)"
+      },
+      "kind": "O"
+    }
+  ]
+}

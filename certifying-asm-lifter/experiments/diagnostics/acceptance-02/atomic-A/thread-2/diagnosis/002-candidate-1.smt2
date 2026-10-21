@@ -1,0 +1,15 @@
+; benchmark generated from python API
+(set-info :status unknown)
+(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))
+(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))
+(declare-fun |object:input_b| () (_ BitVec 64))
+(declare-fun |object:side| () (_ BitVec 64))
+(assert
+ (let (($x41 (= (= |pd-source-1:p1-open-read-0| (_ bv0 32)) (= |pd-source-1:p1-open-rmw-1| (_ bv0 32)))))
+(let (($x103 (= |object:side| |object:input_b|)))
+(let (($x79 (= |object:input_b| |object:side|)))
+(let (($x104 (and $x79 true false $x103 false false true true false true $x41 true true false true true true true true false false)))
+(let (($x46 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))
+(let (($x13 (and (and (distinct |object:input_b| |object:side|) true) $x46 (and (and (distinct |object:side| (_ bv0 64)) true) (= (bvand |object:side| (_ bv3 64)) (_ bv0 64))))))
+(and $x13 (not $x104)))))))))
+(check-sat)

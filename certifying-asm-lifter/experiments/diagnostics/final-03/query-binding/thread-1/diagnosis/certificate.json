@@ -1,0 +1,42 @@
+{
+  "format": "semantic-difference-v1",
+  "result": "OPEN_HISTORY_EQUIVALENT",
+  "program_verdict_eligible": false,
+  "closed_reachability_checked": false,
+  "candidate_complete": true,
+  "source_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 2,
+    "('W', 32)": 1
+  },
+  "target_census": {
+    "('O', 0)": 1,
+    "('R', 32)": 2,
+    "('W', 32)": 1
+  },
+  "obligations": [
+    {
+      "name": "domain-feasible",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let ((?x57 ((_ zero_extend 1) |object:input_a|)))\n(let (($x12 (or (bvule (bvadd ?x57 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x57))))\n(let (($x26 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_a| |object:x|) true) $x26 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x12)))))\n(check-sat)\n",
+      "model": "[object:x = 4503599627425796,\n object:input_a = 17302900137101416440]",
+      "file": "000-domain-feasible.smt2",
+      "smt_sha256": "9aff8db24d56b58133f3a84579ec49e74965577578b30323020df44f6ea955b8"
+    },
+    {
+      "name": "candidate-0",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x114 (and true true true true true true true true true true true true true true true true true true true true)))\n(let ((?x57 ((_ zero_extend 1) |object:input_a|)))\n(let (($x12 (or (bvule (bvadd ?x57 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x57))))\n(let (($x26 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x35 (and (and (distinct |object:input_a| |object:x|) true) $x26 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x12)))\n(and $x35 (not $x114))))))))\n(check-sat)\n",
+      "file": "001-candidate-0.smt2",
+      "smt_sha256": "5fcd059a43d55f7f91693c7e8c4ae8b81f999792912f1d680d19acacd67b8f11"
+    }
+  ],
+  "candidates": 2,
+  "mapping": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "witness_kind": "UNIFORM_MAP"
+}

@@ -1,0 +1,17 @@
+{
+  "result": "VERIFIED_OPEN_CLAIM",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "independent-domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let ((?x207 ((_ zero_extend 1) |object:input_b|)))\n(let (($x156 (or (bvule (bvadd ?x207 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x207))))\n(let (($x188 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_b| |object:x|) true) $x188 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x156)))))\n(check-sat)\n",
+      "model": "[object:x = 4611686018427387900,\n object:input_b = 18446744073709551612]",
+      "file": "000-independent-domain.smt2",
+      "smt_sha256": "57cd01ad03521c6ba714dda7c46b9d55b7f5108139516633ecf71e5f10d944df"
+    }
+  ],
+  "claim_result": "OPEN_HISTORY_DIFFERENCE",
+  "candidate_count": 0,
+  "closed_program_counterexample": false
+}

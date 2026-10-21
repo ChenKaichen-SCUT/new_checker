@@ -1,0 +1,35 @@
+{
+  "format": "semantic-difference-v1",
+  "result": "OPEN_HISTORY_DIFFERENCE",
+  "program_verdict_eligible": false,
+  "closed_reachability_checked": false,
+  "candidate_complete": true,
+  "source_census": {
+    "('O', 0)": 3,
+    "('R', 32)": 4,
+    "('W', 32)": 2
+  },
+  "target_census": {
+    "('O', 0)": 3,
+    "('R', 32)": 3,
+    "('W', 32)": 1
+  },
+  "obligations": [
+    {
+      "name": "domain-feasible",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let ((?x52 ((_ zero_extend 1) |object:input_b|)))\n(let (($x55 (or (bvule (bvadd ?x52 (_ bv4 65)) ((_ zero_extend 1) |object:x|)) (bvule (bvadd ((_ zero_extend 1) |object:x|) (_ bv4 65)) ?x52))))\n(let (($x37 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_b| |object:x|) true) $x37 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))) $x55)))))\n(check-sat)\n",
+      "model": "[object:x = 6917529027641081852,\n object:input_b = 18446744073709486072]",
+      "file": "000-domain-feasible.smt2",
+      "smt_sha256": "7f97b8ddb0a82cd6f716de8b534dde4f8e69ec99370bed0bbfa8586d50c81368"
+    }
+  ],
+  "candidates": 0,
+  "witness_kind": "CENSUS",
+  "location_ambiguity": "all vertices in deficient/excess sorts; no unique deleted occurrence",
+  "missing_sorts": {
+    "('R', 32)": 1,
+    "('W', 32)": 1
+  },
+  "extra_sorts": {}
+}

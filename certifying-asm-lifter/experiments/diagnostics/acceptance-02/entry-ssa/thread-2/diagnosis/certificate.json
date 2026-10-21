@@ -1,0 +1,47 @@
+{
+  "format": "semantic-difference-v1",
+  "result": "OPEN_HISTORY_EQUIVALENT",
+  "program_verdict_eligible": false,
+  "closed_reachability_checked": false,
+  "candidate_complete": true,
+  "source_census": {
+    "('O', 0)": 3,
+    "('R', 32)": 4,
+    "('W', 32)": 2
+  },
+  "target_census": {
+    "('O', 0)": 3,
+    "('R', 32)": 4,
+    "('W', 32)": 2
+  },
+  "obligations": [
+    {
+      "name": "domain-feasible",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x37 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_b| |object:x|) true) $x37 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(check-sat)\n",
+      "model": "[object:input_b = 18446744073707454460,\n object:x = 18446744073709551612]",
+      "file": "000-domain-feasible.smt2",
+      "smt_sha256": "c1c713355afd0bab956b7156bd8c8986123610db74887c59cbd37634240d41a2"
+    },
+    {
+      "name": "candidate-0",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-3| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |pd-source-1:p1-open-read-2| () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let ((?x98 (bvadd |pd-source-1:p1-open-rmw-1| |pd-source-1:p1-open-rmw-3|)))\n(let ((?x197 (bvadd |pd-source-1:p1-open-read-0| |pd-source-1:p1-open-rmw-1| |pd-source-1:p1-open-rmw-3|)))\n(let (($x147 (= |pd-source-1:p1-open-read-2| (_ bv2 32))))\n(let ((?x194 (ite $x147 ?x197 ?x98)))\n(let ((?x107 (bvadd |pd-source-1:p1-open-read-0| |pd-source-1:p1-open-rmw-1|)))\n(let ((?x85 (ite $x147 ?x107 |pd-source-1:p1-open-rmw-1|)))\n(let ((?x28 (bvadd |pd-source-1:p1-open-rmw-3| ?x85)))\n(let (($x66 (= ?x28 ?x194)))\n(let (($x34 (and true true true true true true true true true true true true true true true true true $x66 true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true true)))\n(let (($x37 (and (and (distinct |object:input_b| (_ bv0 64)) true) (= (bvand |object:input_b| (_ bv3 64)) (_ bv0 64)))))\n(let (($x52 (and (and (distinct |object:input_b| |object:x|) true) $x37 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x52 (not $x34))))))))))))))\n(check-sat)\n",
+      "file": "001-candidate-0.smt2",
+      "smt_sha256": "a0edd5ecdd23cda9068ca292a2b5da43c388b68e27097186ac03d63eace4fe78"
+    }
+  ],
+  "candidates": 288,
+  "mapping": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "witness_kind": "UNIFORM_MAP"
+}

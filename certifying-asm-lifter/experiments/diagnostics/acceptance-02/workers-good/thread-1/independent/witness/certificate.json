@@ -1,0 +1,24 @@
+{
+  "result": "VERIFIED_OPEN_CLAIM",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "independent-domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x20 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(and (and (distinct |object:input_a| |object:x|) true) $x20 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(check-sat)\n",
+      "model": "[object:input_a = 18446744073709551604,\n object:x = 18446744073709551612]",
+      "file": "000-independent-domain.smt2",
+      "smt_sha256": "e1628fd523bfbda15248c5405a55a496d2fcc0d47e60dd7b8b10ad3169316e26"
+    },
+    {
+      "name": "independent-equivalence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x26 (and true true true true true true true true true true true true true true true true true true true true)))\n(let (($x20 (and (and (distinct |object:input_a| (_ bv0 64)) true) (= (bvand |object:input_a| (_ bv3 64)) (_ bv0 64)))))\n(let (($x30 (and (and (distinct |object:input_a| |object:x|) true) $x20 (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x30 (not $x26))))))\n(check-sat)\n",
+      "file": "001-independent-equivalence.smt2",
+      "smt_sha256": "1d8a894db74d0b5b613356406992e71c7946fc8eb75d4f80e87e3f6126bfd36a"
+    }
+  ],
+  "claim_result": "OPEN_HISTORY_EQUIVALENT",
+  "candidate_count": 2,
+  "closed_program_counterexample": false
+}

@@ -201,3 +201,34 @@
   New labels do not upgrade L1-L4. No new real upstream bug is claimed. The old
   interpreter/runtime dependencies remain explicit. Commit/push/verify, then STOP
   for review; do not continue adding program-specific parsers or broad experiments.
+
+- Latest scope update (2026-10-21), baseline 3c67f7b2116a3eb7f090f1807e4c2c41beeb01b6:
+  investigate semantic differences and diagnostic evidence, but the user's
+  later instruction restricts the CURRENT stage to source analysis, analytic
+  reasoning and algorithm design. Stop compiler/backend/SMT/tests and all
+  experimental execution. Preserve earlier-in-turn development drafts and
+  failed attempts explicitly as UNACCEPTED material, not new bug evidence.
+  Delivery: docs/diagnostics. Prove total-order mapping collapse, distinguish
+  candidate SAT/open witnesses/closed executions, and give a finite guarded
+  summary design with explicit unimplemented extraction obligations. No new
+  Gamma or legacy safety claims. Independent algorithm novelty and current
+  ISSTA full-experiment route remain NO_GO. New prototype files are drafts,
+  not integrated into old L1-L4/ACTC. Do not run their acceptance scripts.
+  Preserve all old bytes; static integrity, commit/push/remote verification
+  remain authorized. Then STOP for review; further implementation or experiments
+  require a new scope instruction.
+
+- Latest authorization superseding the interim analysis-only pause (2026-10-21):
+  the user explicitly resumed prototype, compiler, backend, SMT and test runs.
+  Diagnostic delivery is complete on frozen 3c67f7b: two fresh Clang captures,
+  three actual backend runs, 13 fixed classifications, 24 verified open-worker
+  claims, 39 targeted tests, 2434 SMT references/1771 distinct byte queries replayed.
+  Final diagnostics: experiments/diagnostics/final-03; actual fresh captures:
+  acceptance-02; final evidence review: review-04. Earlier failures remain.
+  Historical lost-asm-side-effects regression is reproduced, NOT a new bug.
+  Actual Q faults are explicitly historical injections. ITE incomplete evidence
+  is UNKNOWN; query mismatch remains outside worker semantics and old ACTC rejects.
+  No new program SAFE, closed executable counterexample, full CK coverage or
+  independent algorithm novelty. Total-order collapse is proved; guarded design
+  has unimplemented extraction conditions. Existing Gamma/code/theorems/evidence
+  remain byte-identical. Publish, verify remote, then STOP for independent review.

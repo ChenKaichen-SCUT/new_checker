@@ -1,0 +1,65 @@
+{
+  "source_sha256": "d0c1dc0e612172e6a304b2cb7e4b11e8849d7a2685106452e88e8dd85bf77541",
+  "ast_sha256": "0daa7680203bb8876078472242030c544ac319f1dea1d2ee337675af96c0ec6e",
+  "start_byte": 567,
+  "end_byte": 728,
+  "line": 18,
+  "raw": "__asm__ __volatile__(\"lock; xaddl %0,%1\"\n                         : \"+r\"(delta), \"+m\"(*ptr)\n                         :\n                         : \"memory\", \"cc\")",
+  "normalized": "asm volatile(\"lock; xaddl %0,%1\" : \"+r\"(v0),\"+m\"(*addr1) :  : \"memory\", \"cc\");",
+  "width": 32,
+  "operands": [
+    {
+      "index": 0,
+      "constraint": "+r",
+      "expression": "delta",
+      "output": true,
+      "memory": false,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "DeclRefExpr",
+      "decl_refs": [
+        {
+          "id": "0x59ba2cd22a88",
+          "kind": "VarDecl",
+          "name": "delta",
+          "type": {
+            "qualType": "unsigned int"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "constraint": "+m",
+      "expression": "*ptr",
+      "output": true,
+      "memory": true,
+      "clang_type": {
+        "qualType": "unsigned int"
+      },
+      "ast_kind": "UnaryOperator",
+      "decl_refs": [
+        {
+          "id": "0x59ba2cd229b8",
+          "kind": "VarDecl",
+          "name": "ptr",
+          "type": {
+            "qualType": "unsigned int *"
+          }
+        }
+      ]
+    }
+  ],
+  "register_output": 0,
+  "llvm_sha256": "8c504e1e6a3f43d91f88b062dd64f4fddd5ad605dd957576312a7d4754011283",
+  "llvm_line_index": 9,
+  "llvm_call": "  %2 = tail call i32 asm sideeffect \"lock; xaddl $0,$1\", \"=r,=*m,0,*m,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) @x, i32 1, ptr nonnull elementtype(i32) @x) #3, !dbg !13, !srcloc !14\n",
+  "result_ssa": "%2",
+  "bindings": {
+    "p1": "@x",
+    "o0": "1"
+  },
+  "llvm_entry_conditions": [],
+  "result": "INTERFACE_MATCH"
+}

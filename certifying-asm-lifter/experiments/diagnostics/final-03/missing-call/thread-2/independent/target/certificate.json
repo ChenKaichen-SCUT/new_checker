@@ -1,0 +1,154 @@
+{
+  "result": "Q_OPEN_SUMMARY",
+  "obligations": [
+    {
+      "name": "argument",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x157 (= |object:input_b| |object:input_b|)))\n(not $x157)))\n(check-sat)\n",
+      "file": "000-argument.smt2",
+      "smt_sha256": "cd1a1b6916ef75c7c839c08ba4e3bcb304bd6ba3b59074829a15100d675abe60"
+    },
+    {
+      "name": "startup",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x2639 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x2639)))\n(check-sat)\n",
+      "file": "001-startup.smt2",
+      "smt_sha256": "a966443db1ad92038083a697ee65927f90ad8f08ca9497552538c8f2cae4c338"
+    },
+    {
+      "name": "completion",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x85 (bvand completion (_ bv2 2))))\n(let (($x480 (= ?x85 ?x85)))\n(not $x480))))\n(check-sat)\n",
+      "file": "002-completion.smt2",
+      "smt_sha256": "253e801509099b59f37891e2e6a7e14afb9e1fb4a631e9de6665b3581195f703"
+    }
+  ],
+  "actual_thread": 2,
+  "consumed_body_nodes": [
+    66,
+    67,
+    68,
+    69,
+    70,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80
+  ],
+  "endpoints": [
+    {
+      "id": 66,
+      "actual_class": "Load",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+        "line": 12
+      },
+      "tags": [],
+      "fields": {
+        "address": "|object:input_b|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-2-read-66"
+    },
+    {
+      "id": 67,
+      "actual_class": "Load",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+        "line": 309
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-2-read-67"
+    },
+    {
+      "id": 68,
+      "actual_class": "RMWStore",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h",
+        "line": 309
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|",
+        "value": "(bvadd diagnostic-q-2-read-67 diagnostic-q-2-read-66)"
+      },
+      "kind": "W",
+      "width": 32,
+      "pair": 67
+    },
+    {
+      "id": 69,
+      "actual_class": "Load",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+        "line": 14
+      },
+      "tags": [],
+      "fields": {
+        "address": "|object:input_b|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-2-read-69"
+    },
+    {
+      "id": 73,
+      "actual_class": "Assert",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+        "line": 20
+      },
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000001 diagnostic-q-2-read-67)"
+      },
+      "kind": "O"
+    },
+    {
+      "id": 76,
+      "actual_class": "Assert",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+        "line": 21
+      },
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000001 #x00000000)"
+      },
+      "kind": "O"
+    },
+    {
+      "id": 79,
+      "actual_class": "Assert",
+      "source_hint": {
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c",
+        "line": 22
+      },
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000000 diagnostic-q-2-read-69)"
+      },
+      "kind": "O"
+    }
+  ]
+}

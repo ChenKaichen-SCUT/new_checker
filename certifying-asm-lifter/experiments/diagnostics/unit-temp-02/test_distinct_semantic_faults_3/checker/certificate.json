@@ -1,0 +1,25 @@
+{
+  "result": "VERIFIED_OPEN_CLAIM",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "independent-domain",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64)))))\n(check-sat)\n",
+      "model": "[object:x = 18446744073709551612]",
+      "file": "000-independent-domain.smt2",
+      "smt_sha256": "c3d46a7631203d98c859b004495bbb0b8a0e039bc3cbe21718d54c65a8f4e02a"
+    },
+    {
+      "name": "field-0",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun s-r () (_ BitVec 32))\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x41 (= s-r (_ bv0 32))))\n(let (($x55 (= $x41 (= s-r (_ bv1 32)))))\n(let (($x241 (not $x55)))\n(let (($x200 (and (and (and (distinct |object:x| (_ bv0 64)) true) (= (bvand |object:x| (_ bv3 64)) (_ bv0 64))))))\n(and $x200 $x241))))))\n(check-sat)\n",
+      "model": "[s-r = 1, object:x = 18446744073709551612]",
+      "file": "001-field-0.smt2",
+      "smt_sha256": "b4e2a59ca20db09e7774a3af703e660222f346291dc814a1b4cb5ab645be3317"
+    }
+  ],
+  "claim_result": "OPEN_HISTORY_DIFFERENCE",
+  "candidate_count": 1,
+  "closed_program_counterexample": false
+}

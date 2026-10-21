@@ -1,0 +1,265 @@
+{
+  "source": [
+    {
+      "source_operation": 0,
+      "width": 32,
+      "id": "a0:u0:R",
+      "kind": "R",
+      "response": "|pd-source-0:p1-open-read-0|",
+      "tags": [],
+      "fields": {
+        "address": "|object:input_a|"
+      }
+    },
+    {
+      "source_operation": 1,
+      "width": 32,
+      "llvm_site": 12,
+      "call_context": {
+        "begin_raw": 386,
+        "end_raw": 408
+      },
+      "source_definition": "0x57eb436d1ba0",
+      "id": "a0:u1:R",
+      "kind": "R",
+      "response": "|pd-source-0:p1-open-rmw-1|",
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      }
+    },
+    {
+      "source_operation": 1,
+      "width": 32,
+      "llvm_site": 12,
+      "call_context": {
+        "begin_raw": 386,
+        "end_raw": 408
+      },
+      "source_definition": "0x57eb436d1ba0",
+      "id": "a0:u1:W",
+      "kind": "W",
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "pair": "a0:u1:R",
+      "fields": {
+        "address": "|object:x|",
+        "value": "(bvadd |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-read-0|)"
+      }
+    },
+    {
+      "source_operation": 2,
+      "width": 32,
+      "id": "a0:u2:R",
+      "kind": "R",
+      "response": "|pd-source-0:p1-open-read-2|",
+      "tags": [],
+      "fields": {
+        "address": "|object:input_a|"
+      }
+    },
+    {
+      "source_operation": 3,
+      "width": 32,
+      "llvm_site": 17,
+      "call_context": {
+        "begin_raw": 545,
+        "end_raw": 571
+      },
+      "source_definition": "0x57eb436d1ba0",
+      "id": "a0:u3:R",
+      "kind": "R",
+      "response": "|pd-source-0:p1-open-rmw-3|",
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      }
+    },
+    {
+      "source_operation": 3,
+      "width": 32,
+      "llvm_site": 17,
+      "call_context": {
+        "begin_raw": 545,
+        "end_raw": 571
+      },
+      "source_definition": "0x57eb436d1ba0",
+      "id": "a0:u3:W",
+      "kind": "W",
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "pair": "a0:u3:R",
+      "fields": {
+        "address": "|object:x|",
+        "value": "(bvadd |pd-source-0:p1-open-rmw-3|\n       (ite (= #x00000002 |pd-source-0:p1-open-read-2|)\n            (bvadd |pd-source-0:p1-open-read-0| |pd-source-0:p1-open-rmw-1|)\n            |pd-source-0:p1-open-rmw-1|))"
+      }
+    },
+    {
+      "source_operation": 4,
+      "id": "a0:u4",
+      "kind": "O",
+      "tags": [],
+      "fields": {
+        "condition": "(distinct (ite (= #x00000002 |pd-source-0:p1-open-read-2|)\n               |pd-source-0:p1-open-rmw-1|\n               |pd-source-0:p1-open-rmw-1|)\n          |pd-source-0:p1-open-rmw-3|)"
+      }
+    },
+    {
+      "source_operation": 5,
+      "id": "a0:u5",
+      "kind": "O",
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000000 |pd-source-0:p1-open-rmw-3|)"
+      }
+    },
+    {
+      "source_operation": 6,
+      "id": "a0:u6",
+      "kind": "O",
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000000\n          (ite (= #x00000002 |pd-source-0:p1-open-read-2|)\n               |pd-source-0:p1-open-read-2|\n               |pd-source-0:p1-open-read-2|))"
+      }
+    }
+  ],
+  "target": [
+    {
+      "id": 43,
+      "actual_class": "Load",
+      "source_hint": {
+        "line": 12,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c"
+      },
+      "tags": [],
+      "fields": {
+        "address": "|object:input_a|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-1-read-43"
+    },
+    {
+      "id": 44,
+      "actual_class": "Load",
+      "source_hint": {
+        "line": 309,
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h"
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-1-read-44"
+    },
+    {
+      "id": 45,
+      "actual_class": "RMWStore",
+      "source_hint": {
+        "line": 309,
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h"
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|",
+        "value": "(bvadd diagnostic-q-1-read-44 diagnostic-q-1-read-43)"
+      },
+      "kind": "W",
+      "width": 32,
+      "pair": 44
+    },
+    {
+      "id": 47,
+      "actual_class": "Load",
+      "source_hint": {
+        "line": 309,
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h"
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|"
+      },
+      "kind": "R",
+      "width": 32,
+      "response": "diagnostic-q-1-read-47"
+    },
+    {
+      "id": 48,
+      "actual_class": "RMWStore",
+      "source_hint": {
+        "line": 309,
+        "path": "/cert-source/certifying-asm-lifter/vendor/ck-8f0847cfe57b1479d8e63b89028831d94d0e4d26/include/gcc/x86_64/ck_pr.h"
+      },
+      "tags": [
+        "A",
+        "RMW"
+      ],
+      "fields": {
+        "address": "|object:x|",
+        "value": "(ite (= #x00000001 #x00000002)\n     (bvadd diagnostic-q-1-read-47\n            diagnostic-q-1-read-43\n            diagnostic-q-1-read-44)\n     (bvadd diagnostic-q-1-read-47 diagnostic-q-1-read-44))"
+      },
+      "kind": "W",
+      "width": 32,
+      "pair": 47
+    },
+    {
+      "id": 50,
+      "actual_class": "Assert",
+      "source_hint": {
+        "line": 20,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c"
+      },
+      "tags": [],
+      "fields": {
+        "condition": "(distinct diagnostic-q-1-read-44 diagnostic-q-1-read-47)"
+      },
+      "kind": "O"
+    },
+    {
+      "id": 53,
+      "actual_class": "Assert",
+      "source_hint": {
+        "line": 21,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c"
+      },
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000000 diagnostic-q-1-read-47)"
+      },
+      "kind": "O"
+    },
+    {
+      "id": 56,
+      "actual_class": "Assert",
+      "source_hint": {
+        "line": 22,
+        "path": "/cert-source/certifying-asm-lifter/benchmarks/ck-hcc-branch.c"
+      },
+      "tags": [],
+      "fields": {
+        "condition": "(distinct #x00000001 #x00000000)"
+      },
+      "kind": "O"
+    }
+  ]
+}

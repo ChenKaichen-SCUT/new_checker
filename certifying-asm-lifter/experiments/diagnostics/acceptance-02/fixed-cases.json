@@ -1,0 +1,83 @@
+{
+  "baseline": "3c67f7b2116a3eb7f090f1807e4c2c41beeb01b6",
+  "fresh": [
+    "historical original backend-source.c EXPECT=2 raw import",
+    "same unchanged source/config through checked lifter",
+    "historical original backend-source.c EXPECT=0 raw import"
+  ],
+  "replays": [
+    [
+      "branch-good",
+      "hcc/capture-branch",
+      "property/final-02/branch/backend",
+      "CONTROLLED_HARNESS_NO_FAULT",
+      "OPEN_HISTORY_EQUIVALENT"
+    ],
+    [
+      "workers-good",
+      "p2/capture-workers",
+      "composition/final-01/workers/backend",
+      "CONTROLLED_HARNESS_NO_FAULT",
+      "OPEN_HISTORY_EQUIVALENT"
+    ],
+    [
+      "return",
+      "hcc/capture-branch",
+      "property/final-02/cross-return/backend",
+      "INJECTED_BACKEND_FAULT",
+      "OPEN_HISTORY_DIFFERENCE"
+    ],
+    [
+      "missing-read",
+      "hcc/capture-branch",
+      "property/final-02/cross-read/backend",
+      "INJECTED_BACKEND_FAULT",
+      "OPEN_HISTORY_DIFFERENCE"
+    ],
+    [
+      "missing-call",
+      "hcc/capture-branch",
+      "property/final-02/missing-instance/backend",
+      "INJECTED_BACKEND_FAULT",
+      "OPEN_HISTORY_DIFFERENCE"
+    ],
+    [
+      "condition",
+      "hcc/capture-branch",
+      "property/final-02/branch-condition/backend",
+      "INJECTED_BACKEND_FAULT",
+      "OPEN_HISTORY_DIFFERENCE"
+    ],
+    [
+      "atomic-A",
+      "property/capture-owned",
+      "property/final-02/private-a/backend",
+      "INJECTED_BACKEND_FAULT",
+      "OPEN_HISTORY_DIFFERENCE"
+    ],
+    [
+      "entry-ssa",
+      "hcc/capture-branch",
+      "levels/final-04/entry-ssa/backend",
+      "INJECTED_BACKEND_FAULT",
+      "OPEN_HISTORY_DIFFERENCE"
+    ],
+    [
+      "ite-export-history",
+      "hcc/capture-branch",
+      "hcc/branch-backend-01/backend",
+      "HISTORICAL_EXPORTER_DEFECT",
+      "CAPTURE_UNKNOWN"
+    ],
+    [
+      "query-binding",
+      "property/capture-unsafe",
+      "property/final-02/query-binding/backend",
+      "INJECTED_QUERY_FAULT",
+      "OPEN_HISTORY_EQUIVALENT"
+    ]
+  ],
+  "external_software": "one unchanged CK event-counter client, two frozen TUs, 113 surviving asm; no full Q",
+  "no_new_bug_expected_or_assumed": true,
+  "large_experiments": false
+}
