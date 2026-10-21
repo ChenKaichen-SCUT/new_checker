@@ -1,0 +1,2960 @@
+[
+  {
+    "task": "ck-ck_pr_faa",
+    "project": "ck",
+    "TU": 0,
+    "id": "line73",
+    "module_sha256": "665f02612ca5006aa19cffcb680e2444be617542124a6623de45d43b1792d9d9",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      49
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_faa/tu-0/result.json",
+    "LLVM_instruction": "  %19 = call i64 asm sideeffect \"lock xaddq $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i64) %3, ptr nonnull elementtype(i64) %3, i64 range(i64 0, 9223372036854775807) %18) #8, !dbg !41, !srcloc !45",
+    "source_function": "ck_pr_faa_64",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148065728,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148065728,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148065751,
+          "raw": 2148065871,
+          "spelling": {
+            "column": 3,
+            "file_id": 2061,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 549944
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 550324,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 550324,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 2061,
+            "line": 308,
+            "offset": 8176,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 550357,
+          "raw": 2148065728,
+          "spelling": {
+            "column": 30,
+            "file_id": 2061,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 550193
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2061,
+        "line": 308,
+        "offset": 8143,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148065871,
+      "spelling": {
+        "column": 3,
+        "file_id": 2061,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddq %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 64,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%3",
+      "o1": "%18"
+    },
+    "result_ssa": "%19",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 64,
+        "lower": 0,
+        "upper_exclusive": 9223372036854775807,
+        "operand": "%18",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "9",
+    "site_on_cycle": true,
+    "LLVM_debug_chain": [
+      {
+        "id": "41",
+        "LLVM_line": 352,
+        "record": "!DILocation(line: 308, column: 1, scope: !42, inlinedAt: !44)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_64\", scope: !43, file: !43, line: 308, type: !10, scopeLine: 308, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "44",
+        "LLVM_line": 355,
+        "record": "distinct !DILocation(line: 135, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 129, type: !10, scopeLine: 130, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/49",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_faa/tu-0/line73/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 77,
+        "instruction": "  %23 = icmp eq i64 %19, %14, !dbg !33"
+      },
+      {
+        "line": 84,
+        "instruction": "  %28 = call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str.2, i64 noundef %14, i64 noundef %18, i64 noundef %27, i64 noundef %19), !dbg !33"
+      }
+    ]
+  },
+  {
+    "task": "ck-ck_pr_faa",
+    "project": "ck",
+    "TU": 0,
+    "id": "line97",
+    "module_sha256": "665f02612ca5006aa19cffcb680e2444be617542124a6623de45d43b1792d9d9",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      50
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_faa/tu-0/result.json",
+    "LLVM_instruction": "  %33 = call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %2, ptr nonnull elementtype(i32) %2, i32 1) #8, !dbg !50, !srcloc !53",
+    "source_function": "ck_pr_faa_32",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148066150,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148066150,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148066173,
+          "raw": 2148066293,
+          "spelling": {
+            "column": 3,
+            "file_id": 2061,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 549944
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 550359,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 550359,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8211,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 550392,
+          "raw": 2148066150,
+          "spelling": {
+            "column": 30,
+            "file_id": 2061,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 550193
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2061,
+        "line": 309,
+        "offset": 8178,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148066293,
+      "spelling": {
+        "column": 3,
+        "file_id": 2061,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddl %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "1"
+    },
+    "result_ssa": "%33",
+    "LLVM_entry_conditions": [],
+    "LLVM_block": "32",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "50",
+        "LLVM_line": 361,
+        "record": "!DILocation(line: 309, column: 1, scope: !51, inlinedAt: !52)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_32\", scope: !43, file: !43, line: 309, type: !10, scopeLine: 309, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "52",
+        "LLVM_line": 363,
+        "record": "distinct !DILocation(line: 97, column: 3, scope: !48, inlinedAt: !49)",
+        "scope_record": "distinct !DISubprogram(name: \"rg_width\", scope: !28, file: !28, line: 86, type: !10, scopeLine: 87, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "49",
+        "LLVM_line": 360,
+        "record": "distinct !DILocation(line: 135, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 129, type: !10, scopeLine: 130, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/50",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_faa/tu-0/line97/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": []
+  },
+  {
+    "task": "ck-ck_pr_faa",
+    "project": "ck",
+    "TU": 0,
+    "id": "line109",
+    "module_sha256": "665f02612ca5006aa19cffcb680e2444be617542124a6623de45d43b1792d9d9",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      50
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_faa/tu-0/result.json",
+    "LLVM_instruction": "  %39 = call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %2, ptr nonnull elementtype(i32) %2, i32 -1) #8, !dbg !54, !srcloc !53",
+    "source_function": "ck_pr_faa_32",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148066150,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148066150,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148066173,
+          "raw": 2148066293,
+          "spelling": {
+            "column": 3,
+            "file_id": 2061,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 549944
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 550359,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 550359,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8211,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 550392,
+          "raw": 2148066150,
+          "spelling": {
+            "column": 30,
+            "file_id": 2061,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 550193
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2061,
+        "line": 309,
+        "offset": 8178,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148066293,
+      "spelling": {
+        "column": 3,
+        "file_id": 2061,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddl %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "-1"
+    },
+    "result_ssa": "%39",
+    "LLVM_entry_conditions": [],
+    "LLVM_block": "38",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "54",
+        "LLVM_line": 365,
+        "record": "!DILocation(line: 309, column: 1, scope: !51, inlinedAt: !55)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_32\", scope: !43, file: !43, line: 309, type: !10, scopeLine: 309, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "55",
+        "LLVM_line": 366,
+        "record": "distinct !DILocation(line: 97, column: 3, scope: !48, inlinedAt: !49)",
+        "scope_record": "distinct !DISubprogram(name: \"rg_width\", scope: !28, file: !28, line: 86, type: !10, scopeLine: 87, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "49",
+        "LLVM_line": 360,
+        "record": "distinct !DILocation(line: 135, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 129, type: !10, scopeLine: 130, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/50",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_faa/tu-0/line109/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": []
+  },
+  {
+    "task": "ck-ck_pr_faa",
+    "project": "ck",
+    "TU": 0,
+    "id": "line135",
+    "module_sha256": "665f02612ca5006aa19cffcb680e2444be617542124a6623de45d43b1792d9d9",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      50
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_faa/tu-0/result.json",
+    "LLVM_instruction": "  %55 = call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %4, ptr nonnull elementtype(i32) %4, i32 range(i32 -1, 2147483647) %54) #8, !dbg !63, !srcloc !53",
+    "source_function": "ck_pr_faa_32",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148066150,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148066150,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148066173,
+          "raw": 2148066293,
+          "spelling": {
+            "column": 3,
+            "file_id": 2061,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 549944
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 550359,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 550359,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 2061,
+            "line": 309,
+            "offset": 8211,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 550392,
+          "raw": 2148066150,
+          "spelling": {
+            "column": 30,
+            "file_id": 2061,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 550193
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2061,
+        "line": 309,
+        "offset": 8178,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148066293,
+      "spelling": {
+        "column": 3,
+        "file_id": 2061,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddl %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%4",
+      "o1": "%54"
+    },
+    "result_ssa": "%55",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 32,
+        "lower": -1,
+        "upper_exclusive": 2147483647,
+        "operand": "%54",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "47",
+    "site_on_cycle": true,
+    "LLVM_debug_chain": [
+      {
+        "id": "63",
+        "LLVM_line": 374,
+        "record": "!DILocation(line: 309, column: 1, scope: !51, inlinedAt: !64)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_32\", scope: !43, file: !43, line: 309, type: !10, scopeLine: 309, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "64",
+        "LLVM_line": 375,
+        "record": "distinct !DILocation(line: 139, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 129, type: !10, scopeLine: 130, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/50",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_faa/tu-0/line135/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 139,
+        "instruction": "  %59 = icmp eq i32 %55, %51, !dbg !56"
+      },
+      {
+        "line": 146,
+        "instruction": "  %64 = call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str.5, i32 noundef %51, i32 noundef %54, i32 noundef %63, i32 noundef %55), !dbg !56"
+      }
+    ]
+  },
+  {
+    "task": "ck-ck_pr_fas",
+    "project": "ck",
+    "TU": 0,
+    "id": "line71",
+    "module_sha256": "036550434d1740c5a424a4aa5b2a27a4e34dd100ca0bc9887cc753b50be8985d",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      22
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_fas/tu-0/result.json",
+    "LLVM_instruction": "  %17 = call i64 asm sideeffect \"xchgq $0, $1\", \"=*m,=q,*m,1,~{memory},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i64) %3, ptr nonnull elementtype(i64) %3, i64 range(i64 -2147483648, 2147483648) %16) #8, !dbg !41, !srcloc !45",
+    "source_function": "ck_pr_fas_64",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148053442,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 162,
+            "offset": 4482,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148053442,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 162,
+            "offset": 4482,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148053465,
+          "raw": 2148053582,
+          "spelling": {
+            "column": 3,
+            "file_id": 2061,
+            "line": 144,
+            "offset": 4061,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 545968
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 546389,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 162,
+            "offset": 4482,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 546389,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 2061,
+            "line": 162,
+            "offset": 4515,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 546422,
+          "raw": 2148053442,
+          "spelling": {
+            "column": 30,
+            "file_id": 2061,
+            "line": 154,
+            "offset": 4278,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 546185
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2061,
+        "line": 162,
+        "offset": 4482,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148053582,
+      "spelling": {
+        "column": 3,
+        "file_id": 2061,
+        "line": 144,
+        "offset": 4061,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "xchgq %0, %1",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory"
+    ],
+    "width": 64,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%3",
+      "o1": "%16"
+    },
+    "result_ssa": "%17",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 64,
+        "lower": -2147483648,
+        "upper_exclusive": 2147483648,
+        "operand": "%16",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "9",
+    "site_on_cycle": true,
+    "LLVM_debug_chain": [
+      {
+        "id": "41",
+        "LLVM_line": 314,
+        "record": "!DILocation(line: 162, column: 1, scope: !42, inlinedAt: !44)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_fas_64\", scope: !43, file: !43, line: 162, type: !10, scopeLine: 162, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "44",
+        "LLVM_line": 317,
+        "record": "distinct !DILocation(line: 131, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 125, type: !10, scopeLine: 126, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/22",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_fas/tu-0/line71/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 74,
+        "instruction": "  %20 = icmp eq i64 %17, %13, !dbg !33"
+      },
+      {
+        "line": 81,
+        "instruction": "  %25 = call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str.2, i64 noundef %13, i64 noundef %16, i64 noundef %24, i64 noundef %17), !dbg !33"
+      }
+    ]
+  },
+  {
+    "task": "ck-ck_pr_fas",
+    "project": "ck",
+    "TU": 0,
+    "id": "line94",
+    "module_sha256": "036550434d1740c5a424a4aa5b2a27a4e34dd100ca0bc9887cc753b50be8985d",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      23
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_fas/tu-0/result.json",
+    "LLVM_instruction": "  %30 = call i32 asm sideeffect \"xchgl $0, $1\", \"=*m,=q,*m,1,~{memory},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %2, ptr nonnull elementtype(i32) %2, i32 -1) #8, !dbg !50, !srcloc !53",
+    "source_function": "ck_pr_fas_32",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148053824,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 163,
+            "offset": 4517,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148053824,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 163,
+            "offset": 4517,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148053847,
+          "raw": 2148053964,
+          "spelling": {
+            "column": 3,
+            "file_id": 2061,
+            "line": 144,
+            "offset": 4061,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 545968
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 546424,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 163,
+            "offset": 4517,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 546424,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 2061,
+            "line": 163,
+            "offset": 4550,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 546457,
+          "raw": 2148053824,
+          "spelling": {
+            "column": 30,
+            "file_id": 2061,
+            "line": 154,
+            "offset": 4278,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 546185
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2061,
+        "line": 163,
+        "offset": 4517,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148053964,
+      "spelling": {
+        "column": 3,
+        "file_id": 2061,
+        "line": 144,
+        "offset": 4061,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "xchgl %0, %1",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "-1"
+    },
+    "result_ssa": "%30",
+    "LLVM_entry_conditions": [],
+    "LLVM_block": "29",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "50",
+        "LLVM_line": 323,
+        "record": "!DILocation(line: 163, column: 1, scope: !51, inlinedAt: !52)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_fas_32\", scope: !43, file: !43, line: 163, type: !10, scopeLine: 163, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "52",
+        "LLVM_line": 325,
+        "record": "distinct !DILocation(line: 93, column: 3, scope: !48, inlinedAt: !49)",
+        "scope_record": "distinct !DISubprogram(name: \"rg_width\", scope: !28, file: !28, line: 82, type: !10, scopeLine: 83, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "49",
+        "LLVM_line": 322,
+        "record": "distinct !DILocation(line: 131, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 125, type: !10, scopeLine: 126, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/23",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_fas/tu-0/line94/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": []
+  },
+  {
+    "task": "ck-ck_pr_fas",
+    "project": "ck",
+    "TU": 0,
+    "id": "line118",
+    "module_sha256": "036550434d1740c5a424a4aa5b2a27a4e34dd100ca0bc9887cc753b50be8985d",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      23
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_fas/tu-0/result.json",
+    "LLVM_instruction": "  %44 = call i32 asm sideeffect \"xchgl $0, $1\", \"=*m,=q,*m,1,~{memory},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %4, ptr nonnull elementtype(i32) %4, i32 %43) #8, !dbg !61, !srcloc !53",
+    "source_function": "ck_pr_fas_32",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148053824,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 163,
+            "offset": 4517,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148053824,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 163,
+            "offset": 4517,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148053847,
+          "raw": 2148053964,
+          "spelling": {
+            "column": 3,
+            "file_id": 2061,
+            "line": 144,
+            "offset": 4061,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 545968
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 546424,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2061,
+            "line": 163,
+            "offset": 4517,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 546424,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 2061,
+            "line": 163,
+            "offset": 4550,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 546457,
+          "raw": 2148053824,
+          "spelling": {
+            "column": 30,
+            "file_id": 2061,
+            "line": 154,
+            "offset": 4278,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 546185
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2061,
+        "line": 163,
+        "offset": 4517,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148053964,
+      "spelling": {
+        "column": 3,
+        "file_id": 2061,
+        "line": 144,
+        "offset": 4061,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "xchgl %0, %1",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%4",
+      "o1": "%43"
+    },
+    "result_ssa": "%44",
+    "LLVM_entry_conditions": [],
+    "LLVM_block": "38",
+    "site_on_cycle": true,
+    "LLVM_debug_chain": [
+      {
+        "id": "61",
+        "LLVM_line": 334,
+        "record": "!DILocation(line: 163, column: 1, scope: !51, inlinedAt: !62)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_fas_32\", scope: !43, file: !43, line: 163, type: !10, scopeLine: 163, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "62",
+        "LLVM_line": 335,
+        "record": "distinct !DILocation(line: 135, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 125, type: !10, scopeLine: 126, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/23",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_fas/tu-0/line118/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 121,
+        "instruction": "  %47 = icmp eq i32 %44, %41, !dbg !54"
+      },
+      {
+        "line": 128,
+        "instruction": "  %52 = call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str.5, i32 noundef %41, i32 noundef %43, i32 noundef %51, i32 noundef %44), !dbg !54"
+      }
+    ]
+  },
+  {
+    "task": "ck-ck_pr_fax",
+    "project": "ck",
+    "TU": 0,
+    "id": "line109",
+    "module_sha256": "a69600969d1a2eac1dfe043dce7ace3dda377b4165bcba8c82ba6da5dcf2ce54",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      47
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_fax/tu-0/result.json",
+    "LLVM_instruction": "  %37 = call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %3, ptr nonnull elementtype(i32) %3, i32 %36) #7, !dbg !58, !srcloc !61",
+    "source_function": "ck_pr_faa_uint",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148053317,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2049,
+            "line": 306,
+            "offset": 8071,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148053317,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2049,
+            "line": 306,
+            "offset": 8071,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148053340,
+          "raw": 2148053474,
+          "spelling": {
+            "column": 3,
+            "file_id": 2049,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 538379
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 538687,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2049,
+            "line": 306,
+            "offset": 8071,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 538687,
+          "expansion_end": {
+            "column": 40,
+            "file_id": 2049,
+            "line": 306,
+            "offset": 8110,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 538726,
+          "raw": 2148053317,
+          "spelling": {
+            "column": 30,
+            "file_id": 2049,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 538628
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2049,
+        "line": 306,
+        "offset": 8071,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148053474,
+      "spelling": {
+        "column": 3,
+        "file_id": 2049,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddl %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "unsigned int",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "unsigned int",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%3",
+      "o1": "%36"
+    },
+    "result_ssa": "%37",
+    "LLVM_entry_conditions": [],
+    "LLVM_block": "32",
+    "site_on_cycle": true,
+    "LLVM_debug_chain": [
+      {
+        "id": "58",
+        "LLVM_line": 318,
+        "record": "!DILocation(line: 306, column: 1, scope: !59, inlinedAt: !60)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_uint\", scope: !44, file: !44, line: 306, type: !10, scopeLine: 306, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "60",
+        "LLVM_line": 320,
+        "record": "distinct !DILocation(line: 106, column: 1, scope: !52, inlinedAt: !53)",
+        "scope_record": "distinct !DISubprogram(name: \"run_test_faa_uint\", scope: !28, file: !28, line: 106, type: !10, scopeLine: 106, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "53",
+        "LLVM_line": 313,
+        "record": "distinct !DILocation(line: 106, column: 1, scope: !32, inlinedAt: !33)",
+        "scope_record": "distinct !DISubprogram(name: \"run_test_faa\", scope: !28, file: !28, line: 106, type: !10, scopeLine: 106, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "33",
+        "LLVM_line": 293,
+        "record": "distinct !DILocation(line: 115, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 113, type: !10, scopeLine: 114, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/47",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_fax/tu-0/line109/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 110,
+        "instruction": "  %38 = icmp eq i32 %34, %37, !dbg !51"
+      },
+      {
+        "line": 114,
+        "instruction": "  %40 = call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str.6, i32 noundef %34, i32 noundef %37), !dbg !51"
+      }
+    ]
+  },
+  {
+    "task": "ck-ck_pr_fax",
+    "project": "ck",
+    "TU": 0,
+    "id": "line199",
+    "module_sha256": "a69600969d1a2eac1dfe043dce7ace3dda377b4165bcba8c82ba6da5dcf2ce54",
+    "function": "main",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      20
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ck_pr_fax/tu-0/result.json",
+    "LLVM_instruction": "  %89 = call i32 asm sideeffect \"xchgl $0, $1\", \"=*m,=q,*m,1,~{memory},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %1, ptr nonnull elementtype(i32) %1, i32 %88) #7, !dbg !88, !srcloc !91",
+    "source_function": "ck_pr_fas_uint",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2148041385,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2049,
+            "line": 160,
+            "offset": 4410,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2148041385,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 2049,
+            "line": 160,
+            "offset": 4410,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2148041408,
+          "raw": 2148041539,
+          "spelling": {
+            "column": 3,
+            "file_id": 2049,
+            "line": 144,
+            "offset": 4061,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 534677
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 535026,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 2049,
+            "line": 160,
+            "offset": 4410,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 535026,
+          "expansion_end": {
+            "column": 40,
+            "file_id": 2049,
+            "line": 160,
+            "offset": 4449,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 535065,
+          "raw": 2148041385,
+          "spelling": {
+            "column": 30,
+            "file_id": 2049,
+            "line": 154,
+            "offset": 4278,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 534894
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 2049,
+        "line": 160,
+        "offset": 4410,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2148041539,
+      "spelling": {
+        "column": 3,
+        "file_id": 2049,
+        "line": 144,
+        "offset": 4061,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "xchgl %0, %1",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "unsigned int",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "unsigned int",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%1",
+      "o1": "%88"
+    },
+    "result_ssa": "%89",
+    "LLVM_entry_conditions": [],
+    "LLVM_block": "84",
+    "site_on_cycle": true,
+    "LLVM_debug_chain": [
+      {
+        "id": "88",
+        "LLVM_line": 348,
+        "record": "!DILocation(line: 160, column: 1, scope: !89, inlinedAt: !90)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_fas_uint\", scope: !44, file: !44, line: 160, type: !10, scopeLine: 160, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "90",
+        "LLVM_line": 350,
+        "record": "distinct !DILocation(line: 107, column: 1, scope: !81, inlinedAt: !82)",
+        "scope_record": "distinct !DISubprogram(name: \"run_test_fas_uint\", scope: !28, file: !28, line: 107, type: !10, scopeLine: 107, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "82",
+        "LLVM_line": 342,
+        "record": "distinct !DILocation(line: 107, column: 1, scope: !69, inlinedAt: !70)",
+        "scope_record": "distinct !DISubprogram(name: \"run_test_fas\", scope: !28, file: !28, line: 107, type: !10, scopeLine: 107, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "70",
+        "LLVM_line": 330,
+        "record": "distinct !DILocation(line: 116, column: 2, scope: !27)",
+        "scope_record": "distinct !DISubprogram(name: \"main\", scope: !28, file: !28, line: 113, type: !10, scopeLine: 114, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/20",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ck_pr_fax/tu-0/line199/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 200,
+        "instruction": "  %90 = icmp eq i32 %86, %89, !dbg !80"
+      },
+      {
+        "line": 204,
+        "instruction": "  %92 = call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str.6, i32 noundef %86, i32 noundef %89), !dbg !80"
+      }
+    ]
+  },
+  {
+    "task": "ck-ec-complete",
+    "project": "ck",
+    "TU": 1,
+    "id": "line553",
+    "module_sha256": "960da99e080801750292e5791de18fef4ef79e054143300b15804d444d01eb10",
+    "function": "test_update_counter_32",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      50
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/result.json",
+    "LLVM_instruction": "  %32 = call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %2, ptr nonnull elementtype(i32) %2, i32 range(i32 4, 43) 42) #11, !dbg !340, !srcloc !345",
+    "source_function": "ck_pr_faa_32",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2147788995,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2147788995,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 572,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2147789018,
+          "raw": 2147789138,
+          "spelling": {
+            "column": 3,
+            "file_id": 572,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 272789
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 273204,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 273204,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 572,
+            "line": 309,
+            "offset": 8211,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 273237,
+          "raw": 2147788995,
+          "spelling": {
+            "column": 30,
+            "file_id": 572,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 273038
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 572,
+        "line": 309,
+        "offset": 8178,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2147789138,
+      "spelling": {
+        "column": 3,
+        "file_id": 572,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddl %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "42"
+    },
+    "result_ssa": "%32",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 32,
+        "lower": 4,
+        "upper_exclusive": 43,
+        "operand": "42",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "31",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "340",
+        "LLVM_line": 1497,
+        "record": "!DILocation(line: 309, column: 1, scope: !341, inlinedAt: !342)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_32\", scope: !79, file: !79, line: 309, type: !10, scopeLine: 309, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "342",
+        "LLVM_line": 1499,
+        "record": "distinct !DILocation(line: 709, column: 8, scope: !343, inlinedAt: !344)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec32_add_mp\", scope: !23, file: !23, line: 702, type: !10, scopeLine: 705, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "344",
+        "LLVM_line": 1501,
+        "record": "distinct !DILocation(line: 748, column: 9, scope: !329, inlinedAt: !330)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec32_add\", scope: !23, file: !23, line: 738, type: !10, scopeLine: 741, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "330",
+        "LLVM_line": 1487,
+        "record": "distinct !DILocation(line: 124, column: 17, scope: !287)",
+        "scope_record": "distinct !DISubprogram(name: \"test_update_counter_32\", scope: !9, file: !9, line: 115, type: !10, scopeLine: 116, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/50",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/line553/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 554,
+        "instruction": "  %33 = icmp sgt i32 %32, -1, !dbg !346"
+      },
+      {
+        "line": 558,
+        "instruction": "  %35 = phi i32 [ %29, %28 ], [ %32, %31 ]"
+      },
+      {
+        "line": 564,
+        "instruction": "  %38 = phi i32 [ %29, %28 ], [ %32, %31 ], [ %35, %34 ]"
+      }
+    ]
+  },
+  {
+    "task": "ck-ec-complete",
+    "project": "ck",
+    "TU": 1,
+    "id": "line617",
+    "module_sha256": "960da99e080801750292e5791de18fef4ef79e054143300b15804d444d01eb10",
+    "function": "test_update_counter_64",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      49
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/result.json",
+    "LLVM_instruction": "  %15 = call i64 asm sideeffect \"lock xaddq $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i64) %2, ptr nonnull elementtype(i64) %2, i64 range(i64 2, 85) 2) #11, !dbg !382, !srcloc !387",
+    "source_function": "ck_pr_faa_64",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2147788573,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2147788573,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2147788596,
+          "raw": 2147788716,
+          "spelling": {
+            "column": 3,
+            "file_id": 572,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 272789
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 273169,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 273169,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8176,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 273202,
+          "raw": 2147788573,
+          "spelling": {
+            "column": 30,
+            "file_id": 572,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 273038
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 572,
+        "line": 308,
+        "offset": 8143,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2147788716,
+      "spelling": {
+        "column": 3,
+        "file_id": 572,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddq %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 64,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "2"
+    },
+    "result_ssa": "%15",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 64,
+        "lower": 2,
+        "upper_exclusive": 85,
+        "operand": "2",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "14",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "382",
+        "LLVM_line": 1539,
+        "record": "!DILocation(line: 308, column: 1, scope: !383, inlinedAt: !384)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_64\", scope: !79, file: !79, line: 308, type: !10, scopeLine: 308, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "384",
+        "LLVM_line": 1541,
+        "record": "distinct !DILocation(line: 855, column: 40, scope: !385, inlinedAt: !386)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_add_mp\", scope: !23, file: !23, line: 848, type: !10, scopeLine: 851, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "386",
+        "LLVM_line": 1543,
+        "record": "distinct !DILocation(line: 899, column: 9, scope: !369, inlinedAt: !370)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_add\", scope: !23, file: !23, line: 889, type: !10, scopeLine: 892, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "370",
+        "LLVM_line": 1527,
+        "record": "distinct !DILocation(line: 831, column: 8, scope: !371, inlinedAt: !372)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_inc\", scope: !23, file: !23, line: 827, type: !10, scopeLine: 829, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "372",
+        "LLVM_line": 1529,
+        "record": "distinct !DILocation(line: 137, column: 2, scope: !358)",
+        "scope_record": "distinct !DISubprogram(name: \"test_update_counter_64\", scope: !9, file: !9, line: 131, type: !10, scopeLine: 132, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/49",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/line617/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 618,
+        "instruction": "  %16 = and i64 %15, 1, !dbg !388"
+      }
+    ]
+  },
+  {
+    "task": "ck-ec-complete",
+    "project": "ck",
+    "TU": 1,
+    "id": "line651",
+    "module_sha256": "960da99e080801750292e5791de18fef4ef79e054143300b15804d444d01eb10",
+    "function": "test_update_counter_64",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      49
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/result.json",
+    "LLVM_instruction": "  %33 = call i64 asm sideeffect \"lock xaddq $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i64) %2, ptr nonnull elementtype(i64) %2, i64 range(i64 2, 85) 84) #11, !dbg !405, !srcloc !387",
+    "source_function": "ck_pr_faa_64",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2147788573,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2147788573,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2147788596,
+          "raw": 2147788716,
+          "spelling": {
+            "column": 3,
+            "file_id": 572,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 272789
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 273169,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 273169,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8176,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 273202,
+          "raw": 2147788573,
+          "spelling": {
+            "column": 30,
+            "file_id": 572,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 273038
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 572,
+        "line": 308,
+        "offset": 8143,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2147788716,
+      "spelling": {
+        "column": 3,
+        "file_id": 572,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddq %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 64,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "84"
+    },
+    "result_ssa": "%33",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 64,
+        "lower": 2,
+        "upper_exclusive": 85,
+        "operand": "84",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "32",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "405",
+        "LLVM_line": 1562,
+        "record": "!DILocation(line: 308, column: 1, scope: !383, inlinedAt: !406)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_64\", scope: !79, file: !79, line: 308, type: !10, scopeLine: 308, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "406",
+        "LLVM_line": 1563,
+        "record": "distinct !DILocation(line: 855, column: 40, scope: !385, inlinedAt: !407)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_add_mp\", scope: !23, file: !23, line: 848, type: !10, scopeLine: 851, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "407",
+        "LLVM_line": 1564,
+        "record": "distinct !DILocation(line: 899, column: 9, scope: !369, inlinedAt: !398)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_add\", scope: !23, file: !23, line: 889, type: !10, scopeLine: 892, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "398",
+        "LLVM_line": 1555,
+        "record": "distinct !DILocation(line: 140, column: 17, scope: !358)",
+        "scope_record": "distinct !DISubprogram(name: \"test_update_counter_64\", scope: !9, file: !9, line: 131, type: !10, scopeLine: 132, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/49",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/line651/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 652,
+        "instruction": "  %34 = and i64 %33, 1, !dbg !408"
+      },
+      {
+        "line": 657,
+        "instruction": "  %37 = phi i64 [ %29, %28 ], [ %33, %32 ]"
+      },
+      {
+        "line": 663,
+        "instruction": "  %40 = phi i64 [ %29, %28 ], [ %33, %32 ], [ %37, %36 ]"
+      }
+    ]
+  },
+  {
+    "task": "ck-ec-complete",
+    "project": "ck",
+    "TU": 1,
+    "id": "line782",
+    "module_sha256": "960da99e080801750292e5791de18fef4ef79e054143300b15804d444d01eb10",
+    "function": "test_threaded_add_32",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      50
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/result.json",
+    "LLVM_instruction": "  %17 = call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %2, ptr nonnull elementtype(i32) %2, i32 range(i32 4, 43) 4) #11, !dbg !473, !srcloc !345",
+    "source_function": "ck_pr_faa_32",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2147788995,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2147788995,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 572,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2147789018,
+          "raw": 2147789138,
+          "spelling": {
+            "column": 3,
+            "file_id": 572,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 272789
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 273204,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 309,
+            "offset": 8178,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 273204,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 572,
+            "line": 309,
+            "offset": 8211,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 273237,
+          "raw": 2147788995,
+          "spelling": {
+            "column": 30,
+            "file_id": 572,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 273038
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 572,
+        "line": 309,
+        "offset": 8178,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2147789138,
+      "spelling": {
+        "column": 3,
+        "file_id": 572,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddl %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 32,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "4"
+    },
+    "result_ssa": "%17",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 32,
+        "lower": 4,
+        "upper_exclusive": 43,
+        "operand": "4",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "16",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "473",
+        "LLVM_line": 1630,
+        "record": "!DILocation(line: 309, column: 1, scope: !341, inlinedAt: !474)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_32\", scope: !79, file: !79, line: 309, type: !10, scopeLine: 309, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "474",
+        "LLVM_line": 1631,
+        "record": "distinct !DILocation(line: 709, column: 8, scope: !343, inlinedAt: !475)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec32_add_mp\", scope: !23, file: !23, line: 702, type: !10, scopeLine: 705, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "475",
+        "LLVM_line": 1632,
+        "record": "distinct !DILocation(line: 748, column: 9, scope: !329, inlinedAt: !466)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec32_add\", scope: !23, file: !23, line: 738, type: !10, scopeLine: 741, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "466",
+        "LLVM_line": 1623,
+        "record": "distinct !DILocation(line: 341, column: 2, scope: !454)",
+        "scope_record": "distinct !DISubprogram(name: \"test_threaded_add_32\", scope: !9, file: !9, line: 330, type: !10, scopeLine: 331, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/50",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/line782/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 783,
+        "instruction": "  %18 = icmp sgt i32 %17, -1, !dbg !476"
+      }
+    ]
+  },
+  {
+    "task": "ck-ec-complete",
+    "project": "ck",
+    "TU": 1,
+    "id": "line840",
+    "module_sha256": "960da99e080801750292e5791de18fef4ef79e054143300b15804d444d01eb10",
+    "function": "test_threaded_inc_64",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      49
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/result.json",
+    "LLVM_instruction": "  %18 = call i64 asm sideeffect \"lock xaddq $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i64) %2, ptr nonnull elementtype(i64) %2, i64 range(i64 2, 85) 2) #11, !dbg !504, !srcloc !387",
+    "source_function": "ck_pr_faa_64",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2147788573,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2147788573,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2147788596,
+          "raw": 2147788716,
+          "spelling": {
+            "column": 3,
+            "file_id": 572,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 272789
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 273169,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 273169,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8176,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 273202,
+          "raw": 2147788573,
+          "spelling": {
+            "column": 30,
+            "file_id": 572,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 273038
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 572,
+        "line": 308,
+        "offset": 8143,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2147788716,
+      "spelling": {
+        "column": 3,
+        "file_id": 572,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddq %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 64,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "2"
+    },
+    "result_ssa": "%18",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 64,
+        "lower": 2,
+        "upper_exclusive": 85,
+        "operand": "2",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "17",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "504",
+        "LLVM_line": 1661,
+        "record": "!DILocation(line: 308, column: 1, scope: !383, inlinedAt: !505)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_64\", scope: !79, file: !79, line: 308, type: !10, scopeLine: 308, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "505",
+        "LLVM_line": 1662,
+        "record": "distinct !DILocation(line: 855, column: 40, scope: !385, inlinedAt: !506)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_add_mp\", scope: !23, file: !23, line: 848, type: !10, scopeLine: 851, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "506",
+        "LLVM_line": 1663,
+        "record": "distinct !DILocation(line: 899, column: 9, scope: !369, inlinedAt: !496)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_add\", scope: !23, file: !23, line: 889, type: !10, scopeLine: 892, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "496",
+        "LLVM_line": 1653,
+        "record": "distinct !DILocation(line: 831, column: 8, scope: !371, inlinedAt: !497)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_inc\", scope: !23, file: !23, line: 827, type: !10, scopeLine: 829, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "497",
+        "LLVM_line": 1654,
+        "record": "distinct !DILocation(line: 369, column: 2, scope: !484)",
+        "scope_record": "distinct !DISubprogram(name: \"test_threaded_inc_64\", scope: !9, file: !9, line: 358, type: !10, scopeLine: 359, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/49",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/line840/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 841,
+        "instruction": "  %19 = and i64 %18, 1, !dbg !507"
+      }
+    ]
+  },
+  {
+    "task": "ck-ec-complete",
+    "project": "ck",
+    "TU": 1,
+    "id": "line899",
+    "module_sha256": "960da99e080801750292e5791de18fef4ef79e054143300b15804d444d01eb10",
+    "function": "test_threaded_add_64",
+    "family_candidate": true,
+    "empty": false,
+    "origin_indices": [
+      49
+    ],
+    "result": "LLVM_SITE_EXACT",
+    "reason": null,
+    "L1": true,
+    "L2": true,
+    "L3": false,
+    "L4": false,
+    "evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/result.json",
+    "LLVM_instruction": "  %18 = call i64 asm sideeffect \"lock xaddq $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i64) %2, ptr nonnull elementtype(i64) %2, i64 range(i64 2, 85) 8) #11, !dbg !534, !srcloc !387",
+    "source_function": "ck_pr_faa_64",
+    "source_asm_location": {
+      "chain": [
+        {
+          "argument_expansion": false,
+          "caller_raw": 2147788573,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 2147788573,
+          "expansion_end": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 2147788596,
+          "raw": 2147788716,
+          "spelling": {
+            "column": 3,
+            "file_id": 572,
+            "line": 293,
+            "offset": 7763,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 272789
+        },
+        {
+          "argument_expansion": false,
+          "caller_raw": 273169,
+          "expansion_begin": {
+            "column": 1,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8143,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_begin_raw": 273169,
+          "expansion_end": {
+            "column": 34,
+            "file_id": 572,
+            "line": 308,
+            "offset": 8176,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "expansion_end_raw": 273202,
+          "raw": 2147788573,
+          "spelling": {
+            "column": 30,
+            "file_id": 572,
+            "line": 303,
+            "offset": 8012,
+            "path": "../../../include/gcc/x86_64/ck_pr.h",
+            "valid": true
+          },
+          "spelling_raw": 273038
+        }
+      ],
+      "expansion": {
+        "column": 1,
+        "file_id": 572,
+        "line": 308,
+        "offset": 8143,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "macro": true,
+      "raw": 2147788716,
+      "spelling": {
+        "column": 3,
+        "file_id": 572,
+        "line": 293,
+        "offset": 7763,
+        "path": "../../../include/gcc/x86_64/ck_pr.h",
+        "valid": true
+      },
+      "valid": true
+    },
+    "source_template": "lock xaddq %1, %0",
+    "GNU_constraints": [
+      "+m",
+      "+q"
+    ],
+    "clobbers": [
+      "memory",
+      "cc"
+    ],
+    "width": 64,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 64,
+          "canonical": "unsigned long",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint64_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "LLVM_bindings": {
+      "p0": "%2",
+      "o1": "8"
+    },
+    "result_ssa": "%18",
+    "LLVM_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 64,
+        "lower": 2,
+        "upper_exclusive": 85,
+        "operand": "8",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "LLVM_block": "17",
+    "site_on_cycle": false,
+    "LLVM_debug_chain": [
+      {
+        "id": "534",
+        "LLVM_line": 1691,
+        "record": "!DILocation(line: 308, column: 1, scope: !383, inlinedAt: !535)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_pr_faa_64\", scope: !79, file: !79, line: 308, type: !10, scopeLine: 308, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "535",
+        "LLVM_line": 1692,
+        "record": "distinct !DILocation(line: 855, column: 40, scope: !385, inlinedAt: !536)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_add_mp\", scope: !23, file: !23, line: 848, type: !10, scopeLine: 851, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "536",
+        "LLVM_line": 1693,
+        "record": "distinct !DILocation(line: 899, column: 9, scope: !369, inlinedAt: !527)",
+        "scope_record": "distinct !DISubprogram(name: \"ck_ec64_add\", scope: !23, file: !23, line: 889, type: !10, scopeLine: 892, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      },
+      {
+        "id": "527",
+        "LLVM_line": 1684,
+        "record": "distinct !DILocation(line: 387, column: 2, scope: !515)",
+        "scope_record": "distinct !DISubprogram(name: \"test_threaded_add_64\", scope: !9, file: !9, line: 376, type: !10, scopeLine: 377, flags: DIFlagPrototyped | DIFlagAllCallsDescribed, spFlags: DISPFlagLocalToUnit | DISPFlagDefinition | DISPFlagOptimized, unit: !0)"
+      }
+    ],
+    "observer_site_pointer": "/sites/49",
+    "interface_evidence": "experiments/gap45/sites-02/ck-ec-complete/tu-1/line899/site/interface.json",
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "result_uses": [
+      {
+        "line": 900,
+        "instruction": "  %19 = and i64 %18, 1, !dbg !537"
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+# 全部 15 个 L2 位置审计表
+
+固定分母来自原 summary-02 的全部 L2 成功项，未过滤失败上下文。全部最终分类为 **语义范围外**；零个完整域内待接入，零个新认证成功，零个仅因证据不足而无法分类。局部未知条件见六项详审。
+
+C 是各原始测试源行，H 是 ck_ec.h 行，L/line 是原始 LLVM 行；均采用一基行号。`tu1` 的六项属于同一个完整双 TU 客户端，不是六个程序。
+
+GNU 接口均为两个读写输出 `+m`、`+q`，无独立输入；FAA clobber 为 memory/cc，XCHG 为 memory。LLVM 显式拆为 `=*m,=q,*m,1` 及实际 clobber；完整约束/类型、模块 SHA、原始指令、macro chain、SSA使用和证书身份见 [sites.json](../../experiments/ck-context-audit/evidence/sites.json)。
+
+| # | 任务/TU/LLVM位点（函数） | 原 GNU 定义/宏位置 | 指令/位宽 | 实际p0/o1 → 返回SSA | 完整真实调用上下文 | 对象与观察 | 排除条件/层 |
+|---|---|---|---|---|---|---|---|
+| 1 | ck-ck_pr_faa/tu0/**line73** (`main`) | `ck_pr_faa_64`; x86_64/ck_pr.h 拼写293，宏实例308 | `lock xaddq %1, %0` / 64 | `%3` / `%18` → `%19` | main C135 → CK_PR_FAA_B(64) C60循环 → CK_PR_FAA_T C44 → ck_pr_faa_64 | 局部uint64_t t；L52 alloca %3；旧值与内存值检查；失败打印/exit | FAA64，另有真实循环/外部random；source-interface; source-host; LLVM |
+| 2 | ck-ck_pr_faa/tu0/**line97** (`main`) | `ck_pr_faa_32`; x86_64/ck_pr.h 拼写293，宏实例309 | `lock xaddl %1, %0` / 32 | `%2` / `1` → `%33` | main C135 → rg_width(64) → C97 CK_PR_FAA_W(64,32) → 宏C72 → ck_pr_faa_32 | uint64_t t 的低32位；L51 alloca i64 %2；返回值弃用；L98–105检查完整64位内存/exit | 完整同宽对象条件违反；位点自身不在循环；source-object; source-host; LLVM |
+| 3 | ck-ck_pr_faa/tu0/**line109** (`main`) | `ck_pr_faa_32`; x86_64/ck_pr.h 拼写293，宏实例309 | `lock xaddl %1, %0` / 32 | `%2` / `-1` → `%39` | 同一main/rg_width/C97；第二次操作为宏C78 → ck_pr_faa_32 | 同一uint64_t t，先store i64 0；返回值弃用；L110–117检查完整64位内存/exit | 完整同宽对象条件违反；位点自身不在循环；source-object; source-host; LLVM |
+| 4 | ck-ck_pr_faa/tu0/**line135** (`main`) | `ck_pr_faa_32`; x86_64/ck_pr.h 拼写293，宏实例309 | `lock xaddl %1, %0` / 32 | `%4` / `%54` → `%55` | main C139 → CK_PR_FAA_B(32) C60循环 → CK_PR_FAA_T C44 → ck_pr_faa_32 | 每迭代局部uint32_t t；L53 alloca %4；L139比较旧值；L136–148同时检查内存并失败exit | 目标所在真实循环200000次；random/urem/栈对象；source-CFG; source-host; LLVM |
+| 5 | ck-ck_pr_fas/tu0/**line71** (`main`) | `ck_pr_fas_64`; x86_64/ck_pr.h 拼写144，宏实例162 | `xchgq %0, %1` / 64 | `%3` / `%16` → `%17` | main C131 → CK_PR_FAS_B(64) C62循环 → CK_PR_FAS_T C46 → ck_pr_fas_64 | 局部uint64_t t；LLVM %3；返回旧值与新内存检查；失败printf/exit | XCHG64不属于FAA32；另有真实循环；source-interface; source-host; LLVM |
+| 6 | ck-ck_pr_fas/tu0/**line94** (`main`) | `ck_pr_fas_32`; x86_64/ck_pr.h 拼写144，宏实例163 | `xchgl %0, %1` / 32 | `%2` / `-1` → `%30` | main C131 → rg_width(64) C93 → CK_PR_FAS_W宏C74 → ck_pr_fas_32 | uint64_t t低32位；LLVM %2；返回值弃用；完整64位对象比较，失败exit | XCHG32不属于FAA32；跨宽度对象；source-interface; source-object; LLVM |
+| 7 | ck-ck_pr_fas/tu0/**line118** (`main`) | `ck_pr_fas_32`; x86_64/ck_pr.h 拼写144，宏实例163 | `xchgl %0, %1` / 32 | `%4` / `%43` → `%44` | main C135 → CK_PR_FAS_B(32) C62循环 → CK_PR_FAS_T C46 → ck_pr_fas_32 | 局部uint32_t t；LLVM %4；旧值/更新值联合检查；printf/exit | XCHG32不属于FAA32；另有真实循环；source-interface; source-host; LLVM |
+| 8 | ck-ck_pr_fax/tu0/**line109** (`main`) | `ck_pr_faa_uint`; x86_64/ck_pr.h 拼写293，宏实例306 | `lock xaddl %1, %0` / 32 | `%3` / `%36` → `%37` | main C115 → run_test_faa → run_test_faa_uint（宏C106）→ C70循环 → C73 ck_pr_faa_uint | uint局部y与普通参考x；LLVM %3；旧值比较/printf；不匹配早退；最终文本检查 | 目标所在真实循环2000000次；非监视器观察；source-CFG; source-host; LLVM |
+| 9 | ck-ck_pr_fax/tu0/**line199** (`main`) | `ck_pr_fas_uint`; x86_64/ck_pr.h 拼写144，宏实例160 | `xchgl %0, %1` / 32 | `%1` / `%88` → `%89` | main C116 → run_test_fas → run_test_fas_uint（宏C107）→ C70循环 → C73 ck_pr_fas_uint | uint局部y与普通参考x；LLVM %1；L200旧值比较；不匹配打印/早退；最终文本检查 | XCHG32不属于FAA32；另有真实循环；source-interface; source-host; LLVM |
+| 10 | ck-ec-complete/tu1/**line553** (`test_update_counter_32`) | `ck_pr_faa_32`; x86_64/ck_pr.h 拼写293，宏实例309 | `lock xaddl %1, %0` / 32 | `%2` / `42` → `%32` | main C407/SP及C413/MP → test_update_counter_32 C124 → ck_ec32_add → add_mp H709 → FAA32；目标仅MP路径 | 局部struct ck_ec32.counter；L492 %2 align4；返回值控制wake，并mask后assert old==1；读内存assert43 | 无环但同路径movl/incl/setle/屏障/结构及assert超出域；source-interface-context; source-host; LLVM; actual-Q |
+| 11 | ck-ec-complete/tu1/**line617** (`test_update_counter_64`) | `ck_pr_faa_64`; x86_64/ck_pr.h 拼写293，宏实例308 | `lock xaddq %1, %0` / 64 | `%2` / `2` → `%15` | main C409/SP及C415/MP → test_update_counter_64 C137 → ck_ec64_inc → add(1) → add_mp H855 → FAA64 | 局部ck_ec64.counter；增量编码为2；旧值低位决定wake；之后assert逻辑计数1 | FAA64不属于FAA32；栈结构/其他asm/完整宿主；source-interface; source-host; LLVM; actual-Q |
+| 12 | ck-ec-complete/tu1/**line651** (`test_update_counter_64`) | `ck_pr_faa_64`; x86_64/ck_pr.h 拼写293，宏实例308 | `lock xaddq %1, %0` / 64 | `%2` / `84` → `%33` | 同一test_update_counter_64 C140 → ck_ec64_add(42) → add_mp H855 → FAA64 | 同一ck_ec64.counter；增量编码为84；旧值处理/返回assert1；逻辑计数assert43 | FAA64不属于FAA32；结构及跨调用观察；source-interface; source-host; LLVM; actual-Q |
+| 13 | ck-ec-complete/tu1/**line782** (`test_threaded_add_32`) | `ck_pr_faa_32`; x86_64/ck_pr.h 拼写293，宏实例309 | `lock xaddl %1, %0` / 32 | `%2` / `4` → `%17` | main C435/SP及C443/MP → test_threaded_add_32 C341 → add_mp H709 → FAA32；create waiter共享同一ec | 栈ec与全局woken；L759 create参数=L782地址%2；外层返回值弃用但内部旧值控制wake；join前后assert woken | 相关waiter等待循环/回调/futex；栈线程实参与其他asm；source-CFG; source-host; LLVM; runtime; actual-Q |
+| 14 | ck-ec-complete/tu1/**line840** (`test_threaded_inc_64`) | `ck_pr_faa_64`; x86_64/ck_pr.h 拼写293，宏实例308 | `lock xaddq %1, %0` / 64 | `%2` / `2` → `%18` | main C437/SP及C445/MP → test_threaded_inc_64 C369 → ck_ec64_inc → add_mp H855 → FAA64 | 栈ck_ec64与全局woken；create64_waiter；旧值决定wake；join后检查woken | FAA64不属于FAA32；相关waiter/运行时域外；source-interface; source-host; runtime; actual-Q |
+| 15 | ck-ec-complete/tu1/**line899** (`test_threaded_add_64`) | `ck_pr_faa_64`; x86_64/ck_pr.h 拼写293，宏实例308 | `lock xaddq %1, %0` / 64 | `%2` / `8` → `%18` | main C438/SP及C446/MP → test_threaded_add_64 C387 → add_mp H855 → FAA64 | 栈ck_ec64与全局woken；增量4编码为8；外层弃值但内部决定wake；join后检查woken | FAA64不属于FAA32；相关waiter/运行时域外；source-interface; source-host; runtime; actual-Q |
+
+每个原证书路径为 `experiments/gap45/sites-02/<task>/tu-<TU>/<line>/site/interface.json`，同目录 block/llvm-fragment 与 independent 结果逐字核对但未重跑 SMT。原文件在公开 CAS 中，定位清单见 [inputs.json](../../experiments/ck-context-audit/evidence/inputs.json)。
+
+32 位 FAA 主候选为第2、3、4、8、10、13项。其他9项均保留完整身份/调用/观察，不把局部 L2 的较宽指令域误认为 guarded 的支持域。CK 64 位逻辑计数的实际FAA增量2/84/2/8来自原实现的编码，并非人为改变输入。
+
+所有项另有 native/direct 捕获入口不兼容；这只是 schema 层，未用来替代上表语义排除证据。完整客户端另有原实际Q的 Alloc 导出缺失；三个PR测试虽已有原Q捕获，仍无源循环/宿主的完整对应证书。

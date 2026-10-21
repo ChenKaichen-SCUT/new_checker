@@ -1,0 +1,36 @@
+{
+  "utc": "2026-10-21T14:44:55.970060+00:00",
+  "baseline": "caed1a34dd551ba6ac1bfdf153675fb8cb13dc77",
+  "commands": [
+    {
+      "command": [
+        "python",
+        "certifying-asm-lifter/experiments/ck-context-audit/reconstruct.py",
+        "--verify"
+      ],
+      "returncode": 0,
+      "stdout": "STATIC_RECONSTRUCTION_BYTE_IDENTICAL 37 files; no semantic verdict\n"
+    },
+    {
+      "command": [
+        "python",
+        "certifying-asm-lifter/experiments/ck-context-audit/render_table.py",
+        "--verify"
+      ],
+      "returncode": 0,
+      "stdout": "15/15 table rows match the frozen L2 census; judgements remain a static audit, not certification\n"
+    }
+  ],
+  "relative_links_checked": 22,
+  "missing_links": [],
+  "all_baseline_tracked_files_unchanged": true,
+  "decision_counts": {
+    "DOMAIN_VALID_PENDING": 0,
+    "INTEGRATED_CERTIFIED": 0,
+    "OUTSIDE_SEMANTIC_SCOPE": 15,
+    "INSUFFICIENT_EVIDENCE_TO_CLASSIFY": 0
+  },
+  "compiler_backend_SMT_runs": 0,
+  "meaning": "static audit reconstruction and editorial consistency; not theorem or SMT replay",
+  "artifact_format_note": "New CSV/log CRLF was changed to LF after initial whitespace check; raw upstream bytes unchanged."
+}
