@@ -1,0 +1,40 @@
+{
+  "result": "REJECT",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "thread-1-a0-u0-Q-43-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x69 (= |object:input_a| |object:input_a|)))\n(not $x69)))\n(check-sat)\n",
+      "file": "000-thread-1-a0-u0-Q-43-address.smt2",
+      "smt_sha256": "9d4e4fffb47a7a98cbb4b159aad432a0385b48d116347424255311d910f56743"
+    },
+    {
+      "name": "thread-1-a0-u1-Q-44-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x8 (= |object:x| |object:x|)))\n(not $x8)))\n(check-sat)\n",
+      "file": "001-thread-1-a0-u1-Q-44-address.smt2",
+      "smt_sha256": "9959f1b69ad6c84192e80e86a98d05a7a9608c57006748c8895f36205b495523"
+    },
+    {
+      "name": "thread-1-a0-u1-Q-44-write_address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x8 (= |object:x| |object:x|)))\n(not $x8)))\n(check-sat)\n",
+      "file": "002-thread-1-a0-u1-Q-44-write_address.smt2",
+      "smt_sha256": "9959f1b69ad6c84192e80e86a98d05a7a9608c57006748c8895f36205b495523"
+    },
+    {
+      "name": "thread-1-a0-u1-Q-44-write_value",
+      "result": "sat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-read-0| () (_ BitVec 32))\n(assert\n (let ((?x62 (bvadd |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-rmw-1|)))\n(let ((?x55 (bvadd |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-read-0|)))\n(let (($x58 (= ?x55 ?x62)))\n(not $x58)))))\n(check-sat)\n",
+      "model": "[pd-source-0:p1-open-read-0 = 4294967295,\n pd-source-0:p1-open-rmw-1 = 0]",
+      "file": "003-thread-1-a0-u1-Q-44-write_value.smt2",
+      "smt_sha256": "60e3fb35a6ed4638e0193035f296d6287990eec62a7925a915058b89776f6014"
+    }
+  ],
+  "reason": "unproved P0 obligation: thread-1-a0-u1-Q-44-write_value"
+}

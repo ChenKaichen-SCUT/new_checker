@@ -1,0 +1,128 @@
+{
+  "result": "REVIEWED",
+  "cases": [
+    {
+      "case": "final-01/workers",
+      "result": "ACTC_CONDITIONAL_SAFE",
+      "reason": null,
+      "smt_references": 107,
+      "failed_open_obligations": [],
+      "backend_verdict": "PASS"
+    },
+    {
+      "case": "final-01/branch",
+      "result": "ACTC_CONDITIONAL_SAFE",
+      "reason": null,
+      "smt_references": 139,
+      "failed_open_obligations": [],
+      "backend_verdict": "PASS"
+    },
+    {
+      "case": "final-01/unsafe",
+      "result": "ACTC_QUERY_SAT_NO_SAFE",
+      "reason": null,
+      "smt_references": 105,
+      "failed_open_obligations": [],
+      "backend_verdict": "FAIL"
+    },
+    {
+      "case": "final-01/wrong-return",
+      "result": "REJECT",
+      "reason": "unproved P0 obligation: thread-1-a0-u5-Q-53-condition",
+      "smt_references": 110,
+      "failed_open_obligations": [
+        {
+          "name": "thread-1-a0-u5-Q-53-condition",
+          "certificate": "experiments/composition/final-01/wrong-return/verifier/composition/certificate.json",
+          "model": "[pd-source-0:p1-open-rmw-3 = 0,\n pd-source-0:p1-open-rmw-1 = 4294967295]",
+          "file": "experiments/composition/final-01/wrong-return/verifier/composition/009-thread-1-a0-u5-Q-53-condition.smt2"
+        }
+      ],
+      "backend_verdict": "PASS"
+    },
+    {
+      "case": "final-01/missing-read",
+      "result": "REJECT",
+      "reason": "candidate effect-count mismatch",
+      "smt_references": 50,
+      "failed_open_obligations": [],
+      "backend_verdict": "PASS"
+    },
+    {
+      "case": "final-01/missing-instance",
+      "result": "REJECT",
+      "reason": "candidate effect-count mismatch",
+      "smt_references": 50,
+      "failed_open_obligations": [],
+      "backend_verdict": "FAIL"
+    },
+    {
+      "case": "final-01/wrong-condition",
+      "result": "REJECT",
+      "reason": "unproved P0 obligation: thread-1-a0-u3-Q-47-write_value",
+      "smt_references": 108,
+      "failed_open_obligations": [
+        {
+          "name": "thread-1-a0-u3-Q-47-write_value",
+          "certificate": "experiments/composition/final-01/wrong-condition/verifier/composition/certificate.json",
+          "model": "[pd-source-0:p1-open-read-2 = 2,\n pd-source-0:p1-open-rmw-3 = 8388721,\n pd-source-0:p1-open-read-0 = 4294967295,\n pd-source-0:p1-open-rmw-1 = 4286578624]",
+          "file": "experiments/composition/final-01/wrong-condition/verifier/composition/007-thread-1-a0-u3-Q-47-write_value.smt2"
+        }
+      ],
+      "backend_verdict": "PASS"
+    },
+    {
+      "case": "final-01/atomic-tag",
+      "result": "REJECT",
+      "reason": "Q read labels",
+      "smt_references": 40,
+      "failed_open_obligations": [],
+      "backend_verdict": "PASS"
+    },
+    {
+      "case": "final-01/query-binding",
+      "result": "REJECT",
+      "reason": "unproved P0 obligation: actual-safety-assumption-binding",
+      "smt_references": 104,
+      "failed_open_obligations": [
+        {
+          "name": "actual-safety-assumption-binding",
+          "certificate": "experiments/composition/final-01/query-binding/verifier/queries/certificate.json",
+          "model": "[DAT3M_spec_assumption = True]",
+          "file": "experiments/composition/final-01/query-binding/verifier/queries/002-actual-safety-assumption-binding.smt2"
+        }
+      ],
+      "backend_verdict": "PASS"
+    },
+    {
+      "case": "supplement-01/entry-ssa",
+      "result": "REJECT",
+      "reason": "unproved P0 obligation: thread-1-a0-u1-Q-44-write_value",
+      "smt_references": 104,
+      "failed_open_obligations": [
+        {
+          "name": "thread-1-a0-u1-Q-44-write_value",
+          "certificate": "experiments/composition/supplement-01/entry-ssa/verifier/composition/certificate.json",
+          "model": "[pd-source-0:p1-open-read-0 = 4294967295,\n pd-source-0:p1-open-rmw-1 = 0]",
+          "file": "experiments/composition/supplement-01/entry-ssa/verifier/composition/003-thread-1-a0-u1-Q-44-write_value.smt2"
+        }
+      ],
+      "backend_verdict": "PASS"
+    },
+    {
+      "case": "supplement-01/rmw-tag-only",
+      "result": "REJECT",
+      "reason": "Q read labels",
+      "smt_references": 43,
+      "failed_open_obligations": [],
+      "backend_verdict": "PASS"
+    }
+  ],
+  "fresh_same_invocation_Clang_and_same_run_Dat3M": 3,
+  "historical_actual_controlled_fault_replays": 8,
+  "focused_tests": 17,
+  "new_real_upstream_bugs_claimed": 0,
+  "client_result": "STATIC_BARRIERS_RECHECKED",
+  "smt_references_checked": 960,
+  "note": "Static evidence review, not proof of checker implementation or source counterexamples."
+}

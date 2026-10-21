@@ -1,0 +1,167 @@
+{
+  "result": "STATIC_BARRIERS_RECHECKED",
+  "client_count": 1,
+  "TU_count": 2,
+  "all_asm": 113,
+  "family_candidates": 8,
+  "previous_L2": 6,
+  "new_client_L3": 0,
+  "new_client_L4": 0,
+  "new_client_ACTC": 0,
+  "actual_complete_linked_Q_provided": false,
+  "source_or_client_modified": false,
+  "new_blockers_closed": [],
+  "translation_units": [
+    {
+      "tu": 0,
+      "hashes": {
+        "observer.json": "9b11484c3ab5361d7811d1fb174d3b294fb0ed074524e1680bc8072490239c15",
+        "observer.json.ast.json": "9b04d7191cc88302aa8017576bb0f385af16f7d6a10e7eba8e955fe4bd76b15d",
+        "receipt.json": "1a6c6117dd0bdb325f5c07944f8f9d1fe6d6d572a7c012fb121e5141919e7e35",
+        "source.c": "741d3d16fe99ea29d80f3cab5e7869b3450629b6dfb63ab6787346e34266cdf3",
+        "source.ll": "cc1c1a1392704c5071d63ab95b9934522e9557c5936ede3516dcf21069a616ce"
+      },
+      "all_surviving_asm": 80,
+      "observer_functions_including_headers": 309,
+      "loop_nodes_including_headers": {
+        "ForStmt": 1,
+        "WhileStmt": 4,
+        "DoStmt": 0
+      },
+      "original_source_barrier_witnesses": [
+        {
+          "line": 47,
+          "text": "syscall(SYS_futex, address,"
+        },
+        {
+          "line": 69,
+          "text": "syscall(SYS_futex, low_half,"
+        },
+        {
+          "line": 78,
+          "text": "syscall(SYS_futex, address,"
+        },
+        {
+          "line": 98,
+          "text": "syscall(SYS_futex, low_half,"
+        },
+        {
+          "line": 193,
+          "text": "assert(ck_ec_wait(&ec, &sp, 2, NULL) == 0);"
+        },
+        {
+          "line": 194,
+          "text": "assert(ck_ec_wait(&ec, &sp, 1, &deadline) == -1);"
+        },
+        {
+          "line": 200,
+          "text": "assert(ck_ec_wait(&ec, &sp, 1, &deadline) == -1);"
+        },
+        {
+          "line": 215,
+          "text": "assert(ck_ec_wait(&ec, &sp, 1, NULL) == 0);"
+        },
+        {
+          "line": 216,
+          "text": "assert(ck_ec_wait(&ec, &sp, 0, &deadline) == -1);"
+        },
+        {
+          "line": 222,
+          "text": "assert(ck_ec_wait(&ec, &sp, 0, &deadline) == -1);"
+        },
+        {
+          "line": 307,
+          "text": "ck_ec_wait(ec, &sp, 0, NULL);"
+        },
+        {
+          "line": 319,
+          "text": "pthread_create(&waiter, NULL, test_threaded_32_waiter, &ec);"
+        },
+        {
+          "line": 337,
+          "text": "pthread_create(&waiter, NULL, test_threaded_32_waiter, &ec);"
+        },
+        {
+          "line": 353,
+          "text": "ck_ec_wait(ec, &sp, 0, NULL);"
+        },
+        {
+          "line": 365,
+          "text": "pthread_create(&waiter, NULL, test_threaded_64_waiter, &ec);"
+        },
+        {
+          "line": 383,
+          "text": "pthread_create(&waiter, NULL, test_threaded_64_waiter, &ec);"
+        }
+      ]
+    },
+    {
+      "tu": 1,
+      "hashes": {
+        "observer.json": "e4aa7fa946bbdc89e24b1710d60a9d2db99c4e0d1e7fb0550622121d53a67402",
+        "observer.json.ast.json": "5b61ab05ab1cf986233d3e312576e0bca012f36daebab8d594edd7a3ec2cc229",
+        "receipt.json": "a6382c37e12ea09535bd4208feb52a5a70ef71c2803c70e17dcf8c76d466619b",
+        "source.c": "acff27b2bc72efa681add3580ffd27931d61f4ac7151585492a68de2b2f69669",
+        "source.ll": "e06aac784d04597020a6a6ccda4190bc326b94625f33c2aa369358c709105f7b"
+      },
+      "all_surviving_asm": 33,
+      "observer_functions_including_headers": 295,
+      "loop_nodes_including_headers": {
+        "ForStmt": 6,
+        "WhileStmt": 4,
+        "DoStmt": 3
+      },
+      "original_source_barrier_witnesses": [
+        {
+          "line": 138,
+          "text": "const uint32_t scale_factor = (ops->wait_scale_factor != 0)"
+        },
+        {
+          "line": 139,
+          "text": "? ops->wait_scale_factor"
+        },
+        {
+          "line": 141,
+          "text": "const uint32_t shift_count = (ops->wait_shift_count != 0)"
+        },
+        {
+          "line": 142,
+          "text": "? ops->wait_shift_count"
+        },
+        {
+          "line": 149,
+          "text": "for (;;) {"
+        },
+        {
+          "line": 176,
+          "text": "} while (timespec_cmp(partial_deadline, now) <= 0);"
+        },
+        {
+          "line": 281,
+          "text": "wait_state->ops->wait32(wait_state, &ec->counter,"
+        },
+        {
+          "line": 304,
+          "text": "wait_state->ops->wait64(wait_state, &ec->counter,"
+        },
+        {
+          "line": 334,
+          "text": "for (;;) {\t\t\t\t\t\t\\"
+        },
+        {
+          "line": 381,
+          "text": "} while (0)"
+        }
+      ]
+    }
+  ],
+  "missing": [
+    "complete linked actual Q and queries",
+    "all unsupported asm interfaces/effects",
+    "loop/error-prefix induction",
+    "complete direct/indirect callback summaries",
+    "struct/object/alias/lifetime semantics",
+    "futex/syscall/time and lifecycle contracts"
+  ],
+  "conclusion": "No claim that Dat3M can never import it; no verified complete input/provider exists in this delivery."
+}

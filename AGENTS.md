@@ -185,3 +185,19 @@
   method-paper basis remain NO_GO. Runtime completion remains an external
   original contract, not a newly proved component. Preserve all old code,
   theorems and evidence; static sealing, commit/push/verify, then STOP for review.
+
+- Latest authorization (2026-10-21): frozen baseline f5498b6213e0a4e2b5f51f57477cad271035c200.
+  Research automatic compositional translation certification; stop PD value
+  repair expansion. Prove a finite restricted rule, implement untrusted plan
+  generation and independent boundary/coverage checking over actual artifacts.
+  Preserve all original Gamma, theorems, code and evidence; no broad coverage,
+  performance or instruction growth. Assess unchanged full CK client and prior
+  algorithms honestly. This delivery is docs/composition and experiments/composition.
+  Three fresh same-invocation Clang/same-run Dat3M cases give two ACTC conditional
+  SAFE and one query SAT; eight historical actual controlled faults reject;
+  17 focused tests pass. Old language scope is not expanded; complete CK remains
+  0/1. Rank-determined matching and standard symbolic summaries do not establish
+  independent algorithm novelty: NO_GO for current ISSTA full-experiment route.
+  New labels do not upgrade L1-L4. No new real upstream bug is claimed. The old
+  interpreter/runtime dependencies remain explicit. Commit/push/verify, then STOP
+  for review; do not continue adding program-specific parsers or broad experiments.

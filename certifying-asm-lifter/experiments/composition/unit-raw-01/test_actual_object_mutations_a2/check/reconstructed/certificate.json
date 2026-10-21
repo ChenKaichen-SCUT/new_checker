@@ -1,0 +1,63 @@
+{
+  "result": "REJECT",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "thread-1-argument",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x47 (= |object:input_a| |object:input_a|)))\n(not $x47)))\n(check-sat)\n",
+      "file": "000-thread-1-argument.smt2",
+      "smt_sha256": "25e3226e69913d1e2b3eea12070e86e8cdeac761306c3ba4ab818adfccbe6e3d"
+    },
+    {
+      "name": "thread-1-startup",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x119 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x119)))\n(check-sat)\n",
+      "file": "001-thread-1-startup.smt2",
+      "smt_sha256": "0192f0d684f732b6ef53d7399f0164fd37b17cab076b50ccf9ce13c340657512"
+    },
+    {
+      "name": "thread-1-completion",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x67 (bvand completion (_ bv2 2))))\n(let (($x60 (= ?x67 ?x67)))\n(not $x60))))\n(check-sat)\n",
+      "file": "002-thread-1-completion.smt2",
+      "smt_sha256": "d5b5326e3e0445de5c38e1872c8712d917bead08dfbb9cb769eacd062c4d93be"
+    },
+    {
+      "name": "a0-u1-reference-return",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-rmw-1| () (_ BitVec 32))\n(assert\n (let (($x84 (= |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-rmw-1|)))\n(not $x84)))\n(check-sat)\n",
+      "file": "003-a0-u1-reference-return.smt2",
+      "smt_sha256": "b22ef2c4fbf318dead3f5424d80b1d0cccead592ff08da5d817af09ea04d1747"
+    },
+    {
+      "name": "a0-u1-unconditional",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n",
+      "file": "004-a0-u1-unconditional.smt2",
+      "smt_sha256": "53c3f760452fe1a373012ddac61ac4948c1c7a3e2254e0d478c2ee8abbd13cff"
+    },
+    {
+      "name": "a0-u3-reference-return",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-rmw-3| () (_ BitVec 32))\n(assert\n (let (($x8 (= |pd-source-0:p1-open-rmw-3| |pd-source-0:p1-open-rmw-3|)))\n(not $x8)))\n(check-sat)\n",
+      "file": "005-a0-u3-reference-return.smt2",
+      "smt_sha256": "3baed267a801e8ba91bf70fada7e00eb4840d6465f44f6bed061edcf97bee846"
+    },
+    {
+      "name": "a0-u3-unconditional",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n",
+      "file": "006-a0-u3-unconditional.smt2",
+      "smt_sha256": "53c3f760452fe1a373012ddac61ac4948c1c7a3e2254e0d478c2ee8abbd13cff"
+    }
+  ],
+  "reason": "Q real RMW pairing/labels"
+}

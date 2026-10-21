@@ -1,0 +1,62 @@
+{
+  "result": "STATIC_INTEGRITY_CHECKED",
+  "date": "2026-10-21",
+  "baseline": "f5498b6213e0a4e2b5f51f57477cad271035c200",
+  "protected_baseline_files": 53622,
+  "historical_experiment_files_sha256_checked": 53293,
+  "allowed_existing_updates": [
+    "AGENTS.md",
+    "README.md",
+    "certifying-asm-lifter/README.md",
+    "certifying-asm-lifter/artifact-manifest.json",
+    "certifying-asm-lifter/docs/00-progress.md"
+  ],
+  "historical_exceptions": [],
+  "old_checker_lifter_backend_tests_unchanged": true,
+  "new_code": [
+    "certification/composition.py",
+    "experiments/certify_composition.py",
+    "experiments/review_composition.py",
+    "experiments/run_composition_acceptance.py",
+    "experiments/seal_composition.py",
+    "tests/test_composition.py"
+  ],
+  "original_theorem_sha256": "8f4f91dc9a4002563389609879a653512ae7d687ac38c4bae164146c55d9d596",
+  "original_gamma": {
+    "Gamma_front": "Clang preprocessing, type/declaration/metadata fidelity; ordinary host compilation satisfies the original open contract.",
+    "Gamma_ISA": "Accepted GNU interface and aligned valid WB x86 operations agree with the reference interpreter and pinned TSO CAT bridge.",
+    "Gamma_capture": "Read-only observer/exporter and OS/build records faithfully identify and serialize all actual objects and solver calls.",
+    "Gamma_runtime": "This pinned pthread protocol projects to all legal successful source lifecycle prefixes, without extra user restrictions or aliasing.",
+    "Gamma_encode": "ENC-minus: every legal Q error prefix in the domain makes this actual safety query satisfiable; includes analysis, symmetry, bounds, CAT and prefix semantics.",
+    "Gamma_check": "Python/C++/Java checkers refine C0-C4; local SMT UNSAT is sound. No mechanized implementation refinement is claimed.",
+    "Gamma_solve": "The actual backend solver's UNSAT for the bound queries is sound; replay is not an independently checked proof certificate.",
+    "Gamma_domain": "x86-64 LP64 ABI, valid aligned nonmixed ordinary WB objects, successful create/join and defined host operations apply; no ISO C race-UB vacuity."
+  },
+  "new_external_semantic_assumptions": [],
+  "dat3m_commit": "b81ec6c55503e824bb0ddc4ebac6c6f0a63d56d8",
+  "fixed_model": {
+    "tso.cat": {
+      "sha256": "8561d85057c449c0828b888c61e3cfeda8b73750474353eee1dd3f0383b192ac",
+      "bytes": 468
+    },
+    "x86fences.cat": {
+      "sha256": "b7d347726619c89e336bb19fd0ed5284d0b2fb893f06c957644ab769de691766",
+      "bytes": 27
+    },
+    "stdlib.cat": {
+      "sha256": "af333bb3cba3d511510b3be3a1d9d372e6a635d76f7cc214dd9eabf8121d1857",
+      "bytes": 414
+    }
+  },
+  "local_paths_checked": true,
+  "broken_local_paths": [],
+  "evidence_review_sha256": "129ad40ee8dbc87678255f116564e1dfcb024137ebbf546c422e677778490fd0",
+  "reported_fresh_actual_cases": 3,
+  "reported_historical_actual_fault_cases": 8,
+  "reported_focused_tests": 17,
+  "production_source_language_scope_expanded": false,
+  "complete_CK_client_L3_L4_ACTC": "0/1",
+  "independent_algorithm_novelty": "NOT_ESTABLISHED_NO_GO",
+  "proof_status": "analytic conditional proof; not mechanically checked by this script",
+  "scope": "static byte/hash/path checks only; no semantic checker/compiler/backend/SMT/tests run by seal"
+}

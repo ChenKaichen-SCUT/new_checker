@@ -1,0 +1,268 @@
+{
+  "result": "ACTC_FACTS_RECOVERED",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "thread-1-argument",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x43 (= |object:input_a| |object:input_a|)))\n(not $x43)))\n(check-sat)\n"
+    },
+    {
+      "name": "thread-1-startup",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x41 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x41)))\n(check-sat)\n"
+    },
+    {
+      "name": "thread-1-completion",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x65 (bvand completion (_ bv2 2))))\n(let (($x25 (= ?x65 ?x65)))\n(not $x25))))\n(check-sat)\n"
+    },
+    {
+      "name": "a0-u1-reference-return",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-rmw-1| () (_ BitVec 32))\n(assert\n (let (($x58 (= |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-rmw-1|)))\n(not $x58)))\n(check-sat)\n"
+    },
+    {
+      "name": "a0-u1-unconditional",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n"
+    },
+    {
+      "name": "thread-2-argument",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_b| () (_ BitVec 64))\n(assert\n (let (($x50 (= |object:input_b| |object:input_b|)))\n(not $x50)))\n(check-sat)\n"
+    },
+    {
+      "name": "thread-2-startup",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x65 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x65)))\n(check-sat)\n"
+    },
+    {
+      "name": "thread-2-completion",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x42 (bvand completion (_ bv2 2))))\n(let (($x11 (= ?x42 ?x42)))\n(not $x11))))\n(check-sat)\n"
+    },
+    {
+      "name": "a1-u1-reference-return",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-1:p1-open-rmw-1| () (_ BitVec 32))\n(assert\n (let (($x41 (= |pd-source-1:p1-open-rmw-1| |pd-source-1:p1-open-rmw-1|)))\n(not $x41)))\n(check-sat)\n"
+    },
+    {
+      "name": "a1-u1-unconditional",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n"
+    }
+  ],
+  "activations": [
+    {
+      "create_index": 0,
+      "creator": 3,
+      "thread": 1,
+      "worker": "worker",
+      "definitions": [
+        {
+          "event": 43,
+          "register": "r2",
+          "type": "bv32"
+        },
+        {
+          "event": 44,
+          "register": "rcert_21bdbd648ec1_port0_0",
+          "type": "bv32"
+        }
+      ],
+      "source": [
+        {
+          "id": "a0:u0",
+          "kind": "read",
+          "fields": {
+            "address": "|object:input_a|"
+          },
+          "source_operation": 0,
+          "width": 32,
+          "response": "|pd-source-0:p1-open-read-0|"
+        },
+        {
+          "id": "a0:u1",
+          "kind": "asm",
+          "fields": {
+            "address": "|object:x|",
+            "write_address": "|object:x|",
+            "write_value": "(bvadd |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-read-0|)"
+          },
+          "source_operation": 1,
+          "width": 32,
+          "response": "|pd-source-0:p1-open-rmw-1|",
+          "llvm_site": 12,
+          "call_context": {
+            "begin_raw": 386,
+            "end_raw": 408
+          },
+          "source_definition": "0x5a78f6424d40"
+        },
+        {
+          "id": "a0:u2",
+          "kind": "assert",
+          "fields": {
+            "condition": "(distinct #x00000000 |pd-source-0:p1-open-rmw-1|)"
+          },
+          "source_operation": 2
+        }
+      ],
+      "target": [
+        {
+          "id": 43,
+          "kind": "read",
+          "width": 32,
+          "response": "actc-q-1-read-43",
+          "read": 43,
+          "fields": {
+            "address": "|object:input_a|"
+          },
+          "events": [
+            43
+          ]
+        },
+        {
+          "id": 44,
+          "kind": "asm",
+          "width": 32,
+          "response": "actc-q-1-read-44",
+          "read": 44,
+          "fields": {
+            "address": "|object:x|",
+            "write_address": "|object:x|",
+            "write_value": "(bvadd actc-q-1-read-44 actc-q-1-read-43)"
+          },
+          "write": 45,
+          "events": [
+            44,
+            45
+          ]
+        },
+        {
+          "id": 47,
+          "kind": "assert",
+          "fields": {
+            "condition": "(distinct #x00000000 actc-q-1-read-44)"
+          },
+          "events": [
+            46,
+            47,
+            48
+          ]
+        }
+      ]
+    },
+    {
+      "create_index": 1,
+      "creator": 7,
+      "thread": 2,
+      "worker": "worker_other",
+      "definitions": [
+        {
+          "event": 57,
+          "register": "r2",
+          "type": "bv32"
+        },
+        {
+          "event": 58,
+          "register": "rcert_21bdbd648ec1_port1_0",
+          "type": "bv32"
+        }
+      ],
+      "source": [
+        {
+          "id": "a1:u0",
+          "kind": "read",
+          "fields": {
+            "address": "|object:input_b|"
+          },
+          "source_operation": 0,
+          "width": 32,
+          "response": "|pd-source-1:p1-open-read-0|"
+        },
+        {
+          "id": "a1:u1",
+          "kind": "asm",
+          "fields": {
+            "address": "|object:x|",
+            "write_address": "|object:x|",
+            "write_value": "(bvadd |pd-source-1:p1-open-rmw-1| |pd-source-1:p1-open-read-0|)"
+          },
+          "source_operation": 1,
+          "width": 32,
+          "response": "|pd-source-1:p1-open-rmw-1|",
+          "llvm_site": 30,
+          "call_context": {
+            "begin_raw": 583,
+            "end_raw": 605
+          },
+          "source_definition": "0x5a78f6425450"
+        },
+        {
+          "id": "a1:u2",
+          "kind": "assert",
+          "fields": {
+            "condition": "(distinct #x00000000 |pd-source-1:p1-open-rmw-1|)"
+          },
+          "source_operation": 2
+        }
+      ],
+      "target": [
+        {
+          "id": 57,
+          "kind": "read",
+          "width": 32,
+          "response": "actc-q-2-read-57",
+          "read": 57,
+          "fields": {
+            "address": "|object:input_b|"
+          },
+          "events": [
+            57
+          ]
+        },
+        {
+          "id": 58,
+          "kind": "asm",
+          "width": 32,
+          "response": "actc-q-2-read-58",
+          "read": 58,
+          "fields": {
+            "address": "|object:x|",
+            "write_address": "|object:x|",
+            "write_value": "(bvadd actc-q-2-read-58 actc-q-2-read-57)"
+          },
+          "write": 59,
+          "events": [
+            58,
+            59
+          ]
+        },
+        {
+          "id": 61,
+          "kind": "assert",
+          "fields": {
+            "condition": "(distinct #x00000000 actc-q-2-read-58)"
+          },
+          "events": [
+            60,
+            61,
+            62
+          ]
+        }
+      ]
+    }
+  ]
+}

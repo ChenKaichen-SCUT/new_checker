@@ -1,0 +1,72 @@
+{
+  "result": "REJECT",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "thread-1-a0-u0-Q-43-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x11 (= |object:input_a| |object:input_a|)))\n(not $x11)))\n(check-sat)\n",
+      "file": "000-thread-1-a0-u0-Q-43-address.smt2",
+      "smt_sha256": "c1230e36839424bc6dfbf455c40d4f3588899ef1fab07d5140a0c42450e17887"
+    },
+    {
+      "name": "thread-1-a0-u1-Q-44-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x12 (= |object:x| |object:x|)))\n(not $x12)))\n(check-sat)\n",
+      "file": "001-thread-1-a0-u1-Q-44-address.smt2",
+      "smt_sha256": "e5de35453d11032bcd42ae5c431d910c2160f237c3daa81b161b0fa8ece60f97"
+    },
+    {
+      "name": "thread-1-a0-u1-Q-44-write_address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x12 (= |object:x| |object:x|)))\n(not $x12)))\n(check-sat)\n",
+      "file": "002-thread-1-a0-u1-Q-44-write_address.smt2",
+      "smt_sha256": "e5de35453d11032bcd42ae5c431d910c2160f237c3daa81b161b0fa8ece60f97"
+    },
+    {
+      "name": "thread-1-a0-u1-Q-44-write_value",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-rmw-1| () (_ BitVec 32))\n(assert\n (let ((?x55 (bvadd |pd-source-0:p1-open-rmw-1| |pd-source-0:p1-open-read-0|)))\n(let (($x69 (= ?x55 ?x55)))\n(not $x69))))\n(check-sat)\n",
+      "file": "003-thread-1-a0-u1-Q-44-write_value.smt2",
+      "smt_sha256": "212b4520f3bc2206241ec009e5d101bdb98704723bcfd31dd63f8d2df6ff7d05"
+    },
+    {
+      "name": "thread-1-a0-u2-Q-46-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x11 (= |object:input_a| |object:input_a|)))\n(not $x11)))\n(check-sat)\n",
+      "file": "004-thread-1-a0-u2-Q-46-address.smt2",
+      "smt_sha256": "c1230e36839424bc6dfbf455c40d4f3588899ef1fab07d5140a0c42450e17887"
+    },
+    {
+      "name": "thread-1-a0-u3-Q-47-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x12 (= |object:x| |object:x|)))\n(not $x12)))\n(check-sat)\n",
+      "file": "005-thread-1-a0-u3-Q-47-address.smt2",
+      "smt_sha256": "e5de35453d11032bcd42ae5c431d910c2160f237c3daa81b161b0fa8ece60f97"
+    },
+    {
+      "name": "thread-1-a0-u3-Q-47-write_address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x12 (= |object:x| |object:x|)))\n(not $x12)))\n(check-sat)\n",
+      "file": "006-thread-1-a0-u3-Q-47-write_address.smt2",
+      "smt_sha256": "e5de35453d11032bcd42ae5c431d910c2160f237c3daa81b161b0fa8ece60f97"
+    },
+    {
+      "name": "thread-1-a0-u3-Q-47-write_value",
+      "result": "sat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |pd-source-0:p1-open-rmw-1| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-read-0| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-rmw-3| () (_ BitVec 32))\n(declare-fun |pd-source-0:p1-open-read-2| () (_ BitVec 32))\n(assert\n (let ((?x75 (bvadd |pd-source-0:p1-open-read-0| |pd-source-0:p1-open-rmw-1|)))\n(let (($x76 (= (_ bv2 32) |pd-source-0:p1-open-read-2|)))\n(let ((?x87 (ite $x76 (bvadd |pd-source-0:p1-open-rmw-3| |pd-source-0:p1-open-rmw-1|) (bvadd |pd-source-0:p1-open-rmw-3| ?x75))))\n(let ((?x77 (ite $x76 ?x75 |pd-source-0:p1-open-rmw-1|)))\n(let ((?x36 (bvadd |pd-source-0:p1-open-rmw-3| ?x77)))\n(let (($x66 (= ?x36 ?x87)))\n(not $x66))))))))\n(check-sat)\n",
+      "model": "[pd-source-0:p1-open-read-2 = 2,\n pd-source-0:p1-open-rmw-3 = 8389563,\n pd-source-0:p1-open-read-0 = 4294967240,\n pd-source-0:p1-open-rmw-1 = 53]",
+      "file": "007-thread-1-a0-u3-Q-47-write_value.smt2",
+      "smt_sha256": "3c0ea40affd1ab8ad2f7ce34a075c7b4120e6a7dca792762e7bd5f7afabb9509"
+    }
+  ],
+  "reason": "unproved P0 obligation: thread-1-a0-u3-Q-47-write_value"
+}
