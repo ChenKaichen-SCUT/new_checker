@@ -1,0 +1,10 @@
+test -f config.h || rm -f stamp-h1
+test -f config.h || make  stamp-h1
+/bin/bash ../libtool  --tag=CC   --mode=compile /opt/actc-gap45/bin/clang-21 -DHAVE_CONFIG_H   -I../src -I../src  -fPIC -Wall -Wextra -Wpedantic -Wno-long-long -g -O2  -MT atomic_ops_stack.lo -MD -MP -MF .deps/atomic_ops_stack.Tpo -c -o atomic_ops_stack.lo atomic_ops_stack.c
+mv -f .deps/atomic_ops_stack.Tpo .deps/atomic_ops_stack.Plo
+/bin/bash ../libtool  --tag=CC   --mode=compile /opt/actc-gap45/bin/clang-21 -DHAVE_CONFIG_H   -I../src -I../src  -fPIC -Wall -Wextra -Wpedantic -Wno-long-long -g -O2  -MT atomic_ops_malloc.lo -MD -MP -MF .deps/atomic_ops_malloc.Tpo -c -o atomic_ops_malloc.lo atomic_ops_malloc.c
+mv -f .deps/atomic_ops_malloc.Tpo .deps/atomic_ops_malloc.Plo
+/bin/bash ../libtool  --tag=CC   --mode=compile /opt/actc-gap45/bin/clang-21 -DHAVE_CONFIG_H   -I../src -I../src  -fPIC -Wall -Wextra -Wpedantic -Wno-long-long -g -O2  -MT atomic_ops.lo -MD -MP -MF .deps/atomic_ops.Tpo -c -o atomic_ops.lo atomic_ops.c
+mv -f .deps/atomic_ops.Tpo .deps/atomic_ops.Plo
+/bin/bash ../libtool  --tag=CC   --mode=link /opt/actc-gap45/bin/clang-21 -fPIC -Wall -Wextra -Wpedantic -Wno-long-long -g -O2  -version-info 5:0:4 -no-undefined  -o libatomic_ops.la -rpath /usr/local/lib atomic_ops.lo  
+/bin/bash ../libtool  --tag=CC   --mode=link /opt/actc-gap45/bin/clang-21 -fPIC -Wall -Wextra -Wpedantic -Wno-long-long -g -O2  -version-info 5:0:4 -no-undefined  -o libatomic_ops_gpl.la -rpath /usr/local/lib atomic_ops_stack.lo atomic_ops_malloc.lo libatomic_ops.la 

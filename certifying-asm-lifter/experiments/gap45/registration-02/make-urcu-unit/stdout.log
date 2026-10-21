@@ -1,0 +1,7 @@
+ cd ../.. && /bin/bash ./config.status tests/unit/Makefile depfiles
+config.status: creating tests/unit/Makefile
+config.status: executing depfiles commands
+echo "  CC      " test_uatomic.o;/opt/actc-gap45/bin/clang-21 -DHAVE_CONFIG_H   -I../../include -I../../include -include config.h -I../../src -I../../tests/utils -I../../tests/common  -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations -Wnull-dereference -Wundef -Wshadow -Wjump-misses-init -Wtautological-constant-out-of-range-compare -Wnested-externs -Wwrite-strings -Wformat=2 -Wstrict-aliasing -Wmissing-noreturn -Winit-self -Wno-null-dereference -pthread -g -O2 -MT test_uatomic.o -MD -MP -MF .deps/test_uatomic.Tpo -c -o test_uatomic.o test_uatomic.c
+mv -f .deps/test_uatomic.Tpo .deps/test_uatomic.Po
+rm -f test_uatomic
+echo "  CCLD    " test_uatomic;/bin/bash ../../libtool --silent --tag=CC   --mode=link /opt/actc-gap45/bin/clang-21 -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations -Wnull-dereference -Wundef -Wshadow -Wjump-misses-init -Wtautological-constant-out-of-range-compare -Wnested-externs -Wwrite-strings -Wformat=2 -Wstrict-aliasing -Wmissing-noreturn -Winit-self -Wno-null-dereference -pthread -g -O2   -o test_uatomic test_uatomic.o ../../src/liburcu-common.la ../../tests/utils/libtap.a 

@@ -13,6 +13,8 @@ VENDOR = ROOT / "vendor/Dat3M-b81ec6c55503e824bb0ddc4ebac6c6f0a63d56d8"
 
 def linux(path):
     p = Path(path).resolve()
+    if os.name != "nt":
+        return str(p)
     return "/mnt/" + p.drive[0].lower() + str(p)[2:].replace("\\", "/")
 
 
@@ -26,7 +28,8 @@ def run(path, model="tso", extra=(), timeout=40):
                "--property=program_spec", "--method=eager", "--solver=z3", *extra]
     start = time.perf_counter()
     try:
-        p = subprocess.run(command, capture_output=True, timeout=timeout)
+        from certification.platform_launch import native_args
+        p = subprocess.run(native_args(command), capture_output=True, timeout=timeout)
         output = p.stdout.decode("utf-8", errors="replace") + p.stderr.decode("utf-8", errors="replace")
         verdicts = re.findall(r"Result:\s*(PASS|FAIL|UNKNOWN|ERROR)", output)
         verdict = verdicts[-1] if verdicts else "ERROR"

@@ -4,6 +4,7 @@ import subprocess
 from pathlib import Path
 from certification.interface import sha
 from frontend.gnu import Reject
+from certification.platform_launch import native_args
 
 
 def save_json(path, value):
@@ -38,7 +39,10 @@ class Commands:
                "stderr": prefix + ".stderr.log"}
         self.rows.append(row)
         try:
-            process = subprocess.run(row["args"], capture_output=True, timeout=timeout)
+            executed = native_args(row["args"])
+            if executed != row["args"]:
+                row["executed_args"] = executed
+            process = subprocess.run(executed, capture_output=True, timeout=timeout)
             stdout, stderr = process.stdout, process.stderr
             row["returncode"] = process.returncode
         except subprocess.TimeoutExpired as error:

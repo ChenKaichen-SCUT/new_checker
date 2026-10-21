@@ -1,0 +1,4 @@
+/opt/actc-gap45/bin/clang-21 -DHAVE_CONFIG_H   -DAO_USE_PTHREAD_DEFS -I../src -I../src -I../tests -I../tests   -Wall -Wextra -Wpedantic -Wno-long-long -g -O2  -MT test_atomic_pthreads-test_atomic.o -MD -MP -MF .deps/test_atomic_pthreads-test_atomic.Tpo -c -o test_atomic_pthreads-test_atomic.o `test -f 'test_atomic.c' || echo './'`test_atomic.c
+mv -f .deps/test_atomic_pthreads-test_atomic.Tpo .deps/test_atomic_pthreads-test_atomic.Po
+rm -f test_atomic_pthreads
+/bin/bash ../libtool  --tag=CC   --mode=link /opt/actc-gap45/bin/clang-21  -Wall -Wextra -Wpedantic -Wno-long-long -g -O2    -o test_atomic_pthreads test_atomic_pthreads-test_atomic.o -lpthread ../src/libatomic_ops.la 

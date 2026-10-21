@@ -1,0 +1,8 @@
+ cd ../.. && /bin/bash ./config.status tests/utils/Makefile depfiles
+config.status: creating tests/utils/Makefile
+config.status: executing depfiles commands
+echo "  CC      " tap.o;/opt/actc-gap45/bin/clang-21 -DHAVE_CONFIG_H   -I../../include -I../../include -include config.h -I../../src  -Wall -Wextra -Wmissing-prototypes -Wmissing-declarations -Wnull-dereference -Wundef -Wshadow -Wjump-misses-init -Wtautological-constant-out-of-range-compare -Wnested-externs -Wwrite-strings -Wformat=2 -Wstrict-aliasing -Wmissing-noreturn -Winit-self -Wno-null-dereference -pthread -g -O2 -MT tap.o -MD -MP -MF .deps/tap.Tpo -c -o tap.o tap.c
+mv -f .deps/tap.Tpo .deps/tap.Po
+rm -f libtap.a
+echo "  AR      " libtap.a;ar cru libtap.a tap.o 
+ranlib libtap.a
