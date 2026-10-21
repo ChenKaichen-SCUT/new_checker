@@ -5,6 +5,7 @@ import com.dat3m.dartagnan.expression.Expression;
 import com.dat3m.dartagnan.expression.booleans.BoolLiteral;
 import com.dat3m.dartagnan.expression.integers.IntLiteral;
 import com.dat3m.dartagnan.expression.integers.IntExtract;
+import com.dat3m.dartagnan.expression.misc.ITEExpr;
 import com.dat3m.dartagnan.expression.type.BooleanType;
 import com.dat3m.dartagnan.expression.type.IntegerType;
 import com.dat3m.dartagnan.metadata.SourceLocation;
@@ -58,6 +59,12 @@ public final class Snapshot {
         } else if (e instanceof MemoryObject m) {
             result.put("kind", "object");
             result.put("name", m.getName());
+        } else if (e instanceof ITEExpr ite) {
+            result.put("kind", "ITE");
+            result.put("args", List.of(expression(ite.getCondition()),
+                    expression(ite.getTrueCase()), expression(ite.getFalseCase())));
+            result.put("register_dependencies", ite.getRegs().stream().map(Snapshot::register)
+                    .sorted(Comparator.comparing(x -> (String)x.get("name"))).toList());
         } else {
             result.put("kind", e.getKind() instanceof Enum<?> k
                     ? k.name() : "UNSUPPORTED:" + e.getClass().getName());
@@ -72,7 +79,7 @@ public final class Snapshot {
         // literal/register/object identity, or the explicit extraction bounds.
         result.put("complete", Set.of("Register", "IntLiteral", "BoolLiteral",
                 "MemoryObject", "IntBinaryExpr", "IntCmpExpr", "BoolUnaryExpr",
-                "BoolBinaryExpr", "IntExtract").contains(e.getClass().getSimpleName()));
+                "BoolBinaryExpr", "IntExtract", "ITEExpr").contains(e.getClass().getSimpleName()));
         return result;
     }
 

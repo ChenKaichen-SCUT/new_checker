@@ -58,9 +58,27 @@ def core_expr(x, env):
         v = z3.BitVecVal(int(x["value"]), ty.size())
     elif k == "bool" and type(x["value"]) is bool:
         v = z3.BoolVal(x["value"])
+    elif k == "object" and x["type"] == "bv64":
+        v = z3.BitVec("object:" + x["name"], 64)
     else:
         a = [core_expr(y, env) for y in x.get("args", [])]
-        if k == "EQ" and len(a) == 2:
+        if k == "ITE":
+            if (set(x) != {"kind", "type", "args", "java_class", "complete", "register_dependencies"}
+                    or x["java_class"] != "com.dat3m.dartagnan.expression.misc.ITEExpr"
+                    or len(a) != 3 or not z3.is_bool(a[0]) or a[1].sort() != a[2].sort()
+                    or a[1].sort() != ty):
+                raise Reject("malformed actual ITE type/fields/arity")
+            def dependencies(e):
+                if e["kind"] == "register": return {(e["name"], e["type"])}
+                return set().union(*(dependencies(y) for y in e.get("args", [])))
+            expected = sorted(dependencies(x))
+            actual = [(r["name"], r["type"]) for r in x["register_dependencies"]]
+            if actual != expected:
+                raise Reject("actual ITE register dependency mismatch")
+            v = z3.If(a[0], a[1], a[2])
+        elif k == "ADD" and len(a) == 2 and all(z3.is_bv(v) for v in a) and a[0].sort() == a[1].sort():
+            v = a[0] + a[1]
+        elif k == "EQ" and len(a) == 2:
             v = a[0] == a[1]
         elif k == "NEQ" and len(a) == 2:
             v = a[0] != a[1]

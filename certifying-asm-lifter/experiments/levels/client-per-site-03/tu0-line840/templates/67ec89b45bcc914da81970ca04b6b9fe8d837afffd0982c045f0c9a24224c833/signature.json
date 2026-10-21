@@ -1,0 +1,77 @@
+{
+  "normalized": "asm volatile(\"lock xaddq %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) :  : \"memory\",\"cc\");",
+  "candidate": {
+    "format": "event-ir-v1",
+    "width": 64,
+    "compiler_barrier": true,
+    "code": [
+      {
+        "op": "rmw",
+        "mode": "tso",
+        "width": 64,
+        "addr": "p0",
+        "old": "tmp0",
+        "value": [
+          "add",
+          "tmp0",
+          "o1"
+        ],
+        "has_write": true
+      },
+      {
+        "op": "set",
+        "dest": "o1",
+        "value": "tmp0"
+      }
+    ]
+  },
+  "width": 64,
+  "address_width": 64,
+  "model": "RC11Ex86-B8-restricted-v1",
+  "implementation": {
+    "backend/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "backend/dat3m/build_acceptance.py": "b9181f49070d175ecb2e43890c4d55dc33db37bfafdccff89eba7e3cacad4a36",
+    "backend/dat3m/ControlledFaults.java": "58619517e4ea68565c30e6cd1fac86fb66ad53b39f304b267469b8c0cca031ca",
+    "backend/dat3m/instrument.py": "e218b7f05b488e2f1e9af57fdd104399fa1206e04767cbe09f4a34ee4ddd188f",
+    "backend/dat3m/LevelsFaults.java": "f0315bbdd8d57937c623eec19bb045d2eb3e1ef038f2ae052b8353418b160381",
+    "backend/dat3m/p0_instrument.py": "9a8b1c332cc6ad7f7f6105b428a6dcb53f684d5d28221c99ee41e4f019385935",
+    "backend/dat3m/P0Audit.java": "f02b18d680dee0700b854a8d47ff74cd81a5d1c0b2fdd6849ec95f94c7daca90",
+    "backend/dat3m/P0Faults.java": "435d536f967507d7a35fe16bab428d32324a5792ae0e4e87e2e0e55c0e61704d",
+    "backend/dat3m/P1bFaults.java": "730bc3384077e8102fbc414128d20ce2502d8ab3835b6f531047aa76608bb66f",
+    "backend/dat3m/P1Faults.java": "94e606ff61688076ff97b5494b9c3c5454081f16eae5790112fa3a12b31b4923",
+    "backend/dat3m/P2Faults.java": "a893a37cf56ead0bfa799d235a5d67023d53496584c1af0525b40329884c58bf",
+    "backend/dat3m/pins.json": "8bc1a61ca65568804c454f03875f32de103fba5c2315270138ab17ae16609d43",
+    "backend/dat3m/Snapshot.java": "c329684762463b83ad352e1c785a63e23f95bc2fc879db3fb2f79314a879f402",
+    "backend/llvm_tso.py": "5cfb9c6ea5dc5685dfad07129a64a595346690a68daa31cbcd5c27119b8d7bf6",
+    "certification/__init__.py": "7c79977886157e29ab947db45a07ee560da0ad1866f4e9fce6d6990289ff1723",
+    "certification/continuation.py": "8be560e01c049325f86abb992cf3e4613defbe4efc29f88f4d8770c4f9a40163",
+    "certification/coverage.py": "659888e6f7c8407567dd6ef1578f8ecba895595f0c7391ad5c4cff053be52fcc",
+    "certification/endpoints.py": "f03b1164290793466cae119f0df10e7fc677394782110577a691f38ac3f71bcf",
+    "certification/evidence.py": "de2757ea12e08002c3fb5d944b2515ef4a80b64f979aeab22b055ed20c0e223b",
+    "certification/hcc.py": "9e178867d1d49e88a55dcf0accfffe304031d8185d46ccaa8342f2ae8773e601",
+    "certification/host_contracts.py": "a80ac214acb5d4853c818880b31a18b2a0ac64e902032847b0fdf1ef360d6854",
+    "certification/interface.py": "3e60abb0193da27be5ad63bc704d00a33492fff83bc654848f3956b7cb14b757",
+    "certification/llvm_activation.py": "f09ad7d2bfc117611690590817bed368bfccc2776b6da8914bd90fdc3811f51a",
+    "certification/local_ports.py": "f4740b8feedf2c25f1012ac38d325b62a66a0489992b2e3ae1a605897539184a",
+    "certification/lowering.py": "b6fdcef33e8a367b5afffa0e5e5ae015410d4e4aa51fcccb04f0bc54c1752234",
+    "certification/p0_host.py": "433ae04f7a50e9900de03a705977e6babd2d6bb400bc5790c83a1ce7617da134",
+    "certification/p0_queries.py": "850e539f6e5dab03e6d6ea0cc26138cfdc70a1a4975f277c09d2ef0aafda47f9",
+    "certification/p1_entry.py": "57105e987eae5de116aee6b220eca68a76a1e380d1aaf2c962c64dd96fed3bd8",
+    "certification/prepare.py": "763258e5900a94292ba1b43e51b2748900b263e36213f63a5ba087aa2acaee28",
+    "certification/provenance.py": "c445c11ccd34d2583417849e4fedd72f8290f08f43155accc66c4c453b016874",
+    "certification/run_pipeline.py": "390e74bdbace12b96d26a0c1904fd498043b2104833e046719562ed35afbe65b",
+    "certification/templates.py": "7d3d08a8d771b7ba5c46083591688e29193d2837782ff26bebb66b099fb802f7",
+    "certification/third_party_ports.py": "079cee1d088d5d81d44c364150389d0f9e322904a1dad7399d85383e696dd576",
+    "checker/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "checker/check.py": "8651a4b310b358be73bc4fcab701538a70e8f6e26307c721b64b56a0c1e29717",
+    "checker/target.py": "8dde5bb78a9e9d5b5f1bd82d556738dcb6ca779497a99d0f6b7cf91b05737516",
+    "frontend/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "frontend/clang/Observe.cpp": "2f116f7e3f08feedb7d0e248a168db11c90148d0132f750b6535e964c560cbc2",
+    "frontend/gnu.py": "4683aa713af60d5d89a1b8a9d01bc67f7d1f040a8bbee64a4f18371ba26374c4",
+    "frontend/scan.py": "f2a20a002813347dcc3bd432453048a3e7d9485fe0f9e6ccbf23eb595edb95a6",
+    "lifter/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "lifter/lift.py": "fcd4a66fecb41b979893c39544d2def0845b82539690b4065558817f52e55fb7",
+    "semantics/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "semantics/reference.py": "4a4c0700018a7b7c6c9366a4aafbff0e365a97bf5ad17826a49b73cf0a43c57e"
+  }
+}

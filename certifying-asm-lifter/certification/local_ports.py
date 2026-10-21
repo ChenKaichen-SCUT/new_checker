@@ -54,6 +54,6 @@ def prepare_ports(capture, out, pool):
               "pending": ["source argument evaluation and validity/alias/race domain",
                           "host control/data/lifecycle and error-prefix correspondence",
                           "actual Q regions and all dynamic occurrences", "actual safety/bound query binding"],
-              "verified_host_compilation": False, "reuse": pool.summary()}
+              "verified_host_compilation": False, "reuse": pool.summary() if pool else None}
     save_json(out / "local-certificate.json", result)
     return result

@@ -14,7 +14,7 @@ from frontend.gnu import Reject
 from backend.dat3m.instrument import install, REL
 
 
-def build(upstream, tree_index, destination, evidence, fault_injection=False, p0=False, p1=False, p1b=False, p2=False):
+def build(upstream, tree_index, destination, evidence, fault_injection=False, p0=False, p1=False, p1b=False, p2=False, levels=False):
     upstream, destination, evidence = map(lambda p: Path(p).resolve(),
                                          (upstream, destination, evidence))
     if destination.exists() or evidence.exists():
@@ -49,10 +49,10 @@ def build(upstream, tree_index, destination, evidence, fault_injection=False, p0
     receipt = {"commit": pins["commit"], "status": "REJECT", "input_count": len(files),
                "upstream_inputs_sha256": sha((evidence / "upstream-inputs.json").read_bytes())}
     try:
-        if p0 or p1 or p1b or p2:
+        if p0 or p1 or p1b or p2 or levels:
             from backend.dat3m.p0_instrument import install_p0
             receipt["instrumentation"] = install_p0(destination, fault_injection=fault_injection,
-                                                    fault_class="P2Faults" if p2 else "P1bFaults" if p1b else "P1Faults" if p1 else "P0Faults")
+                                                    fault_class="LevelsFaults" if levels else "P2Faults" if p2 else "P1bFaults" if p1b else "P1Faults" if p1 else "P0Faults")
         else:
             receipt["instrumentation"] = install(destination, fault_injection=fault_injection)
         logs = Commands(evidence / "commands")
@@ -75,7 +75,7 @@ def build(upstream, tree_index, destination, evidence, fault_injection=False, p0
         for name, digest in receipt["instrumentation"].get("additional_sources", {}).items():
             if sha((exporter.parent / name).read_bytes()) != digest:
                 raise Reject("P0 audit source changed during build")
-        if fault_injection and not (p0 or p1 or p1b or p2):
+        if fault_injection and not (p0 or p1 or p1b or p2 or levels):
             faults = destination / "dartagnan/src/main/java/certifying/ControlledFaults.java"
             if sha(faults.read_bytes()) != receipt["instrumentation"]["fault_source_sha256"]:
                 raise Reject("fault injector changed during build")
@@ -106,7 +106,8 @@ if __name__ == "__main__":
     p.add_argument("--p1-query-audit", action="store_true")
     p.add_argument("--p1b-query-audit", action="store_true")
     p.add_argument("--p2-query-audit", action="store_true")
+    p.add_argument("--levels-query-audit", action="store_true")
     a = p.parse_args()
     result = build(a.upstream, a.tree_index, a.destination, a.evidence,
-                   a.controlled_fault_build, a.p0_query_audit, a.p1_query_audit, a.p1b_query_audit, a.p2_query_audit)
+                   a.controlled_fault_build, a.p0_query_audit, a.p1_query_audit, a.p1b_query_audit, a.p2_query_audit, a.levels_query_audit)
     print(json.dumps({k: result[k] for k in ("commit", "status", "input_count")}, indent=2))

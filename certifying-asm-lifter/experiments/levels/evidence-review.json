@@ -1,0 +1,466 @@
+{
+  "result": "REVIEWED",
+  "baseline": "795e2a9ee95ba7446d4964430f7bda78bf6ddf76",
+  "cases": 16,
+  "unit_tests": 129,
+  "external": [
+    {
+      "mode": "client-reuse-04",
+      "counts": {
+        "L1": 6,
+        "L2": 6,
+        "L3": 0,
+        "L4": 0
+      },
+      "seconds": 1.8958212999859825,
+      "reasons": {
+        "instruction family outside fixed scope (empty asm included in denominator)": 97,
+        "original GCCAsmStmt origin": 8,
+        "L2": 6,
+        "unsupported GNU operand type/width/flag output": 2
+      },
+      "certificate_bytes": 172551,
+      "local_smt_files": 40,
+      "local_smt_bytes": 7020,
+      "distinct_block_proofs": 2
+    },
+    {
+      "mode": "client-per-site-04",
+      "counts": {
+        "L1": 6,
+        "L2": 6,
+        "L3": 0,
+        "L4": 0
+      },
+      "seconds": 1.9320886000059545,
+      "reasons": {
+        "instruction family outside fixed scope (empty asm included in denominator)": 97,
+        "original GCCAsmStmt origin": 8,
+        "L2": 6,
+        "unsupported GNU operand type/width/flag output": 2
+      },
+      "certificate_bytes": 185391,
+      "local_smt_files": 60,
+      "local_smt_bytes": 10480,
+      "distinct_block_proofs": 6
+    }
+  ],
+  "positive": [
+    {
+      "case": "workers",
+      "fault": null,
+      "expected": 4,
+      "level": 4,
+      "reason": null,
+      "backend": "PASS",
+      "seconds": 12.95015340007376,
+      "certificate_bytes": 237777,
+      "local_smt_files": 71,
+      "local_smt_bytes": 206907,
+      "distinct_block_proofs": 1
+    },
+    {
+      "case": "multi",
+      "fault": null,
+      "expected": 4,
+      "level": 4,
+      "reason": null,
+      "backend": "PASS",
+      "seconds": 35.39089289994445,
+      "certificate_bytes": 387992,
+      "local_smt_files": 93,
+      "local_smt_bytes": 367993,
+      "distinct_block_proofs": 1
+    },
+    {
+      "case": "unsafe",
+      "fault": null,
+      "expected": 3,
+      "level": 3,
+      "reason": "L4 query: BOUND_SAFETY_QUERY_SAT",
+      "backend": "FAIL",
+      "seconds": 12.815950899966992,
+      "certificate_bytes": 198205,
+      "local_smt_files": 68,
+      "local_smt_bytes": 111923,
+      "distinct_block_proofs": 1
+    },
+    {
+      "case": "branch",
+      "fault": null,
+      "expected": 3,
+      "level": 3,
+      "reason": "L4: full C host contract absent; L3 retained",
+      "backend": "PASS",
+      "seconds": 3.5403120999690145,
+      "certificate_bytes": 183192,
+      "local_smt_files": 63,
+      "local_smt_bytes": 16194,
+      "distinct_block_proofs": 1
+    }
+  ],
+  "faults": [
+    {
+      "case": "ite-swap",
+      "fault": "ite-swap",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: unproved P0 obligation: thread-1-asm-3-write-value",
+      "backend": "PASS",
+      "seconds": 3.7320950999855995,
+      "kind": "actual-Program",
+      "changed": [
+        {
+          "event": 48,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "ite-missing-dependency",
+      "fault": "ite-missing-dependency",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: actual ITE register dependency mismatch",
+      "backend": "PASS",
+      "seconds": 3.7356077999575064,
+      "kind": "exporter",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "ite-wrong-type",
+      "fault": "ite-wrong-type",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: malformed actual ITE type/fields/arity",
+      "backend": "PASS",
+      "seconds": 3.504493400105275,
+      "kind": "exporter",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "ite-truncated",
+      "fault": "ite-truncated",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: malformed actual ITE type/fields/arity",
+      "backend": "PASS",
+      "seconds": 3.410869300016202,
+      "kind": "exporter",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "omit-worker-call",
+      "fault": "omit-worker-call",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: complete Program worker effect census: Load",
+      "backend": "FAIL",
+      "seconds": 3.545687000034377,
+      "kind": "actual-Program",
+      "changed": [
+        {
+          "event": 70,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        71
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "case": "omit-call",
+      "fault": "omit-call",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: complete Program worker effect census: Load",
+      "backend": "FAIL",
+      "seconds": 3.330480400007218,
+      "kind": "actual-Program",
+      "changed": [
+        {
+          "event": 47,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        },
+        {
+          "event": 70,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        48,
+        71
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "case": "a-only",
+      "fault": "a-only",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: RMW read width/labels",
+      "backend": "PASS",
+      "seconds": 3.4186982000246644,
+      "kind": "actual-Program",
+      "changed": [
+        {
+          "event": 44,
+          "class_before": "Load",
+          "class_after": "Load",
+          "fields": [
+            "tags"
+          ]
+        },
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "tags"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "rmw-tag-only",
+      "fault": "rmw-tag-only",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: RMW read width/labels",
+      "backend": "PASS",
+      "seconds": 3.4242957000387833,
+      "kind": "actual-Program",
+      "changed": [
+        {
+          "event": 44,
+          "class_before": "Load",
+          "class_after": "Load",
+          "fields": [
+            "tags"
+          ]
+        },
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "tags"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "swap-returns",
+      "fault": "swap-returns",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: unproved P0 obligation: thread-1-monitor-53",
+      "backend": "PASS",
+      "seconds": 3.493237000075169,
+      "kind": "actual-Program",
+      "changed": [
+        {
+          "event": 50,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition"
+          ]
+        },
+        {
+          "event": 53,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition",
+            "reads"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "entry-ssa",
+      "fault": "entry-ssa",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: unproved P0 obligation: thread-1-asm-1-write-value",
+      "backend": "PASS",
+      "seconds": 3.397654699976556,
+      "kind": "actual-Program",
+      "changed": [
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "cross-read",
+      "fault": "cross-read",
+      "expected": 2,
+      "level": 2,
+      "reason": "L3: ordinary read tags/width",
+      "backend": "PASS",
+      "seconds": 3.4084440999431536,
+      "kind": "actual-Program",
+      "changed": [
+        {
+          "event": 46,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "query-binding",
+      "fault": "safety-query-binding",
+      "expected": 3,
+      "level": 3,
+      "reason": "L4 query: unproved P0 obligation: actual-safety-assumption-binding",
+      "backend": "PASS",
+      "seconds": 13.063711700029671,
+      "kind": "query",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    }
+  ],
+  "llvm_faults": [
+    {
+      "fault": "operand",
+      "source_actual_fragment_sha256": "df898d18506ad107196793f6fa11c4bce5bedc00ac8a5aa159bf317a1fed9403",
+      "result": "REJECT",
+      "reason": "unproved event-0-value",
+      "retained_level": 1,
+      "L1_reference": "experiments\\levels\\final-04\\branch\\local\\translation\\call-1\\block\\certificate.json",
+      "no_mutated_source_or_Q": true
+    },
+    {
+      "fault": "return",
+      "source_actual_fragment_sha256": "df898d18506ad107196793f6fa11c4bce5bedc00ac8a5aa159bf317a1fed9403",
+      "result": "REJECT",
+      "reason": "unproved output-o1",
+      "retained_level": 1,
+      "L1_reference": "experiments\\levels\\final-04\\branch\\local\\translation\\call-1\\block\\certificate.json",
+      "no_mutated_source_or_Q": true
+    }
+  ],
+  "comparison": [
+    {
+      "module": "certify_p1",
+      "input": "workers",
+      "seconds": 12.714850599993952,
+      "returncode": 0,
+      "result": "CONDITIONAL_SAFE",
+      "certificate_bytes": 191207,
+      "local_smt_files": 64,
+      "local_smt_bytes": 204679,
+      "distinct_block_proofs": 2
+    },
+    {
+      "module": "certify_p1",
+      "input": "branch",
+      "seconds": 0.44626619992777705,
+      "returncode": 1,
+      "result": "REJECT",
+      "certificate_bytes": 1740,
+      "local_smt_files": 0,
+      "local_smt_bytes": 0,
+      "distinct_block_proofs": 0
+    },
+    {
+      "module": "certify_hcc",
+      "input": "workers",
+      "seconds": 13.171961599960923,
+      "returncode": 0,
+      "result": "CONDITIONAL_SAFE",
+      "certificate_bytes": 211876,
+      "local_smt_files": 59,
+      "local_smt_bytes": 203813,
+      "distinct_block_proofs": 1
+    },
+    {
+      "module": "certify_hcc",
+      "input": "branch",
+      "seconds": 0.7635067000519484,
+      "returncode": 1,
+      "result": "REJECT",
+      "certificate_bytes": 72865,
+      "local_smt_files": 15,
+      "local_smt_bytes": 2742,
+      "distinct_block_proofs": 1
+    }
+  ],
+  "paired_candidate_sha256": "16a58848b625384fac35d452e4ecd15b773772fd64d8bb9857ebf27b022c13e8",
+  "branch_serialized_ITE_occurrences": 2,
+  "obligation_references_checked": 1203,
+  "backend_PASS_but_fault_rejected": 10,
+  "time_interpretation": "single controlled acceptance executions, no statistical performance claim",
+  "semantics_proved_by_this_audit": false
+}

@@ -1,0 +1,365 @@
+{
+  "interface": {
+    "normalized": "asm volatile(\"lock xaddl %1, %0\" : \"+m\"(*addr0),\"+q\"(v1) :  : \"memory\",\"cc\");",
+    "width": 32,
+    "register_output": 1,
+    "operands": [
+      {
+        "index": 0,
+        "constraint": "+m",
+        "output": true,
+        "memory": true,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      },
+      {
+        "index": 1,
+        "constraint": "+q",
+        "output": true,
+        "memory": false,
+        "clang_type": {
+          "bits": 32,
+          "canonical": "unsigned int",
+          "integer": true,
+          "pointer": false,
+          "qualifiers": 0,
+          "spelled": "uint32_t",
+          "unsigned": true
+        }
+      }
+    ],
+    "source_sha256": "319348d29904518f7937f053799db43c487568ea1d798d068f39b8ddff422bb5",
+    "source_function_decl": "0x59ca7e9e41b0",
+    "instance_namespace": "tu0-line782_",
+    "origin": {
+      "cookies": [
+        2147803880
+      ],
+      "location": {
+        "chain": [
+          {
+            "argument_expansion": false,
+            "caller_raw": 2147803466,
+            "expansion_begin": {
+              "column": 1,
+              "file_id": 631,
+              "line": 309,
+              "offset": 8178,
+              "path": "../../../include/gcc/x86_64/ck_pr.h",
+              "valid": true
+            },
+            "expansion_begin_raw": 2147803466,
+            "expansion_end": {
+              "column": 1,
+              "file_id": 631,
+              "line": 309,
+              "offset": 8178,
+              "path": "../../../include/gcc/x86_64/ck_pr.h",
+              "valid": true
+            },
+            "expansion_end_raw": 2147803489,
+            "raw": 2147803609,
+            "spelling": {
+              "column": 3,
+              "file_id": 631,
+              "line": 293,
+              "offset": 7763,
+              "path": "../../../include/gcc/x86_64/ck_pr.h",
+              "valid": true
+            },
+            "spelling_raw": 287260
+          },
+          {
+            "argument_expansion": false,
+            "caller_raw": 287675,
+            "expansion_begin": {
+              "column": 1,
+              "file_id": 631,
+              "line": 309,
+              "offset": 8178,
+              "path": "../../../include/gcc/x86_64/ck_pr.h",
+              "valid": true
+            },
+            "expansion_begin_raw": 287675,
+            "expansion_end": {
+              "column": 34,
+              "file_id": 631,
+              "line": 309,
+              "offset": 8211,
+              "path": "../../../include/gcc/x86_64/ck_pr.h",
+              "valid": true
+            },
+            "expansion_end_raw": 287708,
+            "raw": 2147803466,
+            "spelling": {
+              "column": 30,
+              "file_id": 631,
+              "line": 303,
+              "offset": 8012,
+              "path": "../../../include/gcc/x86_64/ck_pr.h",
+              "valid": true
+            },
+            "spelling_raw": 287509
+          }
+        ],
+        "expansion": {
+          "column": 1,
+          "file_id": 631,
+          "line": 309,
+          "offset": 8178,
+          "path": "../../../include/gcc/x86_64/ck_pr.h",
+          "valid": true
+        },
+        "macro": true,
+        "raw": 2147803609,
+        "spelling": {
+          "column": 3,
+          "file_id": 631,
+          "line": 293,
+          "offset": 7763,
+          "path": "../../../include/gcc/x86_64/ck_pr.h",
+          "valid": true
+        },
+        "valid": true
+      },
+      "original_strings": [
+        "lock ",
+        "xaddl",
+        " %1, %0"
+      ]
+    },
+    "host_evaluation": "NOT_PROVED; all defined valid typed port inputs",
+    "site_id": "tu0-line782",
+    "llvm_sha256": "cc1c1a1392704c5071d63ab95b9934522e9557c5936ede3516dcf21069a616ce",
+    "llvm_line_index": 781,
+    "llvm_call": "  %17 = call i32 asm sideeffect \"lock xaddl $1, $0\", \"=*m,=q,*m,1,~{memory},~{cc},~{dirflag},~{fpsr},~{flags}\"(ptr nonnull elementtype(i32) %2, ptr nonnull elementtype(i32) %2, i32 range(i32 4, 43) 4) #11, !dbg !473, !srcloc !345\n",
+    "result_ssa": "%17",
+    "bindings": {
+      "p0": "%2",
+      "o1": "4"
+    },
+    "llvm_entry_conditions": [
+      {
+        "slot": "o1",
+        "width": 32,
+        "lower": 4,
+        "upper_exclusive": 43,
+        "operand": "4",
+        "domain": "defined LLVM range input; modular interval"
+      }
+    ],
+    "result": "INTERFACE_MATCH"
+  },
+  "candidate_ir": {
+    "format": "event-ir-v1",
+    "width": 32,
+    "compiler_barrier": true,
+    "code": [
+      {
+        "op": "rmw",
+        "mode": "tso",
+        "width": 32,
+        "addr": "p0",
+        "old": "tmp0",
+        "value": [
+          "add",
+          "tmp0",
+          "o1"
+        ],
+        "has_write": true
+      },
+      {
+        "op": "set",
+        "dest": "o1",
+        "value": "tmp0"
+      }
+    ]
+  },
+  "block_certificate": {
+    "address_width": 64,
+    "backend": "UNVERIFIED",
+    "cutpoints": [
+      {
+        "kind": "RMW",
+        "mode": "tso",
+        "source": 0,
+        "source_fields": {
+          "addr": "addr:addr0",
+          "has_write": "True",
+          "kind": "RMW",
+          "mode": "tso",
+          "read": "u0",
+          "value": "u0 + in:v1",
+          "width": "32"
+        },
+        "state_relation": {
+          "quantification": "common entry X; independently fresh shared responses U",
+          "source": {
+            "o1": "u0",
+            "p0": "addr:addr0"
+          },
+          "target": {
+            "o1": "in:v1",
+            "p0": "addr:addr0",
+            "tmp0": "u0"
+          }
+        },
+        "target": 0
+      }
+    ],
+    "final_symbolic_relation": {
+      "definition": "paired reachable symbolic states under common entry X and fresh U",
+      "source": {
+        "o1": "u0",
+        "p0": "addr:addr0"
+      },
+      "target": {
+        "o1": "u0",
+        "p0": "addr:addr0",
+        "tmp0": "u0"
+      }
+    },
+    "model": "RC11Ex86-B8-restricted-v1",
+    "obligations": [
+      {
+        "file": "000-e0-addr.smt2",
+        "name": "e0-addr",
+        "result": "unsat",
+        "seconds": 5.009991582483053e-05,
+        "smt_sha256": "e43a01f54fc0b57d0869ac787f53a0b3d7609bbb7cf0fae8bb641a7185154f06"
+      },
+      {
+        "file": "001-e0-read.smt2",
+        "name": "e0-read",
+        "result": "unsat",
+        "seconds": 4.009995609521866e-05,
+        "smt_sha256": "d40994bdb5f8c7602400eed3412b3996448b8d4b567ce41fb3771d1dda6cb681"
+      },
+      {
+        "file": "002-e0-has_write.smt2",
+        "name": "e0-has_write",
+        "result": "unsat",
+        "seconds": 4.339998122304678e-05,
+        "smt_sha256": "e9687cda468f768b9a5cad5c16512b4785ecbb4aa2a4c046f956b23dfc669d39"
+      },
+      {
+        "file": "003-e0-value.smt2",
+        "name": "e0-value",
+        "result": "unsat",
+        "seconds": 3.9899954572319984e-05,
+        "smt_sha256": "b05125015d83fe7324915e07b20c3685a0824f7dae118a4a4966063b2c96adb0"
+      },
+      {
+        "file": "004-output-o1.smt2",
+        "name": "output-o1",
+        "result": "unsat",
+        "seconds": 3.720005042850971e-05,
+        "smt_sha256": "d40994bdb5f8c7602400eed3412b3996448b8d4b567ce41fb3771d1dda6cb681"
+      }
+    ],
+    "precondition": "true over valid aligned fixed-width WB domain",
+    "proof_artifact": "replayable-SMT; solver-in-TCB",
+    "result": "EXACT",
+    "scope": "restricted-open-block; conditional GNU interface/host contract",
+    "seconds": 0.003942799987271428,
+    "solver": "5.0.0",
+    "source_sha256": "5b7dba1f0e84ec0ef535fd8be0a1ee2d63c5f2c1f26417b39e31227ad865a7d6",
+    "target_sha256": "e8a1a2b2414345d78cd34cb186c49867ba60c8adfbe6f689344111150c880b8b",
+    "trusted_implementation_sha256": {
+      "checker/check.py": "8651a4b310b358be73bc4fcab701538a70e8f6e26307c721b64b56a0c1e29717",
+      "checker/target.py": "8dde5bb78a9e9d5b5f1bd82d556738dcb6ca779497a99d0f6b7cf91b05737516",
+      "docs/01-scope-and-semantics.md": "2841954c31078dbb4a453bb5aeeee88258577546fed5b663c725d0a478e77fd9",
+      "frontend/gnu.py": "4683aa713af60d5d89a1b8a9d01bc67f7d1f040a8bbee64a4f18371ba26374c4",
+      "semantics/reference.py": "4a4c0700018a7b7c6c9366a4aafbff0e365a97bf5ad17826a49b73cf0a43c57e"
+    },
+    "version": 1,
+    "width": 32,
+    "template_reference": {
+      "key": "662ad5aae30c07c63a68cec984e61c36ab1e53f56a2e804848fddb884b1ef36a",
+      "evidence_directory": "experiments/levels/client-per-site-04/tu0-line782/templates/662ad5aae30c07c63a68cec984e61c36ab1e53f56a2e804848fddb884b1ef36a",
+      "certificate_sha256": "ce607c84d5fe2eee60136bdc02a6d630b85f1659401f554ba19f3d3d9698a93b",
+      "reused_in_this_run": true,
+      "scope": "BLOCK_ONLY; per-site interface/LLVM and per-Q-instance checks required"
+    },
+    "layer_result": "BLOCK_EXACT"
+  },
+  "lowering_certificate": {
+    "format": "llvm-fragment-certificate-v1",
+    "result": "LLVM_FRAGMENT_EXACT",
+    "source_sha256": "5b7dba1f0e84ec0ef535fd8be0a1ee2d63c5f2c1f26417b39e31227ad865a7d6",
+    "fragment_sha256": "1ac468cfb241cc33b5a843ad17c2f769cb2738647a5add69b26ed1a26b7453de",
+    "interface_sha256": "4e346a1cf5ed1dfb4c9bc1977c05280ed45ea46e244daf6664a0eeb8a78c6535",
+    "semantics": "fixed-Dat3M-TSO; not generic LLVM weak memory",
+    "program_verdict_eligible": false,
+    "obligations": [
+      {
+        "name": "event-0-addr",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |llvm-entry:%2| () (_ BitVec 64))\n(assert\n (let (($x25 (= |llvm-entry:%2| |llvm-entry:%2|)))\n(not $x25)))\n(check-sat)\n",
+        "file": "000-event-0-addr.smt2",
+        "smt_sha256": "ab89d6f5a1a65c6365e7b6fe2ff26c325f04357a3af448be55619b4edd294ef1"
+      },
+      {
+        "name": "event-0-read",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x23 (= u0 u0)))\n(not $x23)))\n(check-sat)\n",
+        "file": "001-event-0-read.smt2",
+        "smt_sha256": "7739cfa14a70d9895081a3d23eaf4bc4a0fc2d2bcd4d98727d98031e13f67829"
+      },
+      {
+        "name": "event-0-has_write",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x12 (= true true)))\n(not $x12)))\n(check-sat)\n",
+        "file": "002-event-0-has_write.smt2",
+        "smt_sha256": "ccf07d374ceec6e7441e71055245323b2e8b304b0a97f4c5e0aa4da45b79bbe9"
+      },
+      {
+        "name": "event-0-value",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x10 (=> true (= (bvadd u0 (_ bv4 32)) (bvadd u0 (_ bv4 32))))))\n(not $x10)))\n(check-sat)\n",
+        "file": "003-event-0-value.smt2",
+        "smt_sha256": "48a43b4794471e0a90ccd487f2839942ad98d09626cabe8e59ff597ec8ad8c14"
+      },
+      {
+        "name": "output-o1",
+        "result": "unsat",
+        "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let ((?x35 (bvadd (_ bv0 32) u0)))\n(let (($x23 (= u0 ?x35)))\n(not $x23))))\n(check-sat)\n",
+        "file": "004-output-o1.smt2",
+        "smt_sha256": "915b2325c814ba6aff19f2cd8f87e81c9ec7dc33cc4d090b43d179fc745320e5"
+      }
+    ],
+    "event_count": 1,
+    "assumptions": [
+      "authenticated compiler interface",
+      "no further LLVM optimization after replacement",
+      "fixed Dat3M TSO interpretation",
+      "valid aligned WB memory"
+    ]
+  },
+  "frame": {
+    "source_module_sha256": "cc1c1a1392704c5071d63ab95b9934522e9557c5936ede3516dcf21069a616ce",
+    "target_module_sha256": "609a4d93907fa45e9d60ee1b0aa9d1eee6dc9d368f14ca34cdb018fda8fd1567",
+    "replaced_line": 781,
+    "replacement_sha256": "1ac468cfb241cc33b5a843ad17c2f769cb2738647a5add69b26ed1a26b7453de",
+    "host_prefix_sha256": "9abbcfbee50bf47ec553c7d21ad9b6001bb1994e1950fc4d60441613764a0f80",
+    "host_suffix_sha256": "f6c815a82981935f5f8a04fbc07c0817fa24e2fc68b69a488e1eca8a02db9c8f"
+  },
+  "release": {
+    "status": "PREPARED_LOCAL_EVIDENCE",
+    "program_verdict_eligible": false,
+    "pending": [
+      "authenticate compiler invocation and dependencies",
+      "attach actual same-run Dat3M snapshots/model/build",
+      "run supported-worker coverage against actual snapshots",
+      "check every actual region and declared host conditions",
+      "declared external TCB is not mechanically verified"
+    ]
+  }
+}

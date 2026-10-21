@@ -164,7 +164,9 @@ def test_certificate_replay(tmp_path):
     assert cert["result"] == "EXACT"
     for ob in cert["obligations"]:
         s = z3.Solver()
-        s.add(z3.parse_smt2_file(str(tmp_path / ob["file"])))
+        # Z3's native file API on Windows may not open a Unicode workspace path.
+        # Replay the exact persisted UTF-8 bytes through its string API.
+        s.add(z3.parse_smt2_string((tmp_path / ob["file"]).read_bytes().decode("utf-8")))
         assert s.check() == z3.unsat
     # Edited candidate is rechecked; stale "EXACT" text cannot authorize it.
     ir["code"][0]["has_write"] = False

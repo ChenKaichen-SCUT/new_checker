@@ -1,0 +1,41 @@
+{
+  "format": "llvm-fragment-certificate-v1",
+  "result": "REJECT",
+  "source_sha256": "f9720853c19974d99a0583e9c308f356a57b8f2ad64349b36681079d47f80e4c",
+  "fragment_sha256": "0ea44e4f25b6796f2fc246ce69c7b93eb74d7e1239a979eadeb1a4efbf512364",
+  "interface_sha256": "6f059e8f996393d0ebe2f4cefc7b329c69bd31044bea56588c004272d755bc27",
+  "semantics": "fixed-Dat3M-TSO; not generic LLVM weak memory",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "event-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |llvm-entry:@x| () (_ BitVec 64))\n(assert\n (let (($x15 (= |llvm-entry:@x| |llvm-entry:@x|)))\n(not $x15)))\n(check-sat)\n",
+      "file": "000-event-0-addr.smt2",
+      "smt_sha256": "6d407fa26cf1316f3c65dd8437e5ed88d134883e166aeca7fa7707194a54f8ff"
+    },
+    {
+      "name": "event-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x17 (= u0 u0)))\n(not $x17)))\n(check-sat)\n",
+      "file": "001-event-0-read.smt2",
+      "smt_sha256": "7cb166df5ebc14c1fcda9072fd5201c745e45ceebac7be621045366b05647a3d"
+    },
+    {
+      "name": "event-0-has_write",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x16 (= true true)))\n(not $x16)))\n(check-sat)\n",
+      "file": "002-event-0-has_write.smt2",
+      "smt_sha256": "4aebc0dc790efa2e14eb17d573c437b12b1db3e7b6a72868654aeb0cf88e76ca"
+    },
+    {
+      "name": "event-0-value",
+      "result": "sat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(declare-fun |llvm-entry:%7| () (_ BitVec 32))\n(assert\n (let (($x22 (=> true (= (bvadd u0 |llvm-entry:%7|) (bvadd u0 (_ bv1 32))))))\n(not $x22)))\n(check-sat)\n",
+      "countermodel": "[llvm-entry:%7 = 4294967294]",
+      "file": "003-event-0-value.smt2",
+      "smt_sha256": "ae5466abc254a965b40869d739cd7a7f1c90ba6cdd7fbee81a1f29dcea1a5da3"
+    }
+  ],
+  "reason": "unproved event-0-value"
+}

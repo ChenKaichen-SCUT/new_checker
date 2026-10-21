@@ -39,7 +39,7 @@ def install_p0(root, fault_injection=False, fault_class="P0Faults"):
             '        prover.addConstraint(certifying.P0Audit.component("assumed_property", assumedSpec));\n'
             '        certifying.Snapshot.write(task, "after-encoding");')
     # Same collection object goes to observer and original actual solver call.
-    if fault_class not in {"P0Faults", "P1Faults", "P1bFaults", "P2Faults"} or (fault_class != "P0Faults" and not fault_injection):
+    if fault_class not in {"P0Faults", "P1Faults", "P1bFaults", "P2Faults", "LevelsFaults"} or (fault_class != "P0Faults" and not fault_injection):
         raise Reject("invalid fault instrumentation profile")
     assumption = (f"certifying.{fault_class}.assumption(assumptionLiteral, bmgr)"
                   if fault_injection else "assumptionLiteral")
@@ -73,12 +73,14 @@ def install_p0(root, fault_injection=False, fault_class="P0Faults"):
                                 'Set.of("before-encoding", "after-encoding", "pre-fault", "post-fault").contains(phase)')
             text = text.replace('} else if (task != firstTask || task.getProgram() != firstProgram || !run.equals(firstRun)) {',
                                 '} else if (phase.equals("after-encoding") && (task != firstTask || task.getProgram() != firstProgram || !run.equals(firstRun))) {')
+            if fault_class == "LevelsFaults":
+                text = text.replace('        return result;', '        if (e instanceof ITEExpr) {\n            String mode = System.getProperty("cert.controlled.fault", "");\n            if (mode.equals("ite-missing-dependency")) result.put("register_dependencies", List.of());\n            if (mode.equals("ite-wrong-type")) result.put("type", "bv64");\n            if (mode.equals("ite-truncated")) result.put("args", ((List<?>)result.get("args")).subList(0, 2));\n        }\n        return result;')
             data = text.encode("utf-8")
         (dest / name).write_bytes(data)
         sources[name] = sha(data)
     path.write_bytes(code.encode("utf-8"))
     return {"profile": {"P0Faults": "p0-query-audit-v1", "P1Faults": "p1-query-audit-v1",
-                        "P1bFaults": "p1b-query-audit-v1", "P2Faults": "p2-query-audit-v1"}[fault_class], "original_sha256": sha(raw),
+                        "P1bFaults": "p1b-query-audit-v1", "P2Faults": "p2-query-audit-v1", "LevelsFaults": "levels-query-audit-v1"}[fault_class], "original_sha256": sha(raw),
             "instrumented_sha256": sha(path.read_bytes()),
             "exporter_sha256": sources["Snapshot.java"],
             "fault_source_sha256": sources.get(fault_class + ".java"),

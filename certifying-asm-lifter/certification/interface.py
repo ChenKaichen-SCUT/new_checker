@@ -168,19 +168,30 @@ def llvm_site(module, interface, *, checked_line_index=None):
     actual_args = split_top(args, ",")
     if len(actual_args) != len(consumers):
         raise Reject("LLVM argument consumption mismatch")
-    bindings = {}
+    bindings, entry_conditions = {}, []
     for arg, (name, mem) in zip(actual_args, consumers):
         if mem:
             am = re.fullmatch(rf"ptr\s+(?:nonnull\s+)?elementtype\(i{w}\)\s+({VALUE})", arg)
         else:
-            am = re.fullmatch(rf"i{w}\s+({VALUE})", arg)
+            rm = re.fullmatch(rf"i{w}\s+range\(i{w} (-?\d+), (-?\d+)\)\s+({VALUE})", arg)
+            if rm:
+                low, high = int(rm[1]), int(rm[2])
+                if not all(-(2 ** (w - 1)) <= v < 2 ** w for v in (low, high)) or low % (2 ** w) == high % (2 ** w):
+                    raise Reject("unsupported LLVM range bounds")
+                entry_conditions.append({"slot": name, "width": w, "lower": low,
+                                         "upper_exclusive": high, "operand": rm[3],
+                                         "domain": "defined LLVM range input; modular interval"})
+                am = re.fullmatch(rf"i{w}\s+({VALUE})", f"i{w} {rm[3]}")
+            else:
+                am = re.fullmatch(rf"i{w}\s+({VALUE})", arg)
         if not am:
             raise Reject("typed LLVM operand outside supported subset")
         if name in bindings and bindings[name] != am[1]:
             raise Reject("read-write memory argument is not the same LLVM operand")
         bindings[name] = am[1]
     return {**interface, "llvm_sha256": sha(module), "llvm_line_index": i,
-            "llvm_call": line, "result_ssa": result, "bindings": bindings}
+            "llvm_call": line, "result_ssa": result, "bindings": bindings,
+            "llvm_entry_conditions": entry_conditions}
 
 
 def replace_site(module, site, emitted, output_value):

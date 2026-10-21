@@ -1,12 +1,19 @@
 # Certifying Inline Assembly Lifting for Concurrent Verification
 
-面向并发验证的可验证 asm 转换研究。这里保存截至 **2026-10-20** 的理论设计、
+面向并发验证的可验证 asm 转换研究。这里保存截至 **2026-10-21** 的理论设计、
 受限范围数学证明、检查器原型、证书、实验数据和源码审计。
 
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[方案 A：局部证书复用与显式 HCC](certifying-asm-lifter/docs/hcc/00-delivery.md)。
+最新交付：[四级认证与真实客户端逐位置审阅](certifying-asm-lifter/docs/levels/00-delivery.md)。
+基线 `795e2a9ee95ba7446d4964430f7bda78bf6ddf76`。冻结原始 CK 完整客户端的 113 个
+存活 asm 位置，6 个达到 L1/L2，完整客户端 L3/L4 仍为 0/1。修复实际 ITE 导出，
+受控分支的 4 个实例达到 L3，宿主契约不足而拒绝 L4；D2 正例保持条件式 L4。
+129 项测试、16 项受控验收及 2 项 LLVM 故障完成。原 Γ、定理与历史证据不变。
+独立算法创新和当前投稿准备度 No-Go；工具系统进展有限且可复核。发布后停止，等待审阅。
+
+历史交付：[方案 A：局部证书复用与显式 HCC](certifying-asm-lifter/docs/hcc/00-delivery.md)。
 基线 `8412b600293161e173ed7f7b94bb3c316d46f796`。已实现模板证明复用、逐实例核对、
 HCC 声明/来源绑定和无可信 provider 时的严格拒绝。22 个受控 case、120 项单元测试通过。
 **当前方案 A 整程序扩展 No-Go**：只有 D2 能提供宿主依据，完整 CK 客户端仍为 0/1，

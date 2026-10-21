@@ -1,0 +1,63 @@
+...............................................................F........ [ 56%]
+........F...............................................                 [100%]
+================================== FAILURES ===================================
+___________________________ test_certificate_replay ___________________________
+
+tmp_path = WindowsPath('E:/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/experiments/levels/unit-raw-02/test_certificate_replay0')
+
+    def test_certificate_replay(tmp_path):
+        text = GOOD["cas"]
+        ir = lift(parse(text))
+        cert = check(text, ir, output_dir=tmp_path)
+        assert cert["result"] == "EXACT"
+        for ob in cert["obligations"]:
+            s = z3.Solver()
+>           s.add(z3.parse_smt2_file(str(tmp_path / ob["file"])))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_checker.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+D:\python\Lib\site-packages\z3\z3.py:10076: in parse_smt2_file
+    return AstVector(Z3_parse_smtlib2_file(ctx.ref(), f, ssz, snames, ssorts, dsz, dnames, ddecls), ctx)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\python\Lib\site-packages\z3\z3core.py:3765: in Z3_parse_smtlib2_file
+    _elems.Check(a0)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <z3.z3core.Elementaries object at 0x0000019B1AD3B070>
+ctx = <ContextObj object at 0x0000019B1AEEC0D0>
+
+    def Check(self, ctx):
+      err = self.get_error_code(ctx)
+      if err != self.OK:
+>         raise self.Exception(self.get_error_message(ctx, err))
+E         z3.z3types.Z3Exception: b'file access error'
+
+D:\python\Lib\site-packages\z3\z3core.py:1619: Z3Exception
+__________________ test_l3_requires_every_actual_activation ___________________
+
+tmp_path = WindowsPath('E:/5 面向并发验证的可验证 asm 转换/certifying-asm-lifter/experiments/levels/unit-raw-02/test_l3_requires_every_actual_0')
+
+    def test_l3_requires_every_actual_activation(tmp_path):
+        local=json.loads((CASE/"local/local-certificate.json").read_bytes())
+>       p=prepare_scope(ROOT/"experiments/hcc/capture-branch",local,tmp_path/"scope")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_levels.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+certification\llvm_activation.py:40: in prepare_scope
+    require(all(i["call_context"]["begin_raw"] in direct_calls for i in sites), "conditional source asm occurrence")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'conditional source asm occurrence'
+
+    def require(condition, message):
+        if not condition:
+>           raise Reject(message)
+E           frontend.gnu.Reject: conditional source asm occurrence
+
+certification\provenance.py:21: Reject
+=========================== short test summary info ===========================
+FAILED tests/test_checker.py::test_certificate_replay - z3.z3types.Z3Exceptio...
+FAILED tests/test_levels.py::test_l3_requires_every_actual_activation - front...
+2 failed, 126 passed in 5.48s

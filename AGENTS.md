@@ -134,3 +134,21 @@
   Full unchanged CK client remains 0/1. No new semantic TCB assumptions,
   no measured runtime gain, no larger program domain: No-Go for the main
   Scheme A expansion claim and independent algorithm novelty. Publish and STOP.
+- Latest authorization: baseline 795e2a9ee95ba7446d4964430f7bda78bf6ddf76.
+  Build explicit L1/L2/L3/L4 certification, repair actual ITEExpr export and
+  independent interpretation, freeze all 113 original CK client LLVM sites
+  before certification, report every site and refusal. Preserve lower levels;
+  complete actual instance coverage is required for L3, unchanged C0-C4/Gamma
+  for L4. No generic HCC, general C interpreter, new ISA or broad experiments.
+  Run controlled positive/fault comparisons, investigate concrete providers,
+  preserve all history/theorem, commit/push/verify, then STOP for review.
+
+  Four-level delivery: original complete CK client 6/113 L1/L2, zero client
+  L3/L4; all 113 sites reported, no edited upstream behavior or fabricated Q.
+  ITE export repaired; controlled branch has four actual instances at L3,
+  missing full host contract blocks L4. Existing D2 positives retain L4 under
+  original Gamma. Full Q main/init/runtime/worker partition is required at L3.
+  129 tests, 16 fixed cases, two LLVM faults; all final evidence in levels/*-04,
+  comparison-02 and llvm-faults-02. Earlier attempts remain superseded evidence.
+  No new generic HCC/provider, no new ISA, no independent algorithm novelty.
+  Commit/push/verify this delivery, then STOP pending review.
