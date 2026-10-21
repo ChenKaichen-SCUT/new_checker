@@ -1,0 +1,612 @@
+[
+  {
+    "case": "workers-safe",
+    "module": "certify_hcc",
+    "seconds": 13.670476100058295,
+    "result": "CONDITIONAL_SAFE",
+    "expected": "CONDITIONAL_SAFE",
+    "reason": null,
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.0170225000474602
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0006963999476283789
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers",
+    "fault": null
+  },
+  {
+    "case": "multi-safe",
+    "module": "certify_hcc",
+    "seconds": 35.83978839998599,
+    "result": "CONDITIONAL_SAFE",
+    "expected": "CONDITIONAL_SAFE",
+    "reason": null,
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.030438699992373586
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007248000474646688
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": null
+  },
+  {
+    "case": "workers-unsafe",
+    "module": "certify_hcc",
+    "seconds": 12.977561499923468,
+    "result": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+    "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+    "reason": null,
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.02436919999308884
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007145999697968364
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "FAIL",
+    "capture": "experiments/p2/capture-workers-unsafe",
+    "fault": null
+  },
+  {
+    "case": "wrong-entry",
+    "module": "certify_hcc",
+    "seconds": 4.01115130004473,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-asm-1-write-value",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.020827099913731217
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007939999923110008
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "entry-ssa"
+  },
+  {
+    "case": "wrong-thread",
+    "module": "certify_hcc",
+    "seconds": 3.0426790000637993,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-argument-1",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.013822300010360777
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0006771000334993005
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "thread-argument"
+  },
+  {
+    "case": "wrong-object",
+    "module": "certify_hcc",
+    "seconds": 3.031506900093518,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-read-0-address",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.021417699987068772
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007938999915495515
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "input-alias"
+  },
+  {
+    "case": "wrong-live-output",
+    "module": "certify_hcc",
+    "seconds": 3.0342353000305593,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-47",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.013478699955157936
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0006983000785112381
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "live-use-only"
+  },
+  {
+    "case": "missing-worker",
+    "module": "certify_hcc",
+    "seconds": 3.1081605000654235,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: complete Program worker effect census: Load",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.018970899982377887
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007094999309629202
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "omit-worker-call"
+  },
+  {
+    "case": "lost-atomic",
+    "module": "certify_hcc",
+    "seconds": 3.086365700000897,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: RMW read width/labels",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.015360999968834221
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007476999890059233
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "a-only"
+  },
+  {
+    "case": "wrong-query",
+    "module": "certify_hcc",
+    "seconds": 12.911378499935381,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.02357850002590567
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0006695999763906002
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers-unsafe",
+    "fault": "safety-query-binding"
+  },
+  {
+    "case": "swapped-returns",
+    "module": "certify_hcc",
+    "seconds": 3.1665410000132397,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-53",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.019113200018182397
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007093000458553433
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "swap-returns"
+  },
+  {
+    "case": "missing-second",
+    "module": "certify_hcc",
+    "seconds": 3.032066799933091,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: complete Program worker effect census: Load",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.016122299944981933
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0006963999476283789
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "FAIL",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "omit-call"
+  },
+  {
+    "case": "wrong-second-input",
+    "module": "certify_hcc",
+    "seconds": 3.122743099927902,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-asm-3-write-value",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.01997479994315654
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0006578000029549003
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "second-operand"
+  },
+  {
+    "case": "lost-cross-read",
+    "module": "certify_hcc",
+    "seconds": 3.0748154999455437,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "worker coverage: ordinary read tags/width",
+    "local_result": "INTERFACE_BLOCK_LLVM_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.021134300041012466
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0008447000291198492
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "cross-read"
+  },
+  {
+    "case": "branch-local-only",
+    "module": "certify_hcc",
+    "seconds": 0.74996440007817,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "HCC_UNDISCHARGED: unconsumed C worker statement",
+    "local_result": "LOCAL_PORTS_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.015904100029729307
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.000687899999320507
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": null,
+    "capture": "experiments/hcc/capture-branch",
+    "fault": null
+  },
+  {
+    "case": "d2-workers",
+    "module": "certify_p1",
+    "seconds": 12.788075700053014,
+    "result": "CONDITIONAL_SAFE",
+    "expected": "CONDITIONAL_SAFE",
+    "reason": null,
+    "local_result": null,
+    "reuse": null,
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-workers",
+    "fault": null
+  },
+  {
+    "case": "d2-multi",
+    "module": "certify_p1",
+    "seconds": 35.4205044999253,
+    "result": "CONDITIONAL_SAFE",
+    "expected": "CONDITIONAL_SAFE",
+    "reason": null,
+    "local_result": null,
+    "reuse": null,
+    "backend": "PASS",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": null
+  },
+  {
+    "case": "d2-unsafe",
+    "module": "certify_p1",
+    "seconds": 12.713376600062475,
+    "result": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+    "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+    "reason": null,
+    "local_result": null,
+    "reuse": null,
+    "backend": "FAIL",
+    "capture": "experiments/p2/capture-workers-unsafe",
+    "fault": null
+  },
+  {
+    "case": "d2-branch",
+    "module": "certify_p1",
+    "seconds": 0.4226144999265671,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "unconsumed C worker statement",
+    "local_result": null,
+    "reuse": null,
+    "backend": null,
+    "capture": "experiments/hcc/capture-branch",
+    "fault": null
+  },
+  {
+    "case": "hcc-unavailable",
+    "module": "certify_hcc",
+    "seconds": 0.4748726000543684,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "HCC_UNDISCHARGED: no credible host provider; local evidence retained",
+    "local_result": "LOCAL_PORTS_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.03406929993070662
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007736999541521072
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": null,
+    "capture": "experiments/p2/capture-workers",
+    "fault": null
+  },
+  {
+    "case": "hcc-wrong-artifact",
+    "module": "certify_hcc",
+    "seconds": 0.455573600018397,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "HCC declaration/artifact/scope mismatch",
+    "local_result": "LOCAL_PORTS_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.019078199984505773
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.0007146999705582857
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": null,
+    "capture": "experiments/p2/capture-workers",
+    "fault": null
+  },
+  {
+    "case": "hcc-self-attested",
+    "module": "certify_hcc",
+    "seconds": 0.4470340999541804,
+    "result": "REJECT",
+    "expected": "REJECT",
+    "reason": "HCC declaration/artifact/scope mismatch",
+    "local_result": "LOCAL_PORTS_EXACT",
+    "reuse": {
+      "requests": [
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": false,
+          "seconds": 0.018086700001731515
+        },
+        {
+          "key": "f92ed1315d6d882032146e9dcafe327358c04fcf7e5166d2584c5c597b72af8b",
+          "reused": true,
+          "seconds": 0.000875100027769804
+        }
+      ],
+      "site_requests": 2,
+      "distinct_template_proofs": 1,
+      "avoided_block_proofs": 1,
+      "persistent_certificate_import": false,
+      "instantiation_checks_skipped": 0
+    },
+    "backend": null,
+    "capture": "experiments/p2/capture-workers",
+    "fault": null
+  }
+]

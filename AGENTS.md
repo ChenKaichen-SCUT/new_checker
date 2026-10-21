@@ -117,3 +117,20 @@
   CK event-counter full client rejects (0/1), preserving original code/config.
   Exact-byte SMT serialization repaired; final evidence is experiments/p2/*-02.
   Publish, verify remote, then STOP for review. Do not extend accepted scope.
+- Latest authorization: baseline 8412b600293161e173ed7f7b94bb3c316d46f796;
+  implement and assess Scheme A, small local core with explicit noncircular HCC.
+  Freeze D2 and all evidence. Prove open host/local composition before code;
+  retain C0-C4 and all eight Gamma. Missing credible HCC blocks program SAFE
+  while preserving local certificates. Compare template reuse and D2 on the
+  same controlled captures, examine the unchanged CK event-counter client,
+  audit TInA/VALID/Stellite/CompCertTSO/DESTIVA, report TCB and No-Go honestly.
+  No full experiments, new ISA families or generic correspondence synthesis.
+  Commit, push, verify remote, then STOP for independent review.
+
+  Scheme A delivery: only D2 discharges HCC; no verified external provider.
+  Template proof count reduces 2 to 1, per-site/Q checks retained. 120 unit
+  tests and 22 cases complete; local branch accepted but program SAFE closed.
+  Actual branch backend PASS has incomplete ITEExpr export and rejects capture.
+  Full unchanged CK client remains 0/1. No new semantic TCB assumptions,
+  no measured runtime gain, no larger program domain: No-Go for the main
+  Scheme A expansion claim and independent algorithm novelty. Publish and STOP.

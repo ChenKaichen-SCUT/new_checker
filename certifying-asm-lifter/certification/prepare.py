@@ -36,7 +36,7 @@ def prepare_observed(capture_dir, evidence_dir=None):
     return _translate_checked_interface(interface, llvm, evidence_dir)
 
 
-def _translate_checked_interface(interface, llvm, evidence_dir):
+def _translate_checked_interface(interface, llvm, evidence_dir, *, template_pool=None):
     """Local translation subroutine; does not itself attest source provenance."""
     out = Path(evidence_dir) if evidence_dir is not None else None
     if out:
@@ -45,7 +45,8 @@ def _translate_checked_interface(interface, llvm, evidence_dir):
     candidate = lift(parse(normalized, width))
     if out:
         save_json(out / "candidate-ir.json", candidate)
-    block_cert = check(normalized, candidate, width, output_dir=out / "block" if out else None)
+    block_cert = (check(normalized, candidate, width, output_dir=out / "block" if out else None)
+                  if template_pool is None else template_pool.verify(normalized, candidate, width))
     block_cert["layer_result"] = "BLOCK_EXACT" if block_cert["result"] == "EXACT" else "REJECT"
     if out:
         save_json(out / "block/certificate.json", block_cert)

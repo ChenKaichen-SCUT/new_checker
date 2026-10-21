@@ -300,7 +300,7 @@ def llvm_worker(module, worker, interface, argument, ops, proof, *, interfaces=N
     return records
 
 
-def prepare_entry(capture, out):
+def prepare_entry(capture, out, *, template_pool=None):
     """Authenticate and check source/LLVM; translation remains the existing path."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -389,7 +389,7 @@ def prepare_entry(capture, out):
         report.update(result="TYPED_SOURCE_LLVM_ENTRY_EXACT", worker=worker["name"],
                       argument=argument, objects=objects, interfaces=interfaces, profile=profile,
                       source_ops=serial_ops(ops))
-        translation = translate_all(interfaces, module, out / "translation")
+        translation = translate_all(interfaces, module, out / "translation", template_pool=template_pool)
         return {"report": report, "translation": translation, "ops": ops, "main_ops": main_ops,
                 "objects": objects, "module": module, "receipt": receipt, "worker": worker["name"],
                 "argument": argument, "profile": profile, "activations": activations}
@@ -405,16 +405,16 @@ def serial_ops(ops):
              for k, v in op.items() if k != "call"} for op in ops]
 
 
-def translate_all(interfaces, module, out):
+def translate_all(interfaces, module, out, *, template_pool=None):
     from certification.prepare import _translate_checked_interface
     if len(interfaces) == 1:
-        return _translate_checked_interface(interfaces[0], module, out)
+        return _translate_checked_interface(interfaces[0], module, out, template_pool=template_pool)
     out.mkdir(parents=True, exist_ok=True)
     lines = module.splitlines(keepends=True)
     new_defs, certificates, intervals = set(), [], []
     for ci, interface in enumerate(interfaces):
         directory = out / f"call-{ci}"
-        local = _translate_checked_interface(interface, module, directory)
+        local = _translate_checked_interface(interface, module, directory, template_pool=template_pool)
         fragment = (directory / "actual-fragment.ll").read_bytes().decode()
         defs = re.findall(r"^\s*(%[-\w.$]+) = ", fragment, re.M)
         scoped_defs = {(interface["worker_name"], d) for d in defs}

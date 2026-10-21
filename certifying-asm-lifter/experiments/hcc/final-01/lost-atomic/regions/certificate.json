@@ -1,0 +1,39 @@
+{
+  "result": "REJECT",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "thread-argument-1",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x38 (= |object:input_a| |object:input_a|)))\n(not $x38)))\n(check-sat)\n",
+      "file": "000-thread-argument-1.smt2",
+      "smt_sha256": "1a7c134f0058844bf25a29f3cac5cf0ee8f896953608d9447aad6d8d63378c5d"
+    },
+    {
+      "name": "startup-1",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun startup () (_ BitVec 2))\n(assert\n (let (($x44 (= (and (distinct (_ bv0 1) ((_ extract 0 0) startup)) true) (and (distinct ((_ extract 0 0) startup) (_ bv0 1)) true))))\n(not $x44)))\n(check-sat)\n",
+      "file": "001-startup-1.smt2",
+      "smt_sha256": "260d9b9ebf3ecd7fb407835ee08cabda9d77c7be601183cc2cd9b06408f75cb3"
+    },
+    {
+      "name": "completion-1",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun completion () (_ BitVec 2))\n(assert\n (let ((?x30 (bvand completion (_ bv2 2))))\n(let (($x31 (= ?x30 ?x30)))\n(not $x31))))\n(check-sat)\n",
+      "file": "002-completion-1.smt2",
+      "smt_sha256": "755beaaaf57e6fb813b7d4f9276b845bea7c2d935e0030e97e0b61e4475a39de"
+    },
+    {
+      "name": "thread-1-read-0-address",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:input_a| () (_ BitVec 64))\n(assert\n (let (($x50 (= |object:input_a| |object:input_a|)))\n(not $x50)))\n(check-sat)\n",
+      "file": "003-thread-1-read-0-address.smt2",
+      "smt_sha256": "c389df1e7faa13e59c33089a99299883e6748abed3b523978bd0261b43e536eb"
+    }
+  ],
+  "reason": "RMW read width/labels"
+}

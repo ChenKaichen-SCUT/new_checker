@@ -1,0 +1,270 @@
+{
+  "result": "REVIEWED",
+  "cases": 22,
+  "conditional_safe": [
+    "workers-safe",
+    "multi-safe",
+    "d2-workers",
+    "d2-multi"
+  ],
+  "local_only": [
+    "branch-local-only",
+    "hcc-unavailable",
+    "hcc-wrong-artifact",
+    "hcc-self-attested"
+  ],
+  "fault_isolation": [
+    {
+      "case": "wrong-entry",
+      "mode": "entry-ssa",
+      "changed": [
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "wrong-thread",
+      "mode": "thread-argument",
+      "changed": [
+        {
+          "event": 3,
+          "class_before": "ThreadCreate",
+          "class_after": "ThreadCreate",
+          "fields": [
+            "arguments"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "wrong-object",
+      "mode": "input-alias",
+      "changed": [
+        {
+          "event": 43,
+          "class_before": "Load",
+          "class_after": "Load",
+          "fields": [
+            "addr"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "wrong-live-output",
+      "mode": "live-use-only",
+      "changed": [
+        {
+          "event": 47,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition",
+            "reads"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "missing-worker",
+      "mode": "omit-worker-call",
+      "changed": [
+        {
+          "event": 58,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        59
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "case": "lost-atomic",
+      "mode": "a-only",
+      "changed": [
+        {
+          "event": 44,
+          "class_before": "Load",
+          "class_after": "Load",
+          "fields": [
+            "tags"
+          ]
+        },
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "tags"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "wrong-query",
+      "mode": "safety-query-binding",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "swapped-returns",
+      "mode": "swap-returns",
+      "changed": [
+        {
+          "event": 50,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition"
+          ]
+        },
+        {
+          "event": 53,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition",
+            "reads"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "missing-second",
+      "mode": "omit-call",
+      "changed": [
+        {
+          "event": 47,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        },
+        {
+          "event": 70,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        48,
+        71
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "case": "wrong-second-input",
+      "mode": "second-operand",
+      "changed": [
+        {
+          "event": 48,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "case": "lost-cross-read",
+      "mode": "cross-read",
+      "changed": [
+        {
+          "event": 46,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    }
+  ],
+  "obligation_references_checked": 1004,
+  "paired_comparison": [
+    {
+      "hcc": "workers-safe",
+      "d2": "d2-workers",
+      "same_candidate_sha256": "16a58848b625384fac35d452e4ecd15b773772fd64d8bb9857ebf27b022c13e8",
+      "baseline_block_proofs": 2,
+      "hcc_block_proofs": 1,
+      "baseline_block_seconds": 0.008218000060878694,
+      "hcc_template_seconds": 0.017718899995088577,
+      "hcc_wall_seconds": 13.670476100058295,
+      "d2_wall_seconds": 12.788075700053014
+    },
+    {
+      "hcc": "multi-safe",
+      "d2": "d2-multi",
+      "same_candidate_sha256": "25b4120e0d345b3936cfa0a0ea764542d13661727722528a5bc44db0e2478079",
+      "baseline_block_proofs": 2,
+      "hcc_block_proofs": 1,
+      "baseline_block_seconds": 0.00819169997703284,
+      "hcc_template_seconds": 0.031163500039838254,
+      "hcc_wall_seconds": 35.83978839998599,
+      "d2_wall_seconds": 35.4205044999253
+    }
+  ],
+  "actual_fault_backend_PASS_but_rejected": 10,
+  "branch_backend": "Raw PASS, export REJECT: ITEExpr incomplete; no certified Q or query binding",
+  "external": "0/1; no HCC provider",
+  "semantics_proved_by_this_audit": false
+}

@@ -6,7 +6,14 @@
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[源语义风险修补与不同 worker 认证](certifying-asm-lifter/docs/p2/00-delivery.md)。
+最新交付：[方案 A：局部证书复用与显式 HCC](certifying-asm-lifter/docs/hcc/00-delivery.md)。
+基线 `8412b600293161e173ed7f7b94bb3c316d46f796`。已实现模板证明复用、逐实例核对、
+HCC 声明/来源绑定和无可信 provider 时的严格拒绝。22 个受控 case、120 项单元测试通过。
+**当前方案 A 整程序扩展 No-Go**：只有 D2 能提供宿主依据，完整 CK 客户端仍为 0/1，
+配对运行未显示耗时收益。局部分支例子成功不等于程序 SAFE；原八项 Γ、原定理和历史证据保留。
+交付后停止，等待审阅。
+
+历史交付：[源语义风险修补与不同 worker 认证](certifying-asm-lifter/docs/p2/00-delivery.md)。
 基线 `884c06a8d2076c8f9443bfbfc30637151d89c73d`。旧普通 C/asm 并发冲突输入现已
 关闭程序授权；独立只读输入、双调用活跃依赖及两个不同 worker 经实际对象得到受限
 `CONDITIONAL_SAFE`，保持原八项 Γ。111 项单元测试、P0/P1 回归及隔离故障完成。
