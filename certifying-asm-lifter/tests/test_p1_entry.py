@@ -8,7 +8,7 @@ from certification.provenance import reconcile
 from frontend.gnu import Reject
 
 ROOT = Path(__file__).resolve().parents[1]
-CAPTURE = ROOT / "experiments/p1a/capture-safe-01"
+CAPTURE = ROOT / "experiments/p2/capture-readonly"
 
 
 @pytest.fixture
@@ -38,7 +38,7 @@ def test_changed_actual_llvm_operand_rejected(prepared):
 
 
 def test_ssa_names_not_backend_contract(prepared, tmp_path):
-    q = json.loads((ROOT / "experiments/p1a/development-run-02/backend/snapshots/before-encoding.json").read_bytes())
+    q = json.loads((ROOT / "experiments/p2/development-readonly-02/backend/snapshots/before-encoding.json").read_bytes())
     # Alpha-renaming is a component test only, not actual-Q acceptance evidence.
     def rename(v):
         if isinstance(v, dict):
@@ -55,7 +55,7 @@ def test_ssa_names_not_backend_contract(prepared, tmp_path):
 
 
 def test_two_real_contexts_and_cross_call_ssa(tmp_path):
-    p = prepare_entry(ROOT / "experiments/p1b/capture-safe-02", tmp_path / "multi")
+    p = prepare_entry(ROOT / "experiments/p2/capture-readonly-multi", tmp_path / "multi")
     assert p["profile"] == "D1b"
     sites = p["translation"]["interfaces"]
     assert len(sites) == 2 and sites[0]["call_context"] != sites[1]["call_context"]
@@ -69,7 +69,7 @@ def test_two_real_contexts_and_cross_call_ssa(tmp_path):
 
 
 def test_reused_context_rejects(tmp_path):
-    p = prepare_entry(ROOT / "experiments/p1b/capture-safe-02", tmp_path / "multi")
+    p = prepare_entry(ROOT / "experiments/p2/capture-readonly-multi", tmp_path / "multi")
     sites = p["translation"]["interfaces"]
     wrong = [sites[0], {**sites[1], "call_context": sites[0]["call_context"]}]
     with pytest.raises(Reject, match="call context"):

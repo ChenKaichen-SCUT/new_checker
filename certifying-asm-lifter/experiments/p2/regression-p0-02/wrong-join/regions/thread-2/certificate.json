@@ -1,0 +1,108 @@
+{
+  "format": "dat3m-region-certificate-v1",
+  "result": "REGION_EXACT",
+  "snapshot_sha256": "d4e818d51fe2954b63015aea7f5aac15d81dc2df8a440573bea34c19817c0e6f",
+  "source_sha256": "7d84f71c39432081151079514af02cbb8c06e3ab74ee12f000915bcf7441e8ba",
+  "interface_parameters_sha256": "44f9b163630082c07705656c374ebd59b0191863a4549a0d5147dc4648958536",
+  "scope": "closed-region-under-authenticated-interface",
+  "program_verdict_eligible": false,
+  "obligations": [
+    {
+      "name": "total-exit",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x19 (or true)))\n(let (($x13 (or $x19)))\n(let (($x16 (or $x13)))\n(not $x16)))))\n(check-sat)\n",
+      "file": "000-total-exit.smt2",
+      "smt_sha256": "502e8f2a0fa1231a83cb2169483687d6485d0aec18378e691cf9505124b6294d"
+    },
+    {
+      "name": "endpoint-0-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x19 (or true)))\n(let (($x77 (= true $x19)))\n(not $x77))))\n(check-sat)\n",
+      "file": "001-endpoint-0-presence.smt2",
+      "smt_sha256": "4b33b95526109f130e9a514ff552746ecf898d9cdcb83ad9c15f3caf8fece18b"
+    },
+    {
+      "name": "endpoint-0-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x50 (=> true (= |object:x| |object:x|))))\n(not $x50)))\n(check-sat)\n",
+      "file": "002-endpoint-0-addr.smt2",
+      "smt_sha256": "a83854c513cbdc94942d7813ecba3f5b648901b3764a08391d33989217ce567f"
+    },
+    {
+      "name": "endpoint-0-read",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x26 (=> true (= u0 u0))))\n(not $x26)))\n(check-sat)\n",
+      "file": "003-endpoint-0-read.smt2",
+      "smt_sha256": "a538b498163d7b138ef9b3a5536222f69b55b5c46ea9c94ce91d3e75f540df37"
+    },
+    {
+      "name": "endpoint-1-presence",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (let (($x19 (or true)))\n(let (($x13 (or $x19)))\n(let (($x50 (= true $x13)))\n(not $x50)))))\n(check-sat)\n",
+      "file": "004-endpoint-1-presence.smt2",
+      "smt_sha256": "623f02e1df35ed3c77fe3415c2afdfb5be5fcd997183da746c0dc672a6916eea"
+    },
+    {
+      "name": "endpoint-1-addr",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |object:x| () (_ BitVec 64))\n(assert\n (let (($x67 (=> true (= |object:x| |object:x|))))\n(not $x67)))\n(check-sat)\n",
+      "file": "005-endpoint-1-addr.smt2",
+      "smt_sha256": "cdcced69dcf49aef2e410078ccc0aea2bbc6ad5a64bc250bf8aff4827f975c41"
+    },
+    {
+      "name": "endpoint-1-value",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:rcert_1b3ee8f16fc7_0| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x19 (or true)))\n(let ((?x7 (ite $x19 u0 |entry:rcert_1b3ee8f16fc7_0|)))\n(let ((?x34 (bvadd ?x7 (_ bv1 32))))\n(let ((?x24 (bvadd u0 (_ bv1 32))))\n(let (($x68 (=> true (= ?x24 ?x34))))\n(not $x68)))))))\n(check-sat)\n",
+      "file": "006-endpoint-1-value.smt2",
+      "smt_sha256": "f26747539bf3f70c536f239f4d275c4ed434c07e4fcee23116c187f159a09676"
+    },
+    {
+      "name": "output-o1",
+      "result": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun |entry:rcert_1b3ee8f16fc7_0| () (_ BitVec 32))\n(declare-fun u0 () (_ BitVec 32))\n(assert\n (let (($x19 (or true)))\n(let ((?x7 (ite $x19 u0 |entry:rcert_1b3ee8f16fc7_0|)))\n(let (($x13 (or $x19)))\n(let ((?x78 (ite $x13 ?x7 |entry:rcert_1b3ee8f16fc7_0|)))\n(let (($x67 (= u0 ?x78)))\n(not $x67)))))))\n(check-sat)\n",
+      "file": "007-output-o1.smt2",
+      "smt_sha256": "61b401200901e3b26e2e36da4f5dbfc03e4b3ef39d36e969ed2e42d18bb26eec"
+    }
+  ],
+  "endpoint_counts": {
+    "source": 2,
+    "actual": 2
+  },
+  "static_endpoint_checks": {
+    "source_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "actual_rmw": [
+      [
+        0,
+        1
+      ]
+    ],
+    "source_atomic": [
+      true,
+      true
+    ],
+    "actual_atomic": [
+      true,
+      true
+    ],
+    "errors": []
+  },
+  "endpoint_count": 2,
+  "rmw_pairs": [
+    [
+      0,
+      1
+    ]
+  ],
+  "thread": 2,
+  "first": 56,
+  "last": 57,
+  "exit": 58,
+  "output_projection": {
+    "o1": "rcert_1b3ee8f16fc7_0"
+  }
+}

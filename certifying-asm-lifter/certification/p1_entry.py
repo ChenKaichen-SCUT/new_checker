@@ -159,6 +159,8 @@ def source_worker(worker, wrapper, interface, argument, objects, obs, *, call_co
                 require(k == "CStyleCastExpr" and signature_void(c["type"]) and pointer(t)
                         and isinstance(v, str) and v[1:] in objects
                         and objects[v[1:]]["width"] == t["pointee"]["bits"], "pointer roundtrip provenance/type")
+                g = unique([g for g in globals_.values() if g["name"] == v[1:]], "pointee declaration")
+                require(same_type(g["type"], t["pointee"]), "exact complete-object pointee type")
                 return v
             if e["cast"] == "NoOp":
                 require(pointer(t) and same_type(t, c["type"]), "pointer no-op type")
@@ -322,42 +324,75 @@ def prepare_entry(capture, out):
         source = sources[0]
         uses = [(f, n) for f in obs["functions"] for n in walk(f["body"])
                 if n["kind"] == "CallExpr" and n.get("callee") == source["function"]]
-        require(len(uses) == len(calls) and len({f["id"] for f, n in uses}) == 1,
-                "one worker definition and complete static call census")
+        require(len(uses) == len(calls) and 1 <= len({f["id"] for f, n in uses}) <= 2,
+                "complete one/two-worker static call census")
         worker = uses[0][0]
-        require(set(re.findall(r"^define [^\n]*@([-\w.$]+)\(", module, re.M)) == {"main", worker["name"]},
+        workers = {f["name"]: f for f, n in uses}
+        if len(workers) > 1:
+            profile = "D2"
+        require(set(re.findall(r"^define [^\n]*@([-\w.$]+)\(", module, re.M)) == {"main", *workers},
                 "extra surviving function")
         interfaces, selected = [], set()
         for (i, line), source in zip(calls, sources):
             candidates = []
-            for ui, (_, call) in enumerate(uses):
+            for ui, (candidate_worker, call) in enumerate(uses):
                 try:
-                    pair = wrapper_interface(obs, receipt, buffers, module, source, worker, call, i)
+                    pair = wrapper_interface(obs, receipt, buffers, module, source, candidate_worker, call, i)
                     candidates.append((ui, pair))
                 except Reject:
                     pass
             ui, (interface, wrapper) = unique(candidates, "unique independently checked inline call context")
             require(ui not in selected, "inline call context reused")
             selected.add(ui)
+            interface["worker_definition"] = uses[ui][0]["id"]
+            interface["worker_name"] = uses[ui][0]["name"]
             if len(calls) > 1:
                 interface["instance_namespace"] = "call" + str(len(interfaces)) + "_"
             interfaces.append(interface)
         require(selected == set(range(len(uses))), "complete source/LLVM inline context coverage")
         interface = interfaces[0]
         raw = json.loads((Path(capture) / "observer.json.ast.json").read_bytes())
-        objects, main_ops = source_main(obs, receipt, raw, worker["name"], typed_entry=True)
-        arguments = {o["argument"] for o in main_ops if o["kind"] == "create"}
-        argument = unique(list(arguments), "D1a common typed thread argument")
-        ops = source_worker(worker, wrapper, interface, argument, objects, obs, call_count=len(calls))
-        report["llvm_worker"] = llvm_worker(module, worker["name"], interface, argument, ops, proof, interfaces=interfaces)
+        objects, main_ops = source_main(obs, receipt, raw, workers, typed_entry=True)
+        creates = [o for o in main_ops if o["kind"] == "create"]
+        require({o["target"] for o in creates} == set(workers), "unactivated worker definition")
+        activations = []
+        report["activations"] = []
+        for ci, create in enumerate(creates):
+            worker = workers[create["target"]]
+            local_interfaces = [x for x in interfaces if x["worker_definition"] == worker["id"]]
+            argument = create["argument"]
+            ops = source_worker(worker, wrapper, local_interfaces[0], argument, objects, obs,
+                                call_count=len(local_interfaces))
+            from z3.z3util import get_vars
+            variables = {v.sexpr(): v for op in ops for e in op.values()
+                         if isinstance(e, z3.AstRef) for v in get_vars(e)}
+            fresh = [(v, z3.Const(f"source-create-{ci}:" + n, v.sort())) for n, v in variables.items()]
+            ops = [{k: z3.substitute(v, *fresh) if isinstance(v, z3.AstRef) else v
+                    for k, v in op.items()} for op in ops]
+            records = llvm_worker(module, worker["name"], local_interfaces[0], argument, ops,
+                                  proof, interfaces=local_interfaces)
+            activations.append({"create_index": ci, "create": create, "worker": worker["name"],
+                                "argument": argument, "ops": ops, "interfaces": local_interfaces})
+            report["activations"].append({"create_index": ci, "create": create,
+                                         "source_ops": serial_ops(ops), "llvm_worker": records})
+        reads = {o["object"] for a in activations for o in a["ops"] if o["kind"] == "read"}
+        writes = {o["pointer"][1:] for a in activations for o in a["ops"] if o["kind"] == "asm"}
+        report["source_conflict_check"] = {"ordinary_worker_reads": sorted(reads),
+                                           "asm_worker_writes": sorted(writes),
+                                           "overlap": sorted(reads & writes)}
+        require(not reads & writes, "MIXED_C_ASM_CONFLICT: " + ",".join(sorted(reads & writes)))
+        report["source_conflict_check"]["result"] = "ORDINARY_C_CONFLICT_FREE"
         report["llvm_main"] = llvm_main(module, main_ops, objects, proof)
+        # Compatibility fields describe the first activation only; all acceptance
+        # paths below use the exhaustive activation list.
+        argument, ops, worker = activations[0]["argument"], activations[0]["ops"], workers[activations[0]["worker"]]
         report.update(result="TYPED_SOURCE_LLVM_ENTRY_EXACT", worker=worker["name"],
                       argument=argument, objects=objects, interfaces=interfaces, profile=profile,
                       source_ops=serial_ops(ops))
         translation = translate_all(interfaces, module, out / "translation")
         return {"report": report, "translation": translation, "ops": ops, "main_ops": main_ops,
                 "objects": objects, "module": module, "receipt": receipt, "worker": worker["name"],
-                "argument": argument, "profile": profile}
+                "argument": argument, "profile": profile, "activations": activations}
     except Exception as error:
         report["reason"] = str(error)
         raise
@@ -382,8 +417,9 @@ def translate_all(interfaces, module, out):
         local = _translate_checked_interface(interface, module, directory)
         fragment = (directory / "actual-fragment.ll").read_bytes().decode()
         defs = re.findall(r"^\s*(%[-\w.$]+) = ", fragment, re.M)
-        require(len(defs) == len(set(defs)) and not new_defs.intersection(defs), "cross-call SSA freshness")
-        new_defs.update(defs)
+        scoped_defs = {(interface["worker_name"], d) for d in defs}
+        require(len(defs) == len(set(defs)) and not new_defs.intersection(scoped_defs), "cross-call SSA freshness")
+        new_defs.update(scoped_defs)
         i = interface["llvm_line_index"]
         require(lines[i] == interface["llvm_call"], "unmodified distinct replacement interval")
         lines[i] = fragment
@@ -426,8 +462,15 @@ def program_workers(q, prepared, out):
     proof = Obligations(report)
     try:
         require(q["format"] == "dat3m-core-snapshot-v1" and q["arch"] == "TSO", "actual Q target")
-        threads = [t for t in q["threads"] if t["name"] == prepared["worker"]]
+        worker_names = {a["worker"] for a in prepared["activations"]}
+        threads = [t for t in q["threads"] if t["name"] in worker_names]
         creates = [o for o in prepared["main_ops"] if o["kind"] == "create"]
+        main = unique([t for t in q["threads"] if t["name"] == "main"], "actual main for creators")
+        qcreates = [e for e in main["events"] if e["class"] == "ThreadCreate"]
+        require(len(qcreates) == len(creates), "complete actual creator census")
+        by_creator = {e["id"]: a for e, a in zip(qcreates, prepared["activations"])}
+        require(len(by_creator) == len(creates), "duplicate actual creator")
+        seen_creators, expected_coverage = set(), set()
         require(len(threads) == len(creates) and len({t["id"] for t in threads}) == len(threads),
                 "complete dynamic activation count")
         all_ids = [e["id"] for t in q["threads"] for e in t["events"]]
@@ -444,12 +487,18 @@ def program_workers(q, prepared, out):
             cr, cw, ret, label = events[-4:]
             creator = unique([e for t in q["threads"] for e in t["events"]
                               if e["id"] == start["creator"]], "actual worker creator")
+            require(creator["id"] in by_creator and creator["id"] not in seen_creators,
+                    "uncovered/reused actual activation creator")
+            activation = by_creator[creator["id"]]
+            seen_creators.add(creator["id"])
+            require(thread["name"] == activation["worker"], "source/actual worker target")
+            expected_coverage.update((thread["id"], x["llvm_line_index"]) for x in activation["interfaces"])
             require(creator["class"] == "ThreadCreate" and creator["spawned_thread"] == thread["id"]
                     and len(creator["arguments"]) == 1 and arg["creator"] == creator["id"]
                     and arg["argument_index"] == 0 and arg["writes"]["type"] == "bv64",
                     "actual thread argument definition")
             proof.prove("thread-argument-" + str(thread["id"]),
-                        qexpr(creator["arguments"][0], {}) == obj(prepared["argument"]))
+                        qexpr(creator["arguments"][0], {}) == obj(activation["argument"]))
             runtime = f'__com_{thread["name"]}#{thread["id"]}'
             for e, tags in [(r, ["M", "R", "_"]), (cr, ["A", "M", "R", "RMW", "_"]),
                             (cw, ["A", "M", "W", "RMW", "_"])]:
@@ -464,7 +513,7 @@ def program_workers(q, prepared, out):
                         core_expr(assume["condition"], {r["writes"]["name"]: rv}) == (z3.Extract(0, 0, rv) != 0))
             proof.prove("completion-" + str(thread["id"]),
                         core_expr(cw["value"], {cr["writes"]["name"]: cv}) == (cv & 2))
-            env = {arg["writes"]["name"]: obj(prepared["argument"])}
+            env = {arg["writes"]["name"]: obj(activation["argument"])}
             body, index, assertions = events[4:-4], 0, []
 
             def writer(e, v):
@@ -488,11 +537,11 @@ def program_workers(q, prepared, out):
                 return e
 
             from z3.z3util import get_vars
-            variables = {v.sexpr(): v for op in prepared["ops"] for expr in op.values()
+            variables = {v.sexpr(): v for op in activation["ops"] for expr in op.values()
                          if isinstance(expr, z3.AstRef) for v in get_vars(expr)}
             renaming = [(v, z3.Const(f"activation-{thread['id']}:" + n, v.sort())) for n, v in variables.items()]
             ops = [{k: z3.substitute(v, *renaming) if isinstance(v, z3.AstRef) else v
-                    for k, v in op.items()} for op in prepared["ops"]]
+                    for k, v in op.items()} for op in activation["ops"]]
             for oi, op in enumerate(ops):
                 if op["kind"] == "read":
                     e = take("Load")
@@ -525,6 +574,9 @@ def program_workers(q, prepared, out):
                     proof.prove(prefix + "-write-presence", sub(expected[0]["has_write"]))
                     proof.prove(prefix + "-reference-return", sub(outputs["o" + str(interface["register_output"])]) == op["value"])
                     certificates.append({"thread": thread["id"], "source_operation": oi,
+                                         "create_index": activation["create_index"],
+                                         "worker_definition": interface["worker_definition"],
+                                         "worker_name": activation["worker"],
                                          "call_context": interface["call_context"],
                                          "llvm_line_index": interface["llvm_line_index"],
                                          "read": rd["id"], "write": wr["id"],
@@ -539,15 +591,14 @@ def program_workers(q, prepared, out):
                     pure()
                     require(index == len(body), "unconsumed worker effects")
             continuations.append({"thread": thread["id"], "assertion_events": assertions})
-        holes = [o for o in prepared["ops"] if o["kind"] == "asm"]
-        expected = {(t["id"], o["interface"]["llvm_line_index"]) for t in threads for o in holes}
+        require(seen_creators == set(by_creator), "uncovered source create")
         actual = [(c["thread"], c["llvm_line_index"]) for c in certificates]
         endpoints = [e for c in certificates for e in (c["read"], c["write"])]
-        require(len(actual) == len(expected) and set(actual) == expected and len(set(endpoints)) == len(endpoints),
+        require(len(actual) == len(expected_coverage) and set(actual) == expected_coverage and len(set(endpoints)) == len(endpoints),
                 "complete disjoint static-call by activation product")
         report.update(result="TYPED_WORKERS_EXACT", actual_worker_threads=[t["id"] for t in threads],
                       continuations=continuations, regions=certificates,
-                      scope={"function": prepared["worker"]})
+                      scope={"functions": sorted(worker_names), "coverage": "dependent-create-call-union"})
     except Exception as error:
         report["reason"] = str(error)
     save_certificate(out, report)

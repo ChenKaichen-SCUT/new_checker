@@ -1,0 +1,35 @@
+........................................................................ [ 64%]
+............F..........................                                  [100%]
+================================== FAILURES ===================================
+______________ test_block_obligation_hash_binds_exact_disk_bytes ______________
+
+tmp_path = WindowsPath('C:/Users/28905/AppData/Local/Temp/pytest-of-28905/pytest-30/test_block_obligation_hash_bin0')
+
+    def test_block_obligation_hash_binds_exact_disk_bytes(tmp_path):
+        from checker.check import check
+        from lifter.lift import lift
+        from frontend.gnu import parse
+        text = "lock xaddl %1, %0"
+>       c = check(text, lift(parse(text, 32)), 32, output_dir=tmp_path)
+                             ^^^^^^^^^^^^^^^
+
+tests\test_p2_scope.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+text = 'lock xaddl %1, %0', width = 32
+
+    def parse(text, width=32):
+        if width not in (32, 64):
+            raise Reject("unsupported width")
+        m = re.fullmatch(
+            r"\s*(?:asm|__asm__|__asm)\s*(?:(?:volatile|__volatile__|__volatile)\s*)?"
+            r"\((.*)\)\s*;?\s*", text, re.S
+        )
+        if not m:
+>           raise Reject("expected one extended asm statement")
+E           frontend.gnu.Reject: expected one extended asm statement
+
+frontend\gnu.py:106: Reject
+=========================== short test summary info ===========================
+FAILED tests/test_p2_scope.py::test_block_obligation_hash_binds_exact_disk_bytes
+1 failed, 110 passed in 4.02s

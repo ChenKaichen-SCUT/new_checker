@@ -1,0 +1,101 @@
+[
+  {
+    "case": "safe",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": null,
+    "expected": "CONDITIONAL_SAFE",
+    "actual": "CONDITIONAL_SAFE",
+    "reason": null,
+    "returncode": 0,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": true
+  },
+  {
+    "case": "unsafe",
+    "capture": "experiments/p2/capture-readonly-multi-unsafe",
+    "fault": null,
+    "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+    "actual": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+    "reason": null,
+    "returncode": 0,
+    "backend_observation": "FAIL",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "swapped-returns",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "swap-returns",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-53",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "wrong-second-input",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "second-operand",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-asm-3-write-value",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "missing-static-call",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "omit-call",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: complete Program worker effect census: Load",
+    "returncode": 1,
+    "backend_observation": "FAIL",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "missing-call-activation",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "omit-activation",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: complete Program worker effect census: Load",
+    "returncode": 1,
+    "backend_observation": "FAIL",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "lost-cross-read",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "cross-read",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: ordinary read tags/width",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "wrong-continuation",
+    "capture": "experiments/p2/capture-readonly-multi",
+    "fault": "continuation-assert",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-53",
+    "returncode": 1,
+    "backend_observation": "FAIL",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "wrong-query",
+    "capture": "experiments/p2/capture-readonly-multi-unsafe",
+    "fault": "safety-query-binding",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  }
+]

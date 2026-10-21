@@ -129,7 +129,7 @@ def check_queries(q, audit_path, backend, host, out, *, host_profile="D0"):
                 and audit["specification_type"] == "ASSERT", "actual safety property mismatch")
         require(audit["bound_events"] == [] and not any("BOUND" in e["tags"] for t in q["threads"] for e in t["events"]),
                 "P0 requires no truncation events")
-        require(host_profile in {"D0", "D1a", "D1b"} and host["result"] == host_profile + "_OPEN_HOST_EXACT",
+        require(host_profile in {"D0", "D1a", "D1b", "D2"} and host["result"] == host_profile + "_OPEN_HOST_EXACT",
                 "missing complete host/monitor coverage")
         ids = [m["event"] for m in audit["monitors"]]
         require(sorted(ids) == sorted(host["all_assertions"]) and len(set(ids)) == len(ids), "Task monitor census")

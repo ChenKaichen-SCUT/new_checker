@@ -48,7 +48,8 @@ def check(text, ir, width=32, timeout_ms=10000, output_dir=None):
                   "seconds": time.perf_counter() - tick}
         if out:
             filename = f"{len(cert['obligations']):03d}-{name}.smt2"
-            (out / filename).write_text(query, encoding="utf-8")
+            # Certificate hash is over these exact bytes on every platform.
+            (out / filename).write_bytes(query.encode("utf-8"))
             record["file"] = filename
         if result == z3.sat:
             record["countermodel"] = str(solver.model())

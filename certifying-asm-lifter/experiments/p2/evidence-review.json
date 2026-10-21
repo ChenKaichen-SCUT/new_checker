@@ -1,0 +1,926 @@
+{
+  "result": "REVIEWED",
+  "cases": [
+    {
+      "suite": "final-readonly",
+      "case": "safe",
+      "capture": "experiments/p2/capture-readonly",
+      "fault": null,
+      "expected": "CONDITIONAL_SAFE",
+      "actual": "CONDITIONAL_SAFE",
+      "reason": null,
+      "returncode": 0,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": true
+    },
+    {
+      "suite": "final-readonly",
+      "case": "unsafe",
+      "capture": "experiments/p2/capture-readonly-unsafe",
+      "fault": null,
+      "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "actual": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "reason": null,
+      "returncode": 0,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-readonly",
+      "case": "wrong-entry",
+      "capture": "experiments/p2/capture-readonly",
+      "fault": "entry-ssa",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-asm-1-write-value",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-readonly",
+      "case": "wrong-operand",
+      "capture": "experiments/p2/capture-readonly",
+      "fault": "operand-only",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-asm-1-write-value",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-readonly",
+      "case": "wrong-assert",
+      "capture": "experiments/p2/capture-readonly",
+      "fault": "assert-only",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-47",
+      "returncode": 1,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-readonly",
+      "case": "wrong-query",
+      "capture": "experiments/p2/capture-readonly-unsafe",
+      "fault": "safety-query-binding",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-multi",
+      "case": "safe",
+      "capture": "experiments/p2/capture-readonly-multi",
+      "fault": null,
+      "expected": "CONDITIONAL_SAFE",
+      "actual": "CONDITIONAL_SAFE",
+      "reason": null,
+      "returncode": 0,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": true
+    },
+    {
+      "suite": "final-multi",
+      "case": "unsafe",
+      "capture": "experiments/p2/capture-readonly-multi-unsafe",
+      "fault": null,
+      "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "actual": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "reason": null,
+      "returncode": 0,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-multi",
+      "case": "swapped-returns",
+      "capture": "experiments/p2/capture-readonly-multi",
+      "fault": "swap-returns",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-53",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-multi",
+      "case": "wrong-second-input",
+      "capture": "experiments/p2/capture-readonly-multi",
+      "fault": "second-operand",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-asm-3-write-value",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-multi",
+      "case": "missing-static-call",
+      "capture": "experiments/p2/capture-readonly-multi",
+      "fault": "omit-call",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: complete Program worker effect census: Load",
+      "returncode": 1,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-multi",
+      "case": "missing-call-activation",
+      "capture": "experiments/p2/capture-readonly-multi",
+      "fault": "omit-activation",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: complete Program worker effect census: Load",
+      "returncode": 1,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-multi",
+      "case": "lost-cross-read",
+      "capture": "experiments/p2/capture-readonly-multi",
+      "fault": "cross-read",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: ordinary read tags/width",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-multi",
+      "case": "wrong-continuation",
+      "capture": "experiments/p2/capture-readonly-multi",
+      "fault": "continuation-assert",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-53",
+      "returncode": 1,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-multi",
+      "case": "wrong-query",
+      "capture": "experiments/p2/capture-readonly-multi-unsafe",
+      "fault": "safety-query-binding",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "safe",
+      "capture": "experiments/p2/capture-workers",
+      "fault": null,
+      "expected": "CONDITIONAL_SAFE",
+      "actual": "CONDITIONAL_SAFE",
+      "reason": null,
+      "returncode": 0,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": true
+    },
+    {
+      "suite": "final-workers",
+      "case": "unsafe",
+      "capture": "experiments/p2/capture-workers-unsafe",
+      "fault": null,
+      "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "actual": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "reason": null,
+      "returncode": 0,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "source-alias",
+      "capture": "experiments/p2/capture-workers-alias",
+      "fault": null,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "source-cross-alias",
+      "capture": "experiments/p2/capture-workers-crossalias",
+      "fault": null,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: input_b",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "source-width",
+      "capture": "experiments/p2/capture-workers-width",
+      "fault": null,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "pointer roundtrip provenance/type",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-thread-argument",
+      "capture": "experiments/p2/capture-workers",
+      "fault": "thread-argument",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-argument-1",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-input-object",
+      "capture": "experiments/p2/capture-workers",
+      "fault": "input-alias",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-read-0-address",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-entry",
+      "capture": "experiments/p2/capture-workers",
+      "fault": "entry-ssa",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-asm-1-write-value",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "missing-worker-call",
+      "capture": "experiments/p2/capture-workers",
+      "fault": "omit-worker-call",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: complete Program worker effect census: Load",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-live-output",
+      "capture": "experiments/p2/capture-workers",
+      "fault": "live-use-only",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-47",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "lost-atomic-label",
+      "capture": "experiments/p2/capture-workers",
+      "fault": "a-only",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "worker coverage: RMW read width/labels",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-query",
+      "capture": "experiments/p2/capture-workers-unsafe",
+      "fault": "safety-query-binding",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+      "returncode": 1,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "readonly-safe",
+      "capture": "experiments/p1a/capture-safe-01",
+      "fault": null,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "readonly-unsafe",
+      "capture": "experiments/p1a/capture-unsafe-01",
+      "fault": null,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "readonly-wrong-entry",
+      "capture": "experiments/p1a/capture-safe-01",
+      "fault": "entry-ssa",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "readonly-wrong-operand",
+      "capture": "experiments/p1a/capture-safe-01",
+      "fault": "operand-only",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "readonly-wrong-assert",
+      "capture": "experiments/p1a/capture-safe-01",
+      "fault": "assert-only",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "readonly-wrong-query",
+      "capture": "experiments/p1a/capture-unsafe-01",
+      "fault": "safety-query-binding",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-safe",
+      "capture": "experiments/p1b/capture-safe-02",
+      "fault": null,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-unsafe",
+      "capture": "experiments/p1b/capture-unsafe-01",
+      "fault": null,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-swapped-returns",
+      "capture": "experiments/p1b/capture-safe-02",
+      "fault": "swap-returns",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-wrong-second-input",
+      "capture": "experiments/p1b/capture-safe-02",
+      "fault": "second-operand",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-missing-static-call",
+      "capture": "experiments/p1b/capture-safe-02",
+      "fault": "omit-call",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-missing-call-activation",
+      "capture": "experiments/p1b/capture-safe-02",
+      "fault": "omit-activation",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-lost-cross-read",
+      "capture": "experiments/p1b/capture-safe-02",
+      "fault": "cross-read",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-wrong-continuation",
+      "capture": "experiments/p1b/capture-safe-02",
+      "fault": "continuation-assert",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "multi-wrong-query",
+      "capture": "experiments/p1b/capture-unsafe-01",
+      "fault": "safety-query-binding",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-legacy-p1",
+      "case": "different-worker-contexts",
+      "capture": "experiments/p1b/capture-contexts-01",
+      "fault": null,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "MIXED_C_ASM_CONFLICT: x",
+      "returncode": 1,
+      "backend_observation": null,
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-p0",
+      "case": "safe",
+      "returncode": 0,
+      "expected": "CONDITIONAL_SAFE",
+      "actual": "CONDITIONAL_SAFE",
+      "reason": null,
+      "backend_observation": "PASS",
+      "program_verdict_eligible": true
+    },
+    {
+      "suite": "regression-p0",
+      "case": "unsafe",
+      "returncode": 0,
+      "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "actual": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+      "reason": null,
+      "backend_observation": "FAIL",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-p0",
+      "case": "missing-main-assert",
+      "returncode": 1,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C2/C3 host: main operation/event census: expected Assert",
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-p0",
+      "case": "wrong-join",
+      "returncode": 1,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C2/C3 host: Program join association differs from source handle",
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    },
+    {
+      "suite": "regression-p0",
+      "case": "wrong-query",
+      "returncode": 1,
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+      "backend_observation": "PASS",
+      "program_verdict_eligible": false
+    }
+  ],
+  "fault_isolation": [
+    {
+      "suite": "final-readonly",
+      "case": "wrong-entry",
+      "mode": "entry-ssa",
+      "changed": [
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-readonly",
+      "case": "wrong-operand",
+      "mode": "operand-only",
+      "changed": [
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-readonly",
+      "case": "wrong-assert",
+      "mode": "assert-only",
+      "changed": [
+        {
+          "event": 47,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-readonly",
+      "case": "wrong-query",
+      "mode": "safety-query-binding",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-multi",
+      "case": "swapped-returns",
+      "mode": "swap-returns",
+      "changed": [
+        {
+          "event": 50,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition"
+          ]
+        },
+        {
+          "event": 53,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition",
+            "reads"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-multi",
+      "case": "wrong-second-input",
+      "mode": "second-operand",
+      "changed": [
+        {
+          "event": 48,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-multi",
+      "case": "missing-static-call",
+      "mode": "omit-call",
+      "changed": [
+        {
+          "event": 47,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        },
+        {
+          "event": 70,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        48,
+        71
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-multi",
+      "case": "missing-call-activation",
+      "mode": "omit-activation",
+      "changed": [
+        {
+          "event": 70,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        71
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-multi",
+      "case": "lost-cross-read",
+      "mode": "cross-read",
+      "changed": [
+        {
+          "event": 46,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-multi",
+      "case": "wrong-continuation",
+      "mode": "continuation-assert",
+      "changed": [
+        {
+          "event": 53,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-multi",
+      "case": "wrong-query",
+      "mode": "safety-query-binding",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-thread-argument",
+      "mode": "thread-argument",
+      "changed": [
+        {
+          "event": 3,
+          "class_before": "ThreadCreate",
+          "class_after": "ThreadCreate",
+          "fields": [
+            "arguments"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-input-object",
+      "mode": "input-alias",
+      "changed": [
+        {
+          "event": 43,
+          "class_before": "Load",
+          "class_after": "Load",
+          "fields": [
+            "addr"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-entry",
+      "mode": "entry-ssa",
+      "changed": [
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "reads",
+            "value"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-workers",
+      "case": "missing-worker-call",
+      "mode": "omit-worker-call",
+      "changed": [
+        {
+          "event": 58,
+          "class_before": "Load",
+          "class_after": "Local",
+          "fields": [
+            "addr",
+            "class",
+            "expr",
+            "java_class",
+            "successor",
+            "tags",
+            "width"
+          ]
+        }
+      ],
+      "removed": [
+        59
+      ],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-live-output",
+      "mode": "live-use-only",
+      "changed": [
+        {
+          "event": 47,
+          "class_before": "Assert",
+          "class_after": "Assert",
+          "fields": [
+            "condition",
+            "reads"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-workers",
+      "case": "lost-atomic-label",
+      "mode": "a-only",
+      "changed": [
+        {
+          "event": 44,
+          "class_before": "Load",
+          "class_after": "Load",
+          "fields": [
+            "tags"
+          ]
+        },
+        {
+          "event": 45,
+          "class_before": "RMWStore",
+          "class_after": "RMWStore",
+          "fields": [
+            "tags"
+          ]
+        }
+      ],
+      "removed": [],
+      "objects_unchanged": true
+    },
+    {
+      "suite": "final-workers",
+      "case": "wrong-query",
+      "mode": "safety-query-binding",
+      "changed": [],
+      "removed": [],
+      "objects_unchanged": true
+    }
+  ],
+  "external": {
+    "result": "REJECT",
+    "reason": "OUTSIDE_D2: complete client requires multiple translation units, argc/argv main, aggregate objects, external callbacks/system calls and wait control flow; no complete host/lifecycle/query contract",
+    "denominator": 1,
+    "accepted": 0
+  },
+  "original_theorem_sha256": "8f4f91dc9a4002563389609879a653512ae7d687ac38c4bae164146c55d9d596",
+  "note": "All raw objects checked by production gate; this script audits integrity/coverage, not universal semantics."
+}

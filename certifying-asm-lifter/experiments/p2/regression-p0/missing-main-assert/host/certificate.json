@@ -1,0 +1,175 @@
+{
+  "result": "REJECT",
+  "program_verdict_eligible": false,
+  "domain": "P0 strict subset of D0; zero-initialized unsigned globals; straight-line main; constant worker inputs",
+  "trusted_runtime": "Gamma_runtime of unchanged E2E-SAFE, NOT proved by protocol shape",
+  "obligations": [
+    {
+      "name": "c-llvm-main-monitor-6",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-main-read-0 () (_ BitVec 32))\n(assert\n (let (($x36 (and (distinct (_ bv2 32) p0-main-read-0) true)))\n(let ((?x62 (ite $x36 (_ bv1 1) (_ bv0 1))))\n(let ((?x67 ((_ zero_extend 31) ?x62)))\n(let (($x45 (= $x36 (and (distinct ?x67 (_ bv0 32)) true))))\n(not $x45))))))\n(check-sat)\n",
+      "file": "000-c-llvm-main-monitor-6.smt2",
+      "smt_sha256": "026d380fe8e4088736d16368cdc010c3824f016436caef8d6c4b64d21fd77ab0"
+    },
+    {
+      "name": "join-update-12",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-join-read-11 () (_ BitVec 2))\n(assert\n (let ((?x9 (bvand p0-join-read-11 (_ bv1 2))))\n(let (($x63 (= ?x9 ?x9)))\n(not $x63))))\n(check-sat)\n",
+      "file": "001-join-update-12.smt2",
+      "smt_sha256": "f89c65db4931fb1fbb5516f80b856e9e2f1e02f565c854a2f5a04246e5bd202a"
+    },
+    {
+      "name": "join-branch-13",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-join-read-11 () (_ BitVec 2))\n(assert\n (let ((?x23 ((_ extract 1 1) p0-join-read-11)))\n(let (($x24 (= ?x23 (_ bv0 1))))\n(let (($x18 (= (not (and (distinct (_ bv0 1) ?x23) true)) $x24)))\n(not $x18)))))\n(check-sat)\n",
+      "file": "002-join-branch-13.smt2",
+      "smt_sha256": "8dd39c9b095496aa786f427cf9c6cde8748315cddd385d33ea1c79be259f69a2"
+    },
+    {
+      "name": "join-assume-15",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-join-read-11 () (_ BitVec 2))\n(assert\n (let ((?x56 ((_ extract 0 0) p0-join-read-11)))\n(let (($x46 (= ?x56 (_ bv0 1))))\n(let (($x22 (= (not (and (distinct (_ bv0 1) ?x56) true)) $x46)))\n(not $x22)))))\n(check-sat)\n",
+      "file": "003-join-assume-15.smt2",
+      "smt_sha256": "466b9b74117bab1ce9eb5a5b81f2a0a9c6d376b9d311491a778a69f5af965e7d"
+    },
+    {
+      "name": "join-forward-17",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n",
+      "file": "004-join-forward-17.smt2",
+      "smt_sha256": "53c3f760452fe1a373012ddac61ac4948c1c7a3e2254e0d478c2ee8abbd13cff"
+    },
+    {
+      "name": "join-monitor-19",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-join-status-10 () (_ BitVec 8))\n(assert\n (let (($x56 (= (and (distinct (_ bv1 8) p0-join-status-10) true) (and (distinct p0-join-status-10 (_ bv1 8)) true))))\n(not $x56)))\n(check-sat)\n",
+      "file": "005-join-monitor-19.smt2",
+      "smt_sha256": "85acb0e8ea419da728f93d2cac9e4390c4925cb15a86c0b02222d1a43d5c96ad"
+    },
+    {
+      "name": "join-update-24",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-join-read-23 () (_ BitVec 2))\n(assert\n (let ((?x8 (bvand p0-join-read-23 (_ bv1 2))))\n(let (($x43 (= ?x8 ?x8)))\n(not $x43))))\n(check-sat)\n",
+      "file": "006-join-update-24.smt2",
+      "smt_sha256": "855f87770ded61987a05c4fcdced0ec8dc615e33eeb9792d13820eb6eac2ba20"
+    },
+    {
+      "name": "join-branch-25",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-join-read-23 () (_ BitVec 2))\n(assert\n (let ((?x74 ((_ extract 1 1) p0-join-read-23)))\n(let (($x62 (= ?x74 (_ bv0 1))))\n(let (($x47 (= (not (and (distinct (_ bv0 1) ?x74) true)) $x62)))\n(not $x47)))))\n(check-sat)\n",
+      "file": "007-join-branch-25.smt2",
+      "smt_sha256": "95b2e68a5de12c4ed30bca79c399c8b23ab01870d39a3200b077ac6e947c21e6"
+    },
+    {
+      "name": "join-assume-27",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-join-read-23 () (_ BitVec 2))\n(assert\n (let ((?x55 ((_ extract 0 0) p0-join-read-23)))\n(let (($x25 (= ?x55 (_ bv0 1))))\n(let (($x31 (= (not (and (distinct (_ bv0 1) ?x55) true)) $x25)))\n(not $x31)))))\n(check-sat)\n",
+      "file": "008-join-assume-27.smt2",
+      "smt_sha256": "36c37b109ea9210cfac8bdf636ac1b2372399b6703745e534e05d886d591ca35"
+    },
+    {
+      "name": "join-forward-29",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(assert\n (not true))\n(check-sat)\n",
+      "file": "009-join-forward-29.smt2",
+      "smt_sha256": "53c3f760452fe1a373012ddac61ac4948c1c7a3e2254e0d478c2ee8abbd13cff"
+    },
+    {
+      "name": "join-monitor-31",
+      "result": "unsat",
+      "expected": "unsat",
+      "smt2": "; benchmark generated from python API\n(set-info :status unknown)\n(declare-fun p0-join-status-22 () (_ BitVec 8))\n(assert\n (let (($x55 (= (and (distinct (_ bv1 8) p0-join-status-22) true) (and (distinct p0-join-status-22 (_ bv1 8)) true))))\n(not $x55)))\n(check-sat)\n",
+      "file": "010-join-monitor-31.smt2",
+      "smt_sha256": "05faa4ed2d903b2b05878ca21a9741d10c0967a65cca459d320384aaa17e157e"
+    }
+  ],
+  "llvm_instructions": [
+    {
+      "line_index": 26,
+      "text": "%1 = alloca i64, align 8"
+    },
+    {
+      "line_index": 27,
+      "text": "%2 = alloca i64, align 8"
+    },
+    {
+      "line_index": 28,
+      "text": "call void @llvm.lifetime.start.p0(i64 8, ptr nonnull %1) #3, !dbg !23"
+    },
+    {
+      "line_index": 29,
+      "text": "call void @llvm.lifetime.start.p0(i64 8, ptr nonnull %2) #3, !dbg !23"
+    },
+    {
+      "line_index": 30,
+      "text": "%3 = call i32 @pthread_create(ptr noundef nonnull %1, ptr noundef null, ptr noundef nonnull @worker, ptr noundef null) #3, !dbg !24"
+    },
+    {
+      "line_index": 31,
+      "text": "%4 = call i32 @pthread_create(ptr noundef nonnull %2, ptr noundef null, ptr noundef nonnull @worker, ptr noundef null) #3, !dbg !25"
+    },
+    {
+      "line_index": 32,
+      "text": "%5 = load i64, ptr %1, align 8, !dbg !26, !tbaa !27"
+    },
+    {
+      "line_index": 33,
+      "text": "%6 = call i32 @pthread_join(i64 noundef %5, ptr noundef null) #3, !dbg !31"
+    },
+    {
+      "line_index": 34,
+      "text": "%7 = load i64, ptr %2, align 8, !dbg !32, !tbaa !27"
+    },
+    {
+      "line_index": 35,
+      "text": "%8 = call i32 @pthread_join(i64 noundef %7, ptr noundef null) #3, !dbg !33"
+    },
+    {
+      "line_index": 36,
+      "text": "%9 = load i32, ptr @x, align 4, !dbg !34, !tbaa !35"
+    },
+    {
+      "line_index": 37,
+      "text": "%10 = icmp ne i32 %9, 2, !dbg !37"
+    },
+    {
+      "line_index": 38,
+      "text": "%11 = zext i1 %10 to i32, !dbg !37"
+    },
+    {
+      "line_index": 39,
+      "text": "call void @__VERIFIER_assert(i32 noundef %11) #3, !dbg !38"
+    },
+    {
+      "line_index": 40,
+      "text": "call void @llvm.lifetime.end.p0(i64 8, ptr nonnull %2) #3, !dbg !39"
+    },
+    {
+      "line_index": 41,
+      "text": "call void @llvm.lifetime.end.p0(i64 8, ptr nonnull %1) #3, !dbg !39"
+    },
+    {
+      "line_index": 42,
+      "text": "ret i32 0, !dbg !40"
+    }
+  ],
+  "objects": {
+    "x": {
+      "width": 32,
+      "initial": 0,
+      "declaration": "0x5916d6ce6630",
+      "llvm_alignment": 4
+    }
+  },
+  "reason": "main operation/event census: expected Assert"
+}

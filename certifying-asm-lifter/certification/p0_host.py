@@ -72,7 +72,10 @@ def source_main(obs, receipt, raw_ast, worker, *, typed_entry=False):
             and main["return_type"]["bits"] == 32 and main["body"]["kind"] == "CompoundStmt",
             "unsupported main signature/body")
     symbols = {s["id"]: s for s in obs["symbols"]}
-    worker_id = unique([s["id"] for s in obs["symbols"] if s["name"] == worker], "worker declaration")
+    worker_names = {worker} if isinstance(worker, str) else set(worker)
+    worker_ids = {unique([s["id"] for s in obs["symbols"] if s["name"] == name],
+                         "worker declaration"): name for name in worker_names}
+    require(worker_ids, "empty worker target census")
     signatures = {
         "pthread_create": "int (unsigned long *, const void *, void *(*)(void *), void *)",
         "pthread_join": "int (unsigned long, void **)",
@@ -120,7 +123,7 @@ def source_main(obs, receipt, raw_ast, worker, *, typed_entry=False):
                         "create handle declaration")
                 null(args[1], "const void *")
                 require(args[2]["kind"] == "ImplicitCastExpr" and args[2]["cast"] == "FunctionToPointerDecay"
-                        and ref(single(args[2])) == worker_id, "create target")
+                        and ref(single(args[2])) in worker_ids, "create target")
                 argument = "null"
                 if typed_entry and args[3].get("cast") == "BitCast":
                     require(args[3]["kind"] == "ImplicitCastExpr"
@@ -132,7 +135,8 @@ def source_main(obs, receipt, raw_ast, worker, *, typed_entry=False):
                 else:
                     null(args[3], "void *")
                 created.add(h)
-                ops.append({"kind": "create", "handle": h, "target": worker, "argument": argument, **at})
+                ops.append({"kind": "create", "handle": h, "target": worker_ids[ref(single(args[2]))],
+                            "argument": argument, **at})
             elif name == "pthread_join":
                 require(len(args) == 2 and args[0]["kind"] == "ImplicitCastExpr"
                         and args[0]["cast"] == "LValueToRValue", "unsupported join")

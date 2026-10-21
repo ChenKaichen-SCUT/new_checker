@@ -11,7 +11,7 @@ from certification.provenance import require
 from experiments.run_dat3m import linux
 
 
-BASELINE = "274a5a58c27637ab8d45a988c3be393aa981b913"
+BASELINE = "884c06a8d2076c8f9443bfbfc30637151d89c73d"
 THEOREM_SHA256 = "8f4f91dc9a4002563389609879a653512ae7d687ac38c4bae164146c55d9d596"
 GAMMA = {
     "Gamma_front": "Clang preprocessing, type/declaration/metadata fidelity; ordinary host compilation satisfies the original open contract.",
@@ -32,7 +32,8 @@ def run(capture, out, dat3m, build_receipt, fault=None):
     implementation["experiments/certify_p1.py"] = sha(Path(__file__).read_bytes())
     implementation["experiments/capture_ck.py"] = sha((ROOT / "experiments/capture_ck.py").read_bytes())
     for name in ("experiments/certify_p0.py", "docs/p1/01-entry-design-and-proof.md",
-                 "docs/p1/04-multiple-call-proof.md"):
+                 "docs/p1/04-multiple-call-proof.md", "docs/p2/01-source-semantics-audit.md",
+                 "docs/p2/02-restricted-proof.md"):
         implementation[name] = sha((ROOT / name).read_bytes())
     save_json(out / "implementation.json", implementation)
     for name in implementation:
@@ -51,7 +52,7 @@ def run(capture, out, dat3m, build_receipt, fault=None):
                 "original E2E theorem changed")
         build = json.loads(build_receipt.read_bytes())
         hook = build["instrumentation"]
-        require(hook["profile"] in ({"p1-query-audit-v1", "p1b-query-audit-v1"} if fault else {"p0-query-audit-v1"})
+        require(hook["profile"] in ({"p1-query-audit-v1", "p1b-query-audit-v1", "p2-query-audit-v1"} if fault else {"p0-query-audit-v1"})
                 and bool(hook["fault_injection"]) == bool(fault),
                 "wrong P0 instrumentation profile")
         for name, digest in hook["additional_sources"].items():
@@ -61,9 +62,12 @@ def run(capture, out, dat3m, build_receipt, fault=None):
         prepared = prepare_entry(capture, out / "preparation")
         profile = prepared["profile"]
         if fault:
-            require(hook["profile"] == ("p1-query-audit-v1" if profile == "D1a" else "p1b-query-audit-v1"),
+            require(hook["profile"] == "p2-query-audit-v1" or
+                    hook["profile"] == ("p1-query-audit-v1" if profile == "D1a" else "p1b-query-audit-v1"),
                     "fault build/domain profile mismatch")
         result["domain"] = profile
+        result["source_semantics"] = "Restricted GNU/x86 extension; no ordinary C concurrent conflict; not portable ISO C11"
+        result["source_conflict_check"] = prepared["report"]["source_conflict_check"]
         evidence = prepared["translation"]
         interface = evidence["interface"]
         result["layers"].update(C0="SAME_INVOCATION_SOURCE_AND_FRAME_BOUND",
@@ -106,11 +110,10 @@ def run(capture, out, dat3m, build_receipt, fault=None):
             result.update(result="CONDITIONAL_SAFE", program_verdict_eligible=True,
                           claim="Under ALL original Gamma contracts and the recorded input domain, no source user-assertion error prefix exists.",
                           observation="All source user assertions in main and every worker activation; main return 0.",
-                          theorem="docs/p1/" + ("01-entry-design-and-proof.md" if profile == "D1a" else "04-multiple-call-proof.md"),
+                          theorem="docs/p2/02-restricted-proof.md",
                           original_theorem="docs/system-review/01-end-to-end-guarantee.md:E2E-SAFE",
                           original_theorem_sha256=THEOREM_SHA256,
-                          theorem_sha256=sha((ROOT / ("docs/p1/01-entry-design-and-proof.md" if profile == "D1a"
-                                                     else "docs/p1/04-multiple-call-proof.md")).read_bytes()))
+                          theorem_sha256=sha((ROOT / "docs/p2/02-restricted-proof.md").read_bytes()))
     except Exception as error:
         result["reason"] = str(error)
         result["result"] = "REJECT"
@@ -126,7 +129,8 @@ if __name__ == "__main__":
         ap.add_argument("--" + name, required=True, type=Path)
     ap.add_argument("--fault", choices=["entry-ssa", "operand-only", "assert-only", "safety-query-binding",
                                        "swap-returns", "second-operand", "omit-call", "omit-activation",
-                                       "cross-read", "continuation-assert"])
+                                       "cross-read", "continuation-assert", "thread-argument", "input-alias",
+                                       "input-width", "omit-worker-call", "a-only", "live-use-only"])
     args = ap.parse_args()
     result = run(args.capture, args.out, args.dat3m, args.build_receipt, args.fault)
     raise SystemExit(1 if result["result"] == "REJECT" else 0)

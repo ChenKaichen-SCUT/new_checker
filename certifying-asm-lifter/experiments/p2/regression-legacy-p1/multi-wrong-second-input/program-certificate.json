@@ -1,0 +1,21 @@
+{
+  "result": "REJECT",
+  "program_verdict_eligible": false,
+  "unconditional_safe": false,
+  "baseline": "884c06a8d2076c8f9443bfbfc30637151d89c73d",
+  "controlled_fault": "second-operand",
+  "layers": {},
+  "external_assumptions": {
+    "Gamma_front": "Clang preprocessing, type/declaration/metadata fidelity; ordinary host compilation satisfies the original open contract.",
+    "Gamma_ISA": "Accepted GNU interface and aligned valid WB x86 operations agree with the reference interpreter and pinned TSO CAT bridge.",
+    "Gamma_capture": "Read-only observer/exporter and OS/build records faithfully identify and serialize all actual objects and solver calls.",
+    "Gamma_runtime": "This pinned pthread protocol projects to all legal successful source lifecycle prefixes, without extra user restrictions or aliasing.",
+    "Gamma_encode": "ENC-minus: every legal Q error prefix in the domain makes this actual safety query satisfiable; includes analysis, symmetry, bounds, CAT and prefix semantics.",
+    "Gamma_check": "Python/C++/Java checkers refine C0-C4; local SMT UNSAT is sound. No mechanized implementation refinement is claimed.",
+    "Gamma_solve": "The actual backend solver's UNSAT for the bound queries is sound; replay is not an independently checked proof certificate.",
+    "Gamma_domain": "x86-64 LP64 ABI, valid aligned nonmixed ordinary WB objects, successful create/join and defined host operations apply; no ISO C race-UB vacuity."
+  },
+  "external_semantic_assumptions_proved": false,
+  "capture": "experiments/p1b/capture-safe-02",
+  "reason": "MIXED_C_ASM_CONFLICT: x"
+}

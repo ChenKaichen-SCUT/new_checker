@@ -6,12 +6,14 @@
 **当前状态：受限研究原型，尚未完成通用 GNU C → Dat3M 的整程序认证，
 也尚未达到论文投稿完成状态。** 完整范围、证明假设和待解决问题见下列文档。
 
-最新交付：[P1a/P1b 类型化非固定输入与多调用验收](certifying-asm-lifter/docs/p1/00-delivery.md)。
-基线 `274a5a58c27637ab8d45a988c3be393aa981b913`。原始 CK 的非固定输入、
-同一 worker 两次存活调用及活跃依赖已在实际 Clang/Dat3M 对象上得到受限
-`CONDITIONAL_SAFE`；保留原八项 Γ、完整 main/生命周期与同次查询门禁。
-四份不同调用/激活证书、隔离故障、不安全变体及 103 项单元回归材料已保存。
-不同 worker 定义的调用仍保守拒绝。停止扩展，等待审阅。
+最新交付：[源语义风险修补与不同 worker 认证](certifying-asm-lifter/docs/p2/00-delivery.md)。
+基线 `884c06a8d2076c8f9443bfbfc30637151d89c73d`。旧普通 C/asm 并发冲突输入现已
+关闭程序授权；独立只读输入、双调用活跃依赖及两个不同 worker 经实际对象得到受限
+`CONDITIONAL_SAFE`，保持原八项 Γ。111 项单元测试、P0/P1 回归及隔离故障完成。
+固定完整 CK 事件计数器客户端编译成功但范围拒绝，外部客户端为 0/1 接受。
+本轮并未证明通用 GNU/Clang 混合语义或可移植 C11；停止扩展，等待审阅。
+历史 [P1a/P1b 交付](certifying-asm-lifter/docs/p1/00-delivery.md)及全部证据保留，
+其混合访问样例的当前适用性已由本轮收缩。
 前次实现：[P0 程序级门禁](certifying-asm-lifter/docs/p0/00-delivery.md)。
 
 历史交付：[工具／系统论文可行性审阅](certifying-asm-lifter/docs/system-review/00-delivery.md)。

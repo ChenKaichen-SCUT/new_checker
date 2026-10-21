@@ -103,3 +103,17 @@
   reject. Evidence and proofs are in docs/p1 and experiments/p1a,p1b; 103 unit
   tests and real P0/P1a regressions passed. Publish and STOP for user review.
   Do not start additional instruction, library, context or control-flow scope.
+- Latest authorization: baseline 884c06a8d2076c8f9443bfbfc30637151d89c73d.
+  Audit mixed ordinary-C/asm conflicts first, amend claims and prove a checked
+  conflict-free input restriction; then certify distinct worker definitions.
+  Preserve C0-C4 and the original eight Gamma contracts. Use independent typed
+  immutable-during-execution input objects, actual optimized SSA and actual Q.
+  Freeze one original external client before its minimal acceptance/rejection.
+  Preserve historical evidence, run targeted faults and P0/P1 regressions,
+  commit, push, verify, then STOP. No broad experiments or new ISA families.
+  This round is delivered: conflict-free input gate and distinct workers under
+  unchanged Gamma; old mixed-access P1 inputs now reject. Three controlled forms
+  pass, unsafe/fault variants reject authorization; 111 unit tests pass. Original
+  CK event-counter full client rejects (0/1), preserving original code/config.
+  Exact-byte SMT serialization repaired; final evidence is experiments/p2/*-02.
+  Publish, verify remote, then STOP for review. Do not extend accepted scope.

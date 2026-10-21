@@ -1,0 +1,134 @@
+[
+  {
+    "case": "safe",
+    "capture": "experiments/p2/capture-workers",
+    "fault": null,
+    "expected": "CONDITIONAL_SAFE",
+    "actual": "CONDITIONAL_SAFE",
+    "reason": null,
+    "returncode": 0,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": true
+  },
+  {
+    "case": "unsafe",
+    "capture": "experiments/p2/capture-workers-unsafe",
+    "fault": null,
+    "expected": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+    "actual": "SAFETY_QUERY_SAT_NO_SAFE_TRANSFER",
+    "reason": null,
+    "returncode": 0,
+    "backend_observation": "FAIL",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "source-alias",
+    "capture": "experiments/p2/capture-workers-alias",
+    "fault": null,
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "MIXED_C_ASM_CONFLICT: x",
+    "returncode": 1,
+    "backend_observation": null,
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "source-cross-alias",
+    "capture": "experiments/p2/capture-workers-crossalias",
+    "fault": null,
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "MIXED_C_ASM_CONFLICT: input_b",
+    "returncode": 1,
+    "backend_observation": null,
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "source-width",
+    "capture": "experiments/p2/capture-workers-width",
+    "fault": null,
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "pointer roundtrip provenance/type",
+    "returncode": 1,
+    "backend_observation": null,
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "wrong-thread-argument",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "thread-argument",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-argument-1",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "wrong-input-object",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "input-alias",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-read-0-address",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "wrong-entry",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "entry-ssa",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-asm-1-write-value",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "missing-worker-call",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "omit-worker-call",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: complete Program worker effect census: Load",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "wrong-live-output",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "live-use-only",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: unproved P0 obligation: thread-1-monitor-47",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "lost-atomic-label",
+    "capture": "experiments/p2/capture-workers",
+    "fault": "a-only",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "worker coverage: RMW read width/labels",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  },
+  {
+    "case": "wrong-query",
+    "capture": "experiments/p2/capture-workers-unsafe",
+    "fault": "safety-query-binding",
+    "expected": "REJECT",
+    "actual": "REJECT",
+    "reason": "C4 query binding: unproved P0 obligation: actual-safety-assumption-binding",
+    "returncode": 1,
+    "backend_observation": "PASS",
+    "program_verdict_eligible": false
+  }
+]
