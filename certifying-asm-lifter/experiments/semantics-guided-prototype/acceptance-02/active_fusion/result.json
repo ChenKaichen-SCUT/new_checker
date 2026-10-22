@@ -1,0 +1,315 @@
+{
+  "version": "oracle-B-1",
+  "program_sha256": "8c156ca42f2a297b614c1a513dfb9a4be37aaae926df9fbd9b7b7f674bc8775d",
+  "model": [
+    "8561d85057c449c0828b888c61e3cfeda8b73750474353eee1dd3f0383b192ac",
+    "b7d347726619c89e336bb19fd0ed5284d0b2fb893f06c957644ab769de691766"
+  ],
+  "status": "COMPLETE",
+  "reason": null,
+  "graphs": [
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "8c156ca42f2a297b614c1a513dfb9a4be37aaae926df9fbd9b7b7f674bc8775d",
+      "core": {
+        "inputs": {},
+        "reads": {
+          "fused:R": 0,
+          "other:R": 0
+        },
+        "rf": {
+          "fused:R": "I:x",
+          "other:R": "I:x"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "fused:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "fused:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "fused:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "fused"
+          ],
+          [
+            "repair"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        2,
+        0,
+        1,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "fused:R",
+            "fused:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "fused:R"
+          ],
+          [
+            "I:x",
+            "other:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "fused:W"
+          ]
+        ],
+        "fr": [
+          [
+            "fused:R",
+            "fused:W"
+          ],
+          [
+            "other:R",
+            "fused:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "fused:R",
+            "fused:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "fused:R",
+            "fused:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "8c156ca42f2a297b614c1a513dfb9a4be37aaae926df9fbd9b7b7f674bc8775d",
+      "core": {
+        "inputs": {},
+        "reads": {
+          "fused:R": 0,
+          "other:R": 2
+        },
+        "rf": {
+          "fused:R": "I:x",
+          "other:R": "fused:W"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "fused:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "fused:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "fused:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 2,
+          "atomic": false,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "fused"
+          ],
+          [
+            "repair"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        2,
+        0,
+        1,
+        2
+      ],
+      "relations": {
+        "po": [
+          [
+            "fused:R",
+            "fused:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "fused:R"
+          ],
+          [
+            "fused:W",
+            "other:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "fused:W"
+          ]
+        ],
+        "fr": [
+          [
+            "fused:R",
+            "fused:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "fused:R",
+            "fused:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "fused:R",
+            "fused:W"
+          ]
+        ]
+      }
+    }
+  ],
+  "observations": [
+    [
+      2,
+      0,
+      1,
+      0
+    ],
+    [
+      2,
+      0,
+      1,
+      2
+    ]
+  ],
+  "queries": [
+    {
+      "path": 0,
+      "index": 0,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 1,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 2,
+      "status": "unsat"
+    }
+  ],
+  "validation": {
+    "status": "WELL_FORMED",
+    "program_sha256": "8c156ca42f2a297b614c1a513dfb9a4be37aaae926df9fbd9b7b7f674bc8775d",
+    "sites": 3,
+    "terminal_types": [
+      [
+        "bv32",
+        "bv32"
+      ],
+      [
+        "bv32"
+      ]
+    ]
+  },
+  "path_count": 1,
+  "metrics": {
+    "wall_seconds": 0.011616999981924891,
+    "cpu_seconds": 0.0,
+    "smt_seconds": 0.0022828998044133186,
+    "check_seconds": 0.0006451000226661563,
+    "encode_seconds": 0.0053122000535950065
+  }
+}

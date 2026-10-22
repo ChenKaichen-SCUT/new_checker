@@ -1,0 +1,76 @@
+{
+  "version": "finite-tso-1",
+  "inputs": {
+    "b": "bool"
+  },
+  "domain": true,
+  "objects": {
+    "x": 0,
+    "y": 0
+  },
+  "threads": [
+    [
+      {
+        "op": "if",
+        "id": "t0_choice",
+        "guard": "b",
+        "then": [
+          {
+            "op": "faa",
+            "id": "t0_yes",
+            "obj": "y",
+            "dst": "s",
+            "value": 1
+          }
+        ],
+        "else": [
+          {
+            "op": "faa",
+            "id": "t0_no",
+            "obj": "y",
+            "dst": "s",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "op": "load",
+        "id": "t0_b",
+        "obj": "x",
+        "dst": "r"
+      }
+    ],
+    [
+      {
+        "op": "faa",
+        "id": "t1_a",
+        "obj": "y",
+        "dst": "r",
+        "value": 1
+      },
+      {
+        "op": "faa",
+        "id": "t1_b",
+        "obj": "x",
+        "dst": "s",
+        "value": 2
+      }
+    ]
+  ],
+  "observe": {
+    "objects": [
+      "x",
+      "y"
+    ],
+    "locals": [
+      [
+        "r",
+        "s"
+      ],
+      [
+        "r",
+        "s"
+      ]
+    ]
+  }
+}

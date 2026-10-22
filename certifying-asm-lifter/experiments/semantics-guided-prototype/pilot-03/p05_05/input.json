@@ -1,0 +1,55 @@
+{
+  "version": "finite-tso-1",
+  "inputs": {
+    "b": "bool"
+  },
+  "domain": true,
+  "objects": {
+    "x": 0,
+    "y": 0
+  },
+  "threads": [
+    [
+      {
+        "op": "load",
+        "id": "t0_a",
+        "obj": "x",
+        "dst": "r"
+      },
+      {
+        "op": "store",
+        "id": "t0_b",
+        "obj": "y",
+        "value": 1
+      }
+    ],
+    [
+      {
+        "op": "load",
+        "id": "t1_a",
+        "obj": "y",
+        "dst": "r"
+      },
+      {
+        "op": "store",
+        "id": "t1_b",
+        "obj": "x",
+        "value": 1
+      }
+    ]
+  ],
+  "observe": {
+    "objects": [
+      "x",
+      "y"
+    ],
+    "locals": [
+      [
+        "r"
+      ],
+      [
+        "r"
+      ]
+    ]
+  }
+}

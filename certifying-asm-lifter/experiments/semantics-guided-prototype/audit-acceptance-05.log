@@ -1,0 +1,31 @@
+Failed to find real location of D:\python\python.exe
+audit experiments\semantics-guided-prototype\acceptance-03\active_fusion
+audit experiments\semantics-guided-prototype\acceptance-03\alpha
+audit experiments\semantics-guided-prototype\acceptance-03\conditional
+audit experiments\semantics-guided-prototype\acceptance-03\diamond
+audit experiments\semantics-guided-prototype\acceptance-03\duplicate
+audit experiments\semantics-guided-prototype\acceptance-03\empty
+audit experiments\semantics-guided-prototype\acceptance-03\faa
+audit experiments\semantics-guided-prototype\acceptance-03\fenced
+audit experiments\semantics-guided-prototype\acceptance-03\guard_removed
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "E:\5 面向并发验证的可验证 asm 转换\certifying-asm-lifter\semantic_testing\audit.py", line 130, in <module>
+    if __name__ == "__main__": main()
+                               ~~~~^^
+  File "E:\5 面向并发验证的可验证 asm 转换\certifying-asm-lifter\semantic_testing\audit.py", line 124, in main
+    print("audit", str(f.parent), flush=True); cases.append(check_case(f.parent))
+                                                            ~~~~~~~~~~^^^^^^^^^^
+  File "E:\5 面向并发验证的可验证 asm 转换\certifying-asm-lifter\semantic_testing\audit.py", line 53, in check_case
+    saved_blocks.add(z3.parse_smt2_string(base_text + blockfile.read_text(encoding="utf-8")))
+                     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\z3\z3.py", line 10065, in parse_smt2_string
+    return AstVector(Z3_parse_smtlib2_string(ctx.ref(), s, ssz, snames, ssorts, dsz, dnames, ddecls), ctx)
+                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\z3\z3core.py", line 3760, in Z3_parse_smtlib2_string
+    _elems.Check(a0)
+    ~~~~~~~~~~~~^^^^
+  File "D:\python\Lib\site-packages\z3\z3core.py", line 1619, in Check
+    raise self.Exception(self.get_error_message(ctx, err))
+z3.z3types.Z3Exception: b'(error "line 153 column 22: unknown constant input_b")\n(error "line 162 column 22: unknown constant input_b")\n(error "line 171 column 22: unknown constant input_b")\n(error "line 180 column 22: unknown constant input_b")\n'

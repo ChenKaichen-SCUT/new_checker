@@ -1,0 +1,69 @@
+{
+  "version": "finite-tso-1",
+  "inputs": {
+    "b": "bool"
+  },
+  "domain": true,
+  "objects": {
+    "x": 0
+  },
+  "threads": [
+    [
+      {
+        "id": "merged",
+        "op": "faa",
+        "obj": "x",
+        "dst": "r",
+        "value": [
+          "ite",
+          "b",
+          1,
+          2
+        ]
+      },
+      {
+        "op": "set",
+        "id": "wrongReturn",
+        "dst": "r",
+        "value": [
+          "add",
+          "r",
+          1
+        ]
+      },
+      {
+        "op": "set",
+        "id": "use",
+        "dst": "s",
+        "value": [
+          "add",
+          "r",
+          1
+        ]
+      }
+    ],
+    [
+      {
+        "op": "faa",
+        "id": "other",
+        "obj": "x",
+        "dst": "r",
+        "value": 1
+      }
+    ]
+  ],
+  "observe": {
+    "objects": [
+      "x"
+    ],
+    "locals": [
+      [
+        "r",
+        "s"
+      ],
+      [
+        "r"
+      ]
+    ]
+  }
+}

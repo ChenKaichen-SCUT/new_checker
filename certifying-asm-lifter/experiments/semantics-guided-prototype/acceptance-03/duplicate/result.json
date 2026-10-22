@@ -1,0 +1,768 @@
+{
+  "version": "oracle-B-1",
+  "program_sha256": "9f88252ad9c8939820acef7467c629b7af7885e718e1a6c7ebcba3fbdd9ddba5",
+  "model": [
+    "8561d85057c449c0828b888c61e3cfeda8b73750474353eee1dd3f0383b192ac",
+    "b7d347726619c89e336bb19fd0ed5284d0b2fb893f06c957644ab769de691766"
+  ],
+  "status": "COMPLETE",
+  "reason": null,
+  "graphs": [
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "9f88252ad9c8939820acef7467c629b7af7885e718e1a6c7ebcba3fbdd9ddba5",
+      "core": {
+        "inputs": {
+          "b": true
+        },
+        "reads": {
+          "copyT:R": 1,
+          "other:R": 0
+        },
+        "rf": {
+          "copyT:R": "other:W",
+          "other:R": "I:x"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "other:W",
+            "copyT:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "copyT:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "copyT:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "copy",
+            true
+          ],
+          [
+            "copyT"
+          ],
+          [
+            "use"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        true,
+        2,
+        1,
+        2,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "copyT:R",
+            "copyT:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "other:R"
+          ],
+          [
+            "other:W",
+            "copyT:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "copyT:W"
+          ],
+          [
+            "I:x",
+            "other:W"
+          ],
+          [
+            "other:W",
+            "copyT:W"
+          ]
+        ],
+        "fr": [
+          [
+            "copyT:R",
+            "copyT:W"
+          ],
+          [
+            "other:R",
+            "copyT:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "copyT:R",
+            "copyT:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "copyT:R",
+            "copyT:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "9f88252ad9c8939820acef7467c629b7af7885e718e1a6c7ebcba3fbdd9ddba5",
+      "core": {
+        "inputs": {
+          "b": true
+        },
+        "reads": {
+          "copyT:R": 0,
+          "other:R": 1
+        },
+        "rf": {
+          "copyT:R": "I:x",
+          "other:R": "copyT:W"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "copyT:W",
+            "other:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "copyT:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "copyT:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "copy",
+            true
+          ],
+          [
+            "copyT"
+          ],
+          [
+            "use"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        true,
+        2,
+        0,
+        1,
+        1
+      ],
+      "relations": {
+        "po": [
+          [
+            "copyT:R",
+            "copyT:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "copyT:R"
+          ],
+          [
+            "copyT:W",
+            "other:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "copyT:W"
+          ],
+          [
+            "I:x",
+            "other:W"
+          ],
+          [
+            "copyT:W",
+            "other:W"
+          ]
+        ],
+        "fr": [
+          [
+            "copyT:R",
+            "copyT:W"
+          ],
+          [
+            "copyT:R",
+            "other:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "copyT:R",
+            "copyT:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "copyT:R",
+            "copyT:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "9f88252ad9c8939820acef7467c629b7af7885e718e1a6c7ebcba3fbdd9ddba5",
+      "core": {
+        "inputs": {
+          "b": false
+        },
+        "reads": {
+          "copyF:R": 1,
+          "other:R": 0
+        },
+        "rf": {
+          "copyF:R": "other:W",
+          "other:R": "I:x"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "other:W",
+            "copyF:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "copyF:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "copyF:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 3,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "copy",
+            false
+          ],
+          [
+            "copyF"
+          ],
+          [
+            "use"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        false,
+        3,
+        1,
+        2,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "copyF:R",
+            "copyF:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "other:R"
+          ],
+          [
+            "other:W",
+            "copyF:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "copyF:W"
+          ],
+          [
+            "I:x",
+            "other:W"
+          ],
+          [
+            "other:W",
+            "copyF:W"
+          ]
+        ],
+        "fr": [
+          [
+            "copyF:R",
+            "copyF:W"
+          ],
+          [
+            "other:R",
+            "copyF:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "copyF:R",
+            "copyF:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "copyF:R",
+            "copyF:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "9f88252ad9c8939820acef7467c629b7af7885e718e1a6c7ebcba3fbdd9ddba5",
+      "core": {
+        "inputs": {
+          "b": false
+        },
+        "reads": {
+          "copyF:R": 0,
+          "other:R": 2
+        },
+        "rf": {
+          "copyF:R": "I:x",
+          "other:R": "copyF:W"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "copyF:W",
+            "other:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "copyF:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "copyF:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 3,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "copy",
+            false
+          ],
+          [
+            "copyF"
+          ],
+          [
+            "use"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        false,
+        3,
+        0,
+        1,
+        2
+      ],
+      "relations": {
+        "po": [
+          [
+            "copyF:R",
+            "copyF:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "copyF:R"
+          ],
+          [
+            "copyF:W",
+            "other:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "copyF:W"
+          ],
+          [
+            "I:x",
+            "other:W"
+          ],
+          [
+            "copyF:W",
+            "other:W"
+          ]
+        ],
+        "fr": [
+          [
+            "copyF:R",
+            "copyF:W"
+          ],
+          [
+            "copyF:R",
+            "other:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "copyF:R",
+            "copyF:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "copyF:R",
+            "copyF:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ]
+      }
+    }
+  ],
+  "observations": [
+    [
+      false,
+      3,
+      0,
+      1,
+      2
+    ],
+    [
+      false,
+      3,
+      1,
+      2,
+      0
+    ],
+    [
+      true,
+      2,
+      0,
+      1,
+      1
+    ],
+    [
+      true,
+      2,
+      1,
+      2,
+      0
+    ]
+  ],
+  "queries": [
+    {
+      "path": 0,
+      "index": 0,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 1,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 2,
+      "status": "unsat"
+    },
+    {
+      "path": 1,
+      "index": 0,
+      "status": "sat"
+    },
+    {
+      "path": 1,
+      "index": 1,
+      "status": "sat"
+    },
+    {
+      "path": 1,
+      "index": 2,
+      "status": "unsat"
+    }
+  ],
+  "validation": {
+    "status": "WELL_FORMED",
+    "program_sha256": "9f88252ad9c8939820acef7467c629b7af7885e718e1a6c7ebcba3fbdd9ddba5",
+    "sites": 5,
+    "terminal_types": [
+      [
+        "bv32",
+        "bv32"
+      ],
+      [
+        "bv32"
+      ]
+    ]
+  },
+  "path_count": 2,
+  "metrics": {
+    "wall_seconds": 0.06661550002172589,
+    "cpu_seconds": 0.0625,
+    "smt_seconds": 0.011372900218702853,
+    "check_seconds": 0.001836600131355226,
+    "encode_seconds": 0.028245899942703545
+  }
+}

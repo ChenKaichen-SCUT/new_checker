@@ -1,0 +1,255 @@
+Failed to find real location of D:\python\python.exe
+test_alpha_capture (__main__.CoreTests.test_alpha_capture) ... ok
+test_diamond_side_conditions (__main__.CoreTests.test_diamond_side_conditions) ... ERROR
+test_fence_joint_cycle (__main__.CoreTests.test_fence_joint_cycle) ... ok
+test_full_bv_input_not_sampled (__main__.CoreTests.test_full_bv_input_not_sampled) ... ERROR
+test_graphs_not_observation_representatives (__main__.CoreTests.test_graphs_not_observation_representatives) ... ERROR
+test_independent_scope (__main__.CoreTests.test_independent_scope) ... ok
+test_paths_full_and_limit (__main__.CoreTests.test_paths_full_and_limit) ... ok
+test_reject_bool_read_as_integer (__main__.CoreTests.test_reject_bool_read_as_integer) ... ok
+test_reject_cross_object_rf (__main__.CoreTests.test_reject_cross_object_rf) ... ok
+test_reject_duplicate_site_and_object (__main__.CoreTests.test_reject_duplicate_site_and_object) ... ok
+test_reject_extra_inactive_read (__main__.CoreTests.test_reject_extra_inactive_read) ... ok
+test_reject_init_last (__main__.CoreTests.test_reject_init_last) ... ok
+test_reject_lost_update (__main__.CoreTests.test_reject_lost_update) ... ok
+test_reject_missing_rmw_write (__main__.CoreTests.test_reject_missing_rmw_write) ... ok
+test_reject_open7 (__main__.CoreTests.test_reject_open7) ... ok
+test_reject_partial_definition (__main__.CoreTests.test_reject_partial_definition) ... ok
+test_reject_tampered_evidence (__main__.CoreTests.test_reject_tampered_evidence) ... ok
+test_reject_undefined_dead_arm (__main__.CoreTests.test_reject_undefined_dead_arm) ... ok
+test_reject_unknown_command (__main__.CoreTests.test_reject_unknown_command) ... ok
+test_reject_unknown_fields (__main__.CoreTests.test_reject_unknown_fields) ... ok
+test_reject_width_type_and_unknown (__main__.CoreTests.test_reject_width_type_and_unknown) ... ok
+test_selection_replay (__main__.CoreTests.test_selection_replay) ... ok
+test_symbolic_complete_and_both_property_polarities (__main__.CoreTests.test_symbolic_complete_and_both_property_polarities) ... ERROR
+test_total_expressions (__main__.CoreTests.test_total_expressions) ... ok
+test_unknown_is_not_exact (__main__.CoreTests.test_unknown_is_not_exact) ... ERROR
+test_witness_accept (__main__.CoreTests.test_witness_accept) ... ok
+
+======================================================================
+ERROR: test_diamond_side_conditions (__main__.CoreTests.test_diamond_side_conditions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 111, in test_diamond_side_conditions
+    bad = copy.deepcopy(p); bad["threads"][0]["then"].append(op("fence", "extra"))
+                            ~~~~~~~~~~~~~~~~~^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+
+======================================================================
+ERROR: test_full_bv_input_not_sampled (__main__.CoreTests.test_full_bv_input_not_sampled)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 152, in test_full_bv_input_not_sampled
+    r = decide(p, Path(d) / "bv", max_graphs=3)
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\symbolic.py", line 129, in decide
+    directory = Path(directory); directory.mkdir(parents=True, exist_ok=False)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\pathlib\_local.py", line 722, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmp587a8eky\\bv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python\Lib\shutil.py", line 631, in _rmtree_unsafe
+    os.rmdir(path)
+    ~~~~~~~~^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmp587a8eky'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 151, in test_full_bv_input_not_sampled
+    with tempfile.TemporaryDirectory() as d:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\python\Lib\tempfile.py", line 951, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "D:\python\Lib\tempfile.py", line 955, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 935, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\shutil.py", line 790, in rmtree
+    return _rmtree_unsafe(path, onexc)
+  File "D:\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 907, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "D:\python\Lib\tempfile.py", line 287, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 276, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmp587a8eky'
+
+======================================================================
+ERROR: test_graphs_not_observation_representatives (__main__.CoreTests.test_graphs_not_observation_representatives)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 138, in test_graphs_not_observation_representatives
+    r = decide(p, Path(d) / "equalwrite")
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\symbolic.py", line 129, in decide
+    directory = Path(directory); directory.mkdir(parents=True, exist_ok=False)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\pathlib\_local.py", line 722, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpv6_mnpbc\\equalwrite'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python\Lib\shutil.py", line 631, in _rmtree_unsafe
+    os.rmdir(path)
+    ~~~~~~~~^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpv6_mnpbc'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 137, in test_graphs_not_observation_representatives
+    with tempfile.TemporaryDirectory() as d:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\python\Lib\tempfile.py", line 951, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "D:\python\Lib\tempfile.py", line 955, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 935, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\shutil.py", line 790, in rmtree
+    return _rmtree_unsafe(path, onexc)
+  File "D:\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 907, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "D:\python\Lib\tempfile.py", line 287, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 276, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpv6_mnpbc'
+
+======================================================================
+ERROR: test_symbolic_complete_and_both_property_polarities (__main__.CoreTests.test_symbolic_complete_and_both_property_polarities)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 126, in test_symbolic_complete_and_both_property_polarities
+    p = self.ps["faa"]; r = decide(p, Path(d) / "faa")
+                            ~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\symbolic.py", line 129, in decide
+    directory = Path(directory); directory.mkdir(parents=True, exist_ok=False)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\pathlib\_local.py", line 722, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpw8hhajom\\faa'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python\Lib\shutil.py", line 631, in _rmtree_unsafe
+    os.rmdir(path)
+    ~~~~~~~~^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpw8hhajom'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 125, in test_symbolic_complete_and_both_property_polarities
+    with tempfile.TemporaryDirectory() as d:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\python\Lib\tempfile.py", line 951, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "D:\python\Lib\tempfile.py", line 955, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 935, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\shutil.py", line 790, in rmtree
+    return _rmtree_unsafe(path, onexc)
+  File "D:\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 907, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "D:\python\Lib\tempfile.py", line 287, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 276, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpw8hhajom'
+
+======================================================================
+ERROR: test_unknown_is_not_exact (__main__.CoreTests.test_unknown_is_not_exact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 144, in test_unknown_is_not_exact
+    p = self.ps["faa"]; r = decide(p, Path(d) / "bounded", max_graphs=1)
+                            ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\symbolic.py", line 129, in decide
+    directory = Path(directory); directory.mkdir(parents=True, exist_ok=False)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\pathlib\_local.py", line 722, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpikiscrcl\\bounded'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python\Lib\shutil.py", line 631, in _rmtree_unsafe
+    os.rmdir(path)
+    ~~~~~~~~^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpikiscrcl'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\5 ���򲢷���֤�Ŀ���֤ asm ת��\certifying-asm-lifter\semantic_testing\test_core.py", line 143, in test_unknown_is_not_exact
+    with tempfile.TemporaryDirectory() as d:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\python\Lib\tempfile.py", line 951, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "D:\python\Lib\tempfile.py", line 955, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 935, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\shutil.py", line 790, in rmtree
+    return _rmtree_unsafe(path, onexc)
+  File "D:\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 907, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "D:\python\Lib\tempfile.py", line 287, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\tempfile.py", line 276, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] �ܾ����ʡ�: 'C:\\Users\\28905\\AppData\\Local\\Packages\\sandbox.{60e39db0-f94f-4859-a6f9-3d0bcbd8ed87}\\AC\\Temp\\tmpikiscrcl'
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.033s
+
+FAILED (errors=5)

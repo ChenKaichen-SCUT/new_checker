@@ -1,0 +1,838 @@
+{
+  "version": "oracle-B-1",
+  "program_sha256": "42550722941aa32a6d9e894584cf6f8cfe0791623fbbc88e2a8ccaa5e4670509",
+  "model": [
+    "8561d85057c449c0828b888c61e3cfeda8b73750474353eee1dd3f0383b192ac",
+    "b7d347726619c89e336bb19fd0ed5284d0b2fb893f06c957644ab769de691766"
+  ],
+  "status": "COMPLETE",
+  "reason": null,
+  "graphs": [
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "42550722941aa32a6d9e894584cf6f8cfe0791623fbbc88e2a8ccaa5e4670509",
+      "core": {
+        "inputs": {
+          "b": false
+        },
+        "reads": {
+          "t0_b:R": 1,
+          "t1_a:R": 0
+        },
+        "rf": {
+          "t0_b:R": "t1_a:W",
+          "t1_a:R": "I:y"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "t0_a:W"
+          ],
+          "y": [
+            "I:y",
+            "t1_a:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "I:y",
+          "thread": "I:y",
+          "kind": "W",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "t0_a:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0_f:F",
+          "thread": 0,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0_b:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "y",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1_a:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "y",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "t1_a:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "y",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "t0_a"
+          ],
+          [
+            "t0_f"
+          ],
+          [
+            "t0_b"
+          ]
+        ],
+        [
+          [
+            "t1_a"
+          ]
+        ]
+      ],
+      "observation": [
+        false,
+        1,
+        1,
+        1,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ],
+          [
+            "t0_a:W",
+            "t0_f:F"
+          ],
+          [
+            "t0_f:F",
+            "t0_b:R"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:y",
+            "t1_a:R"
+          ],
+          [
+            "t1_a:W",
+            "t0_b:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "t0_a:W"
+          ],
+          [
+            "I:y",
+            "t1_a:W"
+          ]
+        ],
+        "fr": [
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "mfence": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ]
+        ],
+        "K": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "42550722941aa32a6d9e894584cf6f8cfe0791623fbbc88e2a8ccaa5e4670509",
+      "core": {
+        "inputs": {
+          "b": false
+        },
+        "reads": {
+          "t0_b:R": 0,
+          "t1_a:R": 0
+        },
+        "rf": {
+          "t0_b:R": "I:y",
+          "t1_a:R": "I:y"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "t0_a:W"
+          ],
+          "y": [
+            "I:y",
+            "t1_a:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "I:y",
+          "thread": "I:y",
+          "kind": "W",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "t0_a:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0_f:F",
+          "thread": 0,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0_b:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1_a:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "y",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "t1_a:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "y",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "t0_a"
+          ],
+          [
+            "t0_f"
+          ],
+          [
+            "t0_b"
+          ]
+        ],
+        [
+          [
+            "t1_a"
+          ]
+        ]
+      ],
+      "observation": [
+        false,
+        1,
+        1,
+        0,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ],
+          [
+            "t0_a:W",
+            "t0_f:F"
+          ],
+          [
+            "t0_f:F",
+            "t0_b:R"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:y",
+            "t0_b:R"
+          ],
+          [
+            "I:y",
+            "t1_a:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "t0_a:W"
+          ],
+          [
+            "I:y",
+            "t1_a:W"
+          ]
+        ],
+        "fr": [
+          [
+            "t0_b:R",
+            "t1_a:W"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "mfence": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ]
+        ],
+        "K": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "42550722941aa32a6d9e894584cf6f8cfe0791623fbbc88e2a8ccaa5e4670509",
+      "core": {
+        "inputs": {
+          "b": true
+        },
+        "reads": {
+          "t0_b:R": 0,
+          "t1_a:R": 0
+        },
+        "rf": {
+          "t0_b:R": "I:y",
+          "t1_a:R": "I:y"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "t0_a:W"
+          ],
+          "y": [
+            "I:y",
+            "t1_a:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "I:y",
+          "thread": "I:y",
+          "kind": "W",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "t0_a:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0_f:F",
+          "thread": 0,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0_b:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1_a:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "y",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "t1_a:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "y",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "t0_a"
+          ],
+          [
+            "t0_f"
+          ],
+          [
+            "t0_b"
+          ]
+        ],
+        [
+          [
+            "t1_a"
+          ]
+        ]
+      ],
+      "observation": [
+        true,
+        1,
+        1,
+        0,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ],
+          [
+            "t0_a:W",
+            "t0_f:F"
+          ],
+          [
+            "t0_f:F",
+            "t0_b:R"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:y",
+            "t0_b:R"
+          ],
+          [
+            "I:y",
+            "t1_a:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "t0_a:W"
+          ],
+          [
+            "I:y",
+            "t1_a:W"
+          ]
+        ],
+        "fr": [
+          [
+            "t0_b:R",
+            "t1_a:W"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "mfence": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ]
+        ],
+        "K": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "42550722941aa32a6d9e894584cf6f8cfe0791623fbbc88e2a8ccaa5e4670509",
+      "core": {
+        "inputs": {
+          "b": true
+        },
+        "reads": {
+          "t0_b:R": 1,
+          "t1_a:R": 0
+        },
+        "rf": {
+          "t0_b:R": "t1_a:W",
+          "t1_a:R": "I:y"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "t0_a:W"
+          ],
+          "y": [
+            "I:y",
+            "t1_a:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "I:y",
+          "thread": "I:y",
+          "kind": "W",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "t0_a:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0_f:F",
+          "thread": 0,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0_b:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "y",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1_a:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "y",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "t1_a:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "y",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "t0_a"
+          ],
+          [
+            "t0_f"
+          ],
+          [
+            "t0_b"
+          ]
+        ],
+        [
+          [
+            "t1_a"
+          ]
+        ]
+      ],
+      "observation": [
+        true,
+        1,
+        1,
+        1,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ],
+          [
+            "t0_a:W",
+            "t0_f:F"
+          ],
+          [
+            "t0_f:F",
+            "t0_b:R"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:y",
+            "t1_a:R"
+          ],
+          [
+            "t1_a:W",
+            "t0_b:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "t0_a:W"
+          ],
+          [
+            "I:y",
+            "t1_a:W"
+          ]
+        ],
+        "fr": [
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ],
+        "mfence": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ]
+        ],
+        "K": [
+          [
+            "t0_a:W",
+            "t0_b:R"
+          ],
+          [
+            "t1_a:R",
+            "t1_a:W"
+          ]
+        ]
+      }
+    }
+  ],
+  "observations": [
+    [
+      false,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      false,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      true,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      true,
+      1,
+      1,
+      1,
+      0
+    ]
+  ],
+  "queries": [
+    {
+      "path": 0,
+      "index": 0,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 1,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 2,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 3,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 4,
+      "status": "unsat"
+    }
+  ],
+  "validation": {
+    "status": "WELL_FORMED",
+    "program_sha256": "42550722941aa32a6d9e894584cf6f8cfe0791623fbbc88e2a8ccaa5e4670509",
+    "sites": 4,
+    "terminal_types": [
+      [
+        "bv32"
+      ],
+      [
+        "bv32"
+      ]
+    ]
+  },
+  "path_count": 1,
+  "metrics": {
+    "wall_seconds": 0.029174000024795532,
+    "cpu_seconds": 0.015625,
+    "smt_seconds": 0.003015000023879111,
+    "check_seconds": 0.0015948001528158784,
+    "encode_seconds": 0.011338199954479933
+  }
+}

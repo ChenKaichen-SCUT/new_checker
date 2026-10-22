@@ -1,0 +1,51 @@
+{
+  "version": "finite-tso-1",
+  "inputs": {},
+  "domain": true,
+  "objects": {
+    "x": 0
+  },
+  "threads": [
+    [
+      {
+        "op": "faa",
+        "id": "fused",
+        "obj": "x",
+        "dst": "r",
+        "value": 2
+      },
+      {
+        "op": "set",
+        "id": "repair",
+        "dst": "s",
+        "value": [
+          "add",
+          "r",
+          1
+        ]
+      }
+    ],
+    [
+      {
+        "op": "load",
+        "id": "other",
+        "obj": "x",
+        "dst": "v"
+      }
+    ]
+  ],
+  "observe": {
+    "objects": [
+      "x"
+    ],
+    "locals": [
+      [
+        "r",
+        "s"
+      ],
+      [
+        "v"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,747 @@
+{
+  "version": "oracle-B-1",
+  "program_sha256": "8f52ab130a1f16a079bd34d7389abe55f6d84fa5b72ac0a9db26cb48d43470cf",
+  "model": [
+    "8561d85057c449c0828b888c61e3cfeda8b73750474353eee1dd3f0383b192ac",
+    "b7d347726619c89e336bb19fd0ed5284d0b2fb893f06c957644ab769de691766"
+  ],
+  "status": "COMPLETE",
+  "reason": null,
+  "graphs": [
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "8f52ab130a1f16a079bd34d7389abe55f6d84fa5b72ac0a9db26cb48d43470cf",
+      "core": {
+        "inputs": {
+          "b": false
+        },
+        "reads": {
+          "merged:R": 0,
+          "other:R": 2
+        },
+        "rf": {
+          "merged:R": "I:x",
+          "other:R": "merged:W"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "merged:W",
+            "other:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "merged:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "merged:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 3,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "merged"
+          ],
+          [
+            "use"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        false,
+        3,
+        0,
+        1,
+        2
+      ],
+      "relations": {
+        "po": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "merged:R"
+          ],
+          [
+            "merged:W",
+            "other:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "merged:W"
+          ],
+          [
+            "I:x",
+            "other:W"
+          ],
+          [
+            "merged:W",
+            "other:W"
+          ]
+        ],
+        "fr": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "merged:R",
+            "other:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "8f52ab130a1f16a079bd34d7389abe55f6d84fa5b72ac0a9db26cb48d43470cf",
+      "core": {
+        "inputs": {
+          "b": false
+        },
+        "reads": {
+          "merged:R": 1,
+          "other:R": 0
+        },
+        "rf": {
+          "merged:R": "other:W",
+          "other:R": "I:x"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "other:W",
+            "merged:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "merged:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "merged:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 3,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "merged"
+          ],
+          [
+            "use"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        false,
+        3,
+        1,
+        2,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "other:R"
+          ],
+          [
+            "other:W",
+            "merged:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "merged:W"
+          ],
+          [
+            "I:x",
+            "other:W"
+          ],
+          [
+            "other:W",
+            "merged:W"
+          ]
+        ],
+        "fr": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "8f52ab130a1f16a079bd34d7389abe55f6d84fa5b72ac0a9db26cb48d43470cf",
+      "core": {
+        "inputs": {
+          "b": true
+        },
+        "reads": {
+          "merged:R": 1,
+          "other:R": 0
+        },
+        "rf": {
+          "merged:R": "other:W",
+          "other:R": "I:x"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "other:W",
+            "merged:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "merged:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "merged:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "merged"
+          ],
+          [
+            "use"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        true,
+        2,
+        1,
+        2,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "other:R"
+          ],
+          [
+            "other:W",
+            "merged:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "merged:W"
+          ],
+          [
+            "I:x",
+            "other:W"
+          ],
+          [
+            "other:W",
+            "merged:W"
+          ]
+        ],
+        "fr": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "8f52ab130a1f16a079bd34d7389abe55f6d84fa5b72ac0a9db26cb48d43470cf",
+      "core": {
+        "inputs": {
+          "b": true
+        },
+        "reads": {
+          "merged:R": 0,
+          "other:R": 1
+        },
+        "rf": {
+          "merged:R": "I:x",
+          "other:R": "merged:W"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "merged:W",
+            "other:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "merged:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "merged:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "x",
+          "value": 1,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "other:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "merged"
+          ],
+          [
+            "use"
+          ]
+        ],
+        [
+          [
+            "other"
+          ]
+        ]
+      ],
+      "observation": [
+        true,
+        2,
+        0,
+        1,
+        1
+      ],
+      "relations": {
+        "po": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rf": [
+          [
+            "I:x",
+            "merged:R"
+          ],
+          [
+            "merged:W",
+            "other:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "merged:W"
+          ],
+          [
+            "I:x",
+            "other:W"
+          ],
+          [
+            "merged:W",
+            "other:W"
+          ]
+        ],
+        "fr": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "merged:R",
+            "other:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ],
+        "mfence": [],
+        "K": [
+          [
+            "merged:R",
+            "merged:W"
+          ],
+          [
+            "other:R",
+            "other:W"
+          ]
+        ]
+      }
+    }
+  ],
+  "observations": [
+    [
+      false,
+      3,
+      0,
+      1,
+      2
+    ],
+    [
+      false,
+      3,
+      1,
+      2,
+      0
+    ],
+    [
+      true,
+      2,
+      0,
+      1,
+      1
+    ],
+    [
+      true,
+      2,
+      1,
+      2,
+      0
+    ]
+  ],
+  "queries": [
+    {
+      "path": 0,
+      "index": 0,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 1,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 2,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 3,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 4,
+      "status": "unsat"
+    }
+  ],
+  "validation": {
+    "status": "WELL_FORMED",
+    "program_sha256": "8f52ab130a1f16a079bd34d7389abe55f6d84fa5b72ac0a9db26cb48d43470cf",
+    "sites": 3,
+    "terminal_types": [
+      [
+        "bv32",
+        "bv32"
+      ],
+      [
+        "bv32"
+      ]
+    ]
+  },
+  "path_count": 1,
+  "metrics": {
+    "wall_seconds": 0.02728100004605949,
+    "cpu_seconds": 0.03125,
+    "smt_seconds": 0.0066183998715132475,
+    "check_seconds": 0.0016294998349621892,
+    "encode_seconds": 0.011749899946153164
+  }
+}
