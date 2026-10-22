@@ -10,6 +10,8 @@ python -m relation_synthesis.pilot experiments/relation-synthesis/my-pilot
 python -m relation_synthesis.branch_acceptance experiments/relation-synthesis/my-branch
 python -m relation_synthesis.benchmark campaign --manifest experiments/relation-synthesis/protocol-02/manifest.json --output experiments/relation-synthesis/my-campaign
 python -m relation_synthesis.summarize experiments/relation-synthesis/my-campaign experiments/relation-synthesis/my-summary
+python -m relation_synthesis.audit experiments/relation-synthesis/my-campaign experiments/relation-synthesis/my-replay.json
+python -m relation_synthesis.integrity --verify
 ```
 
 Use fresh output directories; none of these commands overwrite prior results.
@@ -51,3 +53,9 @@ sets, per-path obligations, observations/properties, features and resource logs.
 Timing runs preserve incomplete attempts and parent resource termination records.
 `formal-01` has the disclosed attempt-cutoff flaw; `formal-02` uses the uniformly
 repaired pure time budget. It is never valid to merge their best outcomes.
+
+The published final table is `summary-03` (same `formal-02` data; adds complete
+phase accounting), final correctness pilot `pilot-02`, extra branch check
+`branch-both-01`. `replay-formal-01.json` rechecks 931 records; it is named for
+the first publication replay, **not** for the superseded formal-01 experiment.
+The report is `docs/relation-synthesis/00-review-report.md`.

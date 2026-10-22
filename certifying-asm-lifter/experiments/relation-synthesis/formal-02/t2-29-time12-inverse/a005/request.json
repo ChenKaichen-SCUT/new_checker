@@ -1,0 +1,103 @@
+{
+  "domain": {
+    "version": "slot-grammar-1",
+    "threads": 2,
+    "slots": 3,
+    "objects": 2,
+    "branches": 2,
+    "values": [
+      0,
+      1,
+      2,
+      [
+        "ite",
+        "b",
+        1,
+        2
+      ]
+    ],
+    "modes": [
+      "none",
+      "b",
+      "not_b",
+      "previous_zero"
+    ]
+  },
+  "requests": [
+    {
+      "pattern": {
+        "name": "relay_three_threads",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          }
+        ],
+        "edges": [
+          [
+            "rf",
+            0,
+            1,
+            true
+          ],
+          [
+            "po",
+            1,
+            2,
+            true
+          ],
+          [
+            "rf",
+            2,
+            3,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            1,
+            false
+          ],
+          [
+            "same_thread",
+            0,
+            3,
+            false
+          ],
+          [
+            "same_thread",
+            1,
+            3,
+            false
+          ],
+          [
+            "same_obj",
+            1,
+            2,
+            false
+          ]
+        ]
+      }
+    }
+  ],
+  "requirements": [],
+  "propagation": true,
+  "seed": 34,
+  "seconds": 5.756997900083661
+}

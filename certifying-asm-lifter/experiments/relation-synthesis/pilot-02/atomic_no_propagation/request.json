@@ -1,0 +1,86 @@
+{
+  "domain": {
+    "version": "slot-grammar-1",
+    "threads": 3,
+    "slots": 3,
+    "objects": 2,
+    "branches": 2,
+    "values": [
+      0,
+      1,
+      2,
+      [
+        "ite",
+        "b",
+        1,
+        2
+      ]
+    ],
+    "modes": [
+      "none",
+      "b",
+      "not_b",
+      "previous_zero"
+    ]
+  },
+  "requests": [
+    {
+      "pattern": {
+        "name": "three_thread_faa",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          }
+        ],
+        "edges": [
+          [
+            "co",
+            0,
+            1,
+            true
+          ],
+          [
+            "co",
+            1,
+            2,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            1,
+            false
+          ],
+          [
+            "same_thread",
+            1,
+            2,
+            false
+          ],
+          [
+            "same_thread",
+            0,
+            2,
+            false
+          ]
+        ]
+      }
+    }
+  ],
+  "requirements": [],
+  "propagation": false,
+  "seed": 7,
+  "seconds": 15
+}

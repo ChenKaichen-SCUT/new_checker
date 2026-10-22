@@ -1,0 +1,6 @@
+(assert (or (distinct input_b false)
+    (distinct #x00000000 read_t0s0a)
+    (distinct rf_1_2 true)
+    (distinct #b00 co_0)
+    (distinct #b01 co_3)
+    (distinct #b0 co_1)))

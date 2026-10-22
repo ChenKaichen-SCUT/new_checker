@@ -1,0 +1,58 @@
+[
+  {
+    "inputs": {
+      "b": false
+    },
+    "reads": {
+      "t0s0a:R": 0,
+      "t0s1a:R": 1,
+      "t0s2a:R": 2
+    },
+    "rf": {
+      "t0s0a:R": "I:y",
+      "t0s1a:R": "t0s0a:W",
+      "t0s2a:R": "t1s1a:W"
+    },
+    "co": {
+      "x": [
+        "I:x"
+      ],
+      "y": [
+        "I:y",
+        "t0s0a:W",
+        "t0s1a:W",
+        "t1s1a:W"
+      ]
+    }
+  },
+  {
+    "inputs": {
+      "b": true
+    },
+    "reads": {
+      "t0s0a:R": 1,
+      "t0s1a:R": 2,
+      "t0s2b:R": 4,
+      "t1s2b:R": 1
+    },
+    "rf": {
+      "t0s0a:R": "t1s2b:W",
+      "t0s1a:R": "t0s0a:W",
+      "t0s2b:R": "t0s1a:W",
+      "t1s2b:R": "t1s1a:W"
+    },
+    "co": {
+      "x": [
+        "I:x"
+      ],
+      "y": [
+        "I:y",
+        "t1s1a:W",
+        "t1s2b:W",
+        "t0s0a:W",
+        "t0s1a:W",
+        "t0s2b:W"
+      ]
+    }
+  }
+]

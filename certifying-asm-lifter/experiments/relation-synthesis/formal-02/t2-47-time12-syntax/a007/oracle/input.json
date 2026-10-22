@@ -1,0 +1,143 @@
+{
+  "version": "finite-tso-1",
+  "inputs": {
+    "b": "bool"
+  },
+  "domain": true,
+  "objects": {
+    "x": 0,
+    "y": 0
+  },
+  "threads": [
+    [
+      {
+        "op": "set",
+        "id": "t0s0z",
+        "dst": "v0",
+        "value": 0
+      },
+      {
+        "op": "fence",
+        "id": "t0s0a"
+      },
+      {
+        "op": "set",
+        "id": "t0s1z",
+        "dst": "v1",
+        "value": 0
+      },
+      {
+        "op": "fence",
+        "id": "t0s1a"
+      },
+      {
+        "op": "set",
+        "id": "t0s2z",
+        "dst": "v2",
+        "value": 0
+      },
+      {
+        "id": "t0s2c",
+        "op": "if",
+        "guard": "b",
+        "then": [
+          {
+            "op": "faa",
+            "id": "t0s2a",
+            "obj": "x",
+            "dst": "v2",
+            "value": [
+              "ite",
+              "b",
+              1,
+              2
+            ]
+          }
+        ],
+        "else": []
+      }
+    ],
+    [
+      {
+        "op": "set",
+        "id": "t1s0z",
+        "dst": "v0",
+        "value": 0
+      },
+      {
+        "op": "fence",
+        "id": "t1s0a"
+      },
+      {
+        "op": "set",
+        "id": "t1s1z",
+        "dst": "v1",
+        "value": 0
+      },
+      {
+        "op": "store",
+        "id": "t1s1a",
+        "obj": "x",
+        "value": [
+          "ite",
+          "b",
+          1,
+          2
+        ]
+      },
+      {
+        "op": "set",
+        "id": "t1s2z",
+        "dst": "v2",
+        "value": 0
+      },
+      {
+        "id": "t1s2c",
+        "op": "if",
+        "guard": [
+          "eq",
+          "v1",
+          0
+        ],
+        "then": [
+          {
+            "op": "fence",
+            "id": "t1s2a"
+          }
+        ],
+        "else": [
+          {
+            "op": "faa",
+            "id": "t1s2b",
+            "obj": "y",
+            "dst": "v2",
+            "value": [
+              "ite",
+              "b",
+              1,
+              2
+            ]
+          }
+        ]
+      }
+    ]
+  ],
+  "observe": {
+    "objects": [
+      "x",
+      "y"
+    ],
+    "locals": [
+      [
+        "v0",
+        "v1",
+        "v2"
+      ],
+      [
+        "v0",
+        "v1",
+        "v2"
+      ]
+    ]
+  }
+}

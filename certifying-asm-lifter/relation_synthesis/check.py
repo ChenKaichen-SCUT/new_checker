@@ -103,14 +103,9 @@ def accept_synthesis(directory, targets):
     return evaluation
 
 
-def replay(directory):
-    """Regenerate the formula separately from rechecking raw-DSL success evidence."""
+def same_assertions(left,right):
+    """Exact structural equality modulo explicitly commutative operators."""
     import z3
-    from .encode import Synthesis
-    from semantic_testing.exhaustive import compare
-    directory = Path(directory); req = load(directory/'request.json'); result = load(directory/'synthesis.json')
-    enc = Synthesis(req['domain'],req['requests'],req['requirements'],req['propagation'],req['seed'])
-    parsed = z3.parse_smt2_file(str(directory/'formula.smt2'))
     # Z3's simplify orders commutative children by context-local AST ids. A
     # fresh reconstruction after other queries can choose a different order.
     # Normalize only proved commutative operators, never drop assertions/fields.
@@ -125,7 +120,18 @@ def replay(directory):
         if key not in intern: intern[key] = len(intern)
         memo[x.get_id()] = intern[key]
         return intern[key]
-    require([normal(x) for x in parsed] == [normal(x) for x in enc.solver.assertions()],'FORMULA_REQUEST_BINDING')
+    return [normal(x) for x in left] == [normal(x) for x in right]
+
+
+def replay(directory):
+    """Regenerate the formula separately from rechecking raw-DSL success evidence."""
+    import z3
+    from .encode import Synthesis
+    from semantic_testing.exhaustive import compare
+    directory = Path(directory); req = load(directory/'request.json'); result = load(directory/'synthesis.json')
+    enc = Synthesis(req['domain'],req['requests'],req['requirements'],req['propagation'],req['seed'])
+    parsed = z3.parse_smt2_file(str(directory/'formula.smt2'))
+    require(same_assertions(parsed,enc.solver.assertions()),'FORMULA_REQUEST_BINDING')
     out = dict(binding=True,status=result['status'])
     if result['status'] == 'BOUNDED_UNSAT':
         enc.solver.set(timeout=30000)

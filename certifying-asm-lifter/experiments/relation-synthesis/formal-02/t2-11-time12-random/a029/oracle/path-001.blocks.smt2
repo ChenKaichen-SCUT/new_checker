@@ -1,0 +1,6 @@
+(assert (or (distinct input_b true)
+    (distinct #b00 co_0)
+    (distinct #b01 co_4)
+    (distinct #b10 co_5)
+    (distinct #b00 co_1)
+    (distinct #b01 co_3)))

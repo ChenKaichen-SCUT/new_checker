@@ -1,0 +1,383 @@
+{
+  "version": "oracle-B-1",
+  "program_sha256": "f972cbd920553207280fd134e61723dc27ef92cffba3fb12345f2f42c360f63f",
+  "model": [
+    "8561d85057c449c0828b888c61e3cfeda8b73750474353eee1dd3f0383b192ac",
+    "b7d347726619c89e336bb19fd0ed5284d0b2fb893f06c957644ab769de691766"
+  ],
+  "status": "COMPLETE",
+  "reason": null,
+  "graphs": [
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "f972cbd920553207280fd134e61723dc27ef92cffba3fb12345f2f42c360f63f",
+      "core": {
+        "inputs": {
+          "b": true
+        },
+        "reads": {},
+        "rf": {},
+        "co": {
+          "x": [
+            "I:x",
+            "t0s0a:W",
+            "t0s2a:W"
+          ],
+          "y": [
+            "I:y"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "I:y",
+          "thread": "I:y",
+          "kind": "W",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "t0s0a:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0s2a:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1s0a:F",
+          "thread": 1,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "t0s0z"
+          ],
+          [
+            "t0s0a"
+          ],
+          [
+            "t0s1z"
+          ],
+          [
+            "t0s2z"
+          ],
+          [
+            "t0s2c",
+            true
+          ],
+          [
+            "t0s2a"
+          ]
+        ],
+        [
+          [
+            "t1s0z"
+          ],
+          [
+            "t1s0a"
+          ],
+          [
+            "t1s1z"
+          ],
+          [
+            "t1s2z"
+          ],
+          [
+            "t1s2c",
+            true
+          ]
+        ]
+      ],
+      "observation": [
+        true,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "t0s0a:W",
+            "t0s2a:W"
+          ]
+        ],
+        "rf": [],
+        "co": [
+          [
+            "I:x",
+            "t0s0a:W"
+          ],
+          [
+            "I:x",
+            "t0s2a:W"
+          ],
+          [
+            "t0s0a:W",
+            "t0s2a:W"
+          ]
+        ],
+        "fr": [],
+        "rmw": [],
+        "mfence": [],
+        "K": [
+          [
+            "t0s0a:W",
+            "t0s2a:W"
+          ]
+        ]
+      }
+    },
+    {
+      "version": "dsl-execution-1",
+      "program_sha256": "f972cbd920553207280fd134e61723dc27ef92cffba3fb12345f2f42c360f63f",
+      "core": {
+        "inputs": {
+          "b": false
+        },
+        "reads": {},
+        "rf": {},
+        "co": {
+          "x": [
+            "I:x",
+            "t0s0a:W"
+          ],
+          "y": [
+            "I:y"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "I:y",
+          "thread": "I:y",
+          "kind": "W",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "t0s0a:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "x",
+          "value": 2,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1s0a:F",
+          "thread": 1,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1s2b:F",
+          "thread": 1,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "t0s0z"
+          ],
+          [
+            "t0s0a"
+          ],
+          [
+            "t0s1z"
+          ],
+          [
+            "t0s2z"
+          ],
+          [
+            "t0s2c",
+            false
+          ]
+        ],
+        [
+          [
+            "t1s0z"
+          ],
+          [
+            "t1s0a"
+          ],
+          [
+            "t1s1z"
+          ],
+          [
+            "t1s2z"
+          ],
+          [
+            "t1s2c",
+            false
+          ],
+          [
+            "t1s2b"
+          ]
+        ]
+      ],
+      "observation": [
+        false,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "t1s0a:F",
+            "t1s2b:F"
+          ]
+        ],
+        "rf": [],
+        "co": [
+          [
+            "I:x",
+            "t0s0a:W"
+          ]
+        ],
+        "fr": [],
+        "rmw": [],
+        "mfence": [],
+        "K": []
+      }
+    }
+  ],
+  "observations": [
+    [
+      false,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      true,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "queries": [
+    {
+      "path": 0,
+      "index": 0,
+      "status": "sat"
+    },
+    {
+      "path": 0,
+      "index": 1,
+      "status": "unsat"
+    },
+    {
+      "path": 1,
+      "index": 0,
+      "status": "unsat"
+    },
+    {
+      "path": 2,
+      "index": 0,
+      "status": "unsat"
+    },
+    {
+      "path": 3,
+      "index": 0,
+      "status": "sat"
+    },
+    {
+      "path": 3,
+      "index": 1,
+      "status": "unsat"
+    }
+  ],
+  "validation": {
+    "status": "WELL_FORMED",
+    "program_sha256": "f972cbd920553207280fd134e61723dc27ef92cffba3fb12345f2f42c360f63f",
+    "sites": 12,
+    "terminal_types": [
+      [
+        "bv32",
+        "bv32",
+        "bv32"
+      ],
+      [
+        "bv32",
+        "bv32",
+        "bv32"
+      ]
+    ]
+  },
+  "path_count": 4,
+  "metrics": {
+    "wall_seconds": 0.061042699962854385,
+    "cpu_seconds": 0.0625,
+    "smt_seconds": 0.008360199979506433,
+    "check_seconds": 0.0008900999091565609,
+    "encode_seconds": 0.0299921000842005
+  }
+}

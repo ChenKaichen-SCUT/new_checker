@@ -1,0 +1,109 @@
+{
+  "domain": {
+    "version": "slot-grammar-1",
+    "threads": 2,
+    "slots": 3,
+    "objects": 2,
+    "branches": 2,
+    "values": [
+      0,
+      1,
+      2,
+      [
+        "ite",
+        "b",
+        1,
+        2
+      ]
+    ],
+    "modes": [
+      "none",
+      "b",
+      "not_b",
+      "previous_zero"
+    ]
+  },
+  "requests": [
+    {
+      "pattern": {
+        "name": "sb_cycle",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          }
+        ],
+        "edges": [
+          [
+            "po",
+            0,
+            1,
+            true
+          ],
+          [
+            "po",
+            2,
+            3,
+            true
+          ],
+          [
+            "fr",
+            1,
+            2,
+            true
+          ],
+          [
+            "fr",
+            3,
+            0,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            2,
+            false
+          ],
+          [
+            "same_obj",
+            0,
+            1,
+            false
+          ],
+          [
+            "K",
+            0,
+            1,
+            false
+          ],
+          [
+            "K",
+            2,
+            3,
+            false
+          ]
+        ]
+      }
+    }
+  ],
+  "requirements": [],
+  "propagation": true,
+  "seed": 37,
+  "seconds": 2.356037500081584
+}

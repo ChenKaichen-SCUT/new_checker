@@ -1,0 +1,81 @@
+{
+  "domain": {
+    "version": "slot-grammar-1",
+    "threads": 2,
+    "slots": 3,
+    "objects": 2,
+    "branches": 2,
+    "values": [
+      0,
+      1,
+      2,
+      [
+        "ite",
+        "b",
+        1,
+        2
+      ]
+    ],
+    "modes": [
+      "none",
+      "b",
+      "not_b",
+      "previous_zero"
+    ]
+  },
+  "requests": [
+    {
+      "pattern": {
+        "name": "tso_cycle",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "R",
+            "initial": false
+          },
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "R",
+            "initial": false
+          }
+        ],
+        "edges": [
+          [
+            "mfence",
+            0,
+            1,
+            true
+          ],
+          [
+            "fr",
+            1,
+            2,
+            true
+          ],
+          [
+            "mfence",
+            2,
+            3,
+            true
+          ],
+          [
+            "fr",
+            3,
+            0,
+            true
+          ]
+        ]
+      }
+    }
+  ],
+  "requirements": [],
+  "propagation": true,
+  "seed": 7,
+  "seconds": 15
+}

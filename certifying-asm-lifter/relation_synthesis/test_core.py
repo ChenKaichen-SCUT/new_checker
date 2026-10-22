@@ -7,13 +7,24 @@ from semantic_testing.dsl import Invalid,canonical
 from semantic_testing.pool import boundaries
 from semantic_testing.exhaustive import decide_a
 from semantic_testing.witness import inspect
-from .grammar import domain,decode,random_choices
+from .grammar import domain,decode,random_choices,validate_domain
 from .check import grammar_membership
 from .encode import Synthesis
 from .patterns import matches,targets,negatives,target
 
 
 class Tests(unittest.TestCase):
+    def test_domain_boolean_not_integer(self):
+        d=domain(); d['slots']=True
+        with self.assertRaises(Invalid): validate_domain(d)
+
+    def test_domain_metadata_does_not_mutate_reference(self):
+        d=domain(); d['values'][3][2]=77
+        with self.assertRaises(Invalid): validate_domain(d)
+        self.assertEqual(domain()['values'][3],['ite','b',1,2])
+        d=domain(); d['values'][0]=False
+        with self.assertRaises(Invalid): validate_domain(d)
+
     def test_common_grammar_roundtrip(self):
         for threads in (2,3):
             d=domain(threads); rng=random.Random(17)

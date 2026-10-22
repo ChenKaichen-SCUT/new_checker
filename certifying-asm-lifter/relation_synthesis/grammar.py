@@ -1,6 +1,7 @@
 """One common finite grammar for synthesis and every generation baseline."""
 import random
-from semantic_testing.dsl import require, validate
+import copy
+from semantic_testing.dsl import require, validate, canonical
 from semantic_testing.pool import op, program
 
 KINDS = ('nop', 'load', 'store', 'faa', 'fence')
@@ -9,11 +10,12 @@ VALUES = (0, 1, 2, ['ite', 'b', 1, 2])
 
 def domain(threads=2, slots=3, objects=2):
     return dict(version='slot-grammar-1', threads=threads, slots=slots, objects=objects,
-                branches=2, values=list(VALUES), modes=['none', 'b', 'not_b', 'previous_zero'])
+                branches=2, values=copy.deepcopy(list(VALUES)), modes=['none', 'b', 'not_b', 'previous_zero'])
 
 
 def validate_domain(d):
-    require(d == domain(d['threads'], d['slots'], d['objects']), 'GRAMMAR_SCHEMA')
+    require(all(type(d[k]) is int for k in ('threads','slots','objects')), 'GRAMMAR_INTEGER_BOUNDS')
+    require(canonical(d) == canonical(domain(d['threads'], d['slots'], d['objects'])), 'GRAMMAR_SCHEMA')
     require(d['threads'] in (2, 3) and 1 <= d['slots'] <= 3 and d['objects'] in (1, 2), 'GRAMMAR_BOUNDS')
 
 
@@ -44,7 +46,7 @@ def decode(d, choices):
                 if kind == 'nop': return []
                 if kind == 'fence': return [op(kind,sid+suffix)]
                 return [op(kind,sid+suffix,'xy'[a['obj']],dst if kind in ('load','faa') else None,
-                           VALUES[a['value']] if kind in ('store','faa') else None)]
+                           copy.deepcopy(VALUES[a['value']]) if kind in ('store','faa') else None)]
             if c['mode'] == 0: body += arm(c['arms'][0], 'a')
             else:
                 guard = {1:'b',2:['not','b'],3:['eq',f'v{j-1}',0]}[c['mode']]

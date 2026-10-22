@@ -1,0 +1,335 @@
+[
+  {
+    "certificate": {
+      "version": "dsl-execution-1",
+      "program_sha256": "b4f57cb97f55bd7e07b97fdb3387e364fd2bbc137bd55fcb3a25390d0dda1e3c",
+      "core": {
+        "inputs": {
+          "b": true
+        },
+        "reads": {
+          "t0s0a:R": 2,
+          "t0s2a:R": 1,
+          "t1s1a:R": 0
+        },
+        "rf": {
+          "t0s0a:R": "t1s1a:W",
+          "t0s2a:R": "t1s0a:W",
+          "t1s1a:R": "I:y"
+        },
+        "co": {
+          "x": [
+            "I:x",
+            "t1s0a:W"
+          ],
+          "y": [
+            "I:y",
+            "t1s1a:W",
+            "t0s0a:W"
+          ]
+        }
+      },
+      "events": [
+        {
+          "id": "I:x",
+          "thread": "I:x",
+          "kind": "W",
+          "obj": "x",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "I:y",
+          "thread": "I:y",
+          "kind": "W",
+          "obj": "y",
+          "value": 0,
+          "atomic": false,
+          "initial": true
+        },
+        {
+          "id": "t0s0a:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "y",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "t0s0a:W",
+          "thread": 0,
+          "kind": "W",
+          "obj": "y",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "t0s1a:F",
+          "thread": 0,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t0s2a:R",
+          "thread": 0,
+          "kind": "R",
+          "obj": "x",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1s0a:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "x",
+          "value": 1,
+          "atomic": false,
+          "initial": false
+        },
+        {
+          "id": "t1s1a:R",
+          "thread": 1,
+          "kind": "R",
+          "obj": "y",
+          "value": 0,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "t1s1a:W",
+          "thread": 1,
+          "kind": "W",
+          "obj": "y",
+          "value": 2,
+          "atomic": true,
+          "initial": false
+        },
+        {
+          "id": "t1s2a:F",
+          "thread": 1,
+          "kind": "F",
+          "obj": null,
+          "value": null,
+          "atomic": false,
+          "initial": false
+        }
+      ],
+      "paths": [
+        [
+          [
+            "t0s0z"
+          ],
+          [
+            "t0s0a"
+          ],
+          [
+            "t0s1z"
+          ],
+          [
+            "t0s1a"
+          ],
+          [
+            "t0s2z"
+          ],
+          [
+            "t0s2c",
+            true
+          ],
+          [
+            "t0s2a"
+          ]
+        ],
+        [
+          [
+            "t1s0z"
+          ],
+          [
+            "t1s0a"
+          ],
+          [
+            "t1s1z"
+          ],
+          [
+            "t1s1a"
+          ],
+          [
+            "t1s2z"
+          ],
+          [
+            "t1s2c",
+            true
+          ],
+          [
+            "t1s2a"
+          ]
+        ]
+      ],
+      "observation": [
+        true,
+        1,
+        2,
+        2,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "relations": {
+        "po": [
+          [
+            "t0s0a:R",
+            "t0s0a:W"
+          ],
+          [
+            "t0s0a:R",
+            "t0s1a:F"
+          ],
+          [
+            "t0s0a:R",
+            "t0s2a:R"
+          ],
+          [
+            "t0s0a:W",
+            "t0s1a:F"
+          ],
+          [
+            "t0s0a:W",
+            "t0s2a:R"
+          ],
+          [
+            "t0s1a:F",
+            "t0s2a:R"
+          ],
+          [
+            "t1s0a:W",
+            "t1s1a:R"
+          ],
+          [
+            "t1s0a:W",
+            "t1s1a:W"
+          ],
+          [
+            "t1s0a:W",
+            "t1s2a:F"
+          ],
+          [
+            "t1s1a:R",
+            "t1s1a:W"
+          ],
+          [
+            "t1s1a:R",
+            "t1s2a:F"
+          ],
+          [
+            "t1s1a:W",
+            "t1s2a:F"
+          ]
+        ],
+        "rf": [
+          [
+            "I:y",
+            "t1s1a:R"
+          ],
+          [
+            "t1s0a:W",
+            "t0s2a:R"
+          ],
+          [
+            "t1s1a:W",
+            "t0s0a:R"
+          ]
+        ],
+        "co": [
+          [
+            "I:x",
+            "t1s0a:W"
+          ],
+          [
+            "I:y",
+            "t0s0a:W"
+          ],
+          [
+            "I:y",
+            "t1s1a:W"
+          ],
+          [
+            "t1s1a:W",
+            "t0s0a:W"
+          ]
+        ],
+        "fr": [
+          [
+            "t0s0a:R",
+            "t0s0a:W"
+          ],
+          [
+            "t1s1a:R",
+            "t0s0a:W"
+          ],
+          [
+            "t1s1a:R",
+            "t1s1a:W"
+          ]
+        ],
+        "rmw": [
+          [
+            "t0s0a:R",
+            "t0s0a:W"
+          ],
+          [
+            "t1s1a:R",
+            "t1s1a:W"
+          ]
+        ],
+        "mfence": [
+          [
+            "t0s0a:R",
+            "t0s2a:R"
+          ],
+          [
+            "t0s0a:W",
+            "t0s2a:R"
+          ]
+        ],
+        "K": [
+          [
+            "t0s0a:R",
+            "t0s0a:W"
+          ],
+          [
+            "t0s0a:R",
+            "t0s2a:R"
+          ],
+          [
+            "t0s0a:W",
+            "t0s2a:R"
+          ],
+          [
+            "t1s0a:W",
+            "t1s1a:R"
+          ],
+          [
+            "t1s0a:W",
+            "t1s1a:W"
+          ],
+          [
+            "t1s1a:R",
+            "t1s1a:W"
+          ]
+        ]
+      }
+    },
+    "embedding": [
+      "t1s0a:W",
+      "t0s2a:R"
+    ]
+  }
+]

@@ -1,0 +1,740 @@
+{
+  "domain": {
+    "version": "slot-grammar-1",
+    "threads": 2,
+    "slots": 3,
+    "objects": 2,
+    "branches": 2,
+    "values": [
+      0,
+      1,
+      2,
+      [
+        "ite",
+        "b",
+        1,
+        2
+      ]
+    ],
+    "modes": [
+      "none",
+      "b",
+      "not_b",
+      "previous_zero"
+    ]
+  },
+  "seed": 29,
+  "mode": {
+    "name": "time12",
+    "outputs": null,
+    "seconds": 12
+  },
+  "strategy": "syntax",
+  "manifest": {
+    "baseline": "4ffe20639ea376485e04a7d545e84776233e80d1",
+    "version": "relation-protocol-2",
+    "domains": [
+      {
+        "version": "slot-grammar-1",
+        "threads": 2,
+        "slots": 3,
+        "objects": 2,
+        "branches": 2,
+        "values": [
+          0,
+          1,
+          2,
+          [
+            "ite",
+            "b",
+            1,
+            2
+          ]
+        ],
+        "modes": [
+          "none",
+          "b",
+          "not_b",
+          "previous_zero"
+        ]
+      },
+      {
+        "version": "slot-grammar-1",
+        "threads": 3,
+        "slots": 3,
+        "objects": 2,
+        "branches": 2,
+        "values": [
+          0,
+          1,
+          2,
+          [
+            "ite",
+            "b",
+            1,
+            2
+          ]
+        ],
+        "modes": [
+          "none",
+          "b",
+          "not_b",
+          "previous_zero"
+        ]
+      }
+    ],
+    "targets": [
+      {
+        "name": "external_rf",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          }
+        ],
+        "edges": [
+          [
+            "rf",
+            0,
+            1,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            1,
+            false
+          ]
+        ]
+      },
+      {
+        "name": "store_load_gap",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          }
+        ],
+        "edges": [
+          [
+            "po",
+            0,
+            1,
+            true
+          ],
+          [
+            "same_obj",
+            0,
+            1,
+            false
+          ],
+          [
+            "K",
+            0,
+            1,
+            false
+          ]
+        ]
+      },
+      {
+        "name": "fence_order",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          }
+        ],
+        "edges": [
+          [
+            "mfence",
+            0,
+            1,
+            true
+          ],
+          [
+            "same_obj",
+            0,
+            1,
+            false
+          ]
+        ]
+      },
+      {
+        "name": "faa_pair",
+        "nodes": [
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          }
+        ],
+        "edges": [
+          [
+            "rmw",
+            0,
+            1,
+            true
+          ],
+          [
+            "po",
+            0,
+            1,
+            true
+          ],
+          [
+            "K",
+            0,
+            1,
+            true
+          ]
+        ]
+      },
+      {
+        "name": "two_thread_faa",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          }
+        ],
+        "edges": [
+          [
+            "co",
+            0,
+            1,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            1,
+            false
+          ]
+        ]
+      },
+      {
+        "name": "three_thread_faa",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          }
+        ],
+        "edges": [
+          [
+            "co",
+            0,
+            1,
+            true
+          ],
+          [
+            "co",
+            1,
+            2,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            1,
+            false
+          ],
+          [
+            "same_thread",
+            1,
+            2,
+            false
+          ],
+          [
+            "same_thread",
+            0,
+            2,
+            false
+          ]
+        ]
+      },
+      {
+        "name": "three_local_faa",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": true
+          }
+        ],
+        "edges": [
+          [
+            "po",
+            0,
+            1,
+            true
+          ],
+          [
+            "po",
+            1,
+            2,
+            true
+          ],
+          [
+            "co",
+            0,
+            1,
+            true
+          ],
+          [
+            "co",
+            1,
+            2,
+            true
+          ]
+        ]
+      },
+      {
+        "name": "sb_cycle",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          }
+        ],
+        "edges": [
+          [
+            "po",
+            0,
+            1,
+            true
+          ],
+          [
+            "po",
+            2,
+            3,
+            true
+          ],
+          [
+            "fr",
+            1,
+            2,
+            true
+          ],
+          [
+            "fr",
+            3,
+            0,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            2,
+            false
+          ],
+          [
+            "same_obj",
+            0,
+            1,
+            false
+          ],
+          [
+            "K",
+            0,
+            1,
+            false
+          ],
+          [
+            "K",
+            2,
+            3,
+            false
+          ]
+        ]
+      },
+      {
+        "name": "relay_three_threads",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "W",
+            "initial": false,
+            "atomic": false
+          },
+          {
+            "kind": "R",
+            "initial": false,
+            "atomic": false
+          }
+        ],
+        "edges": [
+          [
+            "rf",
+            0,
+            1,
+            true
+          ],
+          [
+            "po",
+            1,
+            2,
+            true
+          ],
+          [
+            "rf",
+            2,
+            3,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            1,
+            false
+          ],
+          [
+            "same_thread",
+            0,
+            3,
+            false
+          ],
+          [
+            "same_thread",
+            1,
+            3,
+            false
+          ],
+          [
+            "same_obj",
+            1,
+            2,
+            false
+          ]
+        ]
+      }
+    ],
+    "negative_targets": [
+      {
+        "name": "co_cycle",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "W",
+            "initial": false
+          }
+        ],
+        "edges": [
+          [
+            "co",
+            0,
+            1,
+            true
+          ],
+          [
+            "co",
+            1,
+            0,
+            true
+          ]
+        ]
+      },
+      {
+        "name": "init_not_first",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "W",
+            "initial": true
+          }
+        ],
+        "edges": [
+          [
+            "co",
+            0,
+            1,
+            true
+          ]
+        ]
+      },
+      {
+        "name": "identity_conflict",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "R",
+            "initial": false
+          }
+        ],
+        "edges": [
+          [
+            "same_obj",
+            0,
+            1,
+            true
+          ],
+          [
+            "same_obj",
+            0,
+            1,
+            false
+          ]
+        ]
+      },
+      {
+        "name": "tso_cycle",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "R",
+            "initial": false
+          },
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "R",
+            "initial": false
+          }
+        ],
+        "edges": [
+          [
+            "mfence",
+            0,
+            1,
+            true
+          ],
+          [
+            "fr",
+            1,
+            2,
+            true
+          ],
+          [
+            "mfence",
+            2,
+            3,
+            true
+          ],
+          [
+            "fr",
+            3,
+            0,
+            true
+          ]
+        ]
+      },
+      {
+        "name": "rmw_interposed",
+        "nodes": [
+          {
+            "kind": "R",
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "atomic": true
+          },
+          {
+            "kind": "W",
+            "initial": false
+          }
+        ],
+        "edges": [
+          [
+            "rmw",
+            0,
+            1,
+            true
+          ],
+          [
+            "fr",
+            0,
+            2,
+            true
+          ],
+          [
+            "co",
+            2,
+            1,
+            true
+          ],
+          [
+            "same_thread",
+            0,
+            2,
+            false
+          ]
+        ]
+      },
+      {
+        "name": "rf_two_sources",
+        "nodes": [
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "W",
+            "initial": false
+          },
+          {
+            "kind": "R",
+            "initial": false
+          }
+        ],
+        "edges": [
+          [
+            "rf",
+            0,
+            2,
+            true
+          ],
+          [
+            "rf",
+            1,
+            2,
+            true
+          ]
+        ]
+      }
+    ],
+    "pilot_seed": 7,
+    "seeds": [
+      11,
+      29,
+      47
+    ],
+    "strategies": [
+      "random",
+      "syntax",
+      "semantic",
+      "inverse"
+    ],
+    "modes": [
+      {
+        "name": "count3",
+        "outputs": 3,
+        "seconds": 60
+      },
+      {
+        "name": "time12",
+        "outputs": null,
+        "seconds": 12
+      }
+    ],
+    "pool_size": 8,
+    "max_attempts": 24,
+    "synthesis_seconds": 15,
+    "oracle_seconds": 15,
+    "max_graphs": 512,
+    "process_memory_bytes": 2147483648,
+    "hard_grace_seconds": 3,
+    "optimization": "FAA predecessor redundant propagation on; targeted ablation off",
+    "selection": "random stream; syntax greedy batches of 8; semantic FULL batches of 8 ranked by new target hits then F2; inverse requests next unmet target",
+    "multi_target": "pilot only: two targets share grammar, independent execution copies",
+    "timing": "isolated sequential Python workers; end-to-end including all generation/SMT/oracle/A/features/I/O; outputs completed after deadline excluded",
+    "dedup": "canonical raw program before oracle; completed outputs dedup by complete F2+F3 feature-set; retain all attempts",
+    "evaluation": [
+      "target_hit",
+      "full_graphs",
+      "F2",
+      "heldout_F3",
+      "behavior_probes",
+      "observations",
+      "paths",
+      "wall_cpu",
+      "queries",
+      "peak_bytes",
+      "evidence_bytes",
+      "duplicates",
+      "failures"
+    ],
+    "go": "separate correctness, novel-in-old-pool, paired count/time effectiveness, method novelty; no verifier claim",
+    "time_max_attempts": null,
+    "revision": "Remove attempt cutoff for equal-time runs uniformly; see docs/relation-synthesis/03-protocol-repair.md"
+  }
+}

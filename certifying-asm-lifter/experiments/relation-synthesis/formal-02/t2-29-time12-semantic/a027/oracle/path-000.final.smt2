@@ -1,0 +1,522 @@
+(declare-fun rf_6_5 () Bool)
+(declare-fun co_0 () (_ BitVec 1))
+(declare-fun co_1 () (_ BitVec 2))
+(declare-fun final_x () (_ BitVec 32))
+(declare-fun input_b () Bool)
+(declare-fun k!795 () Bool)
+(declare-fun topo_U_0 () (_ BitVec 4))
+(declare-fun k!796 () Bool)
+(declare-fun topo_U_2 () (_ BitVec 4))
+(declare-fun k!797 () Bool)
+(declare-fun topo_U_3 () (_ BitVec 4))
+(declare-fun k!798 () Bool)
+(declare-fun topo_T_0 () (_ BitVec 4))
+(declare-fun k!799 () Bool)
+(declare-fun topo_T_2 () (_ BitVec 4))
+(declare-fun k!800 () Bool)
+(declare-fun topo_T_3 () (_ BitVec 4))
+(declare-fun k!801 () Bool)
+(declare-fun k!802 () Bool)
+(declare-fun k!803 () Bool)
+(declare-fun k!804 () Bool)
+(declare-fun k!805 () Bool)
+(declare-fun k!806 () Bool)
+(declare-fun co_4 () (_ BitVec 2))
+(declare-fun co_6 () (_ BitVec 2))
+(declare-fun read_t1s1a () (_ BitVec 32))
+(declare-fun rf_1_5 () Bool)
+(declare-fun rf_4_5 () Bool)
+(declare-fun read_t1s2a () (_ BitVec 32))
+(declare-fun rf_1_7 () Bool)
+(declare-fun rf_4_7 () Bool)
+(declare-fun rf_6_7 () Bool)
+(declare-fun topo_U_1 () (_ BitVec 4))
+(declare-fun topo_U_4 () (_ BitVec 4))
+(declare-fun topo_U_5 () (_ BitVec 4))
+(declare-fun topo_U_6 () (_ BitVec 4))
+(declare-fun topo_U_7 () (_ BitVec 4))
+(declare-fun topo_T_1 () (_ BitVec 4))
+(declare-fun topo_T_4 () (_ BitVec 4))
+(declare-fun topo_T_5 () (_ BitVec 4))
+(declare-fun topo_T_6 () (_ BitVec 4))
+(declare-fun topo_T_7 () (_ BitVec 4))
+(declare-fun final_y () (_ BitVec 32))
+(assert (= input_b input_b))
+(assert true)
+(assert (= input_b true))
+(assert (bvult co_0 #b1))
+(assert (= co_0 #b0))
+(assert (distinct co_0))
+(assert (bvult co_1 #b11))
+(assert (= co_1 #b00))
+(assert (bvult co_4 #b11))
+(assert (bvult co_6 #b11))
+(assert (distinct co_1 co_4 co_6))
+(assert (=> rf_1_5 (= #x00000000 read_t1s1a)))
+(assert (=> rf_4_5 (= #x00000000 read_t1s1a)))
+(assert (=> rf_6_5 (= (bvadd read_t1s1a #x00000002) read_t1s1a)))
+(assert ((_ pbeq 1 1 1 1) rf_1_5 rf_4_5 rf_6_5))
+(assert (=> rf_1_7 (= #x00000000 read_t1s2a)))
+(assert (=> rf_4_7 (= #x00000000 read_t1s2a)))
+(assert (=> rf_6_7 (= (bvadd read_t1s1a #x00000002) read_t1s2a)))
+(assert ((_ pbeq 1 1 1 1) rf_1_7 rf_4_7 rf_6_7))
+(assert (not (and (or (and rf_1_5 false) (and rf_4_5 false) (and rf_6_5 false)) false)))
+(assert (let ((a!1 (and (or (and rf_1_5 (bvult co_1 co_1))
+                    (and rf_4_5 (bvult co_4 co_1))
+                    (and rf_6_5 (bvult co_6 co_1)))
+                (bvult co_1 co_6))))
+  (not a!1)))
+(assert (bvult topo_U_0 #x8))
+(assert (bvult topo_U_1 #x8))
+(assert (bvult topo_U_2 #x8))
+(assert (bvult topo_U_3 #x8))
+(assert (bvult topo_U_4 #x8))
+(assert (bvult topo_U_5 #x8))
+(assert (bvult topo_U_6 #x8))
+(assert (bvult topo_U_7 #x8))
+(assert (bvult topo_T_0 #x8))
+(assert (bvult topo_T_1 #x8))
+(assert (bvult topo_T_2 #x8))
+(assert (bvult topo_T_3 #x8))
+(assert (bvult topo_T_4 #x8))
+(assert (bvult topo_T_5 #x8))
+(assert (bvult topo_T_6 #x8))
+(assert (bvult topo_T_7 #x8))
+(assert (=> (or false false (bvult co_0 co_0) or) (bvult topo_U_0 topo_U_0)))
+(assert (=> (or false false (bvult co_0 co_0) or (and false false))
+    (bvult topo_T_0 topo_T_0)))
+(assert (=> (or false false false or) (bvult topo_U_0 topo_U_1)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_0 topo_T_1)))
+(assert (=> (or false false false or) (bvult topo_U_0 topo_U_2)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_0 topo_T_2)))
+(assert (=> (or false false false or) (bvult topo_U_0 topo_U_3)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_0 topo_T_3)))
+(assert (=> (or false false false or) (bvult topo_U_0 topo_U_4)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_0 topo_T_4)))
+(assert (=> (or false false false or) (bvult topo_U_0 topo_U_5)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_0 topo_T_5)))
+(assert (=> (or false false false or) (bvult topo_U_0 topo_U_6)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_0 topo_T_6)))
+(assert (=> (or false false false or) (bvult topo_U_0 topo_U_7)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_0 topo_T_7)))
+(assert (=> (or false false false or) (bvult topo_U_1 topo_U_0)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_1 topo_T_0)))
+(assert (=> (or false false (bvult co_1 co_1) or) (bvult topo_U_1 topo_U_1)))
+(assert (=> (or false false (bvult co_1 co_1) or (and false false))
+    (bvult topo_T_1 topo_T_1)))
+(assert (=> (or false false false or) (bvult topo_U_1 topo_U_2)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_1 topo_T_2)))
+(assert (=> (or false false false or) (bvult topo_U_1 topo_U_3)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_1 topo_T_3)))
+(assert (=> (or false false (bvult co_1 co_4) or) (bvult topo_U_1 topo_U_4)))
+(assert (=> (or false false (bvult co_1 co_4) or (and true false))
+    (bvult topo_T_1 topo_T_4)))
+(assert (=> (or false rf_1_5 false or) (bvult topo_U_1 topo_U_5)))
+(assert (=> (or false false false or (and true rf_1_5)) (bvult topo_T_1 topo_T_5)))
+(assert (=> (or false false (bvult co_1 co_6) or) (bvult topo_U_1 topo_U_6)))
+(assert (=> (or false false (bvult co_1 co_6) or (and true false))
+    (bvult topo_T_1 topo_T_6)))
+(assert (=> (or false rf_1_7 false or) (bvult topo_U_1 topo_U_7)))
+(assert (=> (or false false false or (and true rf_1_7)) (bvult topo_T_1 topo_T_7)))
+(assert (=> (or false false false or) (bvult topo_U_2 topo_U_0)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_2 topo_T_0)))
+(assert (=> (or false false false or) (bvult topo_U_2 topo_U_1)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_2 topo_T_1)))
+(assert (=> (or false false false or) (bvult topo_U_2 topo_U_2)))
+(assert (=> (or false false false or (and false false)) (bvult topo_T_2 topo_T_2)))
+(assert (=> (or false false false or) (bvult topo_U_2 topo_U_3)))
+(assert (=> (or false false false or (and false false)) (bvult topo_T_2 topo_T_3)))
+(assert (=> (or false false false or) (bvult topo_U_2 topo_U_4)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_2 topo_T_4)))
+(assert (=> (or false false false or) (bvult topo_U_2 topo_U_5)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_2 topo_T_5)))
+(assert (=> (or false false false or) (bvult topo_U_2 topo_U_6)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_2 topo_T_6)))
+(assert (=> (or false false false or) (bvult topo_U_2 topo_U_7)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_2 topo_T_7)))
+(assert (=> (or false false false or) (bvult topo_U_3 topo_U_0)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_3 topo_T_0)))
+(assert (=> (or false false false or) (bvult topo_U_3 topo_U_1)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_3 topo_T_1)))
+(assert (=> (or false false false or) (bvult topo_U_3 topo_U_2)))
+(assert (=> (or false false false or (and false false)) (bvult topo_T_3 topo_T_2)))
+(assert (=> (or false false false or) (bvult topo_U_3 topo_U_3)))
+(assert (=> (or false false false or (and false false)) (bvult topo_T_3 topo_T_3)))
+(assert (=> (or false false false or) (bvult topo_U_3 topo_U_4)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_3 topo_T_4)))
+(assert (=> (or false false false or) (bvult topo_U_3 topo_U_5)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_3 topo_T_5)))
+(assert (=> (or false false false or) (bvult topo_U_3 topo_U_6)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_3 topo_T_6)))
+(assert (=> (or false false false or) (bvult topo_U_3 topo_U_7)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_3 topo_T_7)))
+(assert (=> (or false false false or) (bvult topo_U_4 topo_U_0)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_4 topo_T_0)))
+(assert (=> (or false false (bvult co_4 co_1) or) (bvult topo_U_4 topo_U_1)))
+(assert (=> (or false false (bvult co_4 co_1) or (and true false))
+    (bvult topo_T_4 topo_T_1)))
+(assert (=> (or false false false or) (bvult topo_U_4 topo_U_2)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_4 topo_T_2)))
+(assert (=> (or false false false or) (bvult topo_U_4 topo_U_3)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_4 topo_T_3)))
+(assert (=> (or false false (bvult co_4 co_4) or) (bvult topo_U_4 topo_U_4)))
+(assert (=> (or false false (bvult co_4 co_4) or (and false false))
+    (bvult topo_T_4 topo_T_4)))
+(assert (=> (or true rf_4_5 false or) (bvult topo_U_4 topo_U_5)))
+(assert (=> (or true false false or (and false rf_4_5)) (bvult topo_T_4 topo_T_5)))
+(assert (=> (or true false (bvult co_4 co_6) or) (bvult topo_U_4 topo_U_6)))
+(assert (=> (or true false (bvult co_4 co_6) or (and false false))
+    (bvult topo_T_4 topo_T_6)))
+(assert (=> (or true rf_4_7 false or) (bvult topo_U_4 topo_U_7)))
+(assert (=> (or false false false or (and false rf_4_7)) (bvult topo_T_4 topo_T_7)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false))
+    (bvult topo_U_5 topo_U_0)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false)
+        (and true false))
+    (bvult topo_T_5 topo_T_0)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 (bvult co_1 co_1))
+        (and rf_4_5 (bvult co_4 co_1))
+        (and rf_6_5 (bvult co_6 co_1)))
+    (bvult topo_U_5 topo_U_1)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 (bvult co_1 co_1))
+        (and rf_4_5 (bvult co_4 co_1))
+        (and rf_6_5 (bvult co_6 co_1))
+        (and true false))
+    (bvult topo_T_5 topo_T_1)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false))
+    (bvult topo_U_5 topo_U_2)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false)
+        (and true false))
+    (bvult topo_T_5 topo_T_2)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false))
+    (bvult topo_U_5 topo_U_3)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false)
+        (and true false))
+    (bvult topo_T_5 topo_T_3)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 (bvult co_1 co_4))
+        (and rf_4_5 (bvult co_4 co_4))
+        (and rf_6_5 (bvult co_6 co_4)))
+    (bvult topo_U_5 topo_U_4)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 (bvult co_1 co_4))
+        (and rf_4_5 (bvult co_4 co_4))
+        (and rf_6_5 (bvult co_6 co_4))
+        (and false false))
+    (bvult topo_T_5 topo_T_4)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false))
+    (bvult topo_U_5 topo_U_5)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false)
+        (and false false))
+    (bvult topo_T_5 topo_T_5)))
+(assert (=> (or true
+        false
+        false
+        (and rf_1_5 (bvult co_1 co_6))
+        (and rf_4_5 (bvult co_4 co_6))
+        (and rf_6_5 (bvult co_6 co_6)))
+    (bvult topo_U_5 topo_U_6)))
+(assert (=> (or true
+        false
+        false
+        (and rf_1_5 (bvult co_1 co_6))
+        (and rf_4_5 (bvult co_4 co_6))
+        (and rf_6_5 (bvult co_6 co_6))
+        (and false false))
+    (bvult topo_T_5 topo_T_6)))
+(assert (=> (or true
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false))
+    (bvult topo_U_5 topo_U_7)))
+(assert (=> (or true
+        false
+        false
+        (and rf_1_5 false)
+        (and rf_4_5 false)
+        (and rf_6_5 false)
+        (and false false))
+    (bvult topo_T_5 topo_T_7)))
+(assert (=> (or false false false or) (bvult topo_U_6 topo_U_0)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_6 topo_T_0)))
+(assert (=> (or false false (bvult co_6 co_1) or) (bvult topo_U_6 topo_U_1)))
+(assert (=> (or false false (bvult co_6 co_1) or (and true false))
+    (bvult topo_T_6 topo_T_1)))
+(assert (=> (or false false false or) (bvult topo_U_6 topo_U_2)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_6 topo_T_2)))
+(assert (=> (or false false false or) (bvult topo_U_6 topo_U_3)))
+(assert (=> (or false false false or (and true false)) (bvult topo_T_6 topo_T_3)))
+(assert (=> (or false false (bvult co_6 co_4) or) (bvult topo_U_6 topo_U_4)))
+(assert (=> (or false false (bvult co_6 co_4) or (and false false))
+    (bvult topo_T_6 topo_T_4)))
+(assert (=> (or false rf_6_5 false or) (bvult topo_U_6 topo_U_5)))
+(assert (=> (or false false false or (and false rf_6_5)) (bvult topo_T_6 topo_T_5)))
+(assert (=> (or false false (bvult co_6 co_6) or) (bvult topo_U_6 topo_U_6)))
+(assert (=> (or false false (bvult co_6 co_6) or (and false false))
+    (bvult topo_T_6 topo_T_6)))
+(assert (=> (or true rf_6_7 false or) (bvult topo_U_6 topo_U_7)))
+(assert (=> (or true false false or (and false rf_6_7)) (bvult topo_T_6 topo_T_7)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false))
+    (bvult topo_U_7 topo_U_0)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false)
+        (and true false))
+    (bvult topo_T_7 topo_T_0)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 (bvult co_1 co_1))
+        (and rf_4_7 (bvult co_4 co_1))
+        (and rf_6_7 (bvult co_6 co_1)))
+    (bvult topo_U_7 topo_U_1)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 (bvult co_1 co_1))
+        (and rf_4_7 (bvult co_4 co_1))
+        (and rf_6_7 (bvult co_6 co_1))
+        (and true false))
+    (bvult topo_T_7 topo_T_1)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false))
+    (bvult topo_U_7 topo_U_2)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false)
+        (and true false))
+    (bvult topo_T_7 topo_T_2)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false))
+    (bvult topo_U_7 topo_U_3)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false)
+        (and true false))
+    (bvult topo_T_7 topo_T_3)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 (bvult co_1 co_4))
+        (and rf_4_7 (bvult co_4 co_4))
+        (and rf_6_7 (bvult co_6 co_4)))
+    (bvult topo_U_7 topo_U_4)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 (bvult co_1 co_4))
+        (and rf_4_7 (bvult co_4 co_4))
+        (and rf_6_7 (bvult co_6 co_4))
+        (and false false))
+    (bvult topo_T_7 topo_T_4)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false))
+    (bvult topo_U_7 topo_U_5)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false)
+        (and false false))
+    (bvult topo_T_7 topo_T_5)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 (bvult co_1 co_6))
+        (and rf_4_7 (bvult co_4 co_6))
+        (and rf_6_7 (bvult co_6 co_6)))
+    (bvult topo_U_7 topo_U_6)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 (bvult co_1 co_6))
+        (and rf_4_7 (bvult co_4 co_6))
+        (and rf_6_7 (bvult co_6 co_6))
+        (and false false))
+    (bvult topo_T_7 topo_T_6)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false))
+    (bvult topo_U_7 topo_U_7)))
+(assert (=> (or false
+        false
+        false
+        (and rf_1_7 false)
+        (and rf_4_7 false)
+        (and rf_6_7 false)
+        (and false false))
+    (bvult topo_T_7 topo_T_7)))
+(assert (=> (= co_0 #b0) (= #x00000000 final_x)))
+(assert (=> (= co_1 #b10) (= #x00000000 final_y)))
+(assert (=> (= co_4 #b10) (= #x00000000 final_y)))
+(assert (=> (= co_6 #b10) (= final_y (bvadd read_t1s1a #x00000002))))
+(assert (or (distinct input_b true)
+    (distinct #x00000000 read_t1s1a)
+    (distinct #x00000002 read_t1s2a)
+    (distinct rf_1_5 false)
+    (distinct rf_4_5 true)
+    (distinct rf_6_5 false)
+    (distinct rf_1_7 false)
+    (distinct rf_4_7 false)
+    (distinct rf_6_7 true)
+    (distinct #b0 co_0)
+    (distinct #b00 co_1)
+    (distinct #b01 co_4)
+    (distinct #b10 co_6)))
+(model-add rf_6_5 () Bool false)
+(model-add co_0 () (_ BitVec 1) #b0)
+(model-add co_1 () (_ BitVec 2) #b00)
+(model-add final_x () (_ BitVec 32) #x00000000)
+(model-add input_b () Bool true)
+(model-del k!795)
+(model-add topo_U_0
+           ()
+           (_ BitVec 4)
+           (ite (or k!795 (= #x8 #x0)) #x8 (bvsub #x8 #x1)))
+(model-del k!796)
+(model-add topo_U_2
+           ()
+           (_ BitVec 4)
+           (ite (or k!796 (= #x8 #x0)) #x8 (bvsub #x8 #x1)))
+(model-del k!797)
+(model-add topo_U_3
+           ()
+           (_ BitVec 4)
+           (ite (or k!797 (= #x8 #x0)) #x8 (bvsub #x8 #x1)))
+(model-del k!798)
+(model-add topo_T_0
+           ()
+           (_ BitVec 4)
+           (ite (or k!798 (= #x8 #x0)) #x8 (bvsub #x8 #x1)))
+(model-del k!799)
+(model-add topo_T_2
+           ()
+           (_ BitVec 4)
+           (ite (or k!799 (= #x8 #x0)) #x8 (bvsub #x8 #x1)))
+(model-del k!800)
+(model-add topo_T_3
+           ()
+           (_ BitVec 4)
+           (ite (or k!800 (= #x8 #x0)) #x8 (bvsub #x8 #x1)))
+(model-del k!801)
+(model-add k!795 () Bool (not k!801))
+(model-del k!802)
+(model-add k!796 () Bool (not k!802))
+(model-del k!803)
+(model-add k!797 () Bool (not k!803))
+(model-del k!804)
+(model-add k!798 () Bool (not k!804))
+(model-del k!805)
+(model-add k!799 () Bool (not k!805))
+(model-del k!806)
+(model-add k!800 () Bool (not k!806))
+(model-add k!801 () Bool true)
+(model-add topo_T_4 () (_ BitVec 4) #x1)
+(model-add rf_1_7 () Bool false)
+(model-add topo_T_1 () (_ BitVec 4) #x0)
+(model-add topo_T_5 () (_ BitVec 4) #x2)
+(model-add co_6 () (_ BitVec 2) #b10)
+(model-add topo_U_4 () (_ BitVec 4) #x1)
+(model-add topo_U_5 () (_ BitVec 4) #x3)
+(model-add k!806 () Bool true)
+(model-add rf_4_7 () Bool false)
+(model-add k!804 () Bool true)
+(model-add read_t1s1a () (_ BitVec 32) #x00000000)
+(model-add co_4 () (_ BitVec 2) #b01)
+(model-add topo_T_6 () (_ BitVec 4) #x4)
+(model-add topo_T_7 () (_ BitVec 4) #x5)
+(model-add rf_6_7 () Bool true)
+(model-add k!803 () Bool true)
+(model-add k!802 () Bool true)
+(model-add k!805 () Bool true)
+(model-add rf_1_5 () Bool false)
+(model-add topo_U_7 () (_ BitVec 4) #x6)
+(model-add topo_U_1 () (_ BitVec 4) #x0)
+(model-add final_y () (_ BitVec 32) #x00000002)
+(model-add read_t1s2a () (_ BitVec 32) #x00000002)
+(model-add topo_U_6 () (_ BitVec 4) #x4)
+(model-add rf_4_5 () Bool true)
+
+(check-sat)
