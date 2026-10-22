@@ -36,10 +36,18 @@ def value(model, e):
     return z3.is_true(v) if z3.is_bool(v) else v.as_long()
 
 
+def raw_smt(solver):
+    # to_smt2() may collapse all assertions when an explicit false occurs.
+    # Preserve the actual assertion list, including infeasible structural paths.
+    return solver.sexpr() + "\n(check-sat)\n"
+
+
 class Encoding:
     def __init__(self, p, paths):
         self.solver = s = z3.Solver()
         self.inputs = inputs = {k: (z3.Bool("input_" + k) if t == "bool" else z3.BitVec("input_" + k, 32)) for k, t in sorted(p["inputs"].items())}
+        # Retain declarations even for unused but observable inputs in raw SMT.
+        for var in inputs.values(): s.add(var == var)
         s.add(expression(p["domain"], inputs))
         es, po, rmw, ends = [], set(), set(), []
         self.reads = reads = {}
@@ -141,7 +149,7 @@ def decide(p, directory, seconds=60, max_graphs=10000, path_limit=4096):
             if time.perf_counter() - start >= seconds: raise Limit("TASK_TIME")
             before = time.perf_counter(); enc = Encoding(p, path); encode_seconds += time.perf_counter() - before
             stem = f"path-{number:03d}"
-            (directory / (stem + ".smt2")).write_text(enc.solver.to_smt2(), encoding="utf-8")
+            (directory / (stem + ".smt2")).write_text(raw_smt(enc.solver), encoding="utf-8")
             blockers, query_records = [], []
             while True:
                 remaining = seconds - (time.perf_counter() - start)
@@ -164,7 +172,7 @@ def decide(p, directory, seconds=60, max_graphs=10000, path_limit=4096):
                 # Persist every transition; the final UNSAT formula is base + all blockers.
                 (directory / (stem + ".blocks.smt2")).write_text("\n".join(blockers) + "\n", encoding="utf-8")
                 if len(result["graphs"]) >= max_graphs: raise Limit("GRAPH_COUNT")
-            (directory / (stem + ".final.smt2")).write_text(enc.solver.to_smt2(), encoding="utf-8")
+            (directory / (stem + ".final.smt2")).write_text(raw_smt(enc.solver), encoding="utf-8")
         result["status"] = "COMPLETE" if result["graphs"] else "EMPTY_INPUT_DOMAIN"
     except Limit as e:
         result["reason"] = str(e)

@@ -37,13 +37,16 @@ def decide_a(p, seconds=60, max_candidates=1000000):
                 if n["op"] in ("store", "faa"):
                     try: etype(n["value"], p["inputs"])
                     except Invalid: raise Limit("A_UNSUPPORTED_DATA_DEPENDENT_WRITE")
-        paths = [list(choices(t)) for t in p["threads"]]
+        paths = [list(itertools.islice(choices(t), 4097)) for t in p["threads"]]
+        if any(len(v) > 4096 for v in paths): raise Limit("A_PATH_BUDGET")
         legal_inputs = 0
         for values in itertools.product((False, True), repeat=len(p["inputs"])):
+            if time.perf_counter() - start >= seconds: raise Limit("A_TIME")
             inputs = dict(zip(sorted(p["inputs"]), values))
             if not evaluate(p["domain"], inputs): continue
             legal_inputs += 1
             for selected in itertools.product(*paths):
+                if time.perf_counter() - start >= seconds: raise Limit("A_TIME")
                 writes = {a: ["I:" + a] for a in p["objects"]}; nodes = {}; loads = []
                 expected_paths = []
                 for thread in selected:

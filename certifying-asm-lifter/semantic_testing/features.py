@@ -22,6 +22,8 @@ def pattern(graph, subset):
 
 def extract(p, result, maximum=3):
     require(result["status"] == "COMPLETE", "FEATURE_REQUIRES_COMPLETENESS")
+    from .expectations import exact_guard
+    exact_guard(p, result)
     sets = {i: set() for i in range(1, maximum + 1)}
     witnesses = {}
     heldout = set()

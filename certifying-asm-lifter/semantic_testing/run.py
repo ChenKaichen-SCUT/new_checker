@@ -50,11 +50,16 @@ def memory():
 
 
 def task(p, output, manifest, with_features=False):
+    task_start, task_cpu = time.perf_counter(), time.process_time()
     result = decide(p, output, manifest["oracle_seconds"], manifest["max_graphs"], manifest["max_paths"])
+    phase = time.perf_counter()
     audit = compare(p, result, manifest["explicit_seconds"])
     save(Path(output) / "independent-A.json", audit)
+    independent_phase = time.perf_counter() - phase
+    phase = time.perf_counter()
     if result["status"] == "COMPLETE":
         save(Path(output) / "expectations.json", expected(p, result))
+    expectation_phase = time.perf_counter() - phase
     feature = None
     if with_features and result["status"] == "COMPLETE" and audit["status"] == "AGREEMENT":
         start = time.perf_counter(); cpu = time.process_time()
@@ -63,6 +68,9 @@ def task(p, output, manifest, with_features=False):
         feature["feature_cpu_seconds"] = time.process_time() - cpu
         save(Path(output) / "features.json", feature)
     save(Path(output) / "resource.json", {"process_peak_working_set_bytes": memory(),
+        "task_wall_seconds_before_resource_write": time.perf_counter() - task_start,
+        "task_cpu_seconds_before_resource_write": time.process_time() - task_cpu,
+        "independent_phase_seconds": independent_phase, "expectation_phase_seconds": expectation_phase,
         "evidence_bytes_before_resource": sum(f.stat().st_size for f in Path(output).rglob("*") if f.is_file())})
     return result, audit, feature
 
@@ -138,6 +146,7 @@ def acceptance(frozen, output):
 
 
 def campaign(frozen, output):
+    campaign_start, campaign_cpu = time.perf_counter(), time.process_time()
     frozen, output = Path(frozen), Path(output); output.mkdir(parents=True, exist_ok=False)
     manifest = load(frozen / "manifest.json"); save(output / "environment.json", env())
     rows, records = [], {}
@@ -182,6 +191,9 @@ def campaign(frozen, output):
          "explicit_seconds": sum(r["explicit_seconds"] for r in rows), "feature_seconds": sum(r["feature_seconds"] for r in rows),
          "total_evidence_bytes": sum(r["evidence_bytes"] for r in rows)},
          "feature_unions": {k: len(set().union(*(set(v[k]) for v in records.values()))) for k in ("objective", "heldout_three", "heldout_behavior", "syntax")}})
+    save(output / "campaign-resource.json", {"wall_seconds": time.perf_counter() - campaign_start,
+        "cpu_seconds": time.process_time() - campaign_cpu, "peak_working_set_bytes": memory(),
+        "scope": "all 100 candidate preprocessing, all 45 selection runs, input/result I/O; excludes later independent replay"})
 
 
 def replay(directory):

@@ -60,7 +60,9 @@ def verify_rule(p, q, claim):
     rule = claim["rule"]
     if rule == "FAA_DUPLICATE":
         # Verify inverse equation, not a sample of branch observations.
-        return verify_rule(q, p, {"rule": "FAA_DIAMOND", "source_site": claim["target_site"], "target_site": claim["source_site"]})
+        inverse = verify_rule(q, p, {"rule": "FAA_DIAMOND", "source_site": claim["target_site"], "target_site": claim["source_site"]})
+        return {"status": "RULE_VERIFIED", "rule": rule, "source_sha256": digest(p), "target_sha256": digest(q),
+                "strength": "BIDIRECTIONAL_ACTIVE_GRAPH_TRANSPORT", "scope": "finite-tso-1", "inverse_check": inverse}
     if rule in ("FAA_DIAMOND", "PURE_ADD_ZERO"):
         a, b = copy.deepcopy(p), copy.deepcopy(q)
         sa, ia = locate(a, claim["source_site"]); sb, ib = locate(b, claim["target_site"])
