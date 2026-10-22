@@ -25,7 +25,8 @@ def worker(config, output, deadline):
         save(output/'progress.json',dict(attempts=attempts,selected=selected,covered=sorted(covered),
             wall_seconds=time.perf_counter()-start,cpu_seconds=time.process_time()-cpu,peak_bytes=memory()))
     def done():
-        return time.perf_counter() >= deadline or len(attempts) >= m['max_attempts'] or (cfg['mode']['outputs'] is not None and len(selected) >= cfg['mode']['outputs'])
+        attempt_limit=m.get('time_max_attempts',m['max_attempts']) if cfg['mode']['outputs'] is None else m['max_attempts']
+        return time.perf_counter() >= deadline or (attempt_limit is not None and len(attempts) >= attempt_limit) or (cfg['mode']['outputs'] is not None and len(selected) >= cfg['mode']['outputs'])
     def selection_done():
         return time.perf_counter() >= deadline or (cfg['mode']['outputs'] is not None and len(selected) >= cfg['mode']['outputs'])
     def candidate(p=None,goal=None):
